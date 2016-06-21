@@ -7,4 +7,10 @@ import { FormComponent } from './form/form.component'
     directives: [FormComponent]
 })
 
-export class AppComponent { }
+export class AppComponent { 
+    private showForm:boolean;
+
+    toggleForm() {
+        this.showForm = false;
+    }
+}

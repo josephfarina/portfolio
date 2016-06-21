@@ -1,22 +1,21 @@
-<div class="container">
+<div id="credit-card-form" [ngClass]="{hide: show}">
+  <button class="btn" (click)="show = true">Close</button>
   <form role="form" class="cc-form form-horizontal">
-
-
     <h2>Personal Information</h2>
 
     <div class="form-group" id="user-names">
+
       <div class="col-sm-6" id="fname">
         <label for="fname">First Name</label>
-        <input name="fname" class="form-control" placeholder="First Name" type="text"
-          [(ngModel)]="fname" 
-          (keypress)="upperCase()" 
-         />
+        <input name="fname" class="form-control" placeholder="First Name" type="text" [(ngModel)]="fname" (keypress)="upperCase()"
+        />
       </div>
 
       <div class="col-sm-6" id="lname">
         <label for="lname">Last Name</label>
         <input placeholder="Last Name" class="form-control" type="text" id="last-name" />
       </div>
+
     </div>
 
     <div class="form-group" id="user-contact-info">
@@ -26,8 +25,9 @@
       </div>
 
       <div class="col-sm-6" id="phone-number">
-        <label for="phone-number">Last Name</label>
-        <input name="phone-number" placeholder="Phone Number" class="form-control" type="number" />
+        <label for="phone-number">Phone Number</label>
+        <input name="phone-number" placeholder="Phone Number" class="form-control" type="text" [(ngModel)]="phoneNumber" (keypress)="phoneNumberFormat()"
+        />
       </div>
     </div>
 
@@ -38,8 +38,9 @@
       <div class="col-sm-12" id="card-number">
         <label for="card-number">Card Number</label>
         <div class="input-group">
-          <input name="card-number" placeholder="Card Number" class="form-control" type="number" />
-          <div class="input-group-addon">VISA</div>
+          <input name="card-number" placeholder="Card Number" class="form-control" type="text" [(ngModel)]="cardNumber" (keyup)="setCardType()"
+          />
+          <div class="input-group-addon">{{cardBrand}}</div>
         </div>
       </div>
     </div>
@@ -73,9 +74,11 @@
         <label for="agree">Do you agree to the terms?</label>
       </div>
     </div>
-    
-    <button class="btn col-md-12">Submit</button>
 
+    <div class="form-group">
+      <div class="col-sm-12">
+        <button class="btn col-sm-12">Submit</button>
+      </div>
+    </div>
   </form>
-
 </div>

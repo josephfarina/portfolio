@@ -1,2 +1,9 @@
 <h1>App Component</h1>
-<my-form>loading form</my-form>
+<button class="btn"
+    (click)="toggleForm()" 
+    >Credit Card
+    </button>
+
+<my-form 
+[show]="showForm"
+>loading form</my-form>
