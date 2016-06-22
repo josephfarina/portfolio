@@ -11,7 +11,7 @@ import { FormComponent } from './form/form.component'
 })
 
 export class AppComponent { 
-    private showForm:boolean;
+    private showForm:boolean = false;
 
     toggleForm() {
         this.showForm = false;

@@ -5,7 +5,7 @@ div#credit-card-form {
   top: 0;
   bottom: 0;
   z-index: 999;
-  background-image: linear-gradient(to bottom, blue, red); }
+  background-image: linear-gradient(to bottom, lightgray, darkgray); }
 
 .cc-form {
   margin-left: auto;
@@ -21,6 +21,3 @@ div#credit-card-form {
   color: #3d464d;
   font-weight: normal;
   background-color: white; }
-
-.hide {
-  display: none; }

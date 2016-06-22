@@ -4,11 +4,13 @@ import { UpperCasePipe } from '@angular/common';
 @Component({
     selector: 'my-form',
     templateUrl: './app/form/form.component.html',
+    styleUrls: ['../stylesheets/app/form/form.component.style.css'],
     providers: [UpperCasePipe]
 })
 
 export class FormComponent { 
     @Input() show: boolean;   
+
     private fname: string = '';
     private phoneNumber: string = '';
     private cardBrand: string = 'N/A';
