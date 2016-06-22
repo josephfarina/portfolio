@@ -1,20 +1,40 @@
-<section class="row landing-hero">
+<router-outlet></router-outlet>
+
+<section 
+    *ngIf="!creditCardVisible"  
+    class="row landing-hero">
     <div class="hero-copy">
         <h1>Some Things I made</h1>
         <p>Check Them Out</p>
     </div>
 </section>
 
+<section 
+    *ngIf="creditCardVisible"  
+    class="show-divider">
+    <h2>Check Out Some Similar Things</h2>
+</section>
+
 <section id="page-grid" class="row no-gutters">
+
     <div class="col-md-4 col-sm-6">
         <div class="box yellow">
-            <div class="box-content" id="credit-card-form">
-                <h3>Credit Card Form</h3>
-                <div id="credit-card"></div>
-                <p class="description">Validation and Card Detection</p>
-            </div>
+            <a 
+            [routerLink]="['/creditcardform']"
+            (click)="creditCardVisible = true" >
+                <div class="box-content" id="credit-card-form">
+                    <h3>Credit Card Form</h3>
+                    <div id="credit-card"></div>
+                    <p class="description">
+                        Validation and Card Detection
+                    </p>
+                </div>
+            </a>
         </div>
     </div>
+
+
+
     <div class="col-md-4 col-sm-6">
         <div class="box white">
             <div class="box-content">
@@ -36,10 +56,3 @@
 
 
 </section>
-
-
-
-
-<div class="container">
-    <my-form [show]="showForm">loading form</my-form>
-</div>

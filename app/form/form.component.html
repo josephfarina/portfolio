@@ -1,6 +1,9 @@
-<div id="credit-card-form" [ngClass]="{hide: true}">
-  <button class="btn" (click)="show = true">Close</button>
-  <form role="form" class="cc-form form-horizontal">
+<div id="credit-card-form">
+  <a [routerLink]="['/']">Home</a>
+  <form 
+    role="form" 
+    class="cc-form form-horizontal"
+    (ngSubmit)="onSubmit()">
     <h2>Personal Information</h2>
 
     <div class="form-group" id="user-names">

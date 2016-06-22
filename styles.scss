@@ -14,7 +14,6 @@ h1, h2, h3, h4, h5, p {
   color: $white;
   font-family: 'Sigmar One', cursive;
 }
-
 h1 {
   font-size: 5em;
 }
@@ -45,6 +44,18 @@ section.landing-hero {
   }
 }
 
+section.show-divider {
+  min-height: 50px;
+  background-color: $blue;
+  text-align: center;
+
+  h2 {
+    padding-top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
 .row.no-gutters {
   margin-right: 0;
   margin-left: 0;
@@ -54,6 +65,7 @@ section.landing-hero {
     padding-left: 0;
   }
 }
+
 .box {
   position: relative;
   width: 100%;
@@ -88,17 +100,14 @@ section.landing-hero {
   left: 0; 
   bottom: 0; 
   right: 0; 
-
   h3, p {
     text-align: center;
   }
-
   &:hover {
     cursor: pointer; 
     cursor: hand;
   }
 }
-
 
 // SINGLE DIV ELEMENTS
 #credit-card {
@@ -113,6 +122,7 @@ section.landing-hero {
   linear-gradient(to bottom right, $blue, lighten($blue, 30%));
   margin-top: 5px;
   margin-bottom: 5px;
+  transition: transform .8s ease-in;
 
   &:after {
     position: relative;
@@ -161,6 +171,9 @@ section.landing-hero {
   }
 
   &:hover {
+    background-image: 
+      linear-gradient(30deg, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 55%, transparent 60%),
+      linear-gradient(to bottom right, $blue, lighten($blue, 30%));
     transform: scale(1.3) rotate3d(2, 2.0, 3.0, 10deg);
     transition: transform .3s ease-in-out;
     z-index: 9999;
@@ -168,17 +181,3 @@ section.landing-hero {
                                   
 }
 
-
-
-
-
-
-
-
-
-
-
-
-.hide {
-  display: hidden; 
-  }

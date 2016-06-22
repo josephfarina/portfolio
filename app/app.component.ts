@@ -1,19 +1,23 @@
-//todo: weird bug that stops toggling the form after the third click
-// get it working and then create a list of ways to easily toggle all of the UI elements ill be creating -- this will be my portfolio
-
-import { Component } from '@angular/core';
-import { FormComponent } from './form/form.component'
+import { Component, OnInit } from '@angular/core';
+import { CCFormComponent } from './form/form.component'
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app.component.html',
-    directives: [FormComponent]
+    directives: [
+        CCFormComponent,
+        ROUTER_DIRECTIVES]
 })
 
-export class AppComponent { 
-    private showForm:boolean = false;
+export class AppComponent implements OnInit {
+    private showEnabled: boolean = false;
 
-    toggleForm() {
-        this.showForm = false;
+    ngOnInit() {
+        this.showEnabled = false;
     }
 }
+
+
+// stupid hack to have a blank router at times when others arent selected
+@Component({ selector: 'blank', template: '' }) export class EmptyComponent { }
