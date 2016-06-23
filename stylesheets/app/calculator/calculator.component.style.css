@@ -3,43 +3,73 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
   margin: 0; }
 
 h1, h2, h3, h4, h5, p, div {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 1.2em; }
-
-.calc-body {
-  background-color: red; }
+  font-size: 15px;
+  margin: 0px; }
 
 .calculator {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 50px;
   margin-bottom: 50px;
-  max-width: 250px;
-  position: relative;
-  border-radius: 50px; }
+  max-width: 350px;
+  padding: 15px 15px;
+  background-color: #f0ede6;
+  border-radius: 10px;
+  border: 0.5px solid #cabfa6; }
+
+.button-group {
+  margin-top: 9px; }
 
 .button {
-  height: 50px;
-  background-color: gray;
-  color: white;
-  border: 1px solid white; }
+  position: relative;
+  min-height: 40px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f7f4ef;
+  color: black;
+  padding-bottom: 10%;
+  border-radius: 5px;
+  border: 0.5px solid #cabfa6;
+  margin: 9px 8px;
+  display: table;
+  box-shadow: 0px 2px 3px #ddd6c6;
+  text-align: center; }
   .button:hover {
-    background-color: #4d4d4d; }
+    background-color: #ded1bc;
+    cursor: pointer;
+    cursor: hand; }
   .button.display {
-    min-height: 100px;
-    background-color: black;
-    color: white; }
-  .button.number, .button.operator, .button.functions {
-    min-height: 50px;
-    text-align: center;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%); }
-  .button.number {
-    background-color: orange; }
+    width: 95%;
+    height: 80px;
+    min-height: 30px;
+    font-size: 30px;
+    text-align: right;
+    padding: 15px;
+    background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 10%, white 25%);
+    border-width: .5px;
+    color: black; }
   .button.operator {
-    background-color: blue; }
-  .button.functions {
-    background-color: pink; }
+    font-size: 20px; }
+    .button.operator .button-content {
+      top: 7px; }
+  .button.equals {
+    background-color: #888b98;
+    color: #f7f4ef; }
+    .button.equals:hover {
+      background-color: #626571; }
+  .button.clear {
+    background-color: #e57c46;
+    color: #f7f4ef; }
+    .button.clear:hover {
+      background-color: #c3541b; }
+  .button.double-button {
+    width: 90%; }
+  .button .button-content {
+    position: relative;
+    top: 9px; }
