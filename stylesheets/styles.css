@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css?family=BioRhyme|Sigmar+One';
+@import 'https://fonts.googleapis.com/css?family=BioRhyme|Sigmar+One|Share+Tech+Mono';
 h1, h2, h3, h4, h5, p {
   color: #F6EDDC;
   font-family: 'Sigmar One', cursive; }
@@ -116,3 +116,40 @@ section.show-divider {
     transform: scale(1.3) rotate3d(2, 2, 3, 10deg);
     transition: transform .3s ease-in-out;
     z-index: 9999; }
+
+#calculator {
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  width: 100px;
+  height: 120px;
+  background-color: #f0ede6;
+  border-radius: 10px;
+  border: 0.1px solid #ddd6c6; }
+  #calculator:after {
+    position: absolute;
+    display: block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 15px;
+    line-height: 27px;
+    text-indent: 48px;
+    content: '307';
+    background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 5%, white 60%);
+    border-radius: 3px;
+    border: 0.5px solid #ddd6c6;
+    top: 12px;
+    left: 9px;
+    width: 80px;
+    height: 25px; }
+  #calculator:before {
+    position: absolute;
+    display: block;
+    content: '';
+    background-color: #f7f4ef;
+    border-radius: 3px;
+    border: 0.1px solid #ddd6c6;
+    top: 49px;
+    left: 9px;
+    width: 22px;
+    height: 15px;
+    box-shadow: 29px 0px 0 -1px #f7f4ef, 29px 0px 0 0px #ddd6c6, 58px 0px 0 -1px #f7f4ef, 58px 0px 0 0px #ddd6c6, 0px 22px 0 -1px #f7f4ef, 0px 22px 0 0px #ddd6c6, 29px 22px 0 -1px #f7f4ef, 29px 22px 0 0px #ddd6c6, 58px 22px 0 -1px #f7f4ef, 58px 22px 0 0px #ddd6c6, 0px 44px 0 -1px #f7f4ef, 0px 44px 0 0px #ddd6c6, 29px 44px 0 -1px #f7f4ef, 29px 44px 0 0px #ddd6c6, 58px 44px 0 -1px #f7f4ef, 58px 44px 0 0px #ddd6c6; }

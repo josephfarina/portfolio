@@ -33,15 +33,22 @@
         </div>
     </div>
 
-
-
     <div class="col-md-4 col-sm-6">
         <div class="box white">
-            <div class="box-content">
-
-            </div>
+            <a 
+            [routerLink]="['/calculator']"
+            (click)="creditCardVisible = true" >
+                <div class="box-content">
+                        <h3>Angular Calculator</h3>
+                        <div id="calculator"></div>
+                        <p class="description">
+                            Using angular2
+                        </p>
+                </div>
+            </a>
         </div>
     </div>
+
     <div class="col-md-4 col-sm-6">
         <div class="box brown">
             <div class="box-content">

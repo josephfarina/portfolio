@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css?family=BioRhyme|Sigmar+One';
+@import 'https://fonts.googleapis.com/css?family=BioRhyme|Sigmar+One|Share+Tech+Mono';
 
 $white: #F6EDDC;
 $brown: #c7ad88;
@@ -179,6 +179,77 @@ section.show-divider {
     transition: transform .3s ease-in-out;
     z-index: 9999;
   }
-                                  
+
 }
 
+#calculator {
+  $calc-color: #f0ede6;
+  $btn-color: #f7f4ef;
+  $btn-orange-color: #e57c46;
+  $btn-gray-color: #888b98;
+
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  width: 100px;
+  height: 120px;
+  background-color: $calc-color;
+  border-radius: 10px;
+  border: .1px solid darken($calc-color, 10%);
+  
+  &:after {
+    position: absolute;
+    display: block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 15px;
+    line-height: 27px;
+    text-indent: 48px;
+    content: '307';
+    background-image: linear-gradient(
+            to bottom,
+            rgba(211,211,211,.5) 5%,
+            white 60%
+        );
+    border-radius: 3px;
+    border: .5px solid darken($calc-color, 10%);
+    top: 12px;
+    left: 9px;
+    width: 80px;
+    height: 25px;
+  }
+  
+  &:before {
+    position: absolute;
+    display: block;
+    content: '';
+    background-color: $btn-color;
+    border-radius: 3px;
+    border: .1px solid darken($calc-color, 10%);
+    top: 49px;
+    left: 9px;
+    width: 22px;
+    height: 15px;
+    box-shadow: 
+    29px 0px 0 -1px $btn-color,
+    29px 0px 0 0px darken($calc-color, 10%),
+    58px 0px 0 -1px $btn-color,
+    58px 0px 0 0px darken($calc-color, 10%),
+    
+    0px  22px 0 -1px $btn-color,
+    0px  22px 0 0px darken($calc-color, 10%),
+    29px 22px 0 -1px $btn-color,
+    29px 22px 0 0px darken($calc-color, 10%),
+    58px 22px 0 -1px $btn-color,
+    58px 22px 0 0px darken($calc-color, 10%),
+    
+    0px  44px 0 -1px $btn-color,
+    0px  44px 0 0px darken($calc-color, 10%),
+    29px 44px 0 -1px $btn-color,
+    29px 44px 0 0px darken($calc-color, 10%),
+    58px 44px 0 -1px $btn-color,
+    58px 44px 0 0px darken($calc-color, 10%),
+    ;
+    
+  }  
+  
+}
