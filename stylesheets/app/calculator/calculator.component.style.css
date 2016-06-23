@@ -51,9 +51,13 @@ h1, h2, h3, h4, h5, p, div {
     font-size: 30px;
     text-align: right;
     padding: 15px;
+    cursor: text;
     background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 10%, white 25%);
     border-width: .5px;
     color: black; }
+    .button.display::selection {
+      color: #f7f4ef;
+      background: #e57c46; }
   .button.operator {
     font-size: 20px; }
     .button.operator .button-content {

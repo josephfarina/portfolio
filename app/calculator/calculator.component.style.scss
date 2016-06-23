@@ -67,6 +67,7 @@ h1, h2, h3, h4, h5, p, div {
         font-size: 30px;
         text-align: right;
         padding: 15px;
+        cursor: text;
 
         background-image: 
         linear-gradient(
@@ -76,6 +77,11 @@ h1, h2, h3, h4, h5, p, div {
         );
         border-width: .5px;
         color: black;
+
+        &::selection { 
+            color: $btn-color;
+            background: $btn-orange-color; 
+        }
     }
 
     &.number, &.operator, &.functions {
