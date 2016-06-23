@@ -1,0 +1,45 @@
+@import 'https://fonts.googleapis.com/css?family=Share+Tech+Mono';
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0; }
+
+h1, h2, h3, h4, h5, p, div {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.2em; }
+
+.calc-body {
+  background-color: red; }
+
+.calculator {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  max-width: 250px;
+  position: relative;
+  border-radius: 50px; }
+
+.button {
+  height: 50px;
+  background-color: gray;
+  color: white;
+  border: 1px solid white; }
+  .button:hover {
+    background-color: #4d4d4d; }
+  .button.display {
+    min-height: 100px;
+    background-color: black;
+    color: white; }
+  .button.number, .button.operator, .button.functions {
+    min-height: 50px;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); }
+  .button.number {
+    background-color: orange; }
+  .button.operator {
+    background-color: blue; }
+  .button.functions {
+    background-color: pink; }

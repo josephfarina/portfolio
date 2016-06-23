@@ -1,0 +1,26 @@
+h1, h2, h3, h4, h5, p {
+  color: black; }
+
+div#credit-card-form {
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(to bottom, lightgray, darkgray); }
+
+.cc-form {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  border: 1px solid #bdc4c9;
+  padding: 24px 20px;
+  max-width: 500px;
+  min-height: 500px;
+  border-radius: 6px;
+  position: relative;
+  font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
+  font-size: 13px;
+  color: #3d464d;
+  font-weight: normal;
+  background-color: white; }

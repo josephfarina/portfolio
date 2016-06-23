@@ -1,0 +1,69 @@
+<div class="container calculator">
+
+
+        <input class="col-xs-12 button display" [(ngModel)]="displayValue" type="number" />
+
+        <div class="col-xs-3 button functions" (click)="clear()">
+            C
+        </div>
+        <div class="col-xs-3 button functions" (click)="delete()">
+            Del
+        </div>
+        <div class="col-xs-3 button functions" (click)="toggleNegative()">
+            +/-
+        </div>
+        <div class="col-xs-3 button operator" (click)="setOperator('/')">
+            /
+        </div>
+
+        <div class="col-xs-3 button number" (click)="setDisplayValue(7)">
+            7
+        </div>
+        <div class="col-xs-3 button number" (click)="setDisplayValue(8)">
+            8
+        </div>
+        <div class="col-xs-3 button number" (click)="setDisplayValue(9)">
+            9
+        </div>
+        <div class="col-xs-3 button operator" (click)="setOperator('*')">
+            *
+        </div>
+
+        <div class="col-xs-3 button number" (click)="setDisplayValue(4)">
+            4
+        </div>
+        <div class="col-xs-3 button number" (click)="setDisplayValue(5)">
+            5
+        </div>
+        <div class="col-xs-3 button number" (click)="setDisplayValue(6)">
+            6
+        </div>
+        <div class="col-xs-3 button operator" (click)="setOperator('-')">
+            -
+        </div>
+
+        <div class="col-xs-3 button number" (click)="setDisplayValue(1)">
+            1
+        </div>
+        <div class="col-xs-3 button number" (click)="setDisplayValue(2)">
+            2
+        </div>
+        <div class="col-xs-3 button number" (click)="setDisplayValue(3)">
+            3
+        </div>
+        <div class="col-xs-3 button operator" (click)="setOperator('+')">
+            +
+        </div>
+
+
+        <div class="col-xs-6 button number" (click)="setDisplayValue(0)">
+            0
+        </div>
+        <div class="col-xs-3 button number" (click)="setDisplayValue('.')">
+            .
+        </div>
+        <div class="col-xs-3 button operator" (click)="equals()">
+            =
+        </div>
+
+</div>

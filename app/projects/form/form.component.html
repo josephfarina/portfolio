@@ -1,0 +1,87 @@
+<div id="credit-card-form">
+  <a [routerLink]="['/']">Home</a>
+  <form 
+    role="form" 
+    class="cc-form form-horizontal"
+    (ngSubmit)="onSubmit()">
+    <h2>Personal Information</h2>
+
+    <div class="form-group" id="user-names">
+
+      <div class="col-sm-6" id="fname">
+        <label for="fname">First Name</label>
+        <input name="fname" class="form-control" placeholder="First Name" type="text" [(ngModel)]="fname" (keypress)="upperCase()"
+        />
+      </div>
+
+      <div class="col-sm-6" id="lname">
+        <label for="lname">Last Name</label>
+        <input placeholder="Last Name" class="form-control" type="text" id="last-name" />
+      </div>
+
+    </div>
+
+    <div class="form-group" id="user-contact-info">
+      <div class="col-sm-6" id="email">
+        <label for="email">Email</label>
+        <input name="email" class="form-control" placeholder="Email" type="email" />
+      </div>
+
+      <div class="col-sm-6" id="phone-number">
+        <label for="phone-number">Phone Number</label>
+        <input name="phone-number" placeholder="Phone Number" class="form-control" type="text" [(ngModel)]="phoneNumber" (keypress)="phoneNumberFormat()"
+        />
+      </div>
+    </div>
+
+
+    <h2>Credit Card Information</h2>
+
+    <div class="form-group">
+      <div class="col-sm-12" id="card-number">
+        <label for="card-number">Card Number</label>
+        <div class="input-group">
+          <input name="card-number" placeholder="Card Number" class="form-control" type="text" [(ngModel)]="cardNumber" (keyup)="setCardType()"
+          />
+          <div class="input-group-addon">{{cardBrand}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-6" id="ccv">
+        <label for="ccv">CCV</label>
+        <input type="text" name="ccv" placeholder="CCV" class="form-control" /></div>
+
+      <div class="col-sm-6" id="expiration-date">
+        <label for="expiration-date">Expiration Date</label>
+        <input value="{{12 | date}}" type="text" name="expiration-date" placeholder="Expiration Date" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-3" id="zip">
+        <label for="zip">Zip Code</label>
+        <input type="number" name="zip" placeholder="Zip Code" class="form-control" />
+      </div>
+
+      <div class="col-sm-9" id="country">
+        <label for="country">Country</label>
+        <input type="text" name="country" placeholder="Country" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12" id="agreement">
+        <input type="checkbox" name="agree" />
+        <label for="agree">Do you agree to the terms?</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <button class="btn col-sm-12">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
