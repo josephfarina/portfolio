@@ -19,3 +19,4 @@ _temp
 !systemjs.config.js
 !typings/typings.d.ts
 !wallaby.js
+!gulpfile.js
