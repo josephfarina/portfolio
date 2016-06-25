@@ -48,8 +48,10 @@ section .landing-hero {
   background-color: #37d9ee;
   min-height: 50vh;
   padding: 50px;
+  max-width: 100%;
   position: relative;
-  text-align: center; }
+  text-align: center;
+  overflow: hidden; }
   section .landing-hero .hero-copy {
     position: relative;
     top: 10%; }

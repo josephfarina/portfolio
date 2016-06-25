@@ -44,8 +44,10 @@ section {
     background-color: $blue;
     min-height: 50vh;
     padding: 50px;
+    max-width: 100%;
     position: relative;
     text-align: center;
+    overflow: hidden;
 
     .hero-copy {
       position: relative;
