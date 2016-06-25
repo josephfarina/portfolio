@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
@@ -8,7 +8,6 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     styleUrls: ['calculator.component.style.css'],
     directives: [ROUTER_DIRECTIVES]
 })
-
 
 export class CalculatorComponent {
     private displayValue: string = '0';
@@ -34,7 +33,7 @@ export class CalculatorComponent {
         if (this.displayValue.indexOf('.') >= 0 && digit === '.') { digit = ''; }
         this.displayValue += digit;
     }
- 
+
     setOperator(operator: string) {
         this.operatorValue = operator;
         this.currentValue = Number(this.displayValue);
@@ -69,7 +68,7 @@ export class CalculatorComponent {
     }
 
     delete() {
-        this.displayValue = this.displayValue.substr(0,this.displayValue.length - 1);
+        this.displayValue = this.displayValue.substr(0, this.displayValue.length - 1);
     }
 
 }

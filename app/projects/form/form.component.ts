@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { UpperCasePipe } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
@@ -7,10 +7,10 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     templateUrl: './app/projects/form/form.component.html',
     styleUrls: ['../stylesheets/app/form/form.component.style.css'],
     providers: [UpperCasePipe],
-    directives: [ROUTER_DIRECTIVES] 
+    directives: [ROUTER_DIRECTIVES]
 })
 
-export class CCFormComponent { 
+export class CCFormComponent {
     private fname: string = '';
     private phoneNumber: string = '';
     private cardBrand: string = 'N/A';
@@ -19,7 +19,6 @@ export class CCFormComponent {
     constructor(private upperCasePipe: UpperCasePipe) { }
 
     onSubmit() {}
-
 
     upperCase(name: string) {
         if (this.fname.length > 0 && this.fname.length <= 1) {
@@ -30,14 +29,14 @@ export class CCFormComponent {
     }
 
     phoneNumberFormat() {
-        if (this.phoneNumber.length == 3) {
+        if (this.phoneNumber.length === 3) {
             this.phoneNumber = this.phoneNumber + '-';
         }
-        if (this.phoneNumber.length == 7) {
+        if (this.phoneNumber.length === 7) {
             this.phoneNumber = this.phoneNumber + '-';
         }
         if (this.phoneNumber.length > 11) {
-            this.phoneNumber = this.phoneNumber.substring(0,11);
+            this.phoneNumber = this.phoneNumber.substring(0, 11);
         }
     }
 
@@ -49,7 +48,6 @@ export class CCFormComponent {
             - get actual algorithim - regex - to get the card brand as the digits are entered
             - have picture of card logo take over for cardbrand
             - 
-        */ 
         // MASTERCARD	51-55	16	mod 10
         // VISA	4	13, 16	mod 10
         // AMEX	34 
@@ -80,5 +78,5 @@ export class CCFormComponent {
             this.cardBrand = 'N/A';
         }
     }
-
+*/
 }
