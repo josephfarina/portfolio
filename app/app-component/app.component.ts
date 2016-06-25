@@ -16,6 +16,5 @@ export class AppComponent implements OnInit {
     }
 }
 
-
 // stupid hack to have a blank router at times when others arent selected
 @Component({ selector: 'blank', template: '' }) export class EmptyComponent { }

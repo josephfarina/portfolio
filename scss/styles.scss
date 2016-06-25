@@ -1,46 +1,57 @@
 @import 'https://fonts.googleapis.com/css?family=BioRhyme|Sigmar+One|Share+Tech+Mono';
 
-$white: #F6EDDC;
+$white: #f6eddc;
 $brown: #c7ad88;
-$blue: #37D9EE;
-$light-blue: #B0E5DD;
+$blue: #37d9ee;
+$light-blue: #b0e5dd;
 $red: #935347;
-$yellow: #FDBE3C;
+$yellow: #fdbe3c;
 $black: #000;
-$gray: lighten(black, 80%);
+$gray: lighten($black, 80%);
 
-
-h1, h2, h3, h4, h5, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
   color: $white;
   font-family: 'Sigmar One', cursive;
-}
-h1 {
-  font-size: 5em;
-}
-h2 {
-  font-size: 3.5em;
-}
-h3 {
-  font-size: 3em;
-}
-h4 {
-  font-size: 2.5em;
-}
-p {
-  font-family: 'BioRhyme', serif;
-  font-size: 1.5em;
+
+  h1 {
+    font-size: 5em;
+  }
+
+  h2 {
+    font-size: 3.5em;
+  }
+
+  h3 {
+    font-size: 3em;
+  }
+
+  h4 {
+    font-size: 2.5em;
+  }
+
+  p {
+    font-family: 'BioRhyme', serif;
+    font-size: 1.5em;
+  }
+
 }
 
-section.landing-hero {
-  padding: 50px;
-  min-height: 50vh;
-  background-color: $blue;
-  position: relative;
-  text-align: center;
-  
-  div.hero-copy {
+section {
+  .landing-hero {
+    background-color: $blue;
+    padding: 50px;
+    min-height: 50vh;
     position: relative;
-    top: 10%;
+    text-align: center;    
+    .hero-copy {
+      position: relative;
+      top: 10%;
+    }
   }
 }
 

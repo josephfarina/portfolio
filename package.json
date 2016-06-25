@@ -5,7 +5,6 @@
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "test": "karma start karma.conf.js && concurrently \"tslint tslint ./app/**/*.ts -t verbose\" ",
     "lint": "tslint ./app/**/*.ts -t verbose",
-
     "postinstall": "typings install",
     "typings": "typings",
     "webdriver:update": "webdriver-manager update"
@@ -36,8 +35,12 @@
     "bootstrap": "^3.3.6",
     "canonical-path": "0.0.2",
     "concurrently": "^2.0.0",
+    "del": "^2.2.1",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
+    "gulp-sass-lint": "^1.2.0",
+    "gulp-tslint": "^5.0.0",
+    "gulp-watch": "^4.3.8",
     "http-server": "^0.9.0",
     "jasmine-core": "~2.4.1",
     "karma": "^0.13.22",

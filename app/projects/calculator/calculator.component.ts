@@ -2,11 +2,13 @@ import { Component, Input } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
+    moduleId: module.id,
     selector: 'my-calculator',
-    templateUrl: './app/projects/calculator/calculator.component.html',
-    styleUrls: ['../stylesheets/app/calculator/calculator.component.style.css'],
+    templateUrl: 'calculator.component.html',
+    styleUrls: ['calculator.component.style.css'],
     directives: [ROUTER_DIRECTIVES]
 })
+
 
 export class CalculatorComponent {
     private displayValue: string = '0';
