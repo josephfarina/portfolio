@@ -7,71 +7,49 @@ h5,
 p {
   color: #f6eddc;
   font-family: 'Sigmar One', cursive; }
-  h1 h1,
-  h2 h1,
-  h3 h1,
-  h4 h1,
-  h5 h1,
-  p h1 {
-    font-size: 5em; }
-  h1 h2,
-  h2 h2,
-  h3 h2,
-  h4 h2,
-  h5 h2,
-  p h2 {
-    font-size: 3.5em; }
-  h1 h3,
-  h2 h3,
-  h3 h3,
-  h4 h3,
-  h5 h3,
-  p h3 {
-    font-size: 3em; }
-  h1 h4,
-  h2 h4,
-  h3 h4,
-  h4 h4,
-  h5 h4,
-  p h4 {
-    font-size: 2.5em; }
-  h1 p,
-  h2 p,
-  h3 p,
-  h4 p,
-  h5 p,
-  p p {
-    font-family: 'BioRhyme', serif;
-    font-size: 1.5em; }
 
-section .landing-hero {
+h1 {
+  font-size: 5em; }
+
+h2 {
+  font-size: 3.5em; }
+
+h3 {
+  font-size: 3em; }
+
+h4 {
+  font-size: 2.5em; }
+
+p {
+  font-family: 'BioRhyme', serif;
+  font-size: 1.5em; }
+
+section.landing-hero {
   background-color: #37d9ee;
   min-height: 50vh;
   padding: 50px;
-  max-width: 100%;
   position: relative;
-  text-align: center;
-  overflow: hidden; }
-  section .landing-hero .hero-copy {
+  text-align: center; }
+  section.landing-hero div.hero-copy {
     position: relative;
     top: 10%; }
 
-section .show-divider {
+section.show-divider {
   background-color: #37d9ee;
   min-height: 50px;
   text-align: center; }
-  section .show-divider h2 {
+  section.show-divider h2 {
     margin-bottom: 0;
     margin-top: 0;
     padding-top: 0; }
 
-.row .no-gutters {
-  margin-left: 0;
-  margin-right: 0; }
-  .row .no-gutters > [class*=' col-'],
-  .row .no-gutters > [class^='col-'] {
-    padding-left: 0;
-    padding-right: 0; }
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0; }
+  .row.no-gutters > [class^='col-'],
+  .row.no-gutters > [class*=' col-'] {
+    padding-right: 0;
+    padding-left: 0; }
 
 .box {
   overflow: hidden;

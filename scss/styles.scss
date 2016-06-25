@@ -16,6 +16,7 @@ h5,
 p {
   color: $white;
   font-family: 'Sigmar One', cursive;
+}
 
   h1 {
     font-size: 5em;
@@ -37,25 +38,21 @@ p {
     font-family: 'BioRhyme', serif;
     font-size: 1.5em;
   }
-}
 
-section {
-  .landing-hero {
+
+section.landing-hero {
     background-color: $blue;
     min-height: 50vh;
     padding: 50px;
-    max-width: 100%;
     position: relative;
     text-align: center;
-    overflow: hidden;
 
-    .hero-copy {
+    div.hero-copy {
       position: relative;
       top: 10%;
     }
-  }
-
-  .show-divider {
+}
+  section.show-divider {
     background-color: $blue;
     min-height: 50px;
     text-align: center;
@@ -66,18 +63,14 @@ section {
       padding-top: 0;
     }
   }
-}
 
-.row {
-  .no-gutters {
-    margin-left: 0;
-    margin-right: 0;
-
-    & > [class*=' col-'],
-    & > [class^='col-'] {
-      padding-left: 0;
-      padding-right: 0;
-    }
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0; 
+  & > [class^='col-'],
+  & > [class*=' col-'] {
+    padding-right: 0;
+    padding-left: 0; 
   }
 }
 
