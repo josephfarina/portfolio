@@ -1,7 +1,9 @@
 module.exports = function(config) {
 
-  var appBase   = 'app/';      // transpiled app JS files
-  var appAssets ='/base/app/'; // component assets fetched by Angular's compiler
+  var appBase   = 'build/';      // transpiled app JS files
+  var tsBase    = 'app/';       // source files
+
+  var appAssets ='/base/build/'; // component assets fetched by Angular's compiler
 
   config.set({
     basePath: '',
@@ -20,6 +22,7 @@ module.exports = function(config) {
         flags: ['--no-sandbox']
       }
     },
+
     files: [
       // System.js for module loading
       'node_modules/systemjs/dist/system.src.js',
@@ -41,9 +44,10 @@ module.exports = function(config) {
       // Angular 2 itself and the testing library
       {pattern: 'node_modules/@angular/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false},
-
       {pattern: 'systemjs.config.js', included: false, watched: false},
       'karma-test-shim.js',
+
+      {pattern: 'build/projects/calculator/*.spec.js', included: false, watched: true},
 
       // transpiled application & spec code paths loaded via module imports
       {pattern: appBase + '**/*.js', included: false, watched: true},
@@ -54,14 +58,14 @@ module.exports = function(config) {
       {pattern: appBase + '**/*.css', included: false, watched: true},
 
       // paths for debugging with source maps in dev tools
-      {pattern: appBase + '**/*.ts', included: false, watched: false},
+      {pattern: tsBase + '**/*.ts', included: false, watched: false},
       {pattern: appBase + '**/*.js.map', included: false, watched: false}
     ],
 
     // proxied base paths for loading assets
     proxies: {
       // required for component assets fetched by Angular's compiler
-      "/app/": appAssets
+      "/build/": appAssets
     },
 
     exclude: [],
