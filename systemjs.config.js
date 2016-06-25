@@ -6,7 +6,7 @@
 
   // map tells the System loader where to look for things
   var map = {
-    'app':                        'app', // 'dist',
+    'app':                        'build', // 'dist',
 
     '@angular':                   'node_modules/@angular',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',

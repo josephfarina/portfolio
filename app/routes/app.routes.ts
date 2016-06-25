@@ -1,7 +1,7 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
-import { CCFormComponent }  from './../form/form.component';
-import { CalculatorComponent } from './../calculator/calculator.component';
+import { CCFormComponent }  from './../projects/form/form.component';
+import { CalculatorComponent } from './../projects/calculator/calculator.component';
 import { AppComponent, EmptyComponent } from './../app-component/app.component'
 
 export const routes: RouterConfig = [

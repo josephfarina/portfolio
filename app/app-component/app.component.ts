@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CCFormComponent } from '../projects/form/form.component'
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app-component/app.component.html',
     directives: [
-        CCFormComponent,
         ROUTER_DIRECTIVES]
 })
 
@@ -14,7 +12,6 @@ export class AppComponent implements OnInit {
     private showEnabled: boolean = false;
 
     ngOnInit() {
-
         this.showEnabled = false;
     }
 }

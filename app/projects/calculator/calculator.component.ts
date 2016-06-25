@@ -3,7 +3,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
     selector: 'my-calculator',
-    templateUrl: './app/calculator/calculator.component.html',
+    templateUrl: './app/projects/calculator/calculator.component.html',
     styleUrls: ['../stylesheets/app/calculator/calculator.component.style.css'],
     directives: [ROUTER_DIRECTIVES]
 })

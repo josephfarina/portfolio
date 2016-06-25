@@ -2,18 +2,11 @@
   "name": "Portfolio",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"tslint tslint ./app/**/*.ts -t verbose\" \"lite-server\" ",
-    "test": "tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
-
-    "docker-build": "docker build -t ng2-quickstart .",
-    "docker": "npm run docker-build && docker run -it --rm -p 3000:3000 -p 3001:3001 ng2-quickstart",
-    "pree2e": "npm run webdriver:update",
-    "e2e": "tsc && concurrently \"http-server\" \"protractor protractor.config.js\"",
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "test": "karma start karma.conf.js && concurrently \"tslint tslint ./app/**/*.ts -t verbose\" ",
     "lint": "tslint ./app/**/*.ts -t verbose",
-    "lite": "lite-server",
+
     "postinstall": "typings install",
-    "tsc": "tsc --outDir dist",
-    "tsc:w": "tsc -w --outDir dist",
     "typings": "typings",
     "webdriver:update": "webdriver-manager update"
   },
@@ -55,11 +48,9 @@
     "lite-server": "^2.2.0",
     "lodash": "^4.11.1",
     "node-sass": "^3.8.0",
-    "protractor": "^3.3.0",
     "rimraf": "^2.5.2",
     "tslint": "^3.7.4",
     "typescript": "^1.8.10",
     "typings": "^1.0.4"
-  },
-  "repository": {}
+  }
 }

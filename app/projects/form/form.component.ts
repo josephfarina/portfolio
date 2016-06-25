@@ -4,7 +4,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
     selector: 'my-form',
-    templateUrl: './app/form/form.component.html',
+    templateUrl: './app/projects/form/form.component.html',
     styleUrls: ['../stylesheets/app/form/form.component.style.css'],
     providers: [UpperCasePipe],
     directives: [ROUTER_DIRECTIVES] 
@@ -64,8 +64,6 @@ export class CCFormComponent {
         // JCB	3	16	mod 10
         // JCB	2131
         // 1800	15	mod 10
-
-
         // set this up
 
         // this.setCardType('visa');
