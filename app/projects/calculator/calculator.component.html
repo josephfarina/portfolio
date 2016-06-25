@@ -1,0 +1,84 @@
+<div class="calculator">
+
+    <div class="row no-gutters">
+        <!-- display -->
+        <input class="col-xs-12 button display" [(ngModel)]="displayValue" type="number" />
+    </div>
+
+    <div class="button-group">
+
+        <div class="row no-gutters"> <!-- first row -->
+            <div class="col-xs-3" (click)="clear()">
+                <div class="button functions clear"><span class="button-content">C</span></div>
+            </div>
+            <div class="col-xs-3" (click)="delete()">
+                <div class="button functions"><span class="button-content">Del</span></div>
+            </div>
+            <div class="col-xs-3" (click)="toggleNegative()">
+                <div class="button functions"><span class="button-content">+/-</span></div>
+            </div>
+            <div class="col-xs-3" (click)="setOperator('/')">
+                <div class="button operator"><span class="button-content">&#247;</span></div>
+            </div>
+        </div>
+
+        <div class="row no-gutters"> <!-- second row -->
+            <div class="col-xs-3" (click)="setDisplayValue(7)">
+                <div class="button number"><span class="button-content">7</span></div>
+            </div>
+            <div class="col-xs-3" (click)="setDisplayValue(8)">
+                <div class="button number"><span class="button-content">8</span></div>
+            </div>
+            <div class="col-xs-3" (click)="setDisplayValue(9)">
+                <div class="button number"><span class="button-content">9</span></div>
+            </div>
+            <div class="col-xs-3" (click)="setOperator('*')">
+                <div class="button operator"><span class="button-content">*</span></div>
+            </div>
+        </div>
+
+        <div class="row no-gutters"> <!-- third row -->
+            <div class="col-xs-3" (click)="setDisplayValue(4)">
+                <div class="button number"><span class="button-content">4</span></div>
+            </div>
+            <div class="col-xs-3" (click)="setDisplayValue(5)">
+                <div class="button number"><span class="button-content">5</span></div>
+            </div>
+            <div class="col-xs-3" (click)="setDisplayValue(6)">
+                <div class="button number"><span class="button-content">6</span></div>
+            </div>
+            <div class="col-xs-3" (click)="setOperator('-')">
+                <div class="button operator"><span class="button-content">-</span></div>
+            </div>
+        </div>
+
+        <div class="row no-gutters"> <!-- fourth row -->
+            <div class="col-xs-3" (click)="setDisplayValue(1)">
+                <div class="button number"><span class="button-content">1</span></div>
+            </div>
+            <div class="col-xs-3" (click)="setDisplayValue(2)">
+                <div class="button number"><span class="button-content">2</span></div>
+            </div>
+            <div class="col-xs-3" (click)="setDisplayValue(3)">
+                <div class="button number"><span class="button-content">3</span></div>
+            </div>
+            <div class="col-xs-3" (click)="setOperator('+')">
+                <div class="button operator"><span class="button-content">+</span></div>
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <!-- fith row -->
+            <div class="col-xs-6" (click)="setDisplayValue(0)">
+                <div class="button number double-button"><span class="button-content">0</span></div>
+            </div>
+            <div class="col-xs-3" (click)="setDisplayValue('.')">
+                <div class="button number"><span class="button-content">.</span></div>
+            </div>
+            <div class="col-xs-3" (click)="equals()">
+                <div class="button operator equals"><span class="button-content">=</span></div>
+            </div>
+        </div>
+
+    </div>
+</div>

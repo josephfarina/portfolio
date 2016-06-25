@@ -4,7 +4,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
     selector: 'my-app',
-    templateUrl: './app/app.component.html',
+    templateUrl: './app/app-component/app.component.html',
     directives: [
         CCFormComponent,
         ROUTER_DIRECTIVES]

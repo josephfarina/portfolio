@@ -8,7 +8,6 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     directives: [ROUTER_DIRECTIVES]
 })
 
-
 export class CalculatorComponent {
     private displayValue: string = '0';
     private operatorValue: string = null;
@@ -25,7 +24,6 @@ export class CalculatorComponent {
             this.displayValue = this.displayValue.substr(1);
         }
     }
-
 
     setDisplayValue(digit?: string) {
         // dont allow multiple zeros at the beginning

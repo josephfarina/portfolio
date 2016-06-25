@@ -1,0 +1,127 @@
+@import 'https://fonts.googleapis.com/css?family=Share+Tech+Mono';
+
+$calc-color: #f0ede6;
+$btn-color: #f7f4ef;
+$btn-orange-color: #e57c46;
+$btn-gray-color: #888b98;
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0; 
+}
+
+h1, h2, h3, h4, h5, p, div {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 15px;
+    margin: 0px;
+}
+
+.calculator {
+    position: relative;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    max-width: 350px;
+    padding: 15px 15px;
+    background-color: $calc-color;
+    border-radius: 10px;
+    border: .5px solid darken($calc-color, 20%);
+}
+
+.button-group {
+    margin-top: 9px;
+}
+
+.button {
+    position: relative;
+    min-height: 40px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $btn-color;
+    color: black;
+    padding-bottom: 10%;
+    border-radius: 5px;
+    border: .5px solid darken($calc-color, 20%);
+    margin: 9px 8px;
+    display: table;
+    box-shadow: 0px 2px 3px darken($calc-color, 10%);
+
+    text-align: center;
+
+
+    &:hover {
+        background-color: darken($btn-color, 15%);
+        cursor: pointer; 
+        cursor: hand; 
+        
+    }
+
+    &.display {
+        width: 95%;
+        height: 80px;
+        min-height: 30px;
+        font-size: 30px;
+        text-align: right;
+        padding: 15px;
+        cursor: text;
+
+        background-image: 
+        linear-gradient(
+            to bottom,
+            rgba(211,211,211,.5) 10%,
+            white 25%
+        );
+        border-width: .5px;
+        color: black;
+
+        &::selection { 
+            color: $btn-color;
+            background: $btn-orange-color; 
+        }
+    }
+
+    &.number, &.operator, &.functions {
+    }
+
+    &.number {
+        
+    }
+
+    &.operator {
+        font-size: 20px;
+        .button-content {
+            top: 7px;
+        }
+    }
+
+    &.equals {
+        background-color: $btn-gray-color;
+        color: $btn-color;
+
+        &:hover {
+        background-color: darken($btn-gray-color, 15%);
+        }
+    }
+
+    &.clear {
+        background-color: $btn-orange-color;
+        color: $btn-color;
+        &:hover {
+        background-color: darken($btn-orange-color, 15%);
+        }
+    }
+
+    &.double-button {
+        width: 90%;
+    }
+
+    .button-content {
+       position: relative;
+       top: 9px;
+        
+    }
+}

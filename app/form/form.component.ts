@@ -24,8 +24,6 @@ export class CCFormComponent {
 
 
 
-
-
     upperCase(name: string) {
         if (this.fname.length > 0 && this.fname.length <= 1) {
             let firstLetter = this.fname[0];
