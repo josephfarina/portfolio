@@ -3,9 +3,10 @@ import { UpperCasePipe } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
+    moduleId: module.id,
     selector: 'my-form',
-    templateUrl: './app/projects/form/form.component.html',
-    styleUrls: ['../stylesheets/app/form/form.component.style.css'],
+    templateUrl: 'form.component.html',
+    styleUrls: ['form.component.style.css'],
     providers: [UpperCasePipe],
     directives: [ROUTER_DIRECTIVES]
 })
