@@ -15,6 +15,7 @@ export class CalculatorComponent {
     private currentValue: number = 0;
     private valueToOperate: number = 0;
     private operatorPressed: boolean = false;
+    private displayResetAfterOperator: boolean;
     private isNegative: boolean;
 
     toggleNegative() {
@@ -35,15 +36,16 @@ export class CalculatorComponent {
     }
 
     setDisplayValue(digit?: string) {
-        // dont allow zero at the beginning
 
-        if (this.operatorPressed) {
+        if (this.operatorPressed && !this.displayResetAfterOperator) {
+            this.displayResetAfterOperator = true;
             this.displayValue = '0';
         }
 
         if (this.displayValue === '0') {
             this.displayValue = '';
         }
+
         if (this.displayValue === '0' && digit === '0') {
             this.displayValue = this.displayValue;
             return;
@@ -64,6 +66,7 @@ export class CalculatorComponent {
         }
         // this.currentValue = Number(this.displayValue);
         this.operatorPressed = true;
+        this.displayResetAfterOperator = false;
         // this.displayValue = '0';
     }
 
@@ -78,7 +81,7 @@ export class CalculatorComponent {
             case '*':
                 this.currentValue *= this.valueToOperate;
                 break;
-            case '-':
+            case '(-)':
                 this.currentValue -= this.valueToOperate;
                 break;
             case '+':

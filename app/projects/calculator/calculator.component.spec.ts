@@ -104,6 +104,32 @@ describe('Testing Quote Component:', () => {
                 .catch((e:any) => done.fail(e));
         });
 
+        it('should let you type 0 after a number', (done:any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+                let calc = fixture.componentInstance;
+
+                calc.setDisplayValue('1');
+                calc.setDisplayValue('0');
+                expect(calc.displayValue).toBe('10');
+                done();
+            })
+                .catch((e:any) => done.fail(e));
+        });
+
+        it('should let you type 0 after a number when operator is negative', (done:any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+                let calc = fixture.componentInstance;
+                
+                calc.setOperator('(-)');
+                calc.setDisplayValue('1');
+                calc.setDisplayValue('0');
+                expect(calc.displayValue).toBe('10');
+                done();
+            })
+                .catch((e:any) => done.fail(e));
+        });
+
+
         it('should not allow multiple zero\'s at the beginning', (done:any) => {
             tcb.createAsync(CalculatorComponent).then((fixture:any) => {
                 let calc = fixture.componentInstance;
@@ -194,6 +220,21 @@ describe('Testing Quote Component:', () => {
         });
 
         it('should update when you press an operator', (done:any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+                let calc = fixture.componentInstance;
+
+                calc.setDisplayValue('10');
+                calc.setOperator('+');
+                calc.setDisplayValue('10');
+                calc.setOperator('+');
+                expect(calc.displayValue).toBe('20');
+
+                done();
+            })
+                .catch((e:any) => done.fail(e));
+        });
+
+        it('should subtract', (done:any) => {
             tcb.createAsync(CalculatorComponent).then((fixture:any) => {
                 let calc = fixture.componentInstance;
 
