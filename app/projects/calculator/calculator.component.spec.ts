@@ -125,14 +125,14 @@ describe('Testing Quote Component:', () => {
 
     describe('setOperator():', () => {
 
-        it('should set operator and clear the display', (done:any) => {
+        it('should set currentValue', (done:any) => {
             tcb.createAsync(CalculatorComponent).then((fixture:any) => {
                 let calc = fixture.componentInstance;
 
                 calc.setDisplayValue('365')
                 calc.setOperator('+');
-                expect(calc.displayValue).toBe('0');
-    
+                expect(calc.currentValue).toBe(365);
+
                 done();
             })
                 .catch((e:any) => done.fail(e));
@@ -144,7 +144,6 @@ describe('Testing Quote Component:', () => {
 
                 calc.setDisplayValue('365')
                 calc.setOperator('-');
-                expect(calc.displayValue).toBe('0');
                 expect(typeof calc.currentValue).toEqual('number');
                 expect(calc.currentValue).toBe(365);
     
@@ -152,6 +151,62 @@ describe('Testing Quote Component:', () => {
             })
                 .catch((e:any) => done.fail(e));
         });        
+
+    });
+
+    describe('equals():', () => {
+
+        it('should add', (done:any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+                let calc = fixture.componentInstance;
+
+                calc.setDisplayValue('2');
+                calc.setOperator('+');
+                expect(calc.currentValue).toBe(2);
+                calc.setDisplayValue('2');
+                calc.equals();
+                expect(calc.displayValue).toBe('4');
+                calc.setOperator('+');
+                expect(calc.currentValue).toBe(4);
+                calc.setDisplayValue('40');
+                calc.equals();
+                expect(calc.displayValue).toBe('44');
+
+                done();
+            })
+                .catch((e:any) => done.fail(e));
+        });
+
+        it('should update display when operator\'s pressed', (done:any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+                let calc = fixture.componentInstance;
+
+                calc.setDisplayValue('10');
+                calc.setOperator('+');
+                expect(calc.currentValue).toBe(10);
+                expect(calc.displayValue).toBe('10');
+
+                calc.setDisplayValue('5');
+
+                done();
+            })
+                .catch((e:any) => done.fail(e));
+        });
+
+        it('should update when you press an operator', (done:any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+                let calc = fixture.componentInstance;
+
+                calc.setDisplayValue('10');
+                calc.setOperator('+');
+                calc.setDisplayValue('10');
+                calc.setOperator('+');
+                expect(calc.displayValue).toBe('20');
+
+                done();
+            })
+                .catch((e:any) => done.fail(e));
+        });
 
     });
 
