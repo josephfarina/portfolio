@@ -17,8 +17,15 @@ export class CalculatorComponent {
     private isNegative: boolean;
 
     toggleNegative() {
+        if (this.displayValue[0] === '0') { return; }
+
+        if (this.displayValue[0] === '-') {
+            this.isNegative = true;
+        }
+
         this.isNegative = !this.isNegative;
-         if (this.isNegative && this.displayValue[0] !== '-') {
+
+        if (this.isNegative && this.displayValue[0] !== '-') {
             this.displayValue = '-' + this.displayValue;
         }
         if (!this.isNegative && this.displayValue[0] === '-') {
@@ -27,10 +34,18 @@ export class CalculatorComponent {
     }
 
     setDisplayValue(digit?: string) {
-        // dont allow multiple zeros at the beginning
-        if (this.displayValue === '0') { this.displayValue = ''; }
+        // dont allow zero at the beginning
+        if (this.displayValue === '0') {        
+            this.displayValue = ''; 
+        }
+        else if (this.displayValue === '0' && digit === '0') {        
+            this.displayValue = this.displayValue;
+            return; 
+        }
         // dont let multiple decimals
-        if (this.displayValue.indexOf('.') >= 0 && digit === '.') { digit = ''; }
+        else if (this.displayValue.indexOf('.') >= 0 && digit === '.') { 
+            digit = ''; 
+        }
         this.displayValue += digit;
     }
 
