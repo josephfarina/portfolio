@@ -92,7 +92,6 @@ export class CalculatorComponent {
                 break;
         }
 
-        this.valueToOperate = 0;
         this.displayValue = String(this.currentValue);
     }
 
