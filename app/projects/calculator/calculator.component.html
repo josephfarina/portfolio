@@ -1,12 +1,14 @@
+<button class='btn' (click)="showVariables = !showVariables" >See the variables making it work</button>
+
 <div class="calculator">
-<pre>
+<pre *ngIf="showVariables">
      displayValue {{displayValue}}
      operatorValue {{operatorValue}}
      currentValue {{currentValue}}
      valueToOperate {{valueToOperate}}
      operatorPressed {{operatorPressed}}
      isNegative {{isNegative}}
-     numbersEnteredSinceOperator {{numbersEnteredSinceOperator}}
+     displayResetAfterOperator {{displayResetAfterOperator}}
 </pre>
     <div class="row no-gutters">
         <!-- display -->

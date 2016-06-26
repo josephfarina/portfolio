@@ -10,6 +10,9 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 })
 
 export class CalculatorComponent {
+    // toggle variables in the html
+    private showVariables: boolean = false;
+
     private displayValue: string = '0';
     private operatorValue: string = null;
     private currentValue: number = 0;
@@ -89,6 +92,7 @@ export class CalculatorComponent {
                 break;
         }
 
+        this.valueToOperate = 0;
         this.displayValue = String(this.currentValue);
     }
 
