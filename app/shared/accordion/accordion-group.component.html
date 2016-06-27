@@ -1,12 +1,10 @@
-<div class="panel panel-default" [ngClass]="{'panel-open': isOpen}">
-  <div class="panel-heading" (click)="toggleOpen($event)">
-    <h4 class="panel-title">
-      <a href tabindex="0"><span>{{heading}}</span></a>
-    </h4>
-  </div>
-  <div class="panel-collapse" [hidden]="!isOpen">
-    <div class="panel-body">
-	    <ng-content></ng-content>
+<li class="tab-header-and-content">
+    <div (click)="toggleOpen($event)" [ngClass]="{'is-active' : isOpen}" class="tab-link">
+        <h4 class="panel-title">
+            <a href tabindex="0"><span>{{heading}}</span></a>
+        </h4>
     </div>
-  </div>
-</div>
+    <div [class.show]="isOpen" class="tab-content">
+        <ng-content></ng-content>
+    </div>
+</li>

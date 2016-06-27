@@ -1,5 +1,4 @@
-import {Component, Input, OnDestroy} from '@angular/core';
-import {DomSanitizationService, SafeResourceUrl} from '@angular/platform-browser';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { PrismJsDirective } from "./../prismjs/prismjs.directive";
 import { CodeblockComponent } from "./../prismjs/codeblock.component";
 
@@ -7,10 +6,12 @@ import { CodeblockComponent } from "./../prismjs/codeblock.component";
   moduleId: module.id,
   selector: 'accordion',
   templateUrl: 'accordion.component.html',
-  host: {
-    'class': 'panel-group'
-  }
+  styles : ['accordion.component.css']
+  // host: {
+  //   'class': 'accordion-tabs'
+  // }
 })
+
 export class Accordion {
   groups: Array<AccordionGroup> = [];
   
@@ -45,18 +46,9 @@ export class Accordion {
 
 export class AccordionGroup implements OnDestroy {
   private _isOpen: boolean = false;
-  constructor(
-    private accordion: Accordion,
-    private sanitationService:DomSanitizationService) {
-      this.accordion.addGroup(this);
-  }
-
-  //   constructor(private sanitationService:DomSanitizationService) {
-  //   this.url = sanitationService.bypassSecurityTrustResourceUrl('http://plnkr.co/img/plunker.png');
-  // }
-
+  
   @Input() heading: string;
-  @Input() plnkrLink: string;
+  
   @Input()
   set isOpen(value: boolean) {
     this._isOpen = value;
@@ -67,6 +59,10 @@ export class AccordionGroup implements OnDestroy {
   
   get isOpen() {
     return this._isOpen;
+  }
+  
+  constructor(private accordion: Accordion) {
+    this.accordion.addGroup(this);
   }
   
   ngOnDestroy() {

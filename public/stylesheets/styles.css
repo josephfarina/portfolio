@@ -381,3 +381,58 @@ pre.line-numbers > code {
   -khtml-opacity: 1;
   -moz-opacity: 1;
   opacity: 1; }
+
+accordion
+h4 {
+  color: red; }
+
+.accordion-tabs {
+  line-height: 1.5;
+  margin-bottom: 1.5em;
+  padding: 0;
+  border: 1px solid #dcdcdc;
+  border-radius: 3px; }
+  .accordion-tabs::after {
+    clear: both;
+    content: "";
+    display: block; }
+  .accordion-tabs .tab-header-and-content {
+    list-style: none;
+    display: inline; }
+    .accordion-tabs .tab-header-and-content:nth-child(2) .tab-link {
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      border-top: 0; }
+      .accordion-tabs .tab-header-and-content:nth-child(2) .tab-link:last-child .tab-link {
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px; }
+    .accordion-tabs .tab-header-and-content .tab-link {
+      background-color: #fff;
+      border-top: 1px solid #dcdcdc;
+      color: #333;
+      display: block;
+      font-weight: bold;
+      padding: 0.75em 6px;
+      text-decoration: none;
+      border-top: 0;
+      display: inline-block; }
+      .accordion-tabs .tab-header-and-content .tab-link:hover {
+        color: #477dca; }
+      .accordion-tabs .tab-header-and-content .tab-link:focus {
+        outline: none; }
+      .accordion-tabs .tab-header-and-content .tab-link.is-active {
+        background-color: #f7f7f7;
+        background-color: #f7f7f7;
+        border: 1px solid #dcdcdc;
+        border-bottom-color: #f7f7f7;
+        margin-bottom: -1px; }
+    .accordion-tabs .tab-header-and-content .tab-content {
+      background: #f7f7f7;
+      display: none;
+      padding: 1.5em 12px;
+      width: 100%;
+      border: 1px solid #dcdcdc;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+      border-top-right-radius: 3px;
+      float: left; }
