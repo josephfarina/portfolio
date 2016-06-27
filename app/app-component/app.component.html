@@ -1,47 +1,6 @@
-<router-outlet></router-outlet>
+<my-project-view></my-project-view>
 
-<section 
-    *ngIf="!creditCardVisible"  
-    class="row landing-hero">
-    <div class="hero-copy">
-        <h1>Some Things I made</h1>
-        <p>Check Them Out</p>
-    </div>
-</section>
+<my-code-container [codeFiles]="codeToDisplay" ></my-code-container>
 
-<section 
-    *ngIf="creditCardVisible"  
-    class="show-divider">
-    <h2>Check Out Some Similar Things</h2>
-</section>
+<my-project-selections  ></my-project-selections>
 
-<section id="page-grid" class="row no-gutters">
-
-    <div class="col-md-4 col-sm-6">
-        <div class="box yellow">
-            <a [routerLink]="['/creditcardform']">
-                <div class="box-content" id="credit-card-form">
-                    <h3>Credit Card Form</h3>
-                    <div id="credit-card"></div>
-                    <p class="description">
-                        Validation and Card Detection
-                    </p>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="col-md-4 col-sm-6">
-        <div class="box white">
-            <a [routerLink]="['/calculator']">
-                <div class="box-content" id="credit-card-form">
-                    <h3>Calculator</h3>
-                    <div id="calculator"></div>
-                    <p class="description">
-                        Angular 2 calculator
-                    </p>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>

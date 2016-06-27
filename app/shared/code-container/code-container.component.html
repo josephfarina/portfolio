@@ -1,0 +1,16 @@
+<!--replace &  with &amp;
+Replace  <  with &lt;
+Replace  >  with &gt;-->
+
+<accordion>
+  <accordion-group
+    *ngFor="let code of codeFiles"
+    heading="{{code.name}}" >
+
+    <!--prismjs directive is causing a type error i think an interface will solveit-->
+    <codeblock prismjs="{{code.type}}" >
+    {{code.code}}
+    </codeblock>
+
+  </accordion-group>
+</accordion>

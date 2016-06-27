@@ -3,14 +3,15 @@
  * Adjust as necessary for your application needs.
  */
 (function(global) {
-
+// /Users/JosephFarina/Desktop/portfolio/node_modules/ng2-prism/languages/actionscript.js
   // map tells the System loader where to look for things
   var map = {
     'app':                        'build', // 'dist',
-
     '@angular':                   'node_modules/@angular',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
-    'rxjs':                       'node_modules/rxjs'
+    'rxjs':                       'node_modules/rxjs',
+    "Prism":                    'prismjs'
+    
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -18,6 +19,7 @@
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
+    'Prism':                    { main: 'prism.js', defaultExtension: 'js' }
   };
 
   var ngPackageNames = [
