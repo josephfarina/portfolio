@@ -1,7 +1,2 @@
-<!--<div *ngIf="showOverlay"  class="">
-
-    <button class="exit" (click)="hideOverlay()" >Close</button>
-    
-    <router-outlet></router-outlet>
-
-</div>-->
+<router-outlet></router-outlet>
+<my-code-container [codeFiles]="codeToDisplay" ></my-code-container>

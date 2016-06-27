@@ -91,6 +91,7 @@ section.show-divider {
 .accordion-tabs {
   line-height: 1.5;
   margin-bottom: 1.5em;
+  margin-bottom: 0px;
   padding: 0;
   border: 1px solid #dcdcdc;
   border-radius: 3px; }

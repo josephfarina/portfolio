@@ -27,6 +27,7 @@
   @include clearfix;
   line-height: 1.5;
   margin-bottom: $base-spacing;
+  margin-bottom: 0px;
   padding: 0;
 
 //   @include media(max-width $tab-mode) {
@@ -34,14 +35,14 @@
     border-radius: $base-border-radius;
 //   }
 
+
   .tab-header-and-content {
 
-    list-style: none;
 
+    list-style: none;
     // @include media($tab-mode) {
       display: inline;
     // }
-
     &:nth-child(2) .tab-link {
       border-top-left-radius: $base-border-radius;
       border-top-right-radius: $base-border-radius;
