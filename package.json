@@ -5,7 +5,7 @@
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "test": "karma start karma.conf.js && concurrently \"tslint tslint ./app/**/*.ts -t verbose\" ",
     "lint": "tslint ./app/**/*.ts -t verbose",
-    "postinstall": "typings install",
+    "postinstall": "typings install && gulp clean:build",
     "typings": "typings",
     "tscript": "tsc",
     "webdriver:update": "webdriver-manager update"

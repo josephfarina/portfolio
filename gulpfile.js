@@ -5,7 +5,7 @@ var sassLint = require('gulp-sass-lint');
 var del = require('del');
 var tslint = require("gulp-tslint");
  
-// TYPESCRIPT  ===============================================
+// TYPESCRIPT  =========================================================
 gulp.task("tslint", () =>
     gulp.src("./app/**/*.ts")
         .pipe(tslint())
@@ -14,7 +14,7 @@ gulp.task("tslint", () =>
         }))
 );
 
-// BUILD ===============================================
+// BUILD ===============================================================
 gulp.task('clean:build', ['clean:build/public', 'copy:html', 'sass:app', 'sass:main']);
 
 gulp.task('clean:build/public', function () {
@@ -30,7 +30,7 @@ gulp.task('copy:html', function () {
     .pipe(gulp.dest('build'));
 });
 
-// SASS ===============================================
+// SASS ================================================================
 gulp.task('sass', ['sass:app', 'sass:main', 'sass:lint']);
 
 gulp.task('sass:app', function() {
@@ -55,7 +55,6 @@ gulp.task('sass:lint', function () {
 });
 
 // BUILD ===============================================
-gulp.task('build', ['clean:build/public', 'copy:html', 'sass']);
 
 gulp.task('watch', function() {
     gulp.watch('./app/**/*.html', ['copy:html']);
@@ -63,4 +62,4 @@ gulp.task('watch', function() {
     gulp.watch('./app/**/*.ts', ['tslint']);
 })
 
-gulp.task('default', ['clean:build', 'build', 'watch']);
+gulp.task('default', ['clean:build', 'watch']);
