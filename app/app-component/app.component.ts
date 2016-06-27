@@ -1,12 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import { ProjectViewComponent } from './project-view/project-view.component';
+import { ProjectSelectionsComponent } from './project-selections/project-selections.component';
+
+import { CodeContainer } from './../shared/code-container/code-container.component';
 
 @Component({
     moduleId: module.id,
     selector: 'my-app',
     templateUrl: 'app.component.html',
     directives: [
-        ROUTER_DIRECTIVES]
+        ROUTER_DIRECTIVES,
+        ProjectViewComponent,
+        ProjectSelectionsComponent,
+        CodeContainer]
 })
 
 export class AppComponent implements OnInit {

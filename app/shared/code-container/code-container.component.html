@@ -1,0 +1,70 @@
+<!--replace &  with &amp;
+Replace  <  with &lt;
+Replace  >  with &gt;-->
+
+<accordion>
+  <accordion-group 
+    heading="calculator.component.ts" 
+    isOpen="false">
+    
+    <codeblock prismjs="html">
+    &lt;h1&gt;
+      &lt;d class&gt;&lt;/d&gt;
+      &lt;d class&gt;&lt;/d&gt;
+      &lt;d class&gt;&lt;/d&gt;
+    &lt;/h1&gt;
+    </codeblock>
+
+  </accordion-group>
+
+  <accordion-group 
+    heading="calculator.component.spec.ts" 
+    [isOpen]="isOpen">
+    More content
+  </accordion-group>
+
+</accordion>
+
+
+<ul class="accordion-tabs">
+
+  <li class="tab-header-and-content">
+    <div 
+    [ngClass]="{'is-active' : false}"
+    class="tab-link">
+        Tab Item
+    </div>
+    <div style="display: none" class="is-open tab-content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio, quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla. Praesent eu ipsum in sapien tincidunt molestie sed ut magna. Nam accumsan dui at orci rhoncus pharetra tincidunt elit ullamcorper. Sed ac mauris ipsum. Nullam imperdiet sapien id purus pretium id aliquam mi ullamcorper.</p>
+    </div>
+  </li>
+
+  <li class="tab-header-and-content">
+    <div class="is-active tab-link">Another
+        Tab 
+    </div>
+    <div style="display: block"  class="tab-content">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, odit repudiandae voluptatum eligendi commodi inventore soluta omnis nulla asperiores, iste tenetur vel pariatur facere placeat voluptatibus porro mollitia error, quaerat non veritatis? Consequatur odit aperiam, asperiores qui impedit recusandae non voluptatum. Quo, minima, id. Harum hic expedita incidunt sequi porro.
+    </div>
+  </li>
+
+</ul>
+
+
+
+<!--<div class="code-container">
+  <div
+    (click)="toggleVisible()" 
+    class="code-container-title">
+    {{title}}
+    {{visible ? 'HIDE'  : 'SHOW'}}
+  </div>
+  <div
+    [hidden]="!visible" 
+    class="code-container-content">
+    {{content}}
+    before
+    <ng-content></ng-content>
+    after
+  </div>
+</div>-->
