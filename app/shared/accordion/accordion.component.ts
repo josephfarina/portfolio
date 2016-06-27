@@ -6,7 +6,7 @@ import { CodeblockComponent } from "./../prismjs/codeblock.component";
   moduleId: module.id,
   selector: 'accordion',
   templateUrl: 'accordion.component.html',
-  styles : ['accordion.component.css']
+  styleUrls : ['./accordion.component.css']
   // host: {
   //   'class': 'accordion-tabs'
   // }
@@ -40,8 +40,11 @@ export class Accordion {
 @Component({
   moduleId: module.id,
   selector: 'accordion-group',
-  directives: [PrismJsDirective, CodeblockComponent],
-  templateUrl: 'accordion-group.component.html'
+  templateUrl: 'accordion-group.component.html',
+  styleUrls: ['./accordion-group.component.css'],
+  directives: [
+    PrismJsDirective, 
+    CodeblockComponent],
 })
 
 export class AccordionGroup implements OnDestroy {
