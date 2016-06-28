@@ -31,6 +31,7 @@ describe('Testing Quote Component:', () => {
         }
     ));
 
+
     describe('toggleNegative():', () => {
 
         it('should toggle negative', (done:any) => {

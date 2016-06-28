@@ -1,0 +1,11 @@
+<h2>tic tac toe</h2>
+<div *ngFor="let tiles of tileBoard; let y = index">
+    <div 
+        style="display: inline"
+        *ngFor="let tile of tiles; let x = index" 
+        (click)="setTile(x,y)" >
+        | {{tileBoard[y][x]}} |
+    </div>
+    <hr>
+</div>
+CurrentPlayer: {{currentPlayer.name}}'s turn
