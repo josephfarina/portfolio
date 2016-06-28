@@ -1,0 +1,31 @@
+.x {
+    border: 1px solid orange;
+    background-color: red;
+    color: black;
+    min-width:100px;
+    height:100px;
+    &:before {
+        position: absolute;
+        content: 'x';
+    }
+}
+
+.o {
+    border: 1px solid orange;    
+    background-color: black;
+    color: red;
+    min-width:1100px00px;
+    height:100px;
+    &:before {
+        position: absolute;
+        content: 'o';
+    }
+}
+
+.null {
+    border: 1px solid orange;    
+    background-color: green;
+    color: white;
+    min-width:100px;
+    height:100px;    
+}
