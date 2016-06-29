@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import { GithubCodeService } from './../../shared/services/github-code-retriever.service';
 
 @Component({
     moduleId: module.id,
@@ -56,34 +57,42 @@ export class TicTacToeComponent {
             else if (yaxis === 2) { this.tileBoard[2][2] = this.currentPlayer.tileType; }
         }
 
-        this.checkForWinner(xaxis,yaxis);
         this.setPlayer();
     }
 
     resetTileBoard() {
         for (let i = 0; i < this.tileBoard.length; i++) {
-            for ( let j = 0; j < this.tileBoard[i].length; j++) {
+            for (let j = 0; j < this.tileBoard[i].length; j++) {
                 this.tileBoard[i][j] = TileType.null;
             }
         }
     }
 
 
-    checkForWinner(xaxis:number, yaxis:number) {
-        // let ycount: number;
-        // let xcount: number;
-        // for (let x = 0; x < this.tileBoard.length; x++) {
-        //     if (this.tileBoard[yaxis][x] === this.currentPlayer.tileType) { xcount++; } 
-        //     console.log(xcount, 'xcount');
-        //     if ( xcount === 3) { return; }
-        // }
+    checkForWinner(): boolean {
+        // TODO: change this to an inputed value
+        let user = this.userOne;
 
-        // for (let y = 0; y < this.tileBoard.length; y++) {
-        //     if (this.tileBoard[y][xaxis] === this.currentPlayer.tileType) { ycount++; } 
-        //     console.log(ycount, 'ycount');            
-        //     if ( ycount === 3) { return; }
-        // }    
-    }    
+        let xCount: number;
+        let yCount: number;
+        for (let y = 0; y < this.tileBoard.length; y++) {
+
+            xCount = 0;
+            yCount = 0;
+            for (let x = 0; x < this.tileBoard[y].length; x++) {
+                let arr = this.tileBoard[y];
+                if (arr[x] === user.tileType) { xCount++; }
+                if (xCount === 3) { return true; }
+
+                for (let i = 0; i < this.tileBoard.length; i++) {
+                    let yarr = this.tileBoard;  
+                    if (yarr[i][x] === user.tileType) { yCount++; }
+                    if (yCount === 3) { return true; }                      
+                }
+            }
+        }
+        return false;
+    }
 
 }
 

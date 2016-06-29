@@ -1,12 +1,12 @@
 <div class="container">
-    <h2>tic tac toe</h2>
+
     <div *ngFor="let tiles of tileBoard; let y = index">
         <div 
         class="col-md-4" 
         style="display:inline"
         *ngFor="let tile of tiles; let x = index" (click)="setTile(x,y)" 
         [ngClass]="{ 
-        'x':tileBoard[y][x]===0, 
+        'x':tileBoard[y][x]===0,
         'o':tileBoard[y][x]===1,
         'null':tileBoard[y][x]===2 }">
         </div>
@@ -16,3 +16,4 @@
 
     CurrentPlayer: {{currentPlayer.name}}'s turn | {{currentPlayer.tileType}}
 </div>
+

@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { TicTacToeComponent } from './tictactoe.component';
+import { TicTacToeComponent, Player } from './tictactoe.component';
 
 import {
     expect, it, iit, xit,
@@ -13,7 +13,7 @@ import { By }             from '@angular/platform-browser';
 import { provide, ViewMetadata }        from '@angular/core';
 import { PromiseWrapper } from '@angular/core/src/facade/promise';
 
-describe('Testing Quote Component:', () => {
+describe('TicTacToe Component:', () => {
     let tcb: any;
 
     beforeEachProviders(() => [
@@ -85,19 +85,127 @@ describe('Testing Quote Component:', () => {
 
     });
 
+    describe('checkWinner()', () => {
+
+        it('horizontal x should return true if three in a row', (done: any) => {
+            tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
+                let ttt = fixture.componentInstance;
+
+                ttt.tileBoard= [
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null]
+                ];
+
+                // set the tiletype to be equal
+                ttt.tileBoard[0][0] = TileType.O;
+                expect(ttt.tileBoard[0][0]).toEqual(TileType.O);
+                ttt.tileBoard[0][1] = TileType.O;
+                expect(ttt.tileBoard[0][1]).toEqual(TileType.O);
+                ttt.tileBoard[0][2] = TileType.O;
+                expect(ttt.tileBoard[0][2]).toEqual(TileType.O);
+                expect(ttt.checkForWinner()).toBe(true);
+
+                ttt.tileBoard= [
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null]
+                ];
+
+                // set the tiletype to be equal
+                ttt.tileBoard[1][0] = TileType.O;
+                expect(ttt.tileBoard[1][0]).toEqual(TileType.O);
+                ttt.tileBoard[1][1] = TileType.O;
+                expect(ttt.tileBoard[1][1]).toEqual(TileType.O);
+                ttt.tileBoard[1][2] = TileType.O;
+                expect(ttt.tileBoard[1][2]).toEqual(TileType.O);
+                expect(ttt.checkForWinner()).toBe(true);
+
+                ttt.tileBoard= [
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null]
+                ];
+
+                // set the tiletype to be equal
+                ttt.tileBoard[2][0] = TileType.O;
+                expect(ttt.tileBoard[2][0]).toEqual(TileType.O);
+                ttt.tileBoard[2][1] = TileType.O;
+                expect(ttt.tileBoard[2][1]).toEqual(TileType.O);
+                ttt.tileBoard[2][2] = TileType.O;
+                expect(ttt.tileBoard[2][2]).toEqual(TileType.O);
+                expect(ttt.checkForWinner()).toBe(true);
+
+
+                // set one tile wrong and excepct failure
+                ttt.tileBoard[0][1] = TileType.X;
+                expect(ttt.tileBoard[0][1]).toEqual(TileType.X);
+                console.log('seciond check for winner');
+                expect(ttt.checkForWinner()).toBe(false);
+                
+                done();
+            })
+                .catch((e: any) => done.fail(e));
+        });
+
+        it('vertical x should return true if three in a row', (done: any) => {
+            tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
+                let ttt = fixture.componentInstance;
+
+                ttt.tileBoard= [
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null]
+                ];
+
+                // set the tiletype to be equal
+                ttt.tileBoard[0][0] = TileType.O;
+                expect(ttt.tileBoard[0][0]).toEqual(TileType.O);
+                ttt.tileBoard[1][0] = TileType.O;
+                expect(ttt.tileBoard[1][0]).toEqual(TileType.O);
+                ttt.tileBoard[2][0] = TileType.O;
+                expect(ttt.tileBoard[2][0]).toEqual(TileType.O);
+                expect(ttt.checkForWinner()).toBe(true);
+
+                ttt.tileBoard= [
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null]
+                ];
+
+                ttt.tileBoard[0][1] = TileType.O;
+                expect(ttt.tileBoard[0][1]).toEqual(TileType.O);
+                ttt.tileBoard[1][1] = TileType.O;
+                expect(ttt.tileBoard[1][1]).toEqual(TileType.O);
+                ttt.tileBoard[2][1] = TileType.O;
+                expect(ttt.tileBoard[2][1]).toEqual(TileType.O);
+                expect(ttt.checkForWinner()).toBe(true);
+
+                ttt.tileBoard= [
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null]
+                ];
+
+                ttt.tileBoard[0][2] = TileType.O;
+                expect(ttt.tileBoard[0][2]).toEqual(TileType.O);
+                ttt.tileBoard[1][2] = TileType.O;
+                expect(ttt.tileBoard[1][2]).toEqual(TileType.O);
+                ttt.tileBoard[2][2] = TileType.O;
+                expect(ttt.tileBoard[2][2]).toEqual(TileType.O);
+                expect(ttt.checkForWinner()).toBe(true);
+
+                done();
+            })
+                .catch((e: any) => done.fail(e));
+        });
+
+    });
+
 });
 
-export interface Player {
-    name: string,
-    score: number
-}
-
-export const userOne: Player = {
-    score: 0,
-    name: 'Player 1'
-}
-
-export const userTwo: Player = {
-    score: 0,
-    name: 'Player 2'
+enum TileType {
+    X,
+    O,
+    null
 }
