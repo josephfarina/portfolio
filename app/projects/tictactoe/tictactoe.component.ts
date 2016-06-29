@@ -82,16 +82,37 @@ export class TicTacToeComponent {
         -check for diagnol win
 
         these function only check the row for the value that they are given
-        
-        if number != centerValue—(1,1) {
-            checkHorizontalWin(y);
-            checkVerticalWin(x);
-        } else { 
-            checkDiagonalWin();
-            checkHorizontalWin(y);
-            checkVerticalWin(x);   
+    
+        checkWinner(x:number,y:number){ 
+            if (checkHorizontalWin(y)) {return true;}
+            if (checkVerticalWin(x)) {return true;}   
+            if number != centerValue—(1,1) {
+                if (checkDiagonalWin()) {return true;}
+            }        
         }
-        
+
+        checkHorizontalWin(y) {
+            let count: number = 0;
+            for (let x = 0; x < this.tileBoard.length; x++) {
+                if (this.tileBoard[y][x]) { count++;}
+                if (count === 3) { return true;}
+            }
+        }
+
+        checkVerticalWin(x) {
+            let count: number = 0;
+            for (let y = 0; y < this.tileBoard.length; y++) {
+                if (this.tileBoard[y][x]) { count++; }
+                if (count === 3) { return true; }
+            }
+        }
+
+        checkDiagonalWin() {
+            let tb = this.tileBoard;
+            if (tb[0][0] === tb[1][1] && tb[1][1] === tb[2][2] ) { return true; }
+            if (tb[0][2] === tb[1][1] && tb[1][1] === tb[2][0] ) { return true; }
+        }
+
         */
 
         let user = this.userOne;
