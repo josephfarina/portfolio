@@ -136,6 +136,11 @@ describe('TicTacToe Component:', () => {
                 expect(ttt.tileBoard[2][2]).toEqual(TileType.O);
                 expect(ttt.checkForWinner()).toBe(true);
 
+                ttt.tileBoard= [
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null],
+                    [TileType.null, TileType.null, TileType.null]
+                ];
 
                 // set one tile wrong and excepct failure
                 ttt.tileBoard[0][1] = TileType.X;

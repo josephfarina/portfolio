@@ -68,9 +68,32 @@ export class TicTacToeComponent {
         }
     }
 
-
     checkForWinner(): boolean {
         // TODO: change this to an inputed value
+
+
+        /* 
+        FIXME:
+        possible more efficient way to solve this;
+        
+        make three functions that take in x,y coordinates:
+        -check for horizontal win
+        -check for vertical win
+        -check for diagnol win
+
+        these function only check the row for the value that they are given
+        
+        if number != centerValue—(1,1) {
+            checkHorizontalWin(y);
+            checkVerticalWin(x);
+        } else { 
+            checkDiagonalWin();
+            checkHorizontalWin(y);
+            checkVerticalWin(x);   
+        }
+        
+        */
+
         let user = this.userOne;
 
         let xCount: number;
@@ -85,11 +108,12 @@ export class TicTacToeComponent {
                 if (xCount === 3) { return true; }
 
                 for (let i = 0; i < this.tileBoard.length; i++) {
-                    let yarr = this.tileBoard;  
+                    let yarr = this.tileBoard;
                     if (yarr[i][x] === user.tileType) { yCount++; }
-                    if (yCount === 3) { return true; }                      
+                    if (yCount === 3) { return true; }
                 }
             }
+
         }
         return false;
     }
