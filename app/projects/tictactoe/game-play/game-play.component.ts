@@ -1,0 +1,135 @@
+import { Component, OnInit } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+import { GithubCodeService } from './../../../shared/services/github-code-retriever.service';
+
+@Component({
+    moduleId: module.id,
+    selector: 'my-game-play',    
+    templateUrl: 'game-play.component.html',
+    styleUrls: ['game-play.component.style.css'],
+    directives: [ROUTER_DIRECTIVES]
+})
+
+export class GamePlayComponent implements OnInit {
+    private tileSetCount: number = 0;
+    private currentPlayer: Player = this.userOne;
+    private userOne: Player = {
+        score: 0,
+        name: 'Player 1',
+        tileType: TileType.O
+    };
+    private userTwo: Player = {
+        score: 0,
+        name: 'Player 2',
+        tileType: TileType.X
+    };
+    private tileBoard: any[] = [
+        [TileType.null, TileType.null, TileType.null],
+        [TileType.null, TileType.null, TileType.null],
+        [TileType.null, TileType.null, TileType.null]
+    ];
+
+    ngOnInit() {
+        this.setPlayer();
+    }
+
+    setPlayer() {
+        if (this.currentPlayer === this.userOne) {
+            this.currentPlayer = this.userTwo;
+        }
+        else if (this.currentPlayer === this.userTwo) {
+            this.currentPlayer = this.userOne;
+        } else {
+            this.currentPlayer = this.userOne;
+        }
+    }
+
+    setTile(xaxis: number, yaxis: number) {
+        if (this.tileBoard[yaxis][xaxis] !== TileType.null) { return; }
+
+        if (xaxis === 0) {
+            if (yaxis === 0) { this.tileBoard[0][0] = this.currentPlayer.tileType; }
+            else if (yaxis === 1) { this.tileBoard[1][0] = this.currentPlayer.tileType; }
+            else if (yaxis === 2) { this.tileBoard[2][0] = this.currentPlayer.tileType; }
+        }
+
+        else if (xaxis === 1) {
+            if (yaxis === 0) { this.tileBoard[0][1] = this.currentPlayer.tileType; }
+            else if (yaxis === 1) { this.tileBoard[1][1] = this.currentPlayer.tileType; }
+            else if (yaxis === 2) { this.tileBoard[2][1] = this.currentPlayer.tileType; }
+        }
+
+        else if (xaxis === 2) {
+            if (yaxis === 0) { this.tileBoard[0][2] = this.currentPlayer.tileType; }
+            else if (yaxis === 1) { this.tileBoard[1][2] = this.currentPlayer.tileType; }
+            else if (yaxis === 2) { this.tileBoard[2][2] = this.currentPlayer.tileType; }
+        }
+
+        this.tileSetCount++;
+
+        if (this.checkForWinner(xaxis, yaxis)) {
+
+            alert(this.currentPlayer.tileType + ' is a winner!');
+            this.resetTileBoard();
+            return;
+        }
+
+        if (this.tileSetCount === 9) {
+            alert('TIE!');
+            this.resetTileBoard();
+        }
+
+        this.setPlayer();
+    }
+
+    resetTileBoard() {
+        this.tileSetCount = 0;
+        for (let i = 0; i < this.tileBoard.length; i++) {
+            for (let j = 0; j < this.tileBoard[i].length; j++) {
+                this.tileBoard[i][j] = TileType.null;
+            }
+        }
+    }
+
+    checkForWinner(x: number, y: number): boolean {
+        if (this.checkHorizontalWin(y)) { return true; }
+        if (this.checkVerticalWin(x)) { return true; }
+        if (this.checkDiagonalWin()) { return true; }
+        return false;
+    }
+
+    checkHorizontalWin(y: number): boolean {
+        let count: number = 0;
+        for (let x = 0; x < this.tileBoard.length; x++) {
+            if (this.tileBoard[y][x] === this.currentPlayer.tileType) { count++; }
+            if (count === 3) { return true; }
+        }
+    }
+
+    checkVerticalWin(x: number): boolean {
+        let count: number = 0;
+        for (let y = 0; y < this.tileBoard.length; y++) {
+            if (this.tileBoard[y][x] === this.currentPlayer.tileType) { count++; }
+            if (count === 3) { return true; }
+        }
+    }
+
+    checkDiagonalWin(): boolean {
+        let tb = this.tileBoard;
+        if (tb[0][0] === tb[1][1] && tb[1][1] === tb[2][2] && tb[1][1] !== TileType.null) { return true; }
+        if (tb[0][2] === tb[1][1] && tb[1][1] === tb[2][0] && tb[1][1] !== TileType.null) { return true; }
+    }
+
+}
+
+enum TileType {
+    X,
+    O,
+    null
+}
+
+export interface Player {
+    name: string;
+    score: number;
+    tileType: TileType;
+}

@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { TicTacToeComponent, Player } from './tictactoe.component';
+import { GamePlayComponent, Player } from './game-play.component';
 
 import {
     expect, it, iit, xit,
@@ -18,7 +18,7 @@ describe('TicTacToe Component:', () => {
 
     beforeEachProviders(() => [
         TestComponentBuilder,
-        TicTacToeComponent
+        GamePlayComponent
     ]);
 
     beforeEach(inject([TestComponentBuilder], (_tcb: any) => {
@@ -28,14 +28,14 @@ describe('TicTacToe Component:', () => {
 
     it('should fulfill dependencies', injectAsync(
         [TestComponentBuilder], (tcb: any) => {
-            return tcb.createAsync(TicTacToeComponent).then((fixture: any) => { });
+            return tcb.createAsync(GamePlayComponent).then((fixture: any) => { });
         }
     ));
 
     describe('setPlayer():', () => {
 
         it('should toggle between userOne and userTwo', (done: any) => {
-            tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
+            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 ttt.currentPlayer = ttt.userOne;
@@ -50,7 +50,7 @@ describe('TicTacToe Component:', () => {
         });
 
         it('should toggle between userTwo and userOne', (done: any) => {
-            tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
+            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 ttt.currentPlayer = ttt.userTwo;
@@ -69,7 +69,7 @@ describe('TicTacToe Component:', () => {
     describe('setTile():', () => {
 
         it('should toggle between userOne and userTwo', (done: any) => {
-            tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
+            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 ttt.currentPlayer = ttt.userOne;
@@ -88,7 +88,7 @@ describe('TicTacToe Component:', () => {
     describe('checkWinner()', () => {
 
         it('horizontal should return true', (done: any) => {
-            tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
+            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 for (let i = 0; i <= 1; i++) {
@@ -124,7 +124,7 @@ describe('TicTacToe Component:', () => {
         });
 
         it('vertical should return true', (done: any) => {
-            tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
+            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 for (let i = 0; i <= 1; i++) {
@@ -159,7 +159,7 @@ describe('TicTacToe Component:', () => {
         });
 
         it('diagonal should return true', (done: any) => {
-            tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
+            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 for (let i = 0; i <= 1; i++) {
@@ -204,7 +204,7 @@ describe('TicTacToe Component:', () => {
         });
 
         it('wrong answers should return false', (done: any) => {
-            tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
+            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
 // FIXME: Fix this test to work

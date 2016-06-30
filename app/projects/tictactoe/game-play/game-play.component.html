@@ -1,11 +1,7 @@
 <div class="container">
 
     <div *ngFor="let tiles of tileBoard; let y = index">
-        <div 
-        class="col-md-4" 
-        style="display:inline"
-        *ngFor="let tile of tiles; let x = index" (click)="setTile(x,y)" 
-        [ngClass]="{ 
+        <div class="col-md-4" style="display:inline" *ngFor="let tile of tiles; let x = index" (click)="setTile(x,y)" [ngClass]="{ 
         'x':tileBoard[y][x]===0,
         'o':tileBoard[y][x]===1,
         'null':tileBoard[y][x]===2 }">
@@ -14,6 +10,4 @@
 
     <button (click)="resetTileBoard()">Reset</button>
 
-    CurrentPlayer: {{currentPlayer.name}}'s turn | {{currentPlayer.tileType}}
 </div>
-
