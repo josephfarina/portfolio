@@ -1,16 +1,23 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
     moduleId: module.id,
     selector: 'my-tictactoe',
     template: `
-        <h1>a</h1>
+    <div class="tictactoe">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a [routerLink]="['/tictactoe/new']">Game Information</a></li>
+            <li role="presentation"><a [routerLink]="['/tictactoe/play']">Game Play</a></li>
+            <li role="presentation"><a [routerLink]="['/tictactoe/end']">End Game</a>   </li>
+        </ul>
+        <router-outlet></router-outlet>
+    </div>
     `,
     styleUrls: ['tictactoe.component.style.css'],
     directives: [ROUTER_DIRECTIVES]
 })
 
 export class TicTacToeComponent {
-
+    constructor(private router: Router) { }
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { GithubCodeService } from './../../../shared/services/github-code-retriever.service';
+import { TicTacToeService, Player, TileType } from './../tictactoe.service';
 
 @Component({
     moduleId: module.id,
@@ -10,7 +11,7 @@ import { GithubCodeService } from './../../../shared/services/github-code-retrie
     directives: [ROUTER_DIRECTIVES]
 })
 
-export class GamePlayComponent implements OnInit {
+export class GamePlayComponent implements OnInit, OnDestroy {
     private tileSetCount: number = 0;
     private currentPlayer: Player = this.userOne;
     private userOne: Player = {
@@ -31,6 +32,10 @@ export class GamePlayComponent implements OnInit {
 
     ngOnInit() {
         this.setPlayer();
+    }
+
+    ngOnDestroy() {
+        this.resetTileBoard();
     }
 
     setPlayer() {
@@ -68,15 +73,11 @@ export class GamePlayComponent implements OnInit {
         this.tileSetCount++;
 
         if (this.checkForWinner(xaxis, yaxis)) {
-
             alert(this.currentPlayer.tileType + ' is a winner!');
-            this.resetTileBoard();
-            return;
         }
 
         if (this.tileSetCount === 9) {
             alert('TIE!');
-            this.resetTileBoard();
         }
 
         this.setPlayer();
@@ -120,16 +121,4 @@ export class GamePlayComponent implements OnInit {
         if (tb[0][2] === tb[1][1] && tb[1][1] === tb[2][0] && tb[1][1] !== TileType.null) { return true; }
     }
 
-}
-
-enum TileType {
-    X,
-    O,
-    null
-}
-
-export interface Player {
-    name: string;
-    score: number;
-    tileType: TileType;
 }
