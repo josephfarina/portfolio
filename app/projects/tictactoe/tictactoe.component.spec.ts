@@ -87,118 +87,167 @@ describe('TicTacToe Component:', () => {
 
     describe('checkWinner()', () => {
 
-        it('horizontal x should return true if three in a row', (done: any) => {
+        it('horizontal should return true', (done: any) => {
             tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
-                ttt.tileBoard= [
-                    [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null]
-                ];
+                for (let i = 0; i <= 1; i++) {
+                    let user: Player = twoPlayers[i];
+                    ttt.currentPlayer = user;
+                    console.log(user);
+                    for (let y = 0; y <= 2; y++) {
+                        ttt.tileBoard = [
+                            [TileType.null, TileType.null, TileType.null],
+                            [TileType.null, TileType.null, TileType.null],
+                            [TileType.null, TileType.null, TileType.null]
+                        ];
+                        let x: number = 0;
+                        ttt.tileBoard[y][x] = user.tileType;
+                        expect(ttt.checkForWinner(x, y)).toBe(false);
+                        x++;
+                        ttt.tileBoard[y][x] = user.tileType;
+                        expect(ttt.checkForWinner(x, y)).toBe(false);
+                        x++;
+                        ttt.tileBoard[y][x] = user.tileType;
 
-                // set the tiletype to be equal
-                ttt.tileBoard[0][0] = TileType.O;
-                expect(ttt.tileBoard[0][0]).toEqual(TileType.O);
-                ttt.tileBoard[0][1] = TileType.O;
-                expect(ttt.tileBoard[0][1]).toEqual(TileType.O);
-                ttt.tileBoard[0][2] = TileType.O;
-                expect(ttt.tileBoard[0][2]).toEqual(TileType.O);
-                expect(ttt.checkForWinner()).toBe(true);
+                        console.log(ttt.tileBoard);
+                        expect(ttt.checkForWinner(0, y)).toBe(true);
+                        expect(ttt.checkForWinner(1, y)).toBe(true);
+                        expect(ttt.checkForWinner(2, y)).toBe(true);
+                    }
+                }
 
-                ttt.tileBoard= [
-                    [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null]
-                ];
 
-                // set the tiletype to be equal
-                ttt.tileBoard[1][0] = TileType.O;
-                expect(ttt.tileBoard[1][0]).toEqual(TileType.O);
-                ttt.tileBoard[1][1] = TileType.O;
-                expect(ttt.tileBoard[1][1]).toEqual(TileType.O);
-                ttt.tileBoard[1][2] = TileType.O;
-                expect(ttt.tileBoard[1][2]).toEqual(TileType.O);
-                expect(ttt.checkForWinner()).toBe(true);
-
-                ttt.tileBoard= [
-                    [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null]
-                ];
-
-                // set the tiletype to be equal
-                ttt.tileBoard[2][0] = TileType.O;
-                expect(ttt.tileBoard[2][0]).toEqual(TileType.O);
-                ttt.tileBoard[2][1] = TileType.O;
-                expect(ttt.tileBoard[2][1]).toEqual(TileType.O);
-                ttt.tileBoard[2][2] = TileType.O;
-                expect(ttt.tileBoard[2][2]).toEqual(TileType.O);
-                expect(ttt.checkForWinner()).toBe(true);
-
-                ttt.tileBoard= [
-                    [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null]
-                ];
-
-                // set one tile wrong and excepct failure
-                ttt.tileBoard[0][1] = TileType.X;
-                expect(ttt.tileBoard[0][1]).toEqual(TileType.X);
-                console.log('seciond check for winner');
-                expect(ttt.checkForWinner()).toBe(false);
-                
                 done();
             })
                 .catch((e: any) => done.fail(e));
         });
 
-        it('vertical x should return true if three in a row', (done: any) => {
+        it('vertical should return true', (done: any) => {
             tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
-                ttt.tileBoard= [
+                for (let i = 0; i <= 1; i++) {
+                    let user: Player = twoPlayers[i];
+                    ttt.currentPlayer = user;
+                    console.log(user);
+                    for (let x = 0; x <= 2; x++) {
+                        ttt.tileBoard = [
+                            [TileType.null, TileType.null, TileType.null],
+                            [TileType.null, TileType.null, TileType.null],
+                            [TileType.null, TileType.null, TileType.null]
+                        ];
+                        let y: number = 0;
+                        ttt.tileBoard[y][x] = user.tileType;
+                        expect(ttt.checkForWinner(x, y)).toBe(false);
+                        y++;
+                        ttt.tileBoard[y][x] = user.tileType;
+                        expect(ttt.checkForWinner(x, y)).toBe(false);
+                        y++;
+                        ttt.tileBoard[y][x] = user.tileType;
+
+                        console.log(ttt.tileBoard);
+                        expect(ttt.checkForWinner(x, 0)).toBe(true);
+                        expect(ttt.checkForWinner(x, 1)).toBe(true);
+                        expect(ttt.checkForWinner(x, 2)).toBe(true);
+                    }
+                }
+
+                done();
+            })
+                .catch((e: any) => done.fail(e));
+        });
+
+        it('diagonal should return true', (done: any) => {
+            tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
+                let ttt = fixture.componentInstance;
+
+                for (let i = 0; i <= 1; i++) {
+                    let user: Player = twoPlayers[i];
+                    ttt.currentPlayer = user;
+                    ttt.tileBoard = [
+                        [TileType.null, TileType.null, TileType.null],
+                        [TileType.null, TileType.null, TileType.null],
+                        [TileType.null, TileType.null, TileType.null]
+                    ];
+                    ttt.tileBoard[0][0] = user.tileType;
+                    expect(ttt.checkForWinner(0, 0)).toBe(false);
+                    ttt.tileBoard[1][1] = user.tileType;
+                    expect(ttt.checkForWinner(1, 1)).toBe(false);
+                    ttt.tileBoard[2][2] = user.tileType;
+
+                    console.log(ttt.tileBoard);
+                    expect(ttt.checkForWinner(0, 0)).toBe(true);
+                    expect(ttt.checkForWinner(1, 1)).toBe(true);
+                    expect(ttt.checkForWinner(1, 2)).toBe(true);
+                    ttt.tileBoard = [
+                        [TileType.null, TileType.null, TileType.null],
+                        [TileType.null, TileType.null, TileType.null],
+                        [TileType.null, TileType.null, TileType.null]
+                    ];
+
+                    ttt.tileBoard[0][2] = user.tileType;
+                    expect(ttt.checkForWinner(0, 0)).toBe(false);
+                    ttt.tileBoard[1][1] = user.tileType;
+                    expect(ttt.checkForWinner(1, 1)).toBe(false);
+                    ttt.tileBoard[2][0] = user.tileType;
+
+                    console.log(ttt.tileBoard);
+                    expect(ttt.checkForWinner(0, 2)).toBe(true);
+                    expect(ttt.checkForWinner(1, 1)).toBe(true);
+                    expect(ttt.checkForWinner(0, 2)).toBe(true);
+                }
+
+                done();
+            })
+                .catch((e: any) => done.fail(e));
+        });
+
+        it('wrong answers should return false', (done: any) => {
+            tcb.createAsync(TicTacToeComponent).then((fixture: any) => {
+                let ttt = fixture.componentInstance;
+
+
+                ttt.tileBoard = [
                     [TileType.null, TileType.null, TileType.null],
                     [TileType.null, TileType.null, TileType.null],
                     [TileType.null, TileType.null, TileType.null]
                 ];
 
-                // set the tiletype to be equal
-                ttt.tileBoard[0][0] = TileType.O;
-                expect(ttt.tileBoard[0][0]).toEqual(TileType.O);
-                ttt.tileBoard[1][0] = TileType.O;
-                expect(ttt.tileBoard[1][0]).toEqual(TileType.O);
-                ttt.tileBoard[2][0] = TileType.O;
-                expect(ttt.tileBoard[2][0]).toEqual(TileType.O);
-                expect(ttt.checkForWinner()).toBe(true);
+                let callAllChecks = function() {
+                    for (let y = 0; y <= 2; y++) {
+                        for (let x = 0; x <= 2; x++) {
+                            expect(ttt.checkForWinner(x, y)).toBe(false);
+                        }
+                    }                    
+                }
 
-                ttt.tileBoard= [
+                callAllChecks();
+
+                ttt.tileBoard = [
+                    [TileType.null, TileType.O, TileType.null],
                     [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null]
+                    [TileType.X, TileType.O, TileType.null]
                 ];
 
-                ttt.tileBoard[0][1] = TileType.O;
-                expect(ttt.tileBoard[0][1]).toEqual(TileType.O);
-                ttt.tileBoard[1][1] = TileType.O;
-                expect(ttt.tileBoard[1][1]).toEqual(TileType.O);
-                ttt.tileBoard[2][1] = TileType.O;
-                expect(ttt.tileBoard[2][1]).toEqual(TileType.O);
-                expect(ttt.checkForWinner()).toBe(true);
+                callAllChecks();
 
-                ttt.tileBoard= [
-                    [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null],
-                    [TileType.null, TileType.null, TileType.null]
+                ttt.tileBoard = [
+                    [TileType.null, TileType.O, TileType.null],
+                    [TileType.null, TileType.X, TileType.null],
+                    [TileType.X, TileType.O, TileType.null]
                 ];
 
-                ttt.tileBoard[0][2] = TileType.O;
-                expect(ttt.tileBoard[0][2]).toEqual(TileType.O);
-                ttt.tileBoard[1][2] = TileType.O;
-                expect(ttt.tileBoard[1][2]).toEqual(TileType.O);
-                ttt.tileBoard[2][2] = TileType.O;
-                expect(ttt.tileBoard[2][2]).toEqual(TileType.O);
-                expect(ttt.checkForWinner()).toBe(true);
+                callAllChecks();
+
+                ttt.tileBoard = [
+                    [TileType.O,    TileType.X, TileType.X],
+                    [TileType.null, TileType.O, TileType.null],
+                    [TileType.X,    TileType.O, TileType.X]
+                ];
+
+                callAllChecks();                
+
 
                 done();
             })
@@ -214,3 +263,16 @@ enum TileType {
     O,
     null
 }
+
+export const twoPlayers: Player[] = [
+    {
+        score: 0,
+        name: 'Player 1',
+        tileType: TileType.O
+    },
+    {
+        score: 0,
+        name: 'Player 2',
+        tileType: TileType.X
+    }
+]

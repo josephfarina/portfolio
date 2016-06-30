@@ -11,6 +11,8 @@ import { GithubCodeService } from './../../shared/services/github-code-retriever
 })
 
 export class TicTacToeComponent {
+    private tileSetCount: number = 0;
+    private currentPlayer: Player = this.userOne;
     private userOne: Player = {
         score: 0,
         name: 'Player 1',
@@ -26,7 +28,6 @@ export class TicTacToeComponent {
         [TileType.null, TileType.null, TileType.null],
         [TileType.null, TileType.null, TileType.null]
     ];
-    private currentPlayer: Player = this.userOne;
 
     setPlayer() {
         if (this.currentPlayer === this.userOne) {
@@ -38,7 +39,6 @@ export class TicTacToeComponent {
     }
 
     setTile(xaxis: number, yaxis: number) {
-        // prevent tile from being toggled if it was already set
         if (this.tileBoard[yaxis][xaxis] !== TileType.null) { return; }
 
         if (xaxis === 0) {
@@ -46,21 +46,38 @@ export class TicTacToeComponent {
             else if (yaxis === 1) { this.tileBoard[1][0] = this.currentPlayer.tileType; }
             else if (yaxis === 2) { this.tileBoard[2][0] = this.currentPlayer.tileType; }
         }
+
         else if (xaxis === 1) {
             if (yaxis === 0) { this.tileBoard[0][1] = this.currentPlayer.tileType; }
             else if (yaxis === 1) { this.tileBoard[1][1] = this.currentPlayer.tileType; }
             else if (yaxis === 2) { this.tileBoard[2][1] = this.currentPlayer.tileType; }
         }
+
         else if (xaxis === 2) {
             if (yaxis === 0) { this.tileBoard[0][2] = this.currentPlayer.tileType; }
             else if (yaxis === 1) { this.tileBoard[1][2] = this.currentPlayer.tileType; }
             else if (yaxis === 2) { this.tileBoard[2][2] = this.currentPlayer.tileType; }
         }
 
+        this.tileSetCount++;
+
+        if (this.checkForWinner(xaxis, yaxis)) {
+
+            alert(this.currentPlayer.tileType + ' is a winner!');
+            this.resetTileBoard();
+            return;
+        }
+
+        if (this.tileSetCount === 9) {
+            alert('TIE!');
+            this.resetTileBoard();
+        }
+
         this.setPlayer();
     }
 
     resetTileBoard() {
+        this.tileSetCount = 0;
         for (let i = 0; i < this.tileBoard.length; i++) {
             for (let j = 0; j < this.tileBoard[i].length; j++) {
                 this.tileBoard[i][j] = TileType.null;
@@ -68,75 +85,33 @@ export class TicTacToeComponent {
         }
     }
 
-    checkForWinner(): boolean {
-        // TODO: change this to an inputed value
-
-
-        /* 
-        FIXME:
-        possible more efficient way to solve this;
-        
-        make three functions that take in x,y coordinates:
-        -check for horizontal win
-        -check for vertical win
-        -check for diagnol win
-
-        these function only check the row for the value that they are given
-    
-        checkWinner(x:number,y:number){ 
-            if (checkHorizontalWin(y)) {return true;}
-            if (checkVerticalWin(x)) {return true;}   
-            if number != centerValue—(1,1) {
-                if (checkDiagonalWin()) {return true;}
-            }        
-        }
-
-        checkHorizontalWin(y) {
-            let count: number = 0;
-            for (let x = 0; x < this.tileBoard.length; x++) {
-                if (this.tileBoard[y][x]) { count++;}
-                if (count === 3) { return true;}
-            }
-        }
-
-        checkVerticalWin(x) {
-            let count: number = 0;
-            for (let y = 0; y < this.tileBoard.length; y++) {
-                if (this.tileBoard[y][x]) { count++; }
-                if (count === 3) { return true; }
-            }
-        }
-
-        checkDiagonalWin() {
-            let tb = this.tileBoard;
-            if (tb[0][0] === tb[1][1] && tb[1][1] === tb[2][2] ) { return true; }
-            if (tb[0][2] === tb[1][1] && tb[1][1] === tb[2][0] ) { return true; }
-        }
-
-        */
-
-        let user = this.userOne;
-
-        let xCount: number;
-        let yCount: number;
-        for (let y = 0; y < this.tileBoard.length; y++) {
-
-            xCount = 0;
-            yCount = 0;
-            for (let x = 0; x < this.tileBoard[y].length; x++) {
-                let arr = this.tileBoard[y];
-                if (arr[x] === user.tileType) { xCount++; }
-                if (xCount === 3) { return true; }
-
-                for (let i = 0; i < this.tileBoard.length; i++) {
-                    let yarr = this.tileBoard;
-                    if (yarr[i][x] === user.tileType) { yCount++; }
-                    if (yCount === 3) { return true; }
-                }
-            }
-
-        }
+    checkForWinner(x: number, y: number): boolean {
+        if (this.checkHorizontalWin(y)) { return true; }
+        if (this.checkVerticalWin(x)) { return true; }
+        if (this.checkDiagonalWin()) { return true; }
         return false;
+    }
+
+    checkHorizontalWin(y: number): boolean {
+        let count: number = 0;
+        for (let x = 0; x < this.tileBoard.length; x++) {
+            if (this.tileBoard[y][x] === this.currentPlayer.tileType) { count++; }
+            if (count === 3) { return true; }
+        }
+    }
+
+    checkVerticalWin(x: number): boolean {
+        let count: number = 0;
+        for (let y = 0; y < this.tileBoard.length; y++) {
+            if (this.tileBoard[y][x] === this.currentPlayer.tileType) { count++; }
+            if (count === 3) { return true; }
+        }
+    }
+
+    checkDiagonalWin(): boolean {
+        let tb = this.tileBoard;
+        if (tb[0][0] === tb[1][1] && tb[1][1] === tb[2][2] && tb[1][1] !== TileType.null) { return true; }
+        if (tb[0][2] === tb[1][1] && tb[1][1] === tb[2][0] && tb[1][1] !== TileType.null) { return true; }
     }
 
 }
