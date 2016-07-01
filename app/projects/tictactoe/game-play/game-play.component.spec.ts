@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import { GamePlayComponent, Player } from './game-play.component';
-
+import { GamePlayComponent } from './game-play.component';
+import { Player } from './../tictactoe.service';
 import {
     expect, it, iit, xit,
     describe, ddescribe, xdescribe,

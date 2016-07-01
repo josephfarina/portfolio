@@ -1,5 +1,7 @@
 .tictactoe {
     display: block;
-    min-height: 200px;
-    text-align: center;
+    min-height: 100vh;
+    border: 1px solid black;
+    overflow: hidden;
 }
+
