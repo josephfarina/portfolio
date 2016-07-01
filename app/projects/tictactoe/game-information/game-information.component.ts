@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { GithubCodeService } from './../../../shared/services/github-code-retriever.service';
 import { TicTacToeService, Player, TileType } from './../tictactoe.service';
@@ -11,16 +11,57 @@ import { TicTacToeService, Player, TileType } from './../tictactoe.service';
   directives: [ROUTER_DIRECTIVES]
 })
 
-export class GameInformationComponent {
-  constructor(private router: Router, private ticTacToeService: TicTacToeService) { }
+export class GameInformationComponent implements OnInit {
+  constructor(private router: Router, private ticTacToeService: TicTacToeService) { 
+  }
   //TODO: set user one and two in the service
-  private userOneName: string;
-  private userTwoName: string;
-  private userOneTileType: TileType;
+  private userOne: Player;
+  private userTwo: Player;
+
+  private userOneName:string;
+  private userTwoName:string;
+  private userOneTileType: TileType; 
   private userTwoTileType: TileType;
+
+  ngOnInit() {
+    this.userOne = this.ticTacToeService.getUserOne();
+    this.userTwo = this.ticTacToeService.getUserTwo();
+    this.userOneName = this.userOne.name;
+    this.userTwoName = this.userTwo.name;
+    this.userOneTileType = this.userOne.tileType;
+    this.userTwoTileType = this.userTwo.tileType;    
+  }
+
+  toggleTile() {
+    console.log('toggle');
+    this.ticTacToeService.toggleTile();
+    this.updateUserOne(true);
+    this.updateUserTwo(true);
+  }
+
+  updateUserOne(withoutSetting?:boolean) {
+    if(withoutSetting == null) {
+      console.log('without')
+      this.ticTacToeService.setUserOne(this.userOneName, this.userOneTileType);    
+    }
+    this.userOne = this.ticTacToeService.getUserOne();   
+    this.userOneName = this.userOne.name;  
+    this.userOneTileType = this.userOne.tileType;       
+  }
+
+  updateUserTwo(withoutSetting?:boolean) {
+    if(withoutSetting == null) {
+      console.log('without')
+      this.ticTacToeService.setUserTwo(this.userTwoName, this.userTwoTileType);        
+    }    
+    this.userTwo = this.ticTacToeService.getUserTwo();
+    this.userTwoName = this.userTwo.name;    
+    this.userTwoTileType = this.userTwo.tileType;        
+  }
 
   gameStart() {
     this.ticTacToeService.setUserOne(this.userOneName, this.userOneTileType);
-    this.ticTacToeService.setUserOne(this.userTwoName, this.userTwoTileType);    
+    this.ticTacToeService.setUserTwo(this.userTwoName, this.userTwoTileType);
+    this.router.navigate(['/tictactoe', '/play']);    
   }
 }

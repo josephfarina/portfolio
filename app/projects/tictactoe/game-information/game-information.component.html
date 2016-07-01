@@ -1,34 +1,37 @@
 <div class="panel">
     <h2>Let's Play Some TicTacToe</h2>
-    <form>
-        <div class="form-group">
-            <label for="userOneName">User One</label>
-            <input name="userOneName" [(ngModel)]="userOneName" type="text" class="form-control" id="userOneName" placeholder="Name">
+    <form class="row">
+        <div class="col-sm-12">
+            <label for="userTwoName">Player One</label>
+            <div class="input-group">
+                <input name="userOneName" [(ngModel)]="userOneName" (change)="updateUserOne()" type="text" class="form-control" placeholder="Name">
+                <span class="input-group-btn">
+                    <button (click)="toggleTile()" class="btn btn-secondary">
+                        <span *ngIf="userOneTileType == 0">X</span>
+                        <span *ngIf="userOneTileType == 1">O</span>
+                    </button>
+                </span>
+            </div>
         </div>
-        <div class="form-group">
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="userOneTypeX" value="x"> X
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="userOneTypeO" value="o"> O
-            </label>
-        </div>
+
         <hr>
-        <div class="form-group">
-            <label for="userTwoName">User Two</label>
-            <input name="userTwoName" [(ngModel)]="userTwoName" type="text" class="form-control" id="userTwoName" placeholder="Name">
+
+        <div class="col-sm-12">
+            <label for="userTwoName">Player Two</label>
+            <div class="input-group">
+                <input name="userTwoName" [(ngModel)]="userTwoName" (change)="updateUserTwo()" type="text" class="form-control" placeholder="Name">
+                <span class="input-group-btn">
+                    <button (click)="toggleTile()" class="btn btn-secondary">
+                        <span *ngIf="userTwoTileType == 0">X</span>
+                        <span *ngIf="userTwoTileType == 1">O</span>
+                    </button>
+                </span>
+            </div>
         </div>
-        <div class="form-group">
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="userTwoTypeX" value="x"> X
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="userTwoTypeO" value="o"> O
-            </label>
+        <div class="col-sm-12">
+            <button (click)="gameStart()" class="btn btn-default btn-block">Start the Game!</button>
         </div>
-        <button (click)="gameStart()" class="btn btn-default">Start the Game!</button>
     </form>
 </div>
 
-{{userOne | json}}
-{{userTwo | json}}
+{{userOne | json}} {{userTwo | json}}
