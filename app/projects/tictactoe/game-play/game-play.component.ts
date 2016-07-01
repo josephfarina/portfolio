@@ -5,7 +5,7 @@ import { TicTacToeService, Player, TileType } from './../tictactoe.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'my-game-play',    
+    selector: 'my-game-play',
     templateUrl: 'game-play.component.html',
     styleUrls: ['game-play.component.style.css'],
     directives: [ROUTER_DIRECTIVES]
@@ -14,21 +14,18 @@ import { TicTacToeService, Player, TileType } from './../tictactoe.service';
 export class GamePlayComponent implements OnInit, OnDestroy {
     private tileSetCount: number = 0;
     private currentPlayer: Player = this.userOne;
-    private userOne: Player = {
-        score: 0,
-        name: 'Player 1',
-        tileType: TileType.O
-    };
-    private userTwo: Player = {
-        score: 0,
-        name: 'Player 2',
-        tileType: TileType.X
-    };
+    private userOne: Player;
+    private userTwo: Player;
     private tileBoard: any[] = [
         [TileType.null, TileType.null, TileType.null],
         [TileType.null, TileType.null, TileType.null],
         [TileType.null, TileType.null, TileType.null]
     ];
+
+    constructor(private ticTacToeService: TicTacToeService) {
+      this.userOne = this.ticTacToeService.getUserOne();
+      this.userTwo = this.ticTacToeService.getUserTwo();
+    }
 
     ngOnInit() {
         this.setPlayer();

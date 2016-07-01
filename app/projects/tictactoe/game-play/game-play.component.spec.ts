@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import { GamePlayComponent } from './game-play.component';
-import { Player } from './../tictactoe.service';
+import { TicTacToeService, Player } from './../tictactoe.service';
 import {
     expect, it, iit, xit,
     describe, ddescribe, xdescribe,
@@ -18,7 +18,8 @@ describe('TicTacToe Component:', () => {
 
     beforeEachProviders(() => [
         TestComponentBuilder,
-        GamePlayComponent
+        GamePlayComponent,
+        TicTacToeService
     ]);
 
     beforeEach(inject([TestComponentBuilder], (_tcb: any) => {
@@ -94,7 +95,6 @@ describe('TicTacToe Component:', () => {
                 for (let i = 0; i <= 1; i++) {
                     let user: Player = twoPlayers[i];
                     ttt.currentPlayer = user;
-                    console.log(user);
                     for (let y = 0; y <= 2; y++) {
                         ttt.tileBoard = [
                             [TileType.null, TileType.null, TileType.null],
@@ -110,7 +110,6 @@ describe('TicTacToe Component:', () => {
                         x++;
                         ttt.tileBoard[y][x] = user.tileType;
 
-                        console.log(ttt.tileBoard);
                         expect(ttt.checkForWinner(0, y)).toBe(true);
                         expect(ttt.checkForWinner(1, y)).toBe(true);
                         expect(ttt.checkForWinner(2, y)).toBe(true);
@@ -130,7 +129,6 @@ describe('TicTacToe Component:', () => {
                 for (let i = 0; i <= 1; i++) {
                     let user: Player = twoPlayers[i];
                     ttt.currentPlayer = user;
-                    console.log(user);
                     for (let x = 0; x <= 2; x++) {
                         ttt.tileBoard = [
                             [TileType.null, TileType.null, TileType.null],
@@ -146,7 +144,6 @@ describe('TicTacToe Component:', () => {
                         y++;
                         ttt.tileBoard[y][x] = user.tileType;
 
-                        console.log(ttt.tileBoard);
                         expect(ttt.checkForWinner(x, 0)).toBe(true);
                         expect(ttt.checkForWinner(x, 1)).toBe(true);
                         expect(ttt.checkForWinner(x, 2)).toBe(true);
@@ -176,7 +173,6 @@ describe('TicTacToe Component:', () => {
                     expect(ttt.checkForWinner(1, 1)).toBe(false);
                     ttt.tileBoard[2][2] = user.tileType;
 
-                    console.log(ttt.tileBoard);
                     expect(ttt.checkForWinner(0, 0)).toBe(true);
                     expect(ttt.checkForWinner(1, 1)).toBe(true);
                     expect(ttt.checkForWinner(1, 2)).toBe(true);
@@ -192,7 +188,6 @@ describe('TicTacToe Component:', () => {
                     expect(ttt.checkForWinner(1, 1)).toBe(false);
                     ttt.tileBoard[2][0] = user.tileType;
 
-                    console.log(ttt.tileBoard);
                     expect(ttt.checkForWinner(0, 2)).toBe(true);
                     expect(ttt.checkForWinner(1, 1)).toBe(true);
                     expect(ttt.checkForWinner(0, 2)).toBe(true);

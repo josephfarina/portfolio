@@ -1,0 +1,34 @@
+<div class="panel">
+    <h2>Let's Play Some TicTacToe</h2>
+    <form>
+        <div class="form-group">
+            <label for="userOneName">User One</label>
+            <input name="userOneName" [(ngModel)]="userOneName" type="text" class="form-control" id="userOneName" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="userOneTypeX" value="x"> X
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="userOneTypeO" value="o"> O
+            </label>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="userTwoName">User Two</label>
+            <input name="userTwoName" [(ngModel)]="userTwoName" type="text" class="form-control" id="userTwoName" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="userTwoTypeX" value="x"> X
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="userTwoTypeO" value="o"> O
+            </label>
+        </div>
+        <button (click)="gameStart()" class="btn btn-default">Start the Game!</button>
+    </form>
+</div>
+
+{{userOne | json}}
+{{userTwo | json}}

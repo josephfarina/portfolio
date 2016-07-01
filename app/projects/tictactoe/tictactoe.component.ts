@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router';
+import { TicTacToeService, Player, TileType } from './tictactoe.service';
 
 
 @Component({
@@ -16,7 +17,9 @@ import { Router, ROUTER_DIRECTIVES } from '@angular/router';
     </div>
     `,
     styleUrls: ['tictactoe.component.style.css'],
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
+    providers: [TicTacToeService]
+
 })
 
 export class TicTacToeComponent {
