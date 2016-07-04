@@ -1,0 +1,12 @@
+@import 'hamburger';
+@import 'overlay';
+
+$nav-color: green;
+
+.navbar.navbar-default {
+    background-color: green;
+    opacity: .7;
+    max-height: 50px;
+    border-radius: 0 !important;
+    border: 0 solid transparent;
+}

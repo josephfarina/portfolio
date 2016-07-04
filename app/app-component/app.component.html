@@ -1,5 +1,23 @@
-<button [class.is-active]="isActive" (click)="toggleActive()" class="c-hamburger c-hamburger--htx">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">Home</div>
+    </div>
+    <button [class.is-active]="isActive" (click)="toggleActive()" class="hamburger">
     <span>toggle menu</span>
 </button>
+</nav>
+
+<div class="nav-overlay" [class.is-active]="isActive" (click)="toggleActive()">
+    <nav>
+        <ul>
+            <a href="/calculator">
+                <li>Home</li>
+            </a>
+            <li>Projects</li>
+            <li>Code</li>
+            <li>GitHub</li>
+        </ul>
+    </nav>
+</div>
 <my-project-view></my-project-view>
-<my-project-selections  ></my-project-selections>
+<my-project-selections></my-project-selections>

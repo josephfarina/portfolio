@@ -1,2 +1,10 @@
-<router-outlet></router-outlet>
-<my-code-container [codeFiles]="codeToDisplay" ></my-code-container>
+<div 
+    class="overlay" 
+    [class.is-active]="isActive">
+
+    <div class="exit"
+    (click)="toggleActive()" ></div>
+    <div class="overlay-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

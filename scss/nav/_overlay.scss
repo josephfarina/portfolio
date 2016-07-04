@@ -1,0 +1,50 @@
+$nav-transition-close: opacity .5s, visibility .6s;
+$nav-transition-open: opacity .5s;
+$nav-transition-content: transform .5s, opactity .5s;
+$nav-overlay-opacty: .7;
+
+$nav-overlay-color: $nav-color;
+$nav-text-color: #fff;
+$nav-text-size: 4em;
+
+.nav-overlay {
+    position: fixed;  
+    overflow-y: scroll;  
+    visibility: hidden;
+    opacity: 0;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    left: 0;    
+    z-index: 998;    
+    background-color: $nav-overlay-color;    
+    transition: $nav-transition-close;
+
+    color: $nav-text-color;
+    font-size: $nav-text-size;
+    text-align: center;
+
+    nav {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        perspective: 1200px;
+        ul {
+            list-style: none;
+            opacity: 0;
+            transform: translateY(-25%) rotateX(35deg);
+            transition: $nav-transition-content;
+        }
+    }
+}
+
+.nav-overlay.is-active {
+    visibility: visible;
+    transition: $nav-transition-open;
+    opacity: $nav-overlay-opacty;
+    nav {
+        ul {
+            opacity: 1;
+            transform: rotateX(0deg);
+        }
+    }
+}

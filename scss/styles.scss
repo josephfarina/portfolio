@@ -8,7 +8,7 @@ $black: #000;
 $gray: lighten($black, 80%);
 
 @import 'typography/typography';
-@import 'nav/hamburger';
+@import 'nav/nav';
 
 section.landing-hero {
     background-color: $blue;
