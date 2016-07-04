@@ -23,6 +23,11 @@ export class AppComponent implements OnInit {
         this.showEnabled = false;
     }
 
+    private isActive: boolean = false;
+    toggleActive() {
+        this.isActive = !this.isActive;
+    }
+
     codeToDisplay = [
         {
             name: 'HTML',
