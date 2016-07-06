@@ -8,31 +8,23 @@
     </button>
 </nav>
 
- <!--TODO: make the text links a sibling of the overlay and position it to acheieve the same effect so the text can be fuly opaque on a transparent background-->
-<!--<div class="nav-overlay" [class.is-active]="isActive" (click)="toggleActive()">
-    <nav>
-        <ul>
-            <a href="/calculator">
-                <li class="link">Home</li>
-            </a>
-            <li class="link">Projects</li>
-            <li class="link">Code</li>
-            <li class="link">GitHub</li>
-        </ul>
-    </nav>
-</div>-->
-
- <nav class="nav-text" [class.is-active]="isActive" >
+<nav class="nav-text" [class.is-active]="isActive">
     <ul>
         <a href="/calculator">
             <li class="link">Home</li>
         </a>
-        <a href=""><li class="link">Projects</li></a>
-        <a href=""><li class="link">Code</li></a>
-        <a href=""><li class="link">GitHub</li></a>
+        <a href="#">
+            <li class="link">Projects</li>
+        </a>
+        <a href="#">
+            <li class="link">Code</li>
+        </a>
+        <a href="#">
+            <li class="link">GitHub</li>
+        </a>
     </ul>
 </nav>
-<div class="nav-overlay" [class.is-active]="isActive" (click)="toggleActive()"></div> 
+<div class="nav-overlay" [class.is-active]="isActive" (click)="toggleActive()"></div>
 
 <my-project-view></my-project-view>
 <my-project-selections></my-project-selections>

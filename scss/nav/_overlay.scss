@@ -24,12 +24,6 @@ $nav-text-size: 4em;
 	visibility: visible;
 	transition: $nav-transition-open;
 	opacity: $nav-overlay-opacity;
-	nav {
-		ul {
-			transform: rotateX(0deg);
-			opacity: 1;
-		}
-	}
 }
 
 .nav-text {
@@ -47,14 +41,11 @@ $nav-text-size: 4em;
 	font-size: 8rem;
 	transition: $nav-transition-content;
 	transform: translateY(-25%) rotateX(35deg);
+	perspective: 1200px;
+	margin-bottom: 50px;
 	ul {
-		perspective: 1200px;
 		list-style: none;
-		margin-bottom: 50px;
 	}
-    a {
-        color: white;
-    }
 }
 
 .nav-text.is-active {
