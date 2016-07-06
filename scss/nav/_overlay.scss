@@ -2,135 +2,64 @@ $nav-transition-close: opacity .5s, visibility .6s;
 $nav-transition-open: opacity .5s;
 $nav-transition-content: transform .5s, opactity .5s;
 $nav-overlay-opacity: .7;
-
 $nav-overlay-color: $nav-color;
-$nav-text-color: #fff;
+$nav-text-color: #FFF;
 $nav-text-size: 4em;
 
-.nav-overlay
-{
-    font-size: $nav-text-size;
+.nav-overlay {
+	font-size: $nav-text-size;
+	position: fixed;
+	z-index: 998;
+	top: 50px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	visibility: hidden;
+	transition: $nav-transition-close;
+	opacity: 0;
+	background-color: $nav-overlay-color;
+}
 
-    position: fixed;
-    z-index: 998;
-    top: 50px;
-    right: 0;
-    bottom: 0;
-    left: 0;
+.nav-overlay.is-active {
+	visibility: visible;
+	transition: $nav-transition-open;
+	opacity: $nav-overlay-opacity;
+	nav {
+		ul {
+			transform: rotateX(0deg);
+			opacity: 1;
+		}
+	}
+}
 
-    visibility: hidden;
-    overflow-y: scroll;
-
-    transition: $nav-transition-close;
-    text-align: center;
-
-    opacity: 0;
-    color: $nav-text-color;
-    background-color: $nav-overlay-color;
-
-    nav
-    {
-        margin-top: 50px;
-        margin-bottom: 50px;
-
-        perspective: 1200px;
-        ul
-        {
-            list-style: none;
-
-            transition: $nav-transition-content;
-            transform: translateY(-25%) rotateX(35deg);
-
-            opacity: 0;
-        }
+.nav-text {
+	position: fixed;
+	top: 50px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 999;
+	opacity: 0;
+	margin-top: 50px;
+	text-align: center;
+	overflow-y: scroll;
+	visibility: hidden;
+	font-size: 8rem;
+	transition: $nav-transition-content;
+	transform: translateY(-25%) rotateX(35deg);
+	ul {
+		perspective: 1200px;
+		list-style: none;
+		margin-bottom: 50px;
+	}
+    a {
+        color: white;
     }
 }
 
-.nav-overlay.is-active
-{
-    visibility: visible;
-
-    transition: $nav-transition-open;
-
-    opacity: $nav-overlay-opacity;
-    li
-    {
-        opacity: 1;
-    }
-    nav
-    {
-        ul
-        {
-            transform: rotateX(0deg);
-
-            opacity: 1;
-        }
-    }
+.nav-text.is-active {
+	transform: rotateX(0deg);
+	transition: $nav-transition-open;
+	opacity: 1;
+	visibility: visible;
 }
-
-
-
-
-//.nav-overlay
-//{
-//    font-size: $nav-text-size;
-//
-//    position: fixed;
-//    z-index: 998;
-//    top: 50px;
-//    right: 0;
-//    bottom: 0;
-//    left: 0;
-//
-//    visibility: hidden;
-//
-//    transition: $nav-transition-close;
-//
-//    opacity: 0;
-//    color: $nav-text-color;
-//    background-color: $nav-overlay-color;
-//}
-//
-//.nav-text
-//{
-//    position: fixed;
-//    z-index: 999;
-//    top: 100px;
-//
-//    overflow-y: scroll;
-//
-//    margin-bottom: 50px;
-//
-//    text-align: center;
-//
-//    opacity: 1;
-//
-//    perspective: 1200px;
-//
-//    ul
-//    {
-//        list-style: none;
-//
-//        transition: $nav-transition-content;
-//        transform: translateY(-25%) rotateX(35deg);
-//
-//        opacity: 0;
-//    }
-//}
-//
-//.nav-overlay.is-active
-//{
-//    visibility: visible;
-//
-//    transition: $nav-transition-open;
-//
-//    opacity: $nav-overlay-opacity;
-//}
-//
-//.nav-text.is-active
-//{
-//    transform: rotateX(0deg);
-//    // TODO: change to 1
-//
-//    opacity: 0;
-//}
