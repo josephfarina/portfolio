@@ -1,10 +1,9 @@
-$hamburger-background-color: transparent;
-$hamburger-bar-color: white;
-$hamburger-bar-active-color: $hamburger-bar-color;
 $hamburger-bar-height: 4.5px;
 $hamburger-bar-top-after: $hamburger-bar-height * 2.5;
 $hamburger-height: $hamburger-bar-height * 12;
 $hamburger-width: $hamburger-height * .6;
+$hamburger-bar-color: $light-color;
+$hamburger-bar-active-color: $accent-color;
 
 .hamburger {
 	font-size: 0;
@@ -21,7 +20,7 @@ $hamburger-width: $hamburger-height * .6;
 	text-indent: -9999px;
 	border: none;
 	border-radius: none;
-	background: $hamburger-background-color;
+	background: transparent;
 	box-shadow: none;
 	-webkit-appearance: none;
 

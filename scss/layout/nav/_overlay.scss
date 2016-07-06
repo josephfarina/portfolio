@@ -3,11 +3,9 @@ $nav-transition-open: opacity .5s;
 $nav-transition-content: transform .5s, opactity .5s;
 $nav-overlay-opacity: .7;
 $nav-overlay-color: $nav-color;
-$nav-text-color: #FFF;
-$nav-text-size: 4em;
+$nav-text-color: $light-color;
 
 .nav-overlay {
-	font-size: $nav-text-size;
 	position: fixed;
 	z-index: 998;
 	top: 50px;
@@ -34,7 +32,6 @@ $nav-text-size: 4em;
 	left: 0;
 	z-index: 999;
 	opacity: 0;
-	margin-top: 50px;
 	text-align: center;
 	overflow-y: scroll;
 	visibility: hidden;
