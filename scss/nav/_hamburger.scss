@@ -1,90 +1,114 @@
 $hamburger-background-color: transparent;
 $hamburger-bar-color: grey;
 $hamburger-bar-active-color: white;
-$hamburger-bar-height: 8px;
-$hamburger-bar-top-after: 20px;
-$hamburger-width: 96px;
-$hamburger-height: $hamburger-width;
 
-.hamburger {
-    background: $hamburger-background-color;
+$hamburger-bar-height: 4.5px;
+$hamburger-bar-top-after: $hamburger-bar-height * 2.5;
+$hamburger-height: $hamburger-bar-height * 12;
+$hamburger-width: $hamburger-height * .6;
+
+.hamburger
+{
+    font-size: 0;
+
+    position: absolute;
+
     display: block;
-    position: fixed;
-    top: 0px;
-    right: 50px;
-    z-index: 999;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
+
     width: $hamburger-width;
     height: $hamburger-height;
-    font-size: 0;
-    text-indent: -9999px;
-    -webkit-appearance: none;
-    box-shadow: none;
-    border-radius: none;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
+    margin: 0;
+    padding: 0;
 
-    &:focus {
+    cursor: pointer;
+    transition: background .3s;
+    text-indent: -9999px;
+
+    border: none;
+    border-radius: none;
+    background: $hamburger-background-color;
+    box-shadow: none;
+
+    -webkit-appearance: none;
+
+    &:focus
+    {
         outline: none;
     }
 
-    span {
-        transition: background 0s 0.3s;
-        display: block;
+    span
+    {
         position: absolute;
-        top: 44px;
-        left: 18px;
-        right: 18px;
-        height: 8px;
+        top: ($hamburger-height / 2) - ($hamburger-bar-height / 2);
+        width: 100%;
+
+        display: block;
+
+        height: $hamburger-bar-height;
+
+        transition: background 0s .3s;
+
         background: $hamburger-bar-color;
 
-        &:before, 
-        &:after {
+        &:before,
+        &:after
+        {
             position: absolute;
-            display: block;
             left: 0;
+
+            display: block;
+
             width: 100%;
-            height: 8px;
-            background-color: $hamburger-bar-color;
+            height: $hamburger-bar-height;
+
             content: '';
-            transition-duration: 0.3s, 0.3s;
-            transition-delay: 0.3s, 0s;            
+            transition-delay: .3s, 0s;
+            transition-duration: .3s, .3s;
+
+            background-color: $hamburger-bar-color;
         }
 
-        &:before {
-            top: -20px;
+        &:before
+        {
+            top: -$hamburger-bar-height * 2;
+
             transition-property: top,transform, background-color;
-            
         }
 
-        &:after {
-            top: 20px;
+        &:after
+        {
+            top: $hamburger-bar-height * 2;
+
             transition-property: top,transform, background-color;
         }
     }
 }
 
-.hamburger.is-active {
-    span {
+.hamburger.is-active
+{
+    span
+    {
         background: none;
 
         &:before,
-        &:after {
-            transition-delay: 0s, 0.3s;
-            background-color: $hamburger-bar-active-color;            
+        &:after
+        {
+            transition-delay: 0s, .3s;
+
+            background-color: $hamburger-bar-active-color;
         }
 
-        &:before {
-            top: 0;            
+        &:before
+        {
+            top: 0;
+
             transform: rotate(45deg);
         }
-        &:after {
+        &:after
+        {
             top: 0;
+
             transform: rotate(-45deg);
-        }        
+        }
     }
 }
-

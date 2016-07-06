@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class TicTacToeService {
+
+export class TicTacToeService {  
   private userOne: Player = {
     score: 0,
     name: 'Player 1',

@@ -15,7 +15,7 @@ gulp.task("tslint", () =>
 );
 
 // BUILD ===============================================================
-gulp.task('clean:build', ['clean:build/public', 'copy:html', 'sass:app', 'sass:main']);
+gulp.task('clean:build', [ 'copy:html', 'sass:app', 'sass:main']);
 
 gulp.task('clean:build/public', function () {
   return del([

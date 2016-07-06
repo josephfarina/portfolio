@@ -1,50 +1,136 @@
 $nav-transition-close: opacity .5s, visibility .6s;
 $nav-transition-open: opacity .5s;
 $nav-transition-content: transform .5s, opactity .5s;
-$nav-overlay-opacty: .7;
+$nav-overlay-opacity: .7;
 
 $nav-overlay-color: $nav-color;
 $nav-text-color: #fff;
 $nav-text-size: 4em;
 
-.nav-overlay {
-    position: fixed;  
-    overflow-y: scroll;  
-    visibility: hidden;
-    opacity: 0;
+.nav-overlay
+{
+    font-size: $nav-text-size;
+
+    position: fixed;
+    z-index: 998;
     top: 50px;
     right: 0;
     bottom: 0;
-    left: 0;    
-    z-index: 998;    
-    background-color: $nav-overlay-color;    
-    transition: $nav-transition-close;
+    left: 0;
 
-    color: $nav-text-color;
-    font-size: $nav-text-size;
+    visibility: hidden;
+    overflow-y: scroll;
+
+    transition: $nav-transition-close;
     text-align: center;
 
-    nav {
+    opacity: 0;
+    color: $nav-text-color;
+    background-color: $nav-overlay-color;
+
+    nav
+    {
         margin-top: 50px;
         margin-bottom: 50px;
+
         perspective: 1200px;
-        ul {
+        ul
+        {
             list-style: none;
-            opacity: 0;
-            transform: translateY(-25%) rotateX(35deg);
+
             transition: $nav-transition-content;
+            transform: translateY(-25%) rotateX(35deg);
+
+            opacity: 0;
         }
     }
 }
 
-.nav-overlay.is-active {
+.nav-overlay.is-active
+{
     visibility: visible;
+
     transition: $nav-transition-open;
-    opacity: $nav-overlay-opacty;
-    nav {
-        ul {
-            opacity: 1;
+
+    opacity: $nav-overlay-opacity;
+    li
+    {
+        opacity: 1;
+    }
+    nav
+    {
+        ul
+        {
             transform: rotateX(0deg);
+
+            opacity: 1;
         }
     }
 }
+
+
+
+
+//.nav-overlay
+//{
+//    font-size: $nav-text-size;
+//
+//    position: fixed;
+//    z-index: 998;
+//    top: 50px;
+//    right: 0;
+//    bottom: 0;
+//    left: 0;
+//
+//    visibility: hidden;
+//
+//    transition: $nav-transition-close;
+//
+//    opacity: 0;
+//    color: $nav-text-color;
+//    background-color: $nav-overlay-color;
+//}
+//
+//.nav-text
+//{
+//    position: fixed;
+//    z-index: 999;
+//    top: 100px;
+//
+//    overflow-y: scroll;
+//
+//    margin-bottom: 50px;
+//
+//    text-align: center;
+//
+//    opacity: 1;
+//
+//    perspective: 1200px;
+//
+//    ul
+//    {
+//        list-style: none;
+//
+//        transition: $nav-transition-content;
+//        transform: translateY(-25%) rotateX(35deg);
+//
+//        opacity: 0;
+//    }
+//}
+//
+//.nav-overlay.is-active
+//{
+//    visibility: visible;
+//
+//    transition: $nav-transition-open;
+//
+//    opacity: $nav-overlay-opacity;
+//}
+//
+//.nav-text.is-active
+//{
+//    transform: rotateX(0deg);
+//    // TODO: change to 1
+//
+//    opacity: 0;
+//}
