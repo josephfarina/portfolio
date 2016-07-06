@@ -99,6 +99,15 @@ pre {
 .text-right {
   text-align: right  !important; }
 
+.drop-cap {
+  float: left;
+  color: #903;
+  font-size: 20px;
+  line-height: 60px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px; }
+
 /*
  * Object definitions
  */
