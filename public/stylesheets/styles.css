@@ -40,6 +40,8 @@ p {
 .hamburger {
   font-size: 0;
   position: absolute;
+  right: 64.8px;
+  top: 0;
   display: block;
   width: 32.4px;
   height: 54px;
@@ -58,11 +60,11 @@ p {
   .hamburger span {
     position: absolute;
     top: 24.75px;
-    width: 100%;
     display: block;
+    width: 100%;
     height: 4.5px;
     transition: background 0s .3s;
-    background: grey; }
+    background: white; }
     .hamburger span:before, .hamburger span:after {
       position: absolute;
       left: 0;
@@ -72,7 +74,7 @@ p {
       content: '';
       transition-delay: .3s, 0s;
       transition-duration: .3s, .3s;
-      background-color: grey; }
+      background-color: white; }
     .hamburger span:before {
       top: -9px;
       transition-property: top,transform, background-color; }
