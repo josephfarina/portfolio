@@ -16,7 +16,7 @@ $hamburger-bar-active-color: $accent-color;
 	margin: 0;
 	padding: 0;
 	cursor: pointer;
-	transition: background .3s;
+	transition: background .3s, top .5s;
 	text-indent: -9999px;
 	border: none;
 	border-radius: none;
@@ -63,6 +63,8 @@ $hamburger-bar-active-color: $accent-color;
 }
 
 .hamburger.is-active {
+	top: 30px;
+	transition: top .5s;
 	span {
 		background: none;
 
