@@ -635,3 +635,31 @@ pre.line-numbers > code {
   -khtml-opacity: 1;
   -moz-opacity: 1;
   opacity: 1; }
+
+.x {
+  border: 1px solid orange;
+  background-color: red;
+  color: black;
+  min-width: 100px;
+  height: 100px; }
+  .x:before {
+    position: absolute;
+    content: 'x'; }
+
+.o {
+  border: 1px solid orange;
+  background-color: black;
+  color: red;
+  min-width: 1100px00px;
+  height: 100px; }
+  .o:before {
+    position: absolute;
+    content: 'o'; }
+
+.null {
+  border: 1px solid orange;
+  background-color: green;
+  opacity: .1;
+  color: white;
+  min-width: 100px;
+  height: 100px; }

@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
-import { GithubCodeService } from './../../../shared/services/github-code-retriever.service';
 import { TicTacToeService, Player, TileType } from './../tictactoe.service';
+import { GameBoardTileDirective } from './game-board-tile.directive';
 
 @Component({
     moduleId: module.id,
     selector: 'my-game-play',
     templateUrl: 'game-play.component.html',
     styleUrls: ['game-play.component.style.css'],
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, GameBoardTileDirective]
 })
 
 export class GamePlayComponent implements OnInit, OnDestroy {
@@ -23,8 +23,8 @@ export class GamePlayComponent implements OnInit, OnDestroy {
     ];
 
     constructor(private ticTacToeService: TicTacToeService) {
-      this.userOne = this.ticTacToeService.getUserOne();
-      this.userTwo = this.ticTacToeService.getUserTwo();
+        this.userOne = this.ticTacToeService.getUserOne();
+        this.userTwo = this.ticTacToeService.getUserTwo();
     }
 
     ngOnInit() {
@@ -38,8 +38,7 @@ export class GamePlayComponent implements OnInit, OnDestroy {
     setPlayer() {
         if (this.currentPlayer === this.userOne) {
             this.currentPlayer = this.userTwo;
-        }
-        else if (this.currentPlayer === this.userTwo) {
+        } else if (this.currentPlayer === this.userTwo) {
             this.currentPlayer = this.userOne;
         } else {
             this.currentPlayer = this.userOne;
@@ -53,15 +52,11 @@ export class GamePlayComponent implements OnInit, OnDestroy {
             if (yaxis === 0) { this.tileBoard[0][0] = this.currentPlayer.tileType; }
             else if (yaxis === 1) { this.tileBoard[1][0] = this.currentPlayer.tileType; }
             else if (yaxis === 2) { this.tileBoard[2][0] = this.currentPlayer.tileType; }
-        }
-
-        else if (xaxis === 1) {
+        } else if (xaxis === 1) {
             if (yaxis === 0) { this.tileBoard[0][1] = this.currentPlayer.tileType; }
             else if (yaxis === 1) { this.tileBoard[1][1] = this.currentPlayer.tileType; }
             else if (yaxis === 2) { this.tileBoard[2][1] = this.currentPlayer.tileType; }
-        }
-
-        else if (xaxis === 2) {
+        } else if (xaxis === 2) {
             if (yaxis === 0) { this.tileBoard[0][2] = this.currentPlayer.tileType; }
             else if (yaxis === 1) { this.tileBoard[1][2] = this.currentPlayer.tileType; }
             else if (yaxis === 2) { this.tileBoard[2][2] = this.currentPlayer.tileType; }

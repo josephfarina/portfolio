@@ -1,15 +1,58 @@
-<div class="container">
-
-    <div *ngFor="let tiles of tileBoard; let y = index">
-        <div class="col-md-4" style="display:inline" *ngFor="let tile of tiles; let x = index" (click)="setTile(x,y)" [ngClass]="{ 
+<!--<div
+class="row"
+*ngFor="let tiles of tileBoard; let y = index">
+    <div 
+    class="col-xs-3"
+    *ngFor="let tile of tiles; let x = index" 
+    (click)="setTile(x,y)" 
+    [ngClass]="{ 
         'x':tileBoard[y][x]===0,
         'o':tileBoard[y][x]===1,
-        'null':tileBoard[y][x]===2 }">
-        </div>
+        'null':tileBoard[y][x]===2 
+        }"
+    >
     </div>
+</div>-->
 
-    <button (click)="resetTileBoard()">Reset</button>
+<div class="ttc__game-board">
+    <div class="ttc_game-board-row">
+        <div [ttc-tile]="x" class="ttc_game-board-tile"></div>
+        <div ttc-tile class="ttc_game-board-tile"></div>
+        <div [ttc-tile]="x" class="ttc_game-board-tile"></div>
+    </div>
+    <div class="ttc_game-board-row">
+        <div ttc-tile class="ttc_game-board-tile"></div>
+        <div ttc-tile class="ttc_game-board-tile"></div>
+        <div ttc-tile class="ttc_game-board-tile"></div>
+    </div>
+    <div class="ttc_game-board-row">
+        <div ttc-tile class="ttc_game-board-tile"></div>
+        <div ttc-tile class="ttc_game-board-tile"></div>
+        <div ttc-tile class="ttc_game-board-tile"></div>
+    </div>
 </div>
 
-{{userOne | json}}
-{{userTwo | json}}
+<div class="row ttc__user-scoreboard">
+    <div class="col-xs-6  ttc__user-score">
+        <h3 class="ttc__user-name">{{userOne.name}}</h3>
+        <h5 class="ttc__user-tile">
+            Tile Type:            
+            <span [ngSwitch]="userOne.tileType">
+                <span *ngSwitchWhen="0">X</span>
+                <span *ngSwitchWhen="1">O</span>
+            </span>
+        </h5>
+        <h5 class="ttc__user-score">Score: {{userOne.score}}</h5>
+    </div>
+    <div class="col-xs-6 ttc__user-score">
+        <h3 class="ttc__user-name">{{userTwo.name}}</h3>
+        <h5 class="ttc__user-tile">
+            Tile Type:
+            <span [ngSwitch]="userTwo.tileType">
+                <span *ngSwitchWhen="0">X</span>
+                <span *ngSwitchWhen="1">O</span>
+            </span>
+        </h5>
+        <h5 class="ttc__user-score">Score: {{userTwo.score}}</h5>
+    </div>
+</div>

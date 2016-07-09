@@ -21,7 +21,7 @@ import { CodeContainer } from './../shared/code-container/code-container.compone
 export class AppComponent implements OnInit {
     private showEnabled: boolean = false;
     private isActive: boolean = false;
-    private routeName: any;
+    private routeName: string;
     constructor(
         private navTitleService: NavTitleService,
         private router: Router) {

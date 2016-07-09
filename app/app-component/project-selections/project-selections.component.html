@@ -1,20 +1,16 @@
 <section id="page-grid" class="row no-gutters">
 
-    <!--<div class="col-md-4 col-sm-6">
+    <div my-hover-effect (click)="toggleClicked()" class="col-md-3 col-xs-6">
         <div class="box yellow">
-            <a [routerLink]="['/creditcardform']">
+            <a [routerLink]="['/tictactoe']">
                 <div class="box-content" id="credit-card-form">
-                    <h3>Credit Card Form</h3>
-                    <div id="credit-card"></div>
-                    <p class="description">
-                        Validation and Card Detection
-                    </p>
+                    <h3>TicTacToe</h3>
                 </div>
             </a>
         </div>
-    </div>-->
+    </div>
 
-    <div class="col-md-3 col-xs-6">
+    <div my-hover-effect (click)="toggleClicked()" class="col-md-3 col-xs-6">
         <div class="box white">
             <a [routerLink]="['/calculator']">
                 <div class="box-content" id="credit-card-form">
@@ -24,4 +20,5 @@
             </a>
         </div>
     </div>
+
 </section>

@@ -26,5 +26,6 @@
 </nav>
 <div class="nav-overlay" [class.is-active]="isActive" (click)="toggleActive()"></div>
 
+<!--TODO: Using 'home' as a way for ngIf is probably a bad way -- figure out a better one-->
 <my-project-view></my-project-view>
-<my-project-selections></my-project-selections>
+<my-project-selections *ngIf='routeName === "Home"' ></my-project-selections>

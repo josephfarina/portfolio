@@ -7,7 +7,7 @@ import { TicTacToeService, Player, TileType } from './tictactoe.service';
     moduleId: module.id,
     selector: 'my-tictactoe',
     template: `
-    <div class="col-sm-4 col-sm-offset-4 tictactoe">
+    <div class="col-md-6 col-md-offset-3 tictactoe">
         <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a [routerLink]="['/tictactoe/new']">Game Information</a></li>
             <li role="presentation"><a [routerLink]="['/tictactoe/play']">Game Play</a></li>

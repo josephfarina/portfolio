@@ -17,5 +17,5 @@ export class ProjectViewComponent {
     private isActive: boolean = false;
     toggleActive() {
         this.isActive = !this.isActive;
-    }    
+    }
 }
