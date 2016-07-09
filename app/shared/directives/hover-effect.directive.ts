@@ -28,12 +28,12 @@ export class HoverEffectDirective {
         this.animate(this.xCoord, this.yCoord);
     }
     @HostListener('mouseenter') onMouseEnter(): void {
+        this.el.style.transition = 'all .1s ease-in';
         this.setElementDimensions();
-        this.el.style.transition = '.5s';
         this.createShineElement();
     }
     @HostListener('mouseleave') onMouseExit(): void {
-        this.el.style.transition = '2s';
+        this.el.style.transition = 'all .5s ease-out .3s';
         this.el.style.transform = '';
         this.el.style.boxShadow = '';
         this.destroyShineElement();
@@ -63,23 +63,24 @@ export class HoverEffectDirective {
     }
 
     animate(x: number, y: number): void {
-        this.animateDiv(x, y);
         this.animateShadow(x, y);
+        this.animateDiv(x, y);
         this.animateShine(x, y);
     }
 
     animateDiv(x: number, y: number): void {
         let rotateY = (x * this.element['width']) / 15,
             rotateX = (y * -this.element['height']) / 15;
-        this.el.style.transition = '';
         this.el.style.transform = 'rotateX(' + (rotateX) + 'deg)';
         this.el.style.transform += 'rotateY(' + (rotateY) + 'deg)';
     }
 
     animateShadow(x: number, y: number): void {
         let shadowX = x * 10,
-            shadowY = y * 20;
-        this.el.style.boxShadow = shadowX + 'px ' + shadowY + 'px 10px black';
+            shadowY = y * 10,
+            shadowSize = 100;
+            // 0 45px 100px rgba(0,0,0, .4)
+        this.el.style.boxShadow = shadowX + 'px ' + shadowY + 'px ' + shadowSize + 'px rgba(0,0,0, .4)';
     }
 
 // SHINE =====
