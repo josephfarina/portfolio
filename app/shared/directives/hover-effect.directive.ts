@@ -1,6 +1,4 @@
-// buy pudding and yogurt
-
-import { Directive, ElementRef, Input, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
     selector: '[my-hover-effect]'
@@ -82,8 +80,6 @@ export class HoverEffectDirective {
             // 0 45px 100px rgba(0,0,0, .4)
         this.el.style.boxShadow = shadowX + 'px ' + shadowY + 'px ' + shadowSize + 'px rgba(0,0,0, .4)';
     }
-
-// SHINE =====
 
     createShineElement() {
         let node: HTMLElement = document.createElement('div');
