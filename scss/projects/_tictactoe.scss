@@ -1,35 +1,95 @@
 /// <reference path="./base/_colors.scss" />
+$ttc-border-color: gray;
+$ttc-border-radius: 1px;
+$ttc-color-o: green;
+$ttc-color-x: red;
 
-.x {
-    border: 1px solid orange;
-    background-color: red;
-    color: black;
-    min-width:100px;
-    height:100px;
-    &:before {
-        position: absolute;
-        content: 'x';
+.tictactoe {
+    display: block;
+    height: 100vh;
+}
+
+.ttc__game-board {
+    position: relative;
+    height: 80%;
+}
+
+.ttc__user-scoreboard {
+    position: relative;    
+    height: 20%;
+}
+
+.ttc__game-board-row {
+    height: 33.3%;
+    &:first-child {
+        border-bottom: $ttc-border-radius solid $ttc-border-color;
+    } 
+    &:last-child {
+        border-top: $ttc-border-radius solid $ttc-border-color;        
     }
 }
 
-.o {
-    border: 1px solid orange;    
-    background-color: black;
-    color: red;
-    min-width:1100px00px;
-    height:100px;
-    &:before {
-        position: absolute;
-        content: 'o';
+.ttc__game-board-tile {
+    height: 100%;
+    overflow: hidden;
+    &:nth-child(1) {
+        border-right: $ttc-border-radius solid $ttc-border-color;
+    }         
+    &:nth-child(3) {
+        border-left: $ttc-border-radius solid $ttc-border-color;
     }
+}
+
+.x, 
+.o,
+.null {
+    height: 100%;
+    width: 100%;
+}
+.x {
+    background-color: $ttc-color-x;
+    color: white;
+    content: 'X';
+    text-align: center;
+}
+
+.o {
+    background-color: $ttc-color-o;
+    color: $ttc-color-o;
+    content: 'o'
 }
 
 
 .null {
-    border: 1px solid orange;    
-    background-color: green;
-    opacity: .1;
-    color: white;
-    min-width:100px;
-    height:100px;    
+    &:before {
+        top: 25%;
+        left: 25%;
+        bottom: 25%;
+        right: 25%;
+        content: '';
+        border-radius: 75%;
+        background-color: gray;
+        animation: fadeIn 1000ms;
+    }
+}
+
+@keyframes in { 
+    from {
+        opacity: 0;
+        transform: rotate(180deg);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes out { 
+    from {
+        transform: scale(0,0);   
+    }
+    to {
+        transform: scale(3, 3);
+        opacity: 0;
+    }
 }

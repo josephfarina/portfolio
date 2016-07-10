@@ -86,6 +86,18 @@ describe('TicTacToe Component:', () => {
 
     });
 
+    describe('titleTypeClass:', () => {
+        it('titletype x should have class x', (done: any) => {
+            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
+                let ttt = fixture.componentInstance;
+                
+                done();
+            })
+                .catch((e: any) => done.fail(e));
+        });
+
+    });
+
     describe('checkWinner()', () => {
 
         it('horizontal should return true', (done: any) => {
@@ -115,8 +127,6 @@ describe('TicTacToe Component:', () => {
                         expect(ttt.checkForWinner(2, y)).toBe(true);
                     }
                 }
-
-
                 done();
             })
                 .catch((e: any) => done.fail(e));
@@ -263,4 +273,4 @@ export const twoPlayers: Player[] = [
         name: 'Player 2',
         tileType: TileType.X
     }
-]
+];

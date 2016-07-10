@@ -636,30 +636,71 @@ pre.line-numbers > code {
   -moz-opacity: 1;
   opacity: 1; }
 
+.tictactoe {
+  display: block;
+  height: 100vh; }
+
+.ttc__game-board {
+  position: relative;
+  height: 80%; }
+
+.ttc__user-scoreboard {
+  position: relative;
+  height: 20%; }
+
+.ttc__game-board-row {
+  height: 33.3%; }
+  .ttc__game-board-row:first-child {
+    border-bottom: 1px solid gray; }
+  .ttc__game-board-row:last-child {
+    border-top: 1px solid gray; }
+
+.ttc__game-board-tile {
+  height: 100%;
+  overflow: hidden; }
+  .ttc__game-board-tile:nth-child(1) {
+    border-right: 1px solid gray; }
+  .ttc__game-board-tile:nth-child(3) {
+    border-left: 1px solid gray; }
+
+.x,
+.o,
+.null {
+  height: 100%;
+  width: 100%; }
+
 .x {
-  border: 1px solid orange;
   background-color: red;
-  color: black;
-  min-width: 100px;
-  height: 100px; }
-  .x:before {
-    position: absolute;
-    content: 'x'; }
+  color: white;
+  content: 'X';
+  text-align: center; }
 
 .o {
-  border: 1px solid orange;
-  background-color: black;
-  color: red;
-  min-width: 1100px00px;
-  height: 100px; }
-  .o:before {
-    position: absolute;
-    content: 'o'; }
-
-.null {
-  border: 1px solid orange;
   background-color: green;
-  opacity: .1;
-  color: white;
-  min-width: 100px;
-  height: 100px; }
+  color: green;
+  content: 'o'; }
+
+.null:before {
+  top: 25%;
+  left: 25%;
+  bottom: 25%;
+  right: 25%;
+  content: '';
+  border-radius: 75%;
+  background-color: gray;
+  animation: fadeIn 1000ms; }
+
+@keyframes in {
+  from {
+    opacity: 0;
+    transform: rotate(180deg); }
+  to {
+    opacity: 1;
+    transform: rotate(0deg); } }
+
+@keyframes out {
+  from {
+    transform: scale(0, 0); }
+  to {
+    transform: scale(3, 3);
+    opacity: 0; } }

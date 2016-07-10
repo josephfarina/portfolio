@@ -8,11 +8,6 @@ import { TicTacToeService, Player, TileType } from './tictactoe.service';
     selector: 'my-tictactoe',
     template: `
     <div class="col-md-6 col-md-offset-3 tictactoe">
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a [routerLink]="['/tictactoe/new']">Game Information</a></li>
-            <li role="presentation"><a [routerLink]="['/tictactoe/play']">Game Play</a></li>
-            <li role="presentation"><a [routerLink]="['/tictactoe/end']">End Game</a>   </li>
-        </ul>
         <router-outlet></router-outlet>
     </div>
     `,

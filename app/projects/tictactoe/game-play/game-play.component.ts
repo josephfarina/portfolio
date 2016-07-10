@@ -1,14 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { TicTacToeService, Player, TileType } from './../tictactoe.service';
-import { GameBoardTileDirective } from './game-board-tile.directive';
+import { TileTypeDirective } from '../directives/tiletype.directive';
 
 @Component({
     moduleId: module.id,
     selector: 'my-game-play',
     templateUrl: 'game-play.component.html',
     styleUrls: ['game-play.component.style.css'],
-    directives: [ROUTER_DIRECTIVES, GameBoardTileDirective]
+    directives: [
+        ROUTER_DIRECTIVES,
+        TileTypeDirective
+    ]
 })
 
 export class GamePlayComponent implements OnInit, OnDestroy {
