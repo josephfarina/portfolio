@@ -663,31 +663,44 @@ pre.line-numbers > code {
   .ttc__game-board-tile:nth-child(3) {
     border-left: 1px solid gray; }
 
-.x,
-.o,
-.null {
-  height: 100%;
-  width: 100%; }
-
 .x {
-  background-color: red;
-  color: white;
-  content: 'X';
-  text-align: center; }
+  position: relative;
+  margin: auto;
+  width: 1em;
+  height: 5em;
+  background: #2C2C2C;
+  transform: rotate(45deg);
+  font-size: 22px; }
+  .x:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1em;
+    height: 5em;
+    background: #2C2C2C;
+    transform: rotate(-90deg); }
 
 .o {
-  background-color: green;
-  color: green;
-  content: 'o'; }
+  height: 5em;
+  width: 5em;
+  margin: auto;
+  border-radius: 50%;
+  border: solid 1em #2c2c2c;
+  font-size: 22px; }
 
 .null:before {
+  position: absolute;
   top: 25%;
   left: 25%;
   bottom: 25%;
   right: 25%;
   content: '';
   border-radius: 75%;
-  background-color: gray;
+  background-color: lightgray;
+  opacity: .1; }
+
+.ttt__animation-in {
   animation: fadeIn 1000ms; }
 
 @keyframes in {

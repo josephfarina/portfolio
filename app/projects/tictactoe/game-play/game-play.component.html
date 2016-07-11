@@ -7,11 +7,10 @@
     <div class="row no-gutters ttc__game-board-row" *ngFor="let tileRow of tileBoard; let y = index">
         <div *ngFor="let tile of tileRow; let x = index" 
          class="col-xs-4 ttc__game-board-tile">
-         <div 
-         [ngClass]="{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }"
-         [ngStyle]="{'animation': 'in 1000ms'}"
-         (click)="setTile(x,y)">
-        </div>
+            <div 
+            [ngClass]="{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }"
+            (click)="setTile(x,y)">
+            </div>
         </div>
     </div>
 </div>
