@@ -11,12 +11,19 @@ $ttc-color-x: red;
 
 .ttc__game-board {
     position: relative;
-    height: 80%;
+    height: 80vh;
+}
+
+.ttc__resolution {
+    position: relative;
+    height: 80vh;
+    text-align: center;
+    margin-top: 10vh;
 }
 
 .ttc__user-scoreboard {
     position: relative;    
-    height: 20%;
+    height: 20vh;
 }
 
 .ttc__game-board-row {
@@ -31,7 +38,7 @@ $ttc-color-x: red;
 
 .ttc__game-board-tile {
     height: 100%;
-    overflow: hidden;
+    overflow: scroll;
     &:nth-child(1) {
         border-right: $ttc-border-radius solid $ttc-border-color;
     }         
@@ -44,9 +51,15 @@ $ttc-color-x: red;
 $ttc-tiletype-width: 1em;
 $ttc-tiletype-height: $ttc-tiletype-width * 5;
 
+.x, .o, .null {
+    margin-top: 35px;
+        margin-left: auto;
+    margin-right: auto;
+}
+
 .x {
     position:relative;
-    margin: auto;
+    vertical-align: middle;
     width: $ttc-tiletype-width;
     height: $ttc-tiletype-height;
     background: #2C2C2C;
@@ -67,12 +80,19 @@ $ttc-tiletype-height: $ttc-tiletype-width * 5;
 .o {
 	height:$ttc-tiletype-height;
     width: $ttc-tiletype-height;
-	margin: auto;
 	border-radius:50%;
 	border:solid $ttc-tiletype-width #2c2c2c;
     font-size: 22px;
 }
 
+@media only screen and (max-width: 500px) {
+    .x, .x:after, .o {
+    	height:$ttc-tiletype-height * .7;
+        width: $ttc-tiletype-height * .7;
+    font-size: 12px;
+        
+    }
+}
 
 .null {
     &:before {

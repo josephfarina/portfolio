@@ -642,11 +642,17 @@ pre.line-numbers > code {
 
 .ttc__game-board {
   position: relative;
-  height: 80%; }
+  height: 80vh; }
+
+.ttc__resolution {
+  position: relative;
+  height: 80vh;
+  text-align: center;
+  margin-top: 10vh; }
 
 .ttc__user-scoreboard {
   position: relative;
-  height: 20%; }
+  height: 20vh; }
 
 .ttc__game-board-row {
   height: 33.3%; }
@@ -657,15 +663,20 @@ pre.line-numbers > code {
 
 .ttc__game-board-tile {
   height: 100%;
-  overflow: hidden; }
+  overflow: scroll; }
   .ttc__game-board-tile:nth-child(1) {
     border-right: 1px solid gray; }
   .ttc__game-board-tile:nth-child(3) {
     border-left: 1px solid gray; }
 
+.x, .o, .null {
+  margin-top: 35px;
+  margin-left: auto;
+  margin-right: auto; }
+
 .x {
   position: relative;
-  margin: auto;
+  vertical-align: middle;
   width: 1em;
   height: 5em;
   background: #2C2C2C;
@@ -684,10 +695,15 @@ pre.line-numbers > code {
 .o {
   height: 5em;
   width: 5em;
-  margin: auto;
   border-radius: 50%;
   border: solid 1em #2c2c2c;
   font-size: 22px; }
+
+@media only screen and (max-width: 500px) {
+  .x, .x:after, .o {
+    height: 3.5em;
+    width: 3.5em;
+    font-size: 12px; } }
 
 .null:before {
   position: absolute;

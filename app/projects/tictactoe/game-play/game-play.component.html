@@ -3,20 +3,21 @@
 </div>
 
 <!--generate the gameboard-->
-<div class="col-md-10 ttc__game-board">
+<div class="col-md-12 ttc__game-board">
     <div class="row no-gutters ttc__game-board-row" *ngFor="let tileRow of tileBoard; let y = index">
         <div *ngFor="let tile of tileRow; let x = index" 
-         class="col-xs-4 ttc__game-board-tile">
+         class="col-xs-4 ttc__game-board-tile"
+         (click)="setTile(x,y)">
             <div 
             [ngClass]="{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }"
-            (click)="setTile(x,y)">
+            >
             </div>
         </div>
     </div>
 </div>
 
-<div class="col-md-2 ttc__user-scoreboard">
-    <div class="col-md-12 col-xs-6 ttc__user-score">
+<div class="col-md-12 ttc__user-scoreboard">
+    <div class="col-md-6 ttc__user-score">
         <h5 class="ttc__user-name">{{userOne.name}}</h5>
         <h5 class="ttc__user-tile">
             <span [ngSwitch]="userOne.tileType">
@@ -26,7 +27,7 @@
         </h5>
         <h5 class="ttc__user-score">Score: {{userOne.score}}</h5>
     </div>
-    <div class="col-md-12 col-xs-6 ttc__user-score">
+    <div class="col-md-6 ttc__user-score">
         <h5 class="ttc__user-name">{{userTwo.name}}</h5>
         <h5 class="ttc__user-tile">
             <span [ngSwitch]="userTwo.tileType">

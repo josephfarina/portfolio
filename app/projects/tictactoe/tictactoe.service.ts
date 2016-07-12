@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 
-export class TicTacToeService {  
+export class TicTacToeService {
   private userOne: Player = {
     score: 0,
     name: 'Player 1',
@@ -13,6 +13,7 @@ export class TicTacToeService {
     name: 'Player 2',
     tileType: TileType.X
   };
+  private winner: Player;
 
   toggleTile(): void {
     let onePrevTile: TileType = this.userOne.tileType;
@@ -49,6 +50,31 @@ export class TicTacToeService {
 
   getUserTwo(): Player {
     return this.userTwo;
+  }
+
+  setWinner(player: Player) {
+    this.winner = player;
+  }
+
+  getWinner() {
+    return this.winner;
+  }
+
+  resetWinner() {
+    this.winner = null;
+  }
+
+  resetGame() {
+    this.userOne = {
+      score: 0,
+      name: 'Player 1',
+      tileType: TileType.O
+    };
+    this.userTwo = {
+      score: 0,
+      name: 'Player 2',
+      tileType: TileType.X
+    };
   }
 }
 
