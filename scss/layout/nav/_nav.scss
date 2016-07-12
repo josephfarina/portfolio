@@ -1,0 +1,21 @@
+$nav-color: green;
+$nav-transition-open: opacity .5s;
+$nav-transition-close: opacity .5s, visibility .6s;
+
+.navbar {
+    z-index: 1000;
+    max-height: 50px;
+    border: 0 solid transparent;
+    border-radius: 0 !important;
+    background-color: $nav-color;
+    opacity: 1;
+    transition: $nav-transition-close;
+    .navbar-brand {
+        color: white;
+    }
+}
+
+.navbar.is-active {
+    opacity: .7;
+    transition: $nav-transition-open;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {  Router, ROUTER_DIRECTIVES } from '@angular/router';
+import { CodeContainer } from './../../shared/code-container/code-container.component';
 
 @Component({
     moduleId: module.id,
@@ -7,18 +8,14 @@ import {  Router, ROUTER_DIRECTIVES } from '@angular/router';
     templateUrl: 'project-view.component.html',
     styleUrls: ['project-view.component.css'],
     directives: [
-        ROUTER_DIRECTIVES
+        ROUTER_DIRECTIVES,
+        CodeContainer
     ]
 })
 
 export class ProjectViewComponent {
-    // @Input('showOverlay') showOverlay: boolean = true;
-
-    // constructor(private router: Router){}
-
-    // hideOverlay() {
-    //     this.showOverlay = false;
-    //     this.router.navigate(['/']);
-    // }
-    
+    private isActive: boolean = false;
+    toggleActive() {
+        this.isActive = !this.isActive;
+    }
 }

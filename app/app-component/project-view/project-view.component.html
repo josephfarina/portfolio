@@ -1,7 +1,9 @@
-<!--<div *ngIf="showOverlay"  class="">
+<!--<div 
+    class="overlay" 
+    [class.is-active]="isActive">-->
 
-    <button class="exit" (click)="hideOverlay()" >Close</button>
-    
-    <router-outlet></router-outlet>
+    <!--<div class="overlay-content">-->
+        <router-outlet></router-outlet>
+    <!--</div>-->
 
-</div>-->
+<!--</div>-->

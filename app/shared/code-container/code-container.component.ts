@@ -7,7 +7,7 @@ import { PrismJsDirective } from "./../prismjs/prismjs.directive";
   moduleId: module.id,
   selector: 'my-code-container',
   templateUrl: './code-container.component.html',
-  styleUrls: ['code-container.component.css'],
+  styleUrls: ['./code-container.component.css'],
   directives: [
     Accordion, 
     AccordionGroup,
