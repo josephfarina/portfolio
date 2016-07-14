@@ -14,6 +14,7 @@ export class DrumMachineMetronomeService {
     private scheduleAheadTime: number = .2;
     private noteLength: number = .05;
     private context: any;
+    private isPlaying: boolean = false;
 
     init() {
         console.log('initated');
@@ -22,30 +23,33 @@ export class DrumMachineMetronomeService {
         // ./app/projects/drum-machine/timeWorker.js
         console.log(this.timeWorker);
         this.timeWorker.onmessage = (e: any) => {
-            if (e.data === 'tick') {
-                console.log('tick!');
-                this.schedule();
-            }
+            if (e.data === 'tick') { this.schedule(); } else { console.log(e.data); }
         };
         this.timeWorker.postMessage({ 'interval': this.lookahead });
     }
 
     play() {
-        this.noteTime = 0;
-        this.rhythmIndex = 0;
-        this.nextNoteTime = 0;
-        this.startTime = this.context.currentTime;
-        this.timeWorker.postMessage('start');
+        if (!this.isPlaying) {
+            this.isPlaying = true;
+            this.noteTime = 0;
+            this.rhythmIndex = 0;
+            this.nextNoteTime = 0;
+            this.startTime = this.context.currentTime;
+            this.timeWorker.postMessage('start');
+        }
     }
 
     stop() {
-        this.timeWorker.postMessage('stop');
+        if (this.isPlaying) {
+            this.isPlaying = false;
+            this.timeWorker.postMessage('stop');
+        }
     }
 
     schedule() {
         this.currentTime = this.context.currentTime - this.startTime;
         while (this.nextNoteTime < this.context.currentTime + this.scheduleAheadTime) {
-            this.setBeat(this.nextNoteTime);
+            this.setBeat(this.nextNoteTime, this.rhythmIndex);
             this.nextNote();
         }
     }
@@ -57,12 +61,11 @@ export class DrumMachineMetronomeService {
         if (this.rhythmIndex === 16) { this.rhythmIndex = 0; }
     }
 
-    setBeat(time: number) {
+    setBeat(time: number, beat: number) {
         let osc = this.context.createOscillator();
         osc.connect(this.context.destination);
         let freq = 400;
-        if (this.rhythmIndex % 8 === 0) { freq = 500; }
-        if (this.rhythmIndex % 16 === 0) { freq = 1000; }
+        if (beat % 16 === 0) { freq = 1000; }
         osc.frequency.value = freq;
         osc.start(time);
         osc.stop(time + this.noteLength);
