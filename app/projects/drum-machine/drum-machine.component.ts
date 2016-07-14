@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { DrumMachineService } from './drum-machine.service';
+import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
+
 @Component({
     selector: 'my-drum-machine',
     template: `
@@ -7,15 +8,17 @@ import { DrumMachineService } from './drum-machine.service';
     <button (click)="start()">start</button>
     <button (click)="stop()">stop</button>
     `,
-    providers: [DrumMachineService]
+    providers: [DrumMachineMetronomeService]
 })
 
 export class DrumMachineComponent {
-    constructor(private drumMachineService: DrumMachineService) {}
+    constructor(private metronomeService: DrumMachineMetronomeService) {
+        this.metronomeService.init();
+    }
     start() {
-        this.drumMachineService.handlePlay();
+        this.metronomeService.play();
     }
     stop() {
-        this.drumMachineService.handleStop();
+        this.metronomeService.stop();
     }
 }
