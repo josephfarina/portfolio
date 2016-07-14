@@ -12,13 +12,7 @@ import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
 })
 
 export class DrumMachineComponent {
-    constructor(private metronomeService: DrumMachineMetronomeService) {
-        this.metronomeService.init();
-    }
-    start() {
-        this.metronomeService.play();
-    }
-    stop() {
-        this.metronomeService.stop();
-    }
+    constructor(private metronomeService: DrumMachineMetronomeService) { this.metronomeService.init(); }
+    start() { this.metronomeService.play(); }
+    stop() { this.metronomeService.stop(); }
 }
