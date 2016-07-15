@@ -17,7 +17,7 @@ export let SEQUENCER_LINEUP: Object = {
         },
         '2' : {
             'kick' : false,
-            'snare' : false,
+            'snare' : true,
             'hihat': false,
             'tomtom1': false,
             'tomtom2': false,
@@ -31,6 +31,8 @@ export let SEQUENCER_LINEUP: Object = {
             'tomtom2': false,
             'cymbal': false
         },
+
+
 
         '4' : {
             'kick' : true,
@@ -50,7 +52,7 @@ export let SEQUENCER_LINEUP: Object = {
         },
         '6' : {
             'kick' : false,
-            'snare' : false,
+            'snare' : true,
             'hihat': false,
             'tomtom1': false,
             'tomtom2': false,
@@ -64,6 +66,8 @@ export let SEQUENCER_LINEUP: Object = {
             'tomtom2': false,
             'cymbal': false
         },
+
+
 
         '8' : {
             'kick' : true,
@@ -83,7 +87,7 @@ export let SEQUENCER_LINEUP: Object = {
         },
         '10' : {
             'kick' : false,
-            'snare' : false,
+            'snare' : true,
             'hihat': false,
             'tomtom1': false,
             'tomtom2': false,
@@ -97,6 +101,8 @@ export let SEQUENCER_LINEUP: Object = {
             'tomtom2': false,
             'cymbal': false
         },
+
+
 
         '12' : {
             'kick' : true,
@@ -116,7 +122,7 @@ export let SEQUENCER_LINEUP: Object = {
         },
         '14' : {
             'kick' : false,
-            'snare' : false,
+            'snare' : true,
             'hihat': false,
             'tomtom1': false,
             'tomtom2': false,
@@ -130,5 +136,4 @@ export let SEQUENCER_LINEUP: Object = {
             'tomtom2': false,
             'cymbal': false
         },
-
     };
