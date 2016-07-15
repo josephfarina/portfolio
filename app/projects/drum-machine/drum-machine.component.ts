@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
+import { SEQUENCER_LINEUP } from './sequencerLineUp';
 
 @Component({
     selector: 'my-drum-machine',
@@ -12,11 +13,15 @@ import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
 })
 
 export class DrumMachineComponent implements OnInit {
+    private sequencerLineUp: Object = SEQUENCER_LINEUP;
+
     constructor(private metronomeService: DrumMachineMetronomeService) { this.metronomeService.init(); }
     start() { this.metronomeService.play(); }
     stop() { this.metronomeService.stop(); }
 
     ngOnInit() {
+        console.log(this.sequencerLineUp[0]);
         this.metronomeService.play();
     }
+
 }

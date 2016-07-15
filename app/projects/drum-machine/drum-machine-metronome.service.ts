@@ -8,7 +8,7 @@ export class DrumMachineMetronomeService {
     private startTime: number;
     private currentTime: number;
     private rhythmIndex: number = 0;
-    private tempo: number = 20;
+    private tempo: number = 120;
     private nextNoteTime: number = 0;
     private lookahead: number = 25.0;
     private scheduleAheadTime: number = .2;
@@ -60,12 +60,25 @@ export class DrumMachineMetronomeService {
         if (this.rhythmIndex === 16) { this.rhythmIndex = 0; }
     }
 
-    setBeat(time: number, beat: number): Object {
-        // this.kickDrum(time, 65.406, 0, 1);
-        // this.snareDrum(time, 523.251, 0, 1);
+    setBeat(time: number, beat: number) {
+    /* 
+        TODO: set it so that everytime it loops around it it will put the beat number 
+        into  the sequencerLineUp object to see what it's value is
+        
+        if (sequencerLineUp[beat].kick) {this.kickDrum()} 
+        if (sequencerLineUp[beat].snare) {this.snareDrum()}
+        ... etc...  
+    */
 
-        let data = {'time': time, 'beat': beat};
-        return data;
+        if (beat === 0 || beat === 8) {
+        this.kickDrum(time, 140, 0, 1);
+        }
+        if ( beat === 5 || beat === 11) {
+            this.snareDrum(time, 500, 0, 1);
+        }
+
+        // let data = {'time': time, 'beat': beat};
+        // return data;
     }
 
     kickDrum(time: any, freq: number, attack: number, decay: number) {
