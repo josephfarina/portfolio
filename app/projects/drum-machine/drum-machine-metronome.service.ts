@@ -7,7 +7,7 @@ export class DrumMachineMetronomeService {
     private noteTime: number;
     private startTime: number;
     private currentTime: number;
-    private rhythmIndex: number = 0;
+    private rhythmIndex: number = 1;
     private tempo: number = 120;
     private nextNoteTime: number = 0;
     private lookahead: number = 25.0;
@@ -57,7 +57,7 @@ export class DrumMachineMetronomeService {
         let secondsPerBeat = 60 / this.tempo;
         this.nextNoteTime += .25 * secondsPerBeat;
         this.rhythmIndex++;
-        if (this.rhythmIndex === 16) { this.rhythmIndex = 0; }
+        if (this.rhythmIndex === 16) { this.rhythmIndex = 1; }
     }
 
     setBeat(time: number, beat: number) {
