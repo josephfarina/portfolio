@@ -8,11 +8,11 @@ export class DrumMachineMetronomeService {
     private startTime: number;
     private currentTime: number;
     private rhythmIndex: number = 0;
-    private tempo: number = 120;
+    private tempo: number = 20;
     private nextNoteTime: number = 0;
     private lookahead: number = 25.0;
     private scheduleAheadTime: number = .2;
-    private noteLength: number = .05;
+    private noteLength: number = .25;
     private context: any;
     private isPlaying: boolean = false;
 
@@ -20,7 +20,6 @@ export class DrumMachineMetronomeService {
         console.log('initated');
         this.context = new AudioContext();
         this.timeWorker = new Worker('./app/projects/drum-machine/timeWorker.js');
-        // ./app/projects/drum-machine/timeWorker.js
         console.log(this.timeWorker);
         this.timeWorker.onmessage = (e: any) => {
             if (e.data === 'tick') { this.schedule(); } else { console.log(e.data); }
@@ -61,13 +60,75 @@ export class DrumMachineMetronomeService {
         if (this.rhythmIndex === 16) { this.rhythmIndex = 0; }
     }
 
-    setBeat(time: number, beat: number) {
-        let osc = this.context.createOscillator();
-        osc.connect(this.context.destination);
-        let freq = 400;
-        if (beat % 16 === 0) { freq = 1000; }
-        osc.frequency.value = freq;
-        osc.start(time);
-        osc.stop(time + this.noteLength);
+    setBeat(time: number, beat: number): Object {
+        // this.kickDrum(time, 65.406, 0, 1);
+        // this.snareDrum(time, 523.251, 0, 1);
+
+        let data = {'time': time, 'beat': beat};
+        return data;
+    }
+
+    kickDrum(time: any, freq: number, attack: number, decay: number) {
+        let _freq = freq;
+        let noteLength = this.noteLength;
+        // 0 is fast attack. 1 is slowest attck. .5 is mid attack 
+        let _attack = time + (noteLength * attack);
+        // 0 is big decay. 1 is no decay. .5 is mid decay
+        let _decay = time + (noteLength * decay);
+
+        let kickOsc = this.context.createOscillator();
+        kickOsc.type = 'sine';
+        kickOsc.frequency.value = _freq;
+        kickOsc.start(time);
+        kickOsc.stop(time + noteLength);
+        let kickGain = this.context.createGain();
+        kickOsc.connect(kickGain);
+        kickGain.connect(this.context.destination);
+
+        // set attack
+        kickGain.gain.setValueAtTime(0, time);
+        kickGain.gain.linearRampToValueAtTime(1.0, _attack);
+        kickGain.gain.linearRampToValueAtTime(0.0, _decay);
+
+    }
+
+    snareDrum(time: any, freq: number, attack: number, decay: number) {
+        let _freq = freq;
+        let noteLength = this.noteLength;
+        // 0 is fast attack. 1 is slowest attck. .5 is mid attack 
+        let _attack = time + (noteLength * attack);
+        // 0 is big decay. 1 is no decay. .5 is mid decay
+        let _decay = time + (noteLength * decay);
+
+// SNARE TONE
+        let snareOsc = this.context.createOscillator();
+        snareOsc.type = 'sine';
+        snareOsc.frequency.value = _freq;
+        snareOsc.start(time);
+        snareOsc.stop(time + noteLength);
+
+// SNARE WHITE NOISE
+        let snareNoise = this.context.createBufferSource(),
+            buffer = this.context.createBuffer(1, 4096, this.context.sampleRate),
+            data = buffer.getChannelData(0);
+        for (let i = 0; i < 4096; i++) { data[i] = Math.random(); }
+        snareNoise.buffer = buffer;
+        snareNoise.loop = true;
+        snareNoise.start(time);
+        snareNoise.stop(time + noteLength);
+
+// GAIN
+        let snareGain = this.context.createGain();
+        // set attack and decay
+        snareGain.gain.setValueAtTime(0, time);
+        snareGain.gain.linearRampToValueAtTime(1.0, _attack);
+        snareGain.gain.linearRampToValueAtTime(0.0, _decay);
+
+
+// CONNECTIONS
+        snareOsc.connect(snareGain);
+        snareNoise.connect(snareGain);
+        snareGain.connect(this.context.destination);
+
     }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
 
 @Component({
@@ -11,8 +11,12 @@ import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
     providers: [DrumMachineMetronomeService]
 })
 
-export class DrumMachineComponent {
+export class DrumMachineComponent implements OnInit {
     constructor(private metronomeService: DrumMachineMetronomeService) { this.metronomeService.init(); }
     start() { this.metronomeService.play(); }
     stop() { this.metronomeService.stop(); }
+
+    ngOnInit() {
+        this.metronomeService.play();
+    }
 }
