@@ -15,7 +15,10 @@ import { SEQUENCER_LINEUP } from './sequencerLineUp';
 export class DrumMachineComponent implements OnInit {
     private sequencerLineUp: Object = SEQUENCER_LINEUP;
 
-    constructor(private metronomeService: DrumMachineMetronomeService) { this.metronomeService.init(); }
+    constructor(private metronomeService: DrumMachineMetronomeService) {
+        this.metronomeService.setSequencerLineUp(this.sequencerLineUp);
+        this.metronomeService.init();
+    }
     start() { this.metronomeService.play(); }
     stop() { this.metronomeService.stop(); }
 

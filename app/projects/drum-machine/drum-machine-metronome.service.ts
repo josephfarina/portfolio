@@ -16,6 +16,8 @@ export class DrumMachineMetronomeService {
     private context: any;
     private isPlaying: boolean = false;
 
+    private sequencerLineUp: Object = null;
+
     init() {
         console.log('initated');
         this.context = new AudioContext();
@@ -57,7 +59,11 @@ export class DrumMachineMetronomeService {
         let secondsPerBeat = 60 / this.tempo;
         this.nextNoteTime += .25 * secondsPerBeat;
         this.rhythmIndex++;
-        if (this.rhythmIndex === 16) { this.rhythmIndex = 1; }
+        if (this.rhythmIndex === 16) { this.rhythmIndex = 0; }
+    }
+
+    setSequencerLineUp(sequence: Object) {
+        this.sequencerLineUp = sequence;
     }
 
     setBeat(time: number, beat: number) {
@@ -70,12 +76,17 @@ export class DrumMachineMetronomeService {
         ... etc...  
     */
 
-        if (beat === 0 || beat === 8) {
-        this.kickDrum(time, 140, 0, 1);
-        }
-        if ( beat === 5 || beat === 11) {
-            this.snareDrum(time, 500, 0, 1);
-        }
+        console.log(this.sequencerLineUp[beat]['kick'], beat);
+
+        if (this.sequencerLineUp[beat]['kick']) { this.kickDrum(time, 140, 0, 1); }
+        // if (this.sequencerLineUp[beat].snare) { this.snareDrum(time, 500, 0, 1); }
+
+        // if (beat === 0 || beat === 8) {
+        // this.kickDrum(time, 140, 0, 1);
+        // }
+        // if ( beat === 5 || beat === 11) {
+        //     this.snareDrum(time, 500, 0, 1);
+        // }
 
         // let data = {'time': time, 'beat': beat};
         // return data;
