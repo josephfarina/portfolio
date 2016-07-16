@@ -8,7 +8,7 @@ export class DrumMachineMetronomeService {
     private startTime: number;
     private currentTime: number;
     private rhythmIndex: number = 1;
-    private tempo: number = 100;
+    private tempo: number;
     private nextNoteTime: number = 0;
     private lookahead: number = 25.0;
     private scheduleAheadTime: number = .2;
@@ -56,6 +56,8 @@ export class DrumMachineMetronomeService {
     }
 
     nextNote() {
+        // check the json file for the tempo to see if its changed
+        this.tempo = this.sequencerLineUp['projectSettings']['tempo'];
         let secondsPerBeat = 60 / this.tempo;
         this.nextNoteTime += .25 * secondsPerBeat;
         this.rhythmIndex++;
@@ -67,12 +69,21 @@ export class DrumMachineMetronomeService {
     }
 
     setBeat(time: number, beat: number) {
-        console.log('k', this.sequencerLineUp[beat]['kick'], beat);
-        console.log('s', this.sequencerLineUp[beat]['snare'], beat);
-        if (this.sequencerLineUp[beat]['kick']) { this.kickDrum(time, 140, 0, 1); }
-        if (this.sequencerLineUp[beat]['snare']) { this.snareDrum(time, 500, 0, 1); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['kick']) { this.kickDrum(time, 140, 0, 1); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['snare']) { this.snareDrum(time, 500, 0, 1); }
 
     }
+
+
+
+
+
+
+
+
+
+
+
 
     kickDrum(time: any, freq: number, attack: number, decay: number) {
         let _freq = freq;
