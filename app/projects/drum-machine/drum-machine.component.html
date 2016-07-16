@@ -1,0 +1,24 @@
+    <h1>my drum machine</h1>
+    <button (click)="start()">start</button>
+    <button (click)="stop()">stop</button>
+    <input [(ngModel)]="_tempo" />
+    <button (click)="changeTempo()"> tempo</button>
+    
+    <input type='checkbox' [(ngModel)]="kick_0" placeholder='0' />
+    <input type='checkbox' [(ngModel)]="kick_1" placeholder='1' />
+    <input type='checkbox' [(ngModel)]="kick_2" placeholder='2' />
+    <input type='checkbox' [(ngModel)]="kick_3" placeholder='3' />
+    <input type='checkbox' [(ngModel)]="kick_4" placeholder='4' />
+    <input type='checkbox' [(ngModel)]="kick_5" placeholder='5' />
+    <input type='checkbox' [(ngModel)]="kick_6" placeholder='6' />
+    <input type='checkbox' [(ngModel)]="kick_7" placeholder='7' />
+    <input type='checkbox' [(ngModel)]="kick_8" placeholder='8' />
+    <input type='checkbox' [(ngModel)]="kick_9" placeholder='9' />
+    <input type='checkbox' [(ngModel)]="kick_10" placeholder='10' />
+    <input type='checkbox' [(ngModel)]="kick_11" placeholder='11' />
+    <input type='checkbox' [(ngModel)]="kick_12" placeholder='12' />
+    <input type='checkbox' [(ngModel)]="kick_13" placeholder='13' />
+    <input type='checkbox' [(ngModel)]="kick_14" placeholder='14' />
+    <input type='checkbox' [(ngModel)]="kick_15" placeholder='15' />
+
+    <button (click)="updateKick()" >Update kick</button>

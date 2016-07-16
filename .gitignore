@@ -2,7 +2,6 @@
 typings/**
 node_modules
 build
-public
 jspm_packages
 link-checker-results.txt
 **/*npm-debug.log.*

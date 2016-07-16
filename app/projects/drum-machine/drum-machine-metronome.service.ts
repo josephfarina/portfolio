@@ -71,81 +71,83 @@ export class DrumMachineMetronomeService {
     setBeat(time: number, beat: number) {
         if (this.sequencerLineUp['rhythmSettings'][beat]['kick']) { this.kickDrum(time, 140, 0, 1); }
         if (this.sequencerLineUp['rhythmSettings'][beat]['snare']) { this.snareDrum(time, 500, 0, 1); }
-
     }
 
-
-
-
-
-
-
-
-
-
-
-
     kickDrum(time: any, freq: number, attack: number, decay: number) {
-        let _freq = freq;
-        let noteLength = this.noteLength;
-        // 0 is fast attack. 1 is slowest attck. .5 is mid attack 
-        let _attack = time + (noteLength * attack);
-        // 0 is big decay. 1 is no decay. .5 is mid decay
-        let _decay = time + (noteLength * decay);
+        let osc = this.context.createOscillator();
+        let osc2 = this.context.createOscillator();
+        let gainOsc = this.context.createGain();
+        let gainOsc2 = this.context.createGain();
 
-        let kickOsc = this.context.createOscillator();
-        kickOsc.type = 'sine';
-        kickOsc.frequency.value = _freq;
-        kickOsc.start(time);
-        kickOsc.stop(time + noteLength);
-        let kickGain = this.context.createGain();
-        kickOsc.connect(kickGain);
-        kickGain.connect(this.context.destination);
+        osc.type = 'triangle';
+        osc2.type = 'sine';
 
-        // set attack
-        kickGain.gain.setValueAtTime(0, time);
-        kickGain.gain.linearRampToValueAtTime(1.0, _attack);
-        kickGain.gain.linearRampToValueAtTime(0.0, _decay);
+        gainOsc.gain.setValueAtTime(1, time);
+        gainOsc.gain.exponentialRampToValueAtTime(0.001, time + 0.5);
+
+        gainOsc2.gain.setValueAtTime(1, time);
+        gainOsc2.gain.exponentialRampToValueAtTime(0.001, time + 0.5);
+        osc.frequency.setValueAtTime(120, time);
+        osc.frequency.exponentialRampToValueAtTime(0.001, time + 0.5);
+
+        osc2.frequency.setValueAtTime(50, time);
+        osc2.frequency.exponentialRampToValueAtTime(0.001, time + 0.5);
+
+        osc.connect(gainOsc);
+        osc2.connect(gainOsc2);
+        gainOsc.connect(this.context.destination);
+        gainOsc2.connect(this.context.destination);
+
+        osc.start(time);
+        osc2.start(time);
+
+        osc.stop(time + 0.5);
+        osc2.stop(time + 0.5);
+
+        // // set attack
+        // kickGain.gain.setValueAtTime(0, time);
+        // kickGain.gain.linearRampToValueAtTime(1.0, _attack);
+        // kickGain.gain.linearRampToValueAtTime(0.0, _decay);
 
     }
 
     snareDrum(time: any, freq: number, attack: number, decay: number) {
-        let _freq = freq;
-        let noteLength = this.noteLength;
-        // 0 is fast attack. 1 is slowest attck. .5 is mid attack 
-        let _attack = time + (noteLength * attack);
-        // 0 is big decay. 1 is no decay. .5 is mid decay
-        let _decay = time + (noteLength * decay);
+        let filterGain = this.context.createGain();
+        let mixGain = this.context.createGain();
+        let osc3 = this.context.createOscillator();
+        let gainOsc3 = this.context.createGain();
 
-// SNARE TONE
-        let snareOsc = this.context.createOscillator();
-        snareOsc.type = 'sine';
-        snareOsc.frequency.value = _freq;
-        snareOsc.start(time);
-        snareOsc.stop(time + noteLength);
+        filterGain.gain.setValueAtTime(1, time);
+        filterGain.gain.exponentialRampToValueAtTime(0.01, time + 0.2);
 
-// SNARE WHITE NOISE
-        let snareNoise = this.context.createBufferSource(),
+        osc3.type = 'triangle';
+        osc3.frequency.value = 100;
+        gainOsc3.gain.value = 0;
+
+        gainOsc3.gain.setValueAtTime(0, time);
+        gainOsc3.gain.exponentialRampToValueAtTime(0.01, time + 0.1);
+
+        osc3.connect(gainOsc3);
+        gainOsc3.connect(mixGain);
+
+        mixGain.gain.value = 1;
+
+        osc3.start(time);
+        osc3.stop(time + 0.2);
+
+        let node = this.context.createBufferSource(),
             buffer = this.context.createBuffer(1, 4096, this.context.sampleRate),
             data = buffer.getChannelData(0);
-        for (let i = 0; i < 4096; i++) { data[i] = Math.random(); }
-        snareNoise.buffer = buffer;
-        snareNoise.loop = true;
-        snareNoise.start(time);
-        snareNoise.stop(time + noteLength);
-
-// GAIN
-        let snareGain = this.context.createGain();
-        // set attack and decay
-        snareGain.gain.setValueAtTime(0, time);
-        snareGain.gain.linearRampToValueAtTime(1.0, _attack);
-        snareGain.gain.linearRampToValueAtTime(0.0, _decay);
 
 
-// CONNECTIONS
-        snareOsc.connect(snareGain);
-        snareNoise.connect(snareGain);
-        snareGain.connect(this.context.destination);
+        for (let i = 0; i < 4096; i++) {
+            data[i] = Math.random();
+        }
+        node.buffer = buffer;
+        node.loop = true;
+        filterGain.connect(mixGain);
+        node.start(time);
+        node.stop(time + 0.2);
 
     }
 }

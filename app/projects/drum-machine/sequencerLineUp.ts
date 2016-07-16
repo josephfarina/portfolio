@@ -1,8 +1,10 @@
 export let SEQUENCER_LINEUP: Object = {
+
     'projectSettings': {
         'tempo': 120,
         'volume': 1
     },
+
     'instrumentSettings': {
         'kick': {
             'tune': 0,
@@ -46,7 +48,7 @@ export let SEQUENCER_LINEUP: Object = {
             'tune': 0
         }
     },
-    
+
     'rhythmSettings': {
         '0': {
             'kick': true,
@@ -61,7 +63,7 @@ export let SEQUENCER_LINEUP: Object = {
         },
         '1': {
             'kick': false,
-            'snare': false,
+            'snare': true,
             'lowtom': false,
             'midtom': false,
             'hitom': false,
@@ -92,8 +94,6 @@ export let SEQUENCER_LINEUP: Object = {
             'hihat': false,
             'cymbal': false
         },
-
-
 
         '4': {
             'kick': true,
@@ -140,8 +140,6 @@ export let SEQUENCER_LINEUP: Object = {
             'cymbal': false
         },
 
-
-
         '8': {
             'kick': true,
             'snare': false,
@@ -186,8 +184,6 @@ export let SEQUENCER_LINEUP: Object = {
             'hihat': false,
             'cymbal': false
         },
-
-
 
         '12': {
             'kick': true,
