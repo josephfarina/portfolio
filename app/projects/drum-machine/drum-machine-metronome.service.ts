@@ -23,9 +23,7 @@ export class DrumMachineMetronomeService {
         this.context = new AudioContext();
         this.timeWorker = new Worker('./app/projects/drum-machine/timeWorker.js');
         console.log(this.timeWorker);
-        this.timeWorker.onmessage = (e: any) => {
-            if (e.data === 'tick') { this.schedule(); } else { console.log(e.data); }
-        };
+        this.timeWorker.onmessage = (e: any) => { if (e.data === 'tick') { this.schedule(); } else { console.log(e.data); }};
         this.timeWorker.postMessage({ 'interval': this.lookahead });
     }
 
@@ -56,7 +54,6 @@ export class DrumMachineMetronomeService {
     }
 
     nextNote() {
-        // check the json file for the tempo to see if its changed
         this.tempo = this.sequencerLineUp['projectSettings']['tempo'];
         let secondsPerBeat = 60 / this.tempo;
         this.nextNoteTime += .25 * secondsPerBeat;
