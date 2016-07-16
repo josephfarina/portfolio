@@ -29,7 +29,7 @@ export let SEQUENCER_LINEUP: Object = {
         }
     },
     '0': {
-        'kick': false,
+        'kick': true,
         'snare': false,
         'lowtom': false,
         'midtom': false,
@@ -52,7 +52,7 @@ export let SEQUENCER_LINEUP: Object = {
     },
     '2': {
         'kick': false,
-        'snare': false,
+        'snare': true,
         'lowtom': false,
         'midtom': false,
         'hitom': false,
@@ -76,7 +76,7 @@ export let SEQUENCER_LINEUP: Object = {
 
 
     '4': {
-        'kick': false,
+        'kick': true,
         'snare': false,
         'lowtom': false,
         'midtom': false,
@@ -99,7 +99,7 @@ export let SEQUENCER_LINEUP: Object = {
     },
     '6': {
         'kick': false,
-        'snare': false,
+        'snare': true,
         'lowtom': false,
         'midtom': false,
         'hitom': false,
@@ -123,7 +123,7 @@ export let SEQUENCER_LINEUP: Object = {
 
 
     '8': {
-        'kick': false,
+        'kick': true,
         'snare': false,
         'lowtom': false,
         'midtom': false,
@@ -146,7 +146,7 @@ export let SEQUENCER_LINEUP: Object = {
     },
     '10': {
         'kick': false,
-        'snare': false,
+        'snare': true,
         'lowtom': false,
         'midtom': false,
         'hitom': false,
@@ -170,7 +170,7 @@ export let SEQUENCER_LINEUP: Object = {
 
 
     '12': {
-        'kick': false,
+        'kick': true,
         'snare': false,
         'lowtom': false,
         'midtom': false,
@@ -193,7 +193,7 @@ export let SEQUENCER_LINEUP: Object = {
     },
     '14': {
         'kick': false,
-        'snare': false,
+        'snare': true,
         'lowtom': false,
         'midtom': false,
         'hitom': false,
