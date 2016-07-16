@@ -69,11 +69,22 @@ export class DrumMachineMetronomeService {
     }
 
     setBeat(time: number, beat: number) {
-        if (this.sequencerLineUp['rhythmSettings'][beat]['kick']) { this.kickDrum(time, 140, 0, 1); }
-        if (this.sequencerLineUp['rhythmSettings'][beat]['snare']) { this.snareDrum(time, 500, 0, 1); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['kick']) { this.kick(time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['snare']) { this.snare(time); }
+
+        if (this.sequencerLineUp['rhythmSettings'][beat]['lowtom']) { this.lowtom(time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['midtom']) { this.midtom(time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['hitom']) { this.hitom(time); }
+
+        if (this.sequencerLineUp['rhythmSettings'][beat]['rimshot']) { this.rimshot(time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['clap']) { this.clap(time); }
+
+        if (this.sequencerLineUp['rhythmSettings'][beat]['hihat']) { this.hihat(time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['cymbal']) { this.cymbal(time); }
+
     }
 
-    kickDrum(time: any, freq: number, attack: number, decay: number) {
+    kick(time: any) {
         let osc = this.context.createOscillator();
         let osc2 = this.context.createOscillator();
         let gainOsc = this.context.createGain();
@@ -103,51 +114,77 @@ export class DrumMachineMetronomeService {
 
         osc.stop(time + 0.5);
         osc2.stop(time + 0.5);
-
-        // // set attack
-        // kickGain.gain.setValueAtTime(0, time);
-        // kickGain.gain.linearRampToValueAtTime(1.0, _attack);
-        // kickGain.gain.linearRampToValueAtTime(0.0, _decay);
-
     }
 
-    snareDrum(time: any, freq: number, attack: number, decay: number) {
-        let filterGain = this.context.createGain();
-        let mixGain = this.context.createGain();
-        let osc3 = this.context.createOscillator();
-        let gainOsc3 = this.context.createGain();
+    snare(time: any) {
+        let osc = this.context.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(500, time);
+        osc.connect(this.context.destination);
+        osc.start(time);
+        osc.stop(time + 0.1);
+    }
 
-        filterGain.gain.setValueAtTime(1, time);
-        filterGain.gain.exponentialRampToValueAtTime(0.01, time + 0.2);
+    lowtom(time: any) {
+        let osc = this.context.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(300, time);
+        osc.connect(this.context.destination);
+        osc.start(time);
+        osc.stop(time + 0.1);
+    }
 
-        osc3.type = 'triangle';
-        osc3.frequency.value = 100;
-        gainOsc3.gain.value = 0;
+    midtom(time: any) {
+        let osc = this.context.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(350, time);
+        osc.connect(this.context.destination);
+        osc.start(time);
+        osc.stop(time + 0.1);
+    }
 
-        gainOsc3.gain.setValueAtTime(0, time);
-        gainOsc3.gain.exponentialRampToValueAtTime(0.01, time + 0.1);
+    hitom(time: any) {
+        let osc = this.context.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(400, time);
+        osc.connect(this.context.destination);
+        osc.start(time);
+        osc.stop(time + 0.1);
+    }
 
-        osc3.connect(gainOsc3);
-        gainOsc3.connect(mixGain);
+    rimshot(time: any) {
+        let osc = this.context.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600, time);
+        osc.connect(this.context.destination);
+        osc.start(time);
+        osc.stop(time + 0.1);
+    }
 
-        mixGain.gain.value = 1;
+    clap(time: any) {
+        let osc = this.context.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(550, time);
+        osc.connect(this.context.destination);
+        osc.start(time);
+        osc.stop(time + 0.1);
+    }
 
-        osc3.start(time);
-        osc3.stop(time + 0.2);
+    hihat(time: any) {
+        let osc = this.context.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(750, time);
+        osc.connect(this.context.destination);
+        osc.start(time);
+        osc.stop(time + 0.1);
+    }
 
-        let node = this.context.createBufferSource(),
-            buffer = this.context.createBuffer(1, 4096, this.context.sampleRate),
-            data = buffer.getChannelData(0);
-
-
-        for (let i = 0; i < 4096; i++) {
-            data[i] = Math.random();
-        }
-        node.buffer = buffer;
-        node.loop = true;
-        filterGain.connect(mixGain);
-        node.start(time);
-        node.stop(time + 0.2);
-
+    cymbal(time: any) {
+        let osc = this.context.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(700, time);
+        osc.connect(this.context.destination);
+        osc.start(time);
+        osc.stop(time + 0.1);
     }
 }
