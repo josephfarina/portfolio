@@ -12,7 +12,7 @@ export class DrumMachineMetronomeService {
     private nextNoteTime: number = 0;
     private lookahead: number = 25.0;
     private scheduleAheadTime: number = .2;
-    // private noteLength: number = .25;
+    private noteLength: number = .25;
     private context: any;
     private isPlaying: boolean = false;
 
@@ -62,7 +62,7 @@ export class DrumMachineMetronomeService {
     nextNote() {
         this.tempo = this.sequencerLineUp['projectSettings']['tempo'];
         let secondsPerBeat = 60 / this.tempo;
-        this.nextNoteTime += .25 * secondsPerBeat;
+        this.nextNoteTime += this.noteLength * secondsPerBeat;
         this.rhythmIndex++;
         if (this.rhythmIndex === 16) { this.rhythmIndex = 0; }
     }
@@ -89,12 +89,13 @@ export class DrumMachineMetronomeService {
     playSample(type: string, time: number) {
         let source = this.context.createBufferSource(),
             level = this.level(type),
-            filter = this.filter(type),
-            volume = this.globalVolume(type);
-        source.connect(filter);
-        filter.connect(level);
+            decay = this.decay(type, time),
+            volume = this.globalVolume(type),
+            attack = this.attack(type, time);
+        source.connect(decay);
+        decay.connect(attack);
+        attack.connect(level);
         level.connect(volume);
-
 
         volume.connect(this.context.destination);
         source.buffer = this.sampleBuffers[type];
@@ -104,21 +105,36 @@ export class DrumMachineMetronomeService {
 // get the value for each of these settings from the sequencerLineUp by type
     globalVolume(type: string) {
         let level = this.context.createGain();
-        level.gain.value = .3;
+        level.gain.value = 1;
         return level;
     }
 
     level(type: string) {
         let level = this.context.createGain();
-        level.gain.value = .4;
+        level.gain.value = 1;
         return level;
     }
 
-    filter(type: string) {
-        let filter = this.context.createBiquadFilter();
-        filter.type = 'lowshelf';
-        filter.frequency.value = 500;
-        return filter;
+    decay(type: string, time: number) {
+        // 1 is the MAX decay -- the longest note -- 0 is the absolute shortest
+        let decay = this.context.createGain(),
+            decayLevel = 1 - this.sequencerLineUp['instrumentSettings'][type]['decay'];
+
+        // dont let decay leval equal 0 -- it will not output a noise then
+        if (decayLevel === 0) {decayLevel = .05; };
+        decay.gain.setValueAtTime(1, time);
+        decay.gain.linearRampToValueAtTime(0, time + (this.noteLength * decayLevel));
+        return decay;
+    }
+
+    attack(type: string, time: number) {
+        // 1 is the MAX attack -- the softest note -- 0 is the hardest and fastest
+        let attack = this.context.createGain(),
+            attackLevel = this.sequencerLineUp['instrumentSettings'][type]['attack'] * .1; // the .1 is to make it so it doesnt get too soft
+
+        attack.gain.setValueAtTime(0, time);
+        attack.gain.linearRampToValueAtTime(1, time + (this.noteLength * attackLevel));
+        return attack;
     }
 
     getAudioContext(): any {
