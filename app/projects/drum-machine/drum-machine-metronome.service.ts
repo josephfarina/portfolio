@@ -12,18 +12,24 @@ export class DrumMachineMetronomeService {
     private nextNoteTime: number = 0;
     private lookahead: number = 25.0;
     private scheduleAheadTime: number = .2;
-    private noteLength: number = .25;
+    // private noteLength: number = .25;
     private context: any;
     private isPlaying: boolean = false;
 
     private sequencerLineUp: Object = null;
 
+
+    private sampleBuffers: Object = {};
+    private samples: string[] = ['snare', 'clap', 'kick', 'cymbal', 'hihat', 'hitom', 'lowtom', 'midtom', 'rimshot'];
+
     init() {
+        this.loadAudioSamples();
+
         console.log('initated');
         this.context = new AudioContext();
         this.timeWorker = new Worker('./app/projects/drum-machine/timeWorker.js');
         console.log(this.timeWorker);
-        this.timeWorker.onmessage = (e: any) => { if (e.data === 'tick') { this.schedule(); } else { console.log(e.data); }};
+        this.timeWorker.onmessage = (e: any) => { if (e.data === 'tick') { this.schedule(); } else { console.log(e.data); } };
         this.timeWorker.postMessage({ 'interval': this.lookahead });
     }
 
@@ -66,126 +72,75 @@ export class DrumMachineMetronomeService {
     }
 
     setBeat(time: number, beat: number) {
-        // TODO: make the kick drum have its own service
-        if (this.sequencerLineUp['rhythmSettings'][beat]['kick']) { this.kick(time); }
-        if (this.sequencerLineUp['rhythmSettings'][beat]['snare']) { this.snare(time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['kick']) { this.playSample('kick', time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['snare']) { this.playSample('snare', time); }
 
-        if (this.sequencerLineUp['rhythmSettings'][beat]['lowtom']) { this.lowtom(time); }
-        if (this.sequencerLineUp['rhythmSettings'][beat]['midtom']) { this.midtom(time); }
-        if (this.sequencerLineUp['rhythmSettings'][beat]['hitom']) { this.hitom(time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['lowtom']) { this.playSample('lowtom', time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['midtom']) { this.playSample('midtom', time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['hitom']) { this.playSample('hitom', time); }
 
-        if (this.sequencerLineUp['rhythmSettings'][beat]['rimshot']) { this.rimshot(time); }
-        if (this.sequencerLineUp['rhythmSettings'][beat]['clap']) { this.clap(time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['rimshot']) { this.playSample('rimshot', time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['clap']) { this.playSample('clap', time); }
 
-        if (this.sequencerLineUp['rhythmSettings'][beat]['hihat']) { this.hihat(time); }
-        if (this.sequencerLineUp['rhythmSettings'][beat]['cymbal']) { this.cymbal(time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['hihat']) { this.playSample('hihat', time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['cymbal']) { this.playSample('cymbal', time); }
+    }
+
+    playSample(type: string, time: number) {
+        let source = this.context.createBufferSource(),
+            level = this.level(type),
+            filter = this.filter(type),
+            volume = this.globalVolume(type);
+        source.connect(filter);
+        filter.connect(level);
+        level.connect(volume);
+
+
+        volume.connect(this.context.destination);
+        source.buffer = this.sampleBuffers[type];
+        source.start(time);
+    }
+
+// get the value for each of these settings from the sequencerLineUp by type
+    globalVolume(type: string) {
+        let level = this.context.createGain();
+        level.gain.value = .3;
+        return level;
+    }
+
+    level(type: string) {
+        let level = this.context.createGain();
+        level.gain.value = .4;
+        return level;
+    }
+
+    filter(type: string) {
+        let filter = this.context.createBiquadFilter();
+        filter.type = 'lowshelf';
+        filter.frequency.value = 500;
+        return filter;
     }
 
     getAudioContext(): any {
         return this.context;
     }
 
-    kick(time: any) {
-        let osc = this.context.createOscillator();
-        let osc2 = this.context.createOscillator();
-        let gainOsc = this.context.createGain();
-        let gainOsc2 = this.context.createGain();
+    loadAudioSamples() {
+        let urlBody = 'public/909_Samples/';
 
-        osc.type = 'triangle';
-        osc2.type = 'sine';
+        for (let i = 0; i < this.samples.length; i++) {
+            let request = new XMLHttpRequest();
+            request.open('GET', urlBody + this.samples[i] + '.wav', true);
+            request.responseType = 'arraybuffer';
+            request.onload = () => {
+                this.context.decodeAudioData(request.response).then((decodedData: any) => {
+                    this.sampleBuffers[this.samples[i]] = decodedData;
 
-        gainOsc.gain.setValueAtTime(1, time);
-        gainOsc.gain.exponentialRampToValueAtTime(0.001, time + 0.5);
-
-        gainOsc2.gain.setValueAtTime(1, time);
-        gainOsc2.gain.exponentialRampToValueAtTime(0.001, time + 0.5);
-        osc.frequency.setValueAtTime(120, time);
-        osc.frequency.exponentialRampToValueAtTime(0.001, time + 0.5);
-
-        osc2.frequency.setValueAtTime(50, time);
-        osc2.frequency.exponentialRampToValueAtTime(0.001, time + 0.5);
-
-        osc.connect(gainOsc);
-        osc2.connect(gainOsc2);
-        gainOsc.connect(this.context.destination);
-        gainOsc2.connect(this.context.destination);
-
-        osc.start(time);
-        osc2.start(time);
-
-        osc.stop(time + 0.5);
-        osc2.stop(time + 0.5);
+                    console.log(this.sampleBuffers);
+                });
+            };
+            request.send();
+        }
     }
 
-    snare(time: any) {
-        let osc = this.context.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(500, time);
-        osc.connect(this.context.destination);
-        osc.start(time);
-        osc.stop(time + 0.1);
-    }
-
-    lowtom(time: any) {
-        let osc = this.context.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(300, time);
-        osc.connect(this.context.destination);
-        osc.start(time);
-        osc.stop(time + 0.1);
-    }
-
-    midtom(time: any) {
-        let osc = this.context.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(350, time);
-        osc.connect(this.context.destination);
-        osc.start(time);
-        osc.stop(time + 0.1);
-    }
-
-    hitom(time: any) {
-        let osc = this.context.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(400, time);
-        osc.connect(this.context.destination);
-        osc.start(time);
-        osc.stop(time + 0.1);
-    }
-
-    rimshot(time: any) {
-        let osc = this.context.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(600, time);
-        osc.connect(this.context.destination);
-        osc.start(time);
-        osc.stop(time + 0.1);
-    }
-
-    clap(time: any) {
-        let osc = this.context.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(550, time);
-        osc.connect(this.context.destination);
-        osc.start(time);
-        osc.stop(time + 0.1);
-    }
-
-    hihat(time: any) {
-        let osc = this.context.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(750, time);
-        osc.connect(this.context.destination);
-        osc.start(time);
-        osc.stop(time + 0.1);
-    }
-
-    cymbal(time: any) {
-        let osc = this.context.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(700, time);
-        osc.connect(this.context.destination);
-        osc.start(time);
-        osc.stop(time + 0.1);
-    }
 }

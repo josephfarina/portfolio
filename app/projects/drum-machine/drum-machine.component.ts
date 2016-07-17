@@ -39,7 +39,7 @@ export class DrumMachineComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.sequencerLineUp[0]);
-        this.metronomeService.play();
+       this.metronomeService.play();
         this.changeTempo();
     }
 
