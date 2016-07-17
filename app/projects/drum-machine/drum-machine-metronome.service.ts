@@ -154,7 +154,7 @@ export class DrumMachineMetronomeService {
         let distortion = this.context.createWaveShaper();
         let distortionAmount: number;
         if (this.sequencerLineUp['instrumentSettings'][type]['distortion']) {
-            distortionAmount = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 10;
+            distortionAmount = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 100;
         } else { distortionAmount = 0; }
 
         // i have no idea how this works -- found on Mozilla

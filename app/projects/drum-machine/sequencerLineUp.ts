@@ -8,8 +8,8 @@ export let SEQUENCER_LINEUP: Object = {
     'kick': {
       'level': 1,
       'attack': 0,
-      'decay': 0.5,
-      'distortion': 1
+      'decay': 0.6,
+      'distortion': 0.3
     },
     'snare': {
       'level': 1,
@@ -21,19 +21,19 @@ export let SEQUENCER_LINEUP: Object = {
       'level': 1,
       'attack': 0,
       'decay': 0.5,
-      'distortion': 1
+      'distortion': 0
     },
     'midtom': {
       'level': 1,
       'attack': 0,
       'decay': 0.5,
-      'distortion': 1
+      'distortion': 0
     },
     'hitom': {
       'level': 1,
       'attack': 0,
       'decay': 0.5,
-      'distortion': 1
+      'distortion': 0
     },
     'rimshot': {
       'level': 0.8,
@@ -51,13 +51,13 @@ export let SEQUENCER_LINEUP: Object = {
       'level': 0.2,
       'attack': 1,
       'decay': 0,
-      'distortion': 1
+      'distortion': 0.5
     },
     'cymbal': {
       'level': 1,
-      'attack': 0.5,
+      'attack': 0.6,
       'decay': 0,
-      'distortion': 0
+      'distortion': 0.3
     }
   },
   'rhythmSettings': {
@@ -98,7 +98,7 @@ export let SEQUENCER_LINEUP: Object = {
       'kick': false,
       'snare': false,
       'lowtom': false,
-      'midtom': false,
+      'midtom': true,
       'hitom': false,
       'rimshot': true,
       'clap': false,
@@ -142,7 +142,7 @@ export let SEQUENCER_LINEUP: Object = {
       'kick': false,
       'snare': false,
       'lowtom': false,
-      'midtom': false,
+      'midtom': true,
       'hitom': false,
       'rimshot': false,
       'clap': false,
@@ -154,7 +154,7 @@ export let SEQUENCER_LINEUP: Object = {
       'snare': false,
       'lowtom': false,
       'midtom': false,
-      'hitom': false,
+      'hitom': true,
       'rimshot': true,
       'clap': true,
       'hihat': false,
@@ -165,7 +165,7 @@ export let SEQUENCER_LINEUP: Object = {
       'snare': false,
       'lowtom': false,
       'midtom': false,
-      'hitom': false,
+      'hitom': true,
       'rimshot': true,
       'clap': true,
       'hihat': false,
@@ -175,7 +175,7 @@ export let SEQUENCER_LINEUP: Object = {
       'kick': false,
       'snare': true,
       'lowtom': false,
-      'midtom': false,
+      'midtom': true,
       'hitom': false,
       'rimshot': false,
       'clap': false,
@@ -213,7 +213,7 @@ export let SEQUENCER_LINEUP: Object = {
       'rimshot': false,
       'clap': true,
       'hihat': false,
-      'cymbal': false
+      'cymbal': true
     },
     '14': {
       'kick': false,
@@ -235,10 +235,10 @@ export let SEQUENCER_LINEUP: Object = {
       'rimshot': false,
       'clap': false,
       'hihat': false,
-      'cymbal': false
+      'cymbal': true
     }
   }
-}
+};
 
 
 
