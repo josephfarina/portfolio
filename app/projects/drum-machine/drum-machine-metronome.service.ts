@@ -93,15 +93,13 @@ export class DrumMachineMetronomeService {
             decay = this.decay(type, time),
             volume = this.globalVolume(),
             attack = this.attack(type, time),
-            distortion = this.distortion(type),
-            reverb = this.globalReverb();
+            distortion = this.distortion(type);
 
         source.connect(decay);
         decay.connect(attack);
         attack.connect(level);
         level.connect(distortion);
-        distortion.connect(reverb);
-        reverb.connect(volume);
+        distortion.connect(volume);
 
         volume.connect(this.context.destination);
         source.buffer = this.sampleBuffers[type];
@@ -116,14 +114,6 @@ export class DrumMachineMetronomeService {
         if (volume > 1) { volume = 1; }
         level.gain.value = volume;
         return level;
-    }
-
-    globalReverb() {
-        let reverb = this.context.createConvolver();
-            // reverbSource = this.context.createBufferSource();
-
-        reverb.buffer = this.impulse;
-        return reverb;
     }
 
     level(type: string) {
@@ -208,7 +198,7 @@ export class DrumMachineMetronomeService {
         }
 
         let impulse = new XMLHttpRequest();
-        impulse.open('GET', urlBody + 'church_impulse.wav', true);
+        impulse.open('GET', urlBody + 'FatMansMisery.wav', true);
         impulse.responseType = 'arraybuffer';
         impulse.onload = () => {;
             this.context.decodeAudioData(impulse.response).then((decodedData: any) => {
