@@ -20,6 +20,7 @@ export class DrumMachineMetronomeService {
 
 
     private sampleBuffers: Object = {};
+    private impulse: any;
     private samples: string[] = ['snare', 'clap', 'kick', 'cymbal', 'hihat', 'hitom', 'lowtom', 'midtom', 'rimshot'];
 
     init() {
@@ -90,15 +91,17 @@ export class DrumMachineMetronomeService {
         let source = this.context.createBufferSource(),
             level = this.level(type),
             decay = this.decay(type, time),
-            volume = this.globalVolume(type),
+            volume = this.globalVolume(),
             attack = this.attack(type, time),
-            distortion = this.distortion(type);
+            distortion = this.distortion(type),
+            reverb = this.globalReverb();
 
         source.connect(decay);
         decay.connect(attack);
         attack.connect(level);
         level.connect(distortion);
-        distortion.connect(volume);
+        distortion.connect(reverb);
+        reverb.connect(volume);
 
         volume.connect(this.context.destination);
         source.buffer = this.sampleBuffers[type];
@@ -106,13 +109,21 @@ export class DrumMachineMetronomeService {
     }
 
 // get the value for each of these settings from the sequencerLineUp by type
-    globalVolume(type: string) {
+    globalVolume() {
         let level = this.context.createGain(),
             volume = this.sequencerLineUp['projectSettings']['volume'];
 
         if (volume > 1) { volume = 1; }
         level.gain.value = volume;
         return level;
+    }
+
+    globalReverb() {
+        let reverb = this.context.createConvolver();
+            // reverbSource = this.context.createBufferSource();
+
+        reverb.buffer = this.impulse;
+        return reverb;
     }
 
     level(type: string) {
@@ -150,28 +161,29 @@ export class DrumMachineMetronomeService {
     }
 
     distortion(type: string) {
-    // i have no idea how this works -- algorithim found on Mozilla
-    let distortion = this.context.createWaveShaper();
-    let distortionAmount: number;
-    if (this.sequencerLineUp['instrumentSettings'][type]['distortion']) {
-        distortionAmount = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 10;
-    } else { distortionAmount = 0; }
-    function makeDistortionCurve(amount: number) {
-        let k = typeof amount === 'number' ? amount : 50,
-            n_samples = 44100,
-            curve = new Float32Array(n_samples),
-            deg = Math.PI / 180,
-            i = 0,
-            x: any;
-            for ( ; i < n_samples; ++i ) {
-                x = i * 2 / n_samples - 1;
-                curve[i] = ( 3 + k ) * x * 20 * deg / ( Math.PI + k * Math.abs(x) );
-            }
-        return curve;
+        let distortion = this.context.createWaveShaper();
+        let distortionAmount: number;
+        if (this.sequencerLineUp['instrumentSettings'][type]['distortion']) {
+            distortionAmount = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 10;
+        } else { distortionAmount = 0; }
+
+        // i have no idea how this works -- found on Mozilla
+        function makeDistortionCurve(amount: number) {
+            let k = typeof amount === 'number' ? amount : 50,
+                n_samples = 44100,
+                curve = new Float32Array(n_samples),
+                deg = Math.PI / 180,
+                i = 0,
+                x: any;
+                for ( ; i < n_samples; ++i ) {
+                    x = i * 2 / n_samples - 1;
+                    curve[i] = ( 3 + k ) * x * 20 * deg / ( Math.PI + k * Math.abs(x) );
+                }
+            return curve;
         };
-    distortion.curve = makeDistortionCurve(distortionAmount);
-    distortion.oversample = '4x';
-    return distortion;
+        distortion.curve = makeDistortionCurve(distortionAmount);
+        distortion.oversample = '4x';
+        return distortion;
     }
 
     getAudioContext(): any {
@@ -190,10 +202,21 @@ export class DrumMachineMetronomeService {
                     this.sampleBuffers[this.samples[i]] = decodedData;
 
                     console.log(this.sampleBuffers);
-                });
+                }, (e: any) => { console.log('Error with decoding audio data' + e.err); });
             };
             request.send();
         }
+
+        let impulse = new XMLHttpRequest();
+        impulse.open('GET', urlBody + 'church_impulse.wav', true);
+        impulse.responseType = 'arraybuffer';
+        impulse.onload = () => {;
+            this.context.decodeAudioData(impulse.response).then((decodedData: any) => {
+                this.impulse = decodedData;
+
+            }, (e: any) => { console.log('Error with decoding audio data' + e.err); });
+        };
+        impulse.send();
     }
 
 }
