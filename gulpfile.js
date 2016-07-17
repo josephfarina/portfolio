@@ -5,15 +5,11 @@ var sassLint = require('gulp-sass-lint');
 var del = require('del');
 var tslint = require("gulp-tslint");
 var autoprefixer = require('gulp-autoprefixer');
+var connect = require('gulp-connect');
 
-// TYPESCRIPT  =========================================================
-gulp.task("tslint", () =>
-    gulp.src("./app/**/*.ts")
-        .pipe(tslint())
-        .pipe(tslint.report("prose", {
-          summarizeFailureOutput: true
-        }))
-);
+gulp.task('connect', function() {
+  connect.server();
+});
 
 // BUILD ===============================================================
 gulp.task('clean:build', [ 'copy:html', 'sass:app', 'sass:main']);
@@ -68,7 +64,8 @@ gulp.task('sass:lint', function () {
 gulp.task('watch', function() {
     gulp.watch('./app/**/*.html', ['copy:html']);
     gulp.watch(['./app/**/*.scss', './scss/**/*.scss'], ['sass']);
-    gulp.watch('./app/**/*.ts', ['tslint']);
 })
 
-gulp.task('default', ['clean:build', 'watch']);
+
+
+gulp.task('default', ['clean:build', 'watch', 'connect']);
