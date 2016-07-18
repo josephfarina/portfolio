@@ -1,5 +1,89 @@
 <h1>my drum machine</h1>
 
+
+<svg id="left_button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.99 218.5">
+    <defs>
+        <style>
+            .cls-1 {
+                fill: #35770a;
+            }
+            
+            .cls-2 {
+                fill: #18330d;
+            }
+            
+            .cls-3 {
+                fill: #a33636;
+            }
+            
+            .cls-4 {
+                fill: #3f1212;
+            }
+            
+            .cls-5 {
+                fill: #fff;
+            }
+            
+            .cls-6 {
+                fill: #09ff07;
+            }
+        </style>
+    </defs>
+    <title>Untitled-1</title>
+    <g my-knob-turner>
+        <polygon id="tip" class="cls-1" points="52.76 33.57 62.88 23.45 73.01 33.57 52.76 33.57" />
+        <circle id="circle" class="cls-2" cx="62.88" cy="62.48" r="33.97" />
+    </g>
+
+    <g my-knob-turner>
+        <polygon id="tip-2" data-name="tip" class="cls-3" points="183.99 16.1 200.09 0 216.2 16.1 183.99 16.1" />
+        <circle id="circle-2" data-name="circle" class="cls-4" cx="200.1" cy="62.08" r="54.03" />
+    </g>
+    <g my-knob-turner>
+        <circle class="cls-3" cx="397.89" cy="104.53" r="26.46" />
+        <rect class="cls-3" x="427.39" y="64.63" width="31" height="31" transform="translate(28.06 322.86) rotate(-45)" />
+        <rect class="cls-3" x="389.21" y="102.8" width="31" height="31" transform="translate(-10.12 307.05) rotate(-45)" />
+        <rect class="cls-3" x="465.57" y="102.8" width="31" height="31" transform="translate(12.25 361.04) rotate(-45)" />
+    </g>
+    <g my-knob-turner>
+        <circle class="cls-3" cx="308.77" cy="192.04" r="26.46" />
+        <polygon class="cls-3" points="316.11 157.5 308.77 169.22 301.44 157.5 308.77 81.71 316.11 157.5" />
+        <rect class="cls-3" x="316.36" y="190.32" width="31" height="31" transform="translate(-93.34 281.16) rotate(-45)" />
+        <rect class="cls-3" x="360.19" y="191.19" width="31" height="31" transform="translate(-81.12 312.42) rotate(-45)" />
+    </g>
+    <g my-button-pusher>
+        <path id="back_bottom" class="cls-3" d="M93,189.29v24.24c0,6.6-5.06,12.47-11.66,12.47H57.09C50.49,226,45,220.13,45,213.53V189.29a0.39,0.39,0,0,1,.11-0.29H93.32A0.59,0.59,0,0,0,93,189.29Z"
+            transform="translate(-45 -13.78)" />
+        <path id="beat" class="cls-3" d="M93.32,189H45.11a12,12,0,0,1,12-12H81.34A12,12,0,0,1,93.32,189Z" transform="translate(-45 -13.78)"
+        />
+        <rect id="button-fron" class="cls-5" x="5.32" y="168.74" width="37.79" height="37.79" rx="12" ry="12" />
+        <circle id="circle" class="cls-6" cx="24.22" cy="187.63" r="5.28" />
+    </g>
+
+    <g my-button-pusher>
+        <path id="back_bottom-2" data-name="back_bottom" d="M157,189.29v24.24c0,6.6-5.06,12.47-11.66,12.47H121.09c-6.6,0-12.09-5.87-12.09-12.47V189.29a0.39,0.39,0,0,1,.11-0.29h48.21A0.59,0.59,0,0,0,157,189.29Z"
+            transform="translate(-45 -13.78)" fill="#a33636" />
+        <path id="beat" data-name="beat" d="M157.32,189H109.11a12,12,0,0,1,12-12h24.25A12,12,0,0,1,157.32,189Z" transform="translate(-45 -13.78)"
+            fill="#a33636" />
+        <rect id="button-front" data-name="button-fron" x="69.32" y="168.74" width="37.79" height="37.79" rx="12" ry="12"
+            fill="#fff" />
+        <circle id="circle" data-name="activated" cx="88.22" cy="187.63" r="5.28" fill="#09ff07" />
+    </g>
+
+    <g my-button-pusher>
+        <path id="back_bottom-3" data-name="back_bottom" d="M221,189.29v24.24c0,6.6-5.06,12.47-11.66,12.47H185.09c-6.6,0-12.09-5.87-12.09-12.47V189.29a0.39,0.39,0,0,1,.11-0.29h48.21A0.59,0.59,0,0,0,221,189.29Z"
+            transform="translate(-45 -13.78)" fill="#a33636" />
+        <path id="beat" data-name="beat" d="M221.32,189H173.11a12,12,0,0,1,12-12h24.25A12,12,0,0,1,221.32,189Z" transform="translate(-45 -13.78)"
+            fill="#a33636" />
+        <rect id="button-front" data-name="button-fron" x="133.32" y="168.74" width="37.79" height="37.79" rx="12" ry="12" fill="#fff"
+        />
+        <circle id="circle" data-name="activated" cx="152.22" cy="187.63" r="5.28" fill="#09ff07" />
+    </g>
+</svg>
+
+
+
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408.83 167.3">
 
     <g my-knob-turner (value)="outputValue($event, 'tempo')" id="left_knob">
@@ -9,27 +93,11 @@
 
     <g my-knob-turner (value)="outputValue($event, 'volume')" id="right_knob">
         <polygon id="tip-2" data-name="tip" class="cls-3" points="307.78 23.2 330.99 0 354.19 23.2 307.78 23.2" />
-        <circle id="circle-2" data-name="circle" class="cls-4" cx="330.99" cy="89.45" r="77.85" />
+        <circle id="circle-2" data-name="circle" class="activated cls-4" cx="330.99" cy="89.45" r="77.85" />
     </g>
 </svg>
 
 
-<svg id="left_button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 429.08 167.3">
-<g my-knob-turner (value)="outputValue($event, 'k1')">
-    <polygon id="tip" class="cls-1" points="23.84 33.57 33.97 23.45 44.09 33.57 23.84 33.57" />
-    <circle id="circle" class="cls-2" cx="33.97" cy="62.48" r="33.97" />
-</g>
-<g my-knob-turner (value)="outputValue($event, 'k2')">
-    <polygon id="tip-2" data-name="tip" class="cls-3" points="171.8 23.2 195 0 218.2 23.2 171.8 23.2" />
-    <circle id="circle-2" data-name="circle" class="cls-4" cx="195" cy="89.45" r="77.85" />
-</g>
-<g my-knob-turner (value)="outputValue($event, 'k3')">
-    <circle class="cls-3" cx="368.98" cy="104.53" r="26.46" />
-    <rect class="cls-3" x="427.39" y="64.63" width="31" height="31" transform="translate(-0.85 322.86) rotate(-45)" />
-    <rect class="cls-3" x="389.21" y="102.8" width="31" height="31" transform="translate(-39.03 307.05) rotate(-45)" />
-    <rect class="cls-3" x="465.57" y="102.8" width="31" height="31" transform="translate(-16.66 361.04) rotate(-45)" />
-</g>
-</svg>
 
 <button (click)="start()">start</button>
 <button (click)="stop()">stop</button>

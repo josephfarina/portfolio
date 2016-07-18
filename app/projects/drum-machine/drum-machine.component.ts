@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
 import { SEQUENCER_LINEUP } from './sequencerLineUp';
 import { DrumMachineKnobDirective } from './directives/drum-machine-knob.directive';
-
-let Snap = require('Snap');
-
+import { DrumMachineButtonDirective } from './directives/drum-machine-button.directive';
 
 @Component({
     moduleId: module.id,
     selector: 'my-drum-machine',
     templateUrl: 'drum-machine.component.html',
     providers: [DrumMachineMetronomeService],
-    directives: [DrumMachineKnobDirective]
+    directives: [
+        DrumMachineKnobDirective,
+        DrumMachineButtonDirective
+    ]
 })
 
 export class DrumMachineComponent implements OnInit {
