@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
 import { SEQUENCER_LINEUP } from './sequencerLineUp';
+import { DrumMachineKnobDirective } from './drum-machine-knob.directive';
+
+let Snap = require('Snap');
+
 
 @Component({
     moduleId: module.id,
     selector: 'my-drum-machine',
     templateUrl: 'drum-machine.component.html',
-    providers: [DrumMachineMetronomeService]
+    providers: [DrumMachineMetronomeService],
+    directives: [DrumMachineKnobDirective]
 })
 
 export class DrumMachineComponent implements OnInit {
@@ -20,13 +25,23 @@ export class DrumMachineComponent implements OnInit {
     }
     start() { this.metronomeService.play(); }
     stop() { this.metronomeService.stop(); }
-    update() {
-        this.metronomeService.setSequencerLineUp(this.sequencerLineUp);
-        console.log(this.sequencerLineUp); }
+    update() { this.metronomeService.setSequencerLineUp(this.sequencerLineUp); }
 
     ngOnInit() { this.metronomeService.play(); }
 
-
+    outputValue(event: any, knob: string) {
+        // TODO: set this up so it assigns the value of each knob to its rightful value
+        console.log(event, knob);
+        switch (knob) {
+            case 'tempo':
+                this.sequencerLineUp['projectSettings']['tempo'] = event.value;
+                break;
+            case 'volume':
+                this.sequencerLineUp['projectSettings']['volume'] = event.value;
+                break;
+        }
+        this.update();
+    }
 }
 
 

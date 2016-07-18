@@ -191,7 +191,6 @@ export class DrumMachineMetronomeService {
                 this.context.decodeAudioData(request.response).then((decodedData: any) => {
                     this.sampleBuffers[this.samples[i]] = decodedData;
 
-                    console.log(this.sampleBuffers);
                 }, (e: any) => { console.log('Error with decoding audio data' + e.err); });
             };
             request.send();
