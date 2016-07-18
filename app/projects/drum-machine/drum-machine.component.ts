@@ -1,7 +1,7 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
 import { SEQUENCER_LINEUP } from './sequencerLineUp';
-import { DrumMachineKnobDirective } from './drum-machine-knob.directive';
+import { DrumMachineKnobDirective } from './directives/drum-machine-knob.directive';
 
 let Snap = require('Snap');
 
