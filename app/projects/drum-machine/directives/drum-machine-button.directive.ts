@@ -39,26 +39,26 @@ export class DrumMachineButtonDirective implements AfterViewInit {
 
         this.s.hover(() => {
             if (!this.isClicked) {
-                this.s.animate({ fill: 'none' }, 1000, mina.ease);
+                this.s.animate({ fill: 'none' }, 1000, this.s.mina.ease);
                 this.activeIndicator = this.s.select('circle');
-                this.activeIndicator.animate({ fill: this.activeIndication['active'], }, 100, mina.easein);
+                this.activeIndicator.animate({ fill: this.activeIndication['active'], }, 100, this.s.mina.easein);
             }
         });
 
         this.s.mouseout(() => {
             if (!this.isClicked) {
-                this.s.animate({ stroke: '' }, 1000, mina.ease);
-                this.activeIndicator.animate({ fill: this.activeIndication['inactive'], }, 100, mina.easeout);
+                this.s.animate({ stroke: '' }, 1000, this.s.mina.ease);
+                this.activeIndicator.animate({ fill: this.activeIndication['inactive'], }, 100, this.s.mina.easeout);
             }
         });
 
         this.s.click(() => {
             if (!this.isClicked) {
-                this.s.animate({ transform: 't0, -4' }, 300, mina.elastic);
+                this.s.animate({ transform: 't0, -4' }, 300, this.s.mina.elastic);
                 this.activeIndicator.attr({ fill: this.activeIndication['active'] });
             }
             if (this.isClicked) {
-                this.s.animate({ transform: '' }, 300, mina.elastic);
+                this.s.animate({ transform: '' }, 300, this.s.mina.elastic);
             }
 
             this.isClicked = !this.isClicked;
@@ -73,7 +73,7 @@ export class DrumMachineButtonDirective implements AfterViewInit {
 
     flashBeat() {
         this.beat.animate({ fill: this.beatIndication['active'] }, 0,
-            () => {this.beat.animate({ fill: this.beatIndication['inactive'] }, 250, mina.easeout);});
+            () => {this.beat.animate({ fill: this.beatIndication['inactive'] }, 250, this.s.mina.easeout); });
     }
 
 }
