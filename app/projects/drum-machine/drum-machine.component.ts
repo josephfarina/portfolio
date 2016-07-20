@@ -30,6 +30,13 @@ export class DrumMachineComponent implements OnInit {
 
     ngOnInit() { this.metronomeService.play(); }
 
+
+    instrumentKnob(event: any, type: string, knob: string) {
+        this.sequencerLineUp['instrumentSettings'][type][knob] = event.value;
+        console.log(event.value, type, knob);
+        this.update();
+    }
+
     outputValue(event: any, knob: string) {
         // TODO: set this up so it assigns the value of each knob to its rightful value
         console.log(event, knob);
