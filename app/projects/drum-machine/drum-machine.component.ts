@@ -3,6 +3,7 @@ import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
 import { SEQUENCER_LINEUP } from './sequencerLineUp';
 import { DrumMachineKnobDirective } from './directives/drum-machine-knob.directive';
 import { DrumMachineButtonDirective } from './directives/drum-machine-button.directive';
+import { DrumMachineInstrumentButtonDirective } from './directives/drum-machine-instrumentbutton.directive';
 
 @Component({
     moduleId: module.id,
@@ -11,14 +12,15 @@ import { DrumMachineButtonDirective } from './directives/drum-machine-button.dir
     providers: [DrumMachineMetronomeService],
     directives: [
         DrumMachineKnobDirective,
-        DrumMachineButtonDirective
+        DrumMachineButtonDirective,
+        DrumMachineInstrumentButtonDirective
     ]
 })
 
 export class DrumMachineComponent implements OnInit {
     private sequencerLineUp: Object = SEQUENCER_LINEUP;
     private instruments: string[] = ['kick', 'snare', 'lowtom', 'midtom', 'hitom', 'rimshot', 'clap', 'hihat', 'cymbal'];
-    private currentInstrument: string = 'kick';
+    private currentType: string = 'kick';
 
     constructor(private metronomeService: DrumMachineMetronomeService) {
         this.metronomeService.setSequencerLineUp(this.sequencerLineUp);
@@ -40,7 +42,7 @@ export class DrumMachineComponent implements OnInit {
     beatOutputValue(event: any, beatNum: number) {
         console.log(event.value, beatNum);
         // beatnum - 1 is changing the rythm 1-16 into a 0-15 array
-        this.sequencerLineUp['rhythmSettings'][beatNum - 1][this.currentInstrument] = event.value;
+        this.sequencerLineUp['rhythmSettings'][beatNum - 1][this.currentType] = event.value;
     }
 
     outputValue(event: any, knob: string) {
