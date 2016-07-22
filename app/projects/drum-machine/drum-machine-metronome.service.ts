@@ -74,6 +74,7 @@ export class DrumMachineMetronomeService {
 
     setBeat(time: number, beat: number) {
         this.sequencerLineUp['projectSettings']['beat'] = beat;
+
         if (this.sequencerLineUp['rhythmSettings'][beat]['kick']) { this.playSample('kick', time); }
         if (this.sequencerLineUp['rhythmSettings'][beat]['snare']) { this.playSample('snare', time); }
 
@@ -89,6 +90,7 @@ export class DrumMachineMetronomeService {
     }
 
     playSample(type: string, time: number) {
+
         let source = this.context.createBufferSource(),
             level = this.level(type),
             decay = this.decay(type, time),

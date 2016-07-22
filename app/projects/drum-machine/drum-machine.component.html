@@ -1,5 +1,4 @@
 <div class="drum-machine-wrapper">
-  <h1>my drum machine</h1>
 
   <svg id="background" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3954.04 2585.11">
     <title>beatbox</title>
@@ -2060,56 +2059,3 @@
       </g>
     </g>
   </svg>
-
-
-
-
-  <button (click)="start()">start</button>
-  <button (click)="stop()">stop</button>
-
-  <label for="tempo">Tempo</label>
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['projectSettings']['tempo']" name="tempo" type="number" min='20'>
-
-  <label for="volume">Volume</label>
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['projectSettings']['volume']" name="volume" type="number"
-    min='0' max="1" step=".1">
-
-  <select class="form-control" [(ngModel)]="currentType" (ngModelChange)="update()">
-            <option *ngFor="let instrument of instruments">{{instrument}}</option>
-    </select>
-
-
-  <label for="level">Level</label>
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['instrumentSettings'][currentType]['level']" name="volume"
-    type="number" min='0' max="1" step=".1">
-  <label for="attack">Attack</label>
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['instrumentSettings'][currentType]['attack']" name="volume"
-    type="number" min='0' max="1" step=".1">
-  <label for="decay">Decay</label>
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['instrumentSettings'][currentType]['decay']" name="volume"
-    type="number" min='0' max="1" step=".1">
-  <label for="distortion">Distortion</label>
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['instrumentSettings'][currentType]['distortion']" name="volume"
-    type="number" min='0' max="1" step=".1">
-
-
-  <br>
-
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][0][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][1][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][2][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][3][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][4][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][5][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][6][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][7][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][8][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][9][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][10][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][11][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][12][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][13][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][14][currentType]" type="checkbox">
-  <input (ngModelChange)="update()" [(ngModel)]="sequencerLineUp['rhythmSettings'][15][currentType]" type="checkbox">
-
-</div>
