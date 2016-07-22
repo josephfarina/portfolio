@@ -1,9 +1,7 @@
 import { Directive, ElementRef, EventEmitter, AfterViewInit, OnChanges, SimpleChanges, Output, Input } from '@angular/core';
 let Snap = require('Snap');
 
-@Directive({
-    selector: '[my-button-pusher]'
-})
+@Directive({ selector: '[my-button-pusher]' })
 
 export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
     @Output() value = new EventEmitter();
@@ -24,7 +22,7 @@ export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         // FIXME: this is a hacky way of making sure that Snap has been initiated -- It cant be called before snap is created
         if (this.checkIfSnapInit) {
-            console.log('ch', this.isActivated)
+            console.log('ch', this.isActivated);
             this.check();
         };
     }
@@ -36,19 +34,19 @@ export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
         this.init();
         this.checkIfSnapInit = true;
 
-        // this.s.hover(() => {
-        //     if (!this.isActivated) {
-        //         this.s.animate({ transform: 't0, -2.5' }, 200, mina.elastic);
-        //         this.activeIndicator.animate({ fill: '#FF4856' }, 200, mina.easeinout);
-        //     }
-        // });
+        this.s.hover(() => {
+            if (this.isActivated) {
+                this.s.animate({ transform: 't0, -2.5' }, 200, mina.elastic);
+                this.activeIndicator.animate({ fill: '#FF4856' }, 200, mina.easeinout);
+            }
+        });
 
-        // this.s.mouseout(() => {
-        //     if (this.isActivated) {
-            //  this.s.animate({ transform: '' }, 200, mina.elastic);
-            // this.activeIndicator.animate({ fill: this.activeLight['inactive'] }, 200, mina.easeinout);
-        //}
-        // });
+        this.s.mouseout(() => {
+            if (this.isActivated) {
+                this.s.animate({ transform: '' }, 200, mina.elastic);
+                this.activeIndicator.animate({ fill: this.activeLight['inactive'] }, 200, mina.easeinout);
+            }
+        });
 
         this.s.click(() => {
             this.check();
@@ -61,6 +59,7 @@ export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
             this.s.animate({ transform: 't0, -3.5' }, 200, mina.elastic);
             this.activeIndicator.animate({ fill: '#FF4856' }, 200, mina.easeinout);
         }
+        this.isActivated = !this.isActivated;
     }
 
     check() {

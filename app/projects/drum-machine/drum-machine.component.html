@@ -862,8 +862,8 @@
 
 
     <!--INSTRUMENT SELECTORS-->
-    <g my-instrument-button-pusher>
-      <g id="kick">
+    <g>
+      <g my-instrument-button-pusher [current]="currentType" [type]="'kick'" (value)="instrumentSet($event)"  id="kick">
         <rect id="background-19" data-name="background" x="1388.55" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
         />
         <circle id="indicator-17" data-name="indicator" cx="1403.47" cy="1350.87" r="7.31" fill="#39b54a" />
@@ -885,7 +885,7 @@
             transform="translate(-29.98 -34.49)" fill="#231f20" />
         </g>
       </g>
-      <g id="snare">
+      <g my-instrument-button-pusher [current]="currentType" [type]="'snare'" (value)="instrumentSet($event)"  id="snare">
         <rect id="background-20" data-name="background" x="1554.76" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
         />
         <circle id="indicator-18" data-name="indicator" cx="1569.68" cy="1350.87" r="7.31" fill="#003b05" />
@@ -910,7 +910,7 @@
             transform="translate(-29.98 -34.49)" fill="#231f20" />
         </g>
       </g>
-      <g id="lowtom">
+      <g my-instrument-button-pusher [current]="currentType" [type]="'lowtom'" (value)="instrumentSet($event)"  id="lowtom">
         <rect id="background-21" data-name="background" x="1719.33" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
         />
         <circle id="indicator-19" data-name="indicator" cx="1734.25" cy="1350.87" r="7.31" fill="#003b05" />
@@ -927,7 +927,7 @@
             transform="translate(-29.98 -34.49)" fill="#231f20" />
         </g>
       </g>
-      <g id="midtom">
+      <g my-instrument-button-pusher [current]="currentType" [type]="'midtom'" (value)="instrumentSet($event)"  id="midtom">
         <rect id="background-22" data-name="background" x="1884.13" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
         />
         <circle id="indicator-20" data-name="indicator" cx="1899.04" cy="1350.87" r="7.31" fill="#003b05" />
@@ -944,7 +944,7 @@
             transform="translate(-29.98 -34.49)" fill="#231f20" />
         </g>
       </g>
-      <g id="hitom">
+      <g my-instrument-button-pusher [current]="currentType" [type]="'hitom'" (value)="instrumentSet($event)"  id="hitom">
         <rect id="background-23" data-name="background" x="2048.92" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
         />
         <circle id="indicator-21" data-name="indicator" cx="2063.84" cy="1350.87" r="7.31" fill="#003b05" />
@@ -959,7 +959,7 @@
             transform="translate(-29.98 -34.49)" fill="#231f20" />
         </g>
       </g>
-      <g id="rimshot">
+      <g my-instrument-button-pusher [current]="currentType" [type]="'rimshot'" (value)="instrumentSet($event)"  id="rimshot">
         <rect id="background-24" data-name="background" x="2213.72" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
         />
         <circle id="indicator-22" data-name="indicator" cx="2228.64" cy="1350.87" r="7.31" fill="#003b05" />
@@ -978,7 +978,7 @@
           <path d="M2344.66,1380.52h7v2h-2.35v7.92H2347v-7.92h-2.35v-2Z" transform="translate(-29.98 -34.49)" fill="#231f20" />
         </g>
       </g>
-      <g id="clap">
+      <g my-instrument-button-pusher [current]="currentType" [type]="'clap'"  (value)="instrumentSet($event)" id="clap">
         <rect id="background-25" data-name="background" x="2378.51" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
         />
         <circle id="indicator-23" data-name="indicator" cx="2393.43" cy="1350.87" r="7.31" fill="#003b05" />
@@ -992,7 +992,7 @@
             transform="translate(-29.98 -34.49)" fill="#231f20" />
         </g>
       </g>
-      <g id="hihat">
+      <g my-instrument-button-pusher [current]="currentType" [type]="'hihat'" (value)="instrumentSet($event)"  id="hihat">
         <rect id="background-26" data-name="background" x="2543.31" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
         />
         <circle id="indicator-24" data-name="indicator" cx="2558.23" cy="1350.87" r="7.31" fill="#003b05" />
@@ -1007,7 +1007,7 @@
           <path d="M2662.6,1380.52h7v2h-2.35v7.92h-2.25v-7.92h-2.35v-2Z" transform="translate(-29.98 -34.49)" fill="#231f20" />
         </g>
       </g>
-      <g id="cymbal">
+      <g my-instrument-button-pusher [current]="currentType" [type]="'cymbal'" (value)="instrumentSet($event)"   id="cymbal">
         <rect id="background-27" data-name="background" x="2708.1" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
         />
         <circle id="indicator-25" data-name="indicator" cx="2723.02" cy="1350.87" r="7.31" fill="#003b05" />

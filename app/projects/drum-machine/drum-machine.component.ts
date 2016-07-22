@@ -39,6 +39,10 @@ export class DrumMachineComponent implements OnInit {
         this.update();
     }
 
+    instrumentSet(event: any) {
+        this.currentType = event.value;
+    }
+
     beatOutputValue(event: any, beatNum: number) {
         console.log(event.value, beatNum);
         // beatnum - 1 is changing the rythm 1-16 into a 0-15 array
