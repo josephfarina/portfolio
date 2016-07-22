@@ -25,13 +25,11 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
     ngOnChanges(changes: SimpleChanges) {
         // FIXME: this is a hacky way of making sure that Snap has been initiated -- It cant be called before snap is created
         if (this.checkIfSnapInit) {
-            console.log('cFDFDh', this.currentInstrument);
             this.check();
         };
     }
 
     ngAfterViewInit() {
-        console.log(this.instrument);
         this.s = Snap(this.el);
         this.background = this.s.select('rect');
         this.activeIndicator = this.s.select('circle');
@@ -66,8 +64,6 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
     }
 
     check() {
-        console.log('ch', this.currentInstrument);
-        console.log('ti', this.instrument, 'ci', this.currentInstrument);
         if (this.instrument === this.currentInstrument) {
             this.s.animate({ transform: 't0,1.2, s.98, .97' }, 100, mina.elastic );
 

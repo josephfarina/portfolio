@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DrumMachineMetronomeService {
-
     private timeWorker: any = null;
     private noteTime: number;
     private startTime: number;
@@ -15,27 +14,27 @@ export class DrumMachineMetronomeService {
     private noteLength: number = .25;
     private context: any;
     private isPlaying: boolean = false;
-
     private sequencerLineUp: Object = null;
-
-
     private sampleBuffers: Object = {};
     private impulse: any;
     private samples: string[] = ['snare', 'clap', 'kick', 'cymbal', 'hihat', 'hitom', 'lowtom', 'midtom', 'rimshot'];
 
     init() {
         this.loadAudioSamples();
-
-        console.log('initated');
-        this.context = new AudioContext();
+        // this.context = new AudioContext();
+        this.createAudioContext();
         this.timeWorker = new Worker('./app/projects/drum-machine/timeWorker.js');
-        console.log(this.timeWorker);
         this.timeWorker.onmessage = (e: any) => { if (e.data === 'tick') { this.schedule(); } else { console.log(e.data); } };
         this.timeWorker.postMessage({ 'interval': this.lookahead });
     }
 
+    createAudioContext() {
+        this.context = new AudioContext();
+    }
+
     play() {
         if (!this.isPlaying) {
+            this.createAudioContext();
             this.isPlaying = true;
             this.noteTime = 0;
             this.rhythmIndex = 0;
@@ -49,6 +48,7 @@ export class DrumMachineMetronomeService {
         if (this.isPlaying) {
             this.isPlaying = false;
             this.timeWorker.postMessage('stop');
+            this.context.close();
         }
     }
 
@@ -160,7 +160,7 @@ export class DrumMachineMetronomeService {
             distortionAmount = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 100;
         } else { distortionAmount = 0; }
 
-        // i have no idea how this works -- found on Mozilla
+        // i have no idea how this function works -- found on Mozilla
         function makeDistortionCurve(amount: number) {
             let k = typeof amount === 'number' ? amount : 50,
                 n_samples = 44100,
@@ -174,6 +174,7 @@ export class DrumMachineMetronomeService {
                 }
             return curve;
         };
+
         distortion.curve = makeDistortionCurve(distortionAmount);
         distortion.oversample = '4x';
         return distortion;
