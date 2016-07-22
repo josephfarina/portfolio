@@ -11,19 +11,15 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
     @Input('current') currentInstrument: string = '';
 
     private el: HTMLElement;
-    private isClicked: boolean = false;
-
     private s: any;
-    private kick: any;
-
     private activeIndicator: any;
-    private activeLight: Object = { active: 'red' };
-    // private instruments: string[] = ['kick', 'snare', 'lowtom', 'midtom', 'hitom', 'rimshot', 'clap', 'hihat', 'cymbal'];
-    private colors: Object = { 'active': 'blue', 'inactive': 'orange' };
+    private text: any;
+    private background: any;
 
+    private colors: Object = { 'active': '#39B54A', 'inactive': '#003B05', 'light-active': 'white', 'light-inactive': 'black', 'background-hover': 'lightgray' };
     private checkIfSnapInit: boolean = false;
-    constructor(private _el: ElementRef) { this.el = _el.nativeElement; }
 
+    constructor(private _el: ElementRef) { this.el = _el.nativeElement; }
 
     ngOnChanges(changes: SimpleChanges) {
         // FIXME: this is a hacky way of making sure that Snap has been initiated -- It cant be called before snap is created
@@ -36,21 +32,30 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
     ngAfterViewInit() {
         console.log(this.instrument);
         this.s = Snap(this.el);
+        this.background = this.s.select('rect');
         this.activeIndicator = this.s.select('circle');
+        this.text = this.s.selectAll('path');
+        this.colors['background'] = this.background.attr('fill');
+
         this.checkIfSnapInit = true;
         this.check();
         this.s.hover(() => {
-            // if (!this.isClicked) {
-            //     this.s.animate({ transform: 't0, -2.5' }, 200, mina.elastic);
-            //     this.activeIndicator.animate({ fill: '#FF4856'}, 200, mina.easeinout);
-            // }
+            if (this.instrument !== this.currentInstrument) {
+                this.background.animate({
+                        fill: this.colors['background-hover']
+                    }, 100, mina.easein );
+                this.s.animate({
+                        transform: 't0,1, s.99, .98'
+                    }, 100, mina.elastic );
+            }
         });
 
         this.s.mouseout(() => {
-            // if (!this.isClicked) {
-            //     this.s.animate({ transform: '' }, 200, mina.elastic);
-            //     this.activeIndicator.animate({ fill: this.activeLight['inactive']}, 200, mina.easeinout);
-            // }
+            if (this.instrument !== this.currentInstrument) {
+                this.background.animate({ fill: this.colors['background'],
+                                          transform: '' }, 100,  mina.easein );
+                this.s.animate({ transform: '' }, 100, mina.elastic );
+            }
         });
 
         this.s.click(() => {
@@ -63,9 +68,25 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
         console.log('ch', this.currentInstrument);
         console.log('ti', this.instrument, 'ci', this.currentInstrument);
         if (this.instrument === this.currentInstrument) {
-            this.activeIndicator.attr({ fill: this.colors['active'] });
+            this.s.animate({ transform: 't0,1.2, s.98, .97' }, 100, mina.elastic );
+
+            this.activeIndicator.animate({
+                    fill: this.colors['active'] },
+                    100,
+                    mina.easein
+                );
+
+            this.text.forEach( (elem: any) => {
+                elem.animate({
+                    fill: this.colors['light-active']},
+                    100,
+                    mina.easein
+                );
+            });
         } else {
             this.activeIndicator.attr({ fill: this.colors['inactive'] });
+            this.text.forEach( (elem: any) => { elem.attr({ fill: this.colors['light-inactive']}); });
+            this.s.animate({ transform: '' }, 100, mina.elastic );
         }
     }
 
