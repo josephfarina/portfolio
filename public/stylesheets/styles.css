@@ -733,3 +733,8 @@ pre.line-numbers > code {
   to {
     transform: scale(3, 3);
     opacity: 0; } }
+
+.drum-machine-wrapper {
+  background-color: #222826;
+  width: 100%;
+  height: 100%; }
