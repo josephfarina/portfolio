@@ -7,9 +7,8 @@ let Snap = require('Snap');
 
 export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
     @Output() value = new EventEmitter();
-    @Input('initial') initIsClicked: boolean;
+    @Input('initial') isActivated: boolean = false;
 
-    private differ: any;
     private el: HTMLElement;
     private isClicked: boolean = false;
     private s: any;
@@ -25,11 +24,8 @@ export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         // FIXME: this is a hacky way of making sure that Snap has been initiated -- It cant be called before snap is created
         if (this.checkIfSnapInit) {
-            this.isClicked = !this.initIsClicked;
-            this.deActivate();
-            this.activate();
-
-            console.log('ngOnChanges - initIsClicked = ' + changes['initIsClicked'].currentValue);
+            console.log('ch', this.isActivated)
+            this.check();
         };
     }
 
@@ -37,45 +33,51 @@ export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
         this.s = Snap(this.el);
         this.activeIndicator = this.s.select('circle');
         this.activeLight['inactive'] = this.activeIndicator.attr('fill');
-        this.activate();
+        this.init();
         this.checkIfSnapInit = true;
 
-        this.s.hover(() => {
-            if (!this.isClicked) {
-                this.s.animate({ transform: 't0, -2.5' }, 200, mina.elastic);
-                this.activeIndicator.animate({ fill: '#FF4856' }, 200, mina.easeinout);
-            }
-        });
+        // this.s.hover(() => {
+        //     if (!this.isActivated) {
+        //         this.s.animate({ transform: 't0, -2.5' }, 200, mina.elastic);
+        //         this.activeIndicator.animate({ fill: '#FF4856' }, 200, mina.easeinout);
+        //     }
+        // });
 
-        this.s.mouseout(() => {
-            this.deActivate();
-        });
+        // this.s.mouseout(() => {
+        //     if (this.isActivated) {
+            //  this.s.animate({ transform: '' }, 200, mina.elastic);
+            // this.activeIndicator.animate({ fill: this.activeLight['inactive'] }, 200, mina.easeinout);
+        //}
+        // });
 
         this.s.click(() => {
-            this.activate();
-            this.deActivate();
-            this.isClicked = !this.isClicked;
+            this.check();
             this.valueOut();
         });
     }
 
-    activate() {
-        if (!this.isClicked) {
+    init() {
+        if (this.isActivated) {
             this.s.animate({ transform: 't0, -3.5' }, 200, mina.elastic);
             this.activeIndicator.animate({ fill: '#FF4856' }, 200, mina.easeinout);
         }
     }
 
-    deActivate() {
-        if (this.isClicked) {
+    check() {
+        if (this.isActivated) {
+            this.s.animate({ transform: 't0, -3.5' }, 200, mina.elastic);
+            this.activeIndicator.animate({ fill: '#FF4856' }, 200, mina.easeinout);
+        }
+        if (!this.isActivated) {
             this.s.animate({ transform: '' }, 200, mina.elastic);
             this.activeIndicator.animate({ fill: this.activeLight['inactive'] }, 200, mina.easeinout);
         }
+        this.isActivated = !this.isActivated;
     }
 
     valueOut() {
         this.value.emit({
-            value: this.isClicked
+            value: !this.isActivated
         });
     }
 }
