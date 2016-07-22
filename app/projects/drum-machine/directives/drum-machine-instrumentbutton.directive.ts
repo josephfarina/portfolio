@@ -16,7 +16,8 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
     private text: any;
     private background: any;
 
-    private colors: Object = { 'active': '#39B54A', 'inactive': '#003B05', 'light-active': 'white', 'light-inactive': 'black', 'background-hover': 'lightgray' };
+    private colors: Object = { 'active': '#39B54A', 'inactive': '#003B05', 'light-active': 'white', 
+    'light-inactive': 'black', 'background-hover': 'lightgray' };
     private checkIfSnapInit: boolean = false;
 
     constructor(private _el: ElementRef) { this.el = _el.nativeElement; }

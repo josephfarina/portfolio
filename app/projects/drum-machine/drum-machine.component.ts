@@ -4,6 +4,7 @@ import { SEQUENCER_LINEUP } from './sequencerLineUp';
 import { DrumMachineKnobDirective } from './directives/drum-machine-knob.directive';
 import { DrumMachineButtonDirective } from './directives/drum-machine-button.directive';
 import { DrumMachineInstrumentButtonDirective } from './directives/drum-machine-instrumentbutton.directive';
+import { DrumMachineInstrumentBeatDirective } from './directives/drum-machine-beat.directive';
 
 @Component({
     moduleId: module.id,
@@ -13,7 +14,8 @@ import { DrumMachineInstrumentButtonDirective } from './directives/drum-machine-
     directives: [
         DrumMachineKnobDirective,
         DrumMachineButtonDirective,
-        DrumMachineInstrumentButtonDirective
+        DrumMachineInstrumentButtonDirective,
+        DrumMachineInstrumentBeatDirective
     ]
 })
 

@@ -73,6 +73,7 @@ export class DrumMachineMetronomeService {
     }
 
     setBeat(time: number, beat: number) {
+        this.sequencerLineUp['projectSettings']['beat'] = beat;
         if (this.sequencerLineUp['rhythmSettings'][beat]['kick']) { this.playSample('kick', time); }
         if (this.sequencerLineUp['rhythmSettings'][beat]['snare']) { this.playSample('snare', time); }
 
