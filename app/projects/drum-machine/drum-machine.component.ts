@@ -5,6 +5,7 @@ import { DrumMachineKnobDirective } from './directives/drum-machine-knob.directi
 import { DrumMachineButtonDirective } from './directives/drum-machine-button.directive';
 import { DrumMachineInstrumentButtonDirective } from './directives/drum-machine-instrumentbutton.directive';
 import { DrumMachineInstrumentBeatDirective } from './directives/drum-machine-beat.directive';
+import { DrumMachineStartButtonDirective } from './directives/drum-machine-startbutton.directive';
 
 @Component({
     moduleId: module.id,
@@ -15,11 +16,12 @@ import { DrumMachineInstrumentBeatDirective } from './directives/drum-machine-be
         DrumMachineKnobDirective,
         DrumMachineButtonDirective,
         DrumMachineInstrumentButtonDirective,
-        DrumMachineInstrumentBeatDirective
+        DrumMachineInstrumentBeatDirective,
+        DrumMachineStartButtonDirective
     ]
 })
 
-export class DrumMachineComponent implements OnInit {
+export class DrumMachineComponent {
     private sequencerLineUp: Object = SEQUENCER_LINEUP;
     private instruments: string[] = ['kick', 'snare', 'lowtom', 'midtom', 'hitom', 'rimshot', 'clap', 'hihat', 'cymbal'];
     private currentType: string = 'kick';
@@ -30,10 +32,16 @@ export class DrumMachineComponent implements OnInit {
     }
     start() { this.metronomeService.play(); }
     stop() { this.metronomeService.stop(); }
+
+    togglePlay(e: any) {
+        if (e.value === true) {
+            this.metronomeService.play();
+        } else {
+            this.metronomeService.stop();
+        }
+    }
+
     update() { this.metronomeService.setSequencerLineUp(this.sequencerLineUp); }
-
-    ngOnInit() { this.metronomeService.play(); }
-
 
     instrumentKnob(event: any, type: string, knob: string) {
         this.sequencerLineUp['instrumentSettings'][type][knob] = event.value;
@@ -43,6 +51,14 @@ export class DrumMachineComponent implements OnInit {
 
     instrumentSet(event: any) {
         this.currentType = event.value;
+    }
+
+    tempoValue(event: any) {
+        console.log(event);
+    }
+
+    volumeValue(event: any) {
+        console.log(event);
     }
 
     beatOutputValue(event: any, beatNum: number) {

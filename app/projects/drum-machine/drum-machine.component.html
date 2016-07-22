@@ -834,11 +834,13 @@
 
 
     <g id="start_stop_button" data-name="start/stop_button">
-      <g>
+
+      <g  my-start-button-pusher (value)="togglePlay($event)">
         <rect id="background-18" data-name="background" x="1030.86" y="1633.6" width="171.45" height="86.26" rx="3.1" ry="3.1" fill="#757777"
         />
-        <rect id="button" x="1033.29" y="1635.7" width="167.11" height="82.05" rx="3.1" ry="3.1" fill="#f58667" />
-        <g>
+        <rect id="start_button" x="1033.29" y="1635.7" width="167.11" height="82.05" rx="3.1" ry="3.1" fill="#f58667" />
+
+        <g id="start_text_button">
           <path d="M1092.16,1703.47l-1.54,3a6.9,6.9,0,0,0-3.39-1.16c-1.3,0-2,.59-2,1.5s1.58,1.6,3.49,2.42,3.92,2.38,3.92,4.57c0,4-3,5.4-6.31,5.4A9.78,9.78,0,0,1,1080,1717l1.91-3.21s2.23,1.89,4.1,1.89c0.83,0,2.42-.08,2.42-1.64,0-1.22-1.79-1.77-3.77-2.76s-3.19-2.56-3.19-4.3a5.29,5.29,0,0,1,5.46-5.11A9.52,9.52,0,0,1,1092.16,1703.47Z"
             transform="translate(-29.98 -34.49)" fill="#fff" />
           <path d="M1092.4,1702.19h11.77v3.35h-4v13.39h-3.82v-13.39h-4v-3.35Z" transform="translate(-29.98 -34.49)" fill="#fff" />
@@ -1970,11 +1972,12 @@
         </g>
       </g>
     </g>
-    <g id="tempo_knob">
+    <g my-knob-turner (value)="tempoValue($event)" id="tempo_knob">
       <circle id="circle" cx="1182.59" cy="1402.13" r="83.14" fill="#fffef6" />
       <path d="M1212.57,1346.6a90,90,0,1,0,90,90A90,90,0,0,0,1212.57,1346.6Zm0,173.16a83.14,83.14,0,0,1-6.56-166v23.57a2.06,2.06,0,0,0,2.06,2.06h9a2.06,2.06,0,0,0,2.06-2.06v-23.58A83.15,83.15,0,0,1,1212.57,1519.76Z"
         transform="translate(-29.98 -34.49)" fill="#111815" />
       <rect x="1180.87" y="1317.38" width="3.44" height="21.5" rx="1" ry="1" fill="#fff200" />
+    </g>
       <g>
         <rect id="min7-37" data-name="min7" x="1299.25" y="1513.35" width="3.31" height="29.6" rx="0.61" ry="0.61" transform="translate(-729.52 1332.97) rotate(-45)"
           fill="#fff" />
@@ -1991,12 +1994,12 @@
         <rect id="min1-37" data-name="min1" x="1122.58" y="1513.35" width="3.31" height="29.6" rx="0.61" ry="0.61" transform="translate(1379.86 -381.86) rotate(45)"
           fill="#fff" />
       </g>
-    </g>
-    <g id="volume_knob">
+    <g my-knob-turner (value)="volumeValue($event)" id="volume_knob">
       <circle id="circle-2" data-name="circle" cx="1257.69" cy="1028.84" r="49.22" fill="#fffef6" />
       <path d="M1287.67,1010a53.29,53.29,0,1,0,53.29,53.29A53.29,53.29,0,0,0,1287.67,1010Zm0,102.51a49.22,49.22,0,0,1-3.88-98.29v14a1.22,1.22,0,0,0,1.22,1.22h5.33a1.22,1.22,0,0,0,1.22-1.22v-14A49.22,49.22,0,0,1,1287.67,1112.55Z"
         transform="translate(-29.98 -34.49)" fill="#111815" />
       <rect x="1256.67" y="978.67" width="2.04" height="12.73" rx="1" ry="1" fill="#fff200" />
+    </g>
       <g>
         <rect id="min7-38" data-name="min7" x="1338.98" y="1108.75" width="1.96" height="17.52" rx="0.61" ry="0.61" transform="translate(-427.72 1240.32) rotate(-45)"
           fill="#fff" />
@@ -2013,7 +2016,6 @@
         <rect id="min1-38" data-name="min1" x="1234.39" y="1108.75" width="1.96" height="17.52" rx="0.61" ry="0.61" transform="translate(1122.05 -580.72) rotate(45)"
           fill="#fff" />
       </g>
-    </g>
     <g id="effect_knob">
       <circle id="circle-3" data-name="circle" cx="1070.4" cy="1140.65" r="38.07" fill="#fffef6" />
       <path d="M1100.38,1133.93a41.22,41.22,0,1,0,41.22,41.22A41.22,41.22,0,0,0,1100.38,1133.93Zm0,79.29a38.07,38.07,0,0,1-3-76V1148a0.94,0.94,0,0,0,.94.94h4.12a0.94,0.94,0,0,0,.94-0.94v-10.8A38.07,38.07,0,0,1,1100.38,1213.22Z"
