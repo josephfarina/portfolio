@@ -55,11 +55,17 @@ export class DrumMachineComponent {
     }
 
     tempoValue(event: any) {
-        console.log(event);
+        console.log(event.value);
+        // let tempo = (event.value * 120) + 60;
+        // tempo / 2 is only because the beat is in double time
+        this.sequencerLineUp['projectSettings']['tempo'] = event.value;
+        this.update();
     }
 
     volumeValue(event: any) {
-        console.log(event);
+        console.log(event.value)
+        this.sequencerLineUp['projectSettings']['volume'] = event.value;
+        this.update();
     }
 
     beatOutputValue(event: any, beatNum: number) {

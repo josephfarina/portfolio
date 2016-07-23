@@ -1,13 +1,13 @@
 export let SEQUENCER_LINEUP: Object = {
   'projectSettings': {
-    'tempo': 66,
-    'volume': 1,
+    'tempo': .5,
+    'volume': .9,
     'reverb': 1,
     'beat': 0
   },
   'instrumentSettings': {
     'kick': {
-      'level': 1,
+      'level': .25,
       'attack': 0,
       'decay': 0.6,
       'distortion': 0.3

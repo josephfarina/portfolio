@@ -61,7 +61,7 @@ export class DrumMachineMetronomeService {
     }
 
     nextNote() {
-        this.tempo = this.sequencerLineUp['projectSettings']['tempo'];
+        this.tempo = ((this.sequencerLineUp['projectSettings']['tempo'] * 120) + 60) / 2;
         let secondsPerBeat = 60 / this.tempo;
         this.nextNoteTime += this.noteLength * secondsPerBeat;
         this.rhythmIndex++;
