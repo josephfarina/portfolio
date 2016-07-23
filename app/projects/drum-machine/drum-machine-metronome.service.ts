@@ -96,13 +96,15 @@ export class DrumMachineMetronomeService {
             decay = this.decay(type, time),
             volume = this.globalVolume(),
             attack = this.attack(type, time),
-            distortion = this.distortion(type);
+            distortion = this.distortion(type),
+            distortionGain = this.distortionGain(type);
 
         source.connect(decay);
         decay.connect(attack);
         attack.connect(level);
         level.connect(distortion);
-        distortion.connect(volume);
+        distortion.connect(distortionGain);
+        distortionGain.connect(volume);
 
         volume.connect(this.context.destination);
         source.buffer = this.sampleBuffers[type];
@@ -157,10 +159,7 @@ export class DrumMachineMetronomeService {
 
     distortion(type: string) {
         let distortion = this.context.createWaveShaper();
-        let distortionAmount: number;
-        if (this.sequencerLineUp['instrumentSettings'][type]['distortion']) {
-            distortionAmount = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 100;
-        } else { distortionAmount = 0; }
+        let distortionAmount: number  = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 100;
 
         // i have no idea how this function works -- found on Mozilla
         function makeDistortionCurve(amount: number) {
@@ -178,8 +177,18 @@ export class DrumMachineMetronomeService {
         };
 
         distortion.curve = makeDistortionCurve(distortionAmount);
-        distortion.oversample = '4x';
+        distortion.oversample = 'none';
         return distortion;
+    }
+
+    distortionGain(type: string) {
+        let level = this.context.createGain(),
+            levelLevel = this.sequencerLineUp['instrumentSettings'][type]['level'];
+
+        // dont let level leval equal 0 -- it will not output a noise then
+        if (levelLevel > 1) { levelLevel = 1; }
+        level.gain.value = .8 - (this.sequencerLineUp['instrumentSettings'][type]['distortion'] * .5 );
+        return level;
     }
 
     getAudioContext(): any {
