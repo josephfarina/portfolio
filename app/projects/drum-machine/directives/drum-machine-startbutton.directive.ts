@@ -35,15 +35,14 @@ export class DrumMachineStartButtonDirective implements AfterViewInit, OnChanges
         this.check();
 
         this.s.hover(() => {
-            if (this.start === false) {
+            if (this.start === true) {
                 this.text.forEach((x: any) => { x.animate({ fill: this.colors['active-text'] }, 100, mina.easein); });
                 this.s.animate({ transform: 't0,1, s.99, .98' }, 100, mina.elastic);
             }
-
         });
 
         this.s.mouseout(() => {
-            if (this.start === false) {
+            if (this.start === true) {
                 this.text.forEach((x: any) => { x.animate({ fill: this.colors['inactive-text'] }, 100, mina.easein); });
                 this.s.animate({ transform: '' }, 100, mina.elastic);
             }
@@ -62,7 +61,7 @@ export class DrumMachineStartButtonDirective implements AfterViewInit, OnChanges
         }
         if (this.start === false) {
             this.text.forEach((x: any) => {  x.animate({ fill: this.colors['inactive-text'] }, 100, mina.easein); });
-            this.s.animate({ transform: '' }, 100, mina.elastic); 
+            this.s.animate({ transform: '' }, 100, mina.elastic);
         }
         this.start = !this.start;
     }
