@@ -74,30 +74,39 @@ export class DrumMachineMetronomeService {
 
     setBeat(time: number, beat: number) {
         this.sequencerLineUp['projectSettings']['beat'] = beat;
+        this.setBeatValueAtTime(time, beat);
 
-        if (this.sequencerLineUp['rhythmSettings'][beat]['kick']) { this.playSample('kick', time); }
-        if (this.sequencerLineUp['rhythmSettings'][beat]['snare']) { this.playSample('snare', time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['kick']) { this.playSample('kick', time, beat); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['snare']) { this.playSample('snare', time, beat); }
 
-        if (this.sequencerLineUp['rhythmSettings'][beat]['lowtom']) { this.playSample('lowtom', time); }
-        if (this.sequencerLineUp['rhythmSettings'][beat]['midtom']) { this.playSample('midtom', time); }
-        if (this.sequencerLineUp['rhythmSettings'][beat]['hitom']) { this.playSample('hitom', time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['lowtom']) { this.playSample('lowtom', time, beat); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['midtom']) { this.playSample('midtom', time, beat); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['hitom']) { this.playSample('hitom', time, beat); }
 
-        if (this.sequencerLineUp['rhythmSettings'][beat]['rimshot']) { this.playSample('rimshot', time); }
-        if (this.sequencerLineUp['rhythmSettings'][beat]['clap']) { this.playSample('clap', time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['rimshot']) { this.playSample('rimshot', time, beat); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['clap']) { this.playSample('clap', time, beat); }
 
-        if (this.sequencerLineUp['rhythmSettings'][beat]['hihat']) { this.playSample('hihat', time); }
-        if (this.sequencerLineUp['rhythmSettings'][beat]['cymbal']) { this.playSample('cymbal', time); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['hihat']) { this.playSample('hihat', time, beat); }
+        if (this.sequencerLineUp['rhythmSettings'][beat]['cymbal']) { this.playSample('cymbal', time, beat); }
     }
 
-    playSample(type: string, time: number) {
+    setBeatValueAtTime(time: number, beat: number) {
+        window.setTimeout( () => {
+            this.sequencerLineUp['projectSettings']['beat'] = beat;
+        }, (time - this.context.currentTime) * 1000 );
+    }
+
+
+    playSample(type: string, time: number, beat: number) {
 
         let source = this.context.createBufferSource(),
             level = this.level(type),
             decay = this.decay(type, time),
-            volume = this.globalVolume(),
+            volume = this.globalVolume(beat),
             attack = this.attack(type, time),
             distortion = this.distortion(type),
-            distortionGain = this.distortionGain(type);
+            distortionGain = this.distortionGain(type),
+            convolver = this.convolver();
 
         source.connect(decay);
         decay.connect(attack);
@@ -106,17 +115,24 @@ export class DrumMachineMetronomeService {
         distortion.connect(distortionGain);
         distortionGain.connect(volume);
 
-        volume.connect(this.context.destination);
+        volume.connect(convolver);
+        convolver.connect(this.context.destination);
+    
         source.buffer = this.sampleBuffers[type];
         source.start(time);
     }
 
-// get the value for each of these settings from the sequencerLineUp by type
-    globalVolume() {
+    // get the value for each of these settings from the sequencerLineUp by type
+    globalVolume(beat: number) {
         let level = this.context.createGain(),
             volume = this.sequencerLineUp['projectSettings']['volume'];
 
         if (volume > 1) { volume = 1; }
+
+        if (beat === 0 || beat === 4 || beat === 8 || beat === 12) {
+            volume += this.sequencerLineUp['projectSettings']['accent'];
+        }
+
         level.gain.value = volume;
         return level;
     }
@@ -189,6 +205,12 @@ export class DrumMachineMetronomeService {
         if (levelLevel > 1) { levelLevel = 1; }
         level.gain.value = .8 - (this.sequencerLineUp['instrumentSettings'][type]['distortion'] * .5 );
         return level;
+    }
+
+    convolver() {
+        let convolver = this.context.createConvolver();
+        convolver.buffer = this.impulse;
+        return convolver;
     }
 
     getAudioContext(): any {

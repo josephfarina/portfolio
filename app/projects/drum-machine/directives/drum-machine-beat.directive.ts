@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, AfterViewInit, Output, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, AfterViewInit, Output, Input, OnChanges, DoCheck, SimpleChanges } from '@angular/core';
 let Snap = require('Snap');
 
 @Directive({
@@ -8,13 +8,10 @@ let Snap = require('Snap');
 export class DrumMachineInstrumentBeatDirective implements AfterViewInit, OnChanges {
     @Input('beat') beat: number;
     @Input('current-beat') currentBeat: number;
-
     private el: HTMLElement;
     private s: any;
-
-    private color: Object = {'active': 'red', 'inactive': 'gray'};
+    private color: Object = { 'active': 'red', 'inactive': 'gray' };
     private checkIfSnapInit: boolean = false;
-
     constructor(private _el: ElementRef) { this.el = _el.nativeElement; }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -22,6 +19,7 @@ export class DrumMachineInstrumentBeatDirective implements AfterViewInit, OnChan
         if (this.checkIfSnapInit) {
             this.check();
         };
+        console.log('changed', this.currentBeat);
     }
 
     ngAfterViewInit() {
@@ -32,9 +30,8 @@ export class DrumMachineInstrumentBeatDirective implements AfterViewInit, OnChan
 
     check() {
         if (this.beat === this.currentBeat) {
-            this.s.animate({ fill: this.color['active'] }, 0, mina.easeout,
-            () => {this.s.animate({fill: this.color['inactive']}, 200, mina.easeout);
-        });
+            this.s.attr({ fill: this.color['active'] });
+            this.s.animate({ fill: this.color['inactive'] }, 50, mina.linear);
         }
     }
 }

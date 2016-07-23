@@ -3,7 +3,8 @@ export let SEQUENCER_LINEUP: Object = {
     'tempo': .5,
     'volume': .5,
     'reverb': 1,
-    'beat': 0
+    'beat': 0,
+    'accent': 0
   },
   'instrumentSettings': {
     'kick': {

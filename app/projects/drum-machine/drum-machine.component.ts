@@ -6,6 +6,7 @@ import { DrumMachineButtonDirective } from './directives/drum-machine-button.dir
 import { DrumMachineInstrumentButtonDirective } from './directives/drum-machine-instrumentbutton.directive';
 import { DrumMachineInstrumentBeatDirective } from './directives/drum-machine-beat.directive';
 import { DrumMachineStartButtonDirective } from './directives/drum-machine-startbutton.directive';
+import { DrumMachineClickKnobDirective } from './directives/drum-machine-clickknob.directive';
 
 @Component({
     moduleId: module.id,
@@ -17,7 +18,8 @@ import { DrumMachineStartButtonDirective } from './directives/drum-machine-start
         DrumMachineButtonDirective,
         DrumMachineInstrumentButtonDirective,
         DrumMachineInstrumentBeatDirective,
-        DrumMachineStartButtonDirective
+        DrumMachineStartButtonDirective,
+        DrumMachineClickKnobDirective
     ]
 })
 
@@ -62,11 +64,20 @@ export class DrumMachineComponent {
         this.update();
     }
 
+    accentValue(event: any) {
+        this.sequencerLineUp['projectSettings']['accent'] = event.value;
+        this.update();
+    }
+
     volumeValue(event: any) {
         console.log(event.value)
         this.sequencerLineUp['projectSettings']['volume'] = event.value;
         this.update();
         console.log(this.sequencerLineUp);
+    }
+
+    reverbValue(event: any) {
+        console.log(event);
     }
 
     beatOutputValue(event: any, beatNum: number) {
