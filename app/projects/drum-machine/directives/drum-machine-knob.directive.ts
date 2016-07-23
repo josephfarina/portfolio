@@ -1,4 +1,5 @@
 import { Directive, Input,HostListener, ElementRef, EventEmitter, AfterViewInit, Output, OnInit } from '@angular/core';
+import { DrumMachineMetronomeService } from './../drum-machine-metronome.service';
 let Snap = require('Snap');
 
 @Directive({
@@ -7,6 +8,7 @@ let Snap = require('Snap');
 
 export class DrumMachineKnobDirective implements AfterViewInit {
     @Output() value = new EventEmitter();
+    @Input('starting') startingAngle: number;
     private angle: number = 0;
     private el: HTMLElement;
     private minAngle: number = -130;
@@ -27,12 +29,14 @@ export class DrumMachineKnobDirective implements AfterViewInit {
         this.s = Snap(this.el);
         this.circ = this.s.select('circle');
 
+        this.rotate(this.calculateInitialAngleFromValue(), true);
+
         this.circ.drag((dx: number, dy: number) => {
             this.rotate(dx);
         }, () => { this.resetMaxandMin(); });
     }
 
-    rotate(dx: number) {
+    rotate(dx: number, init?: boolean) {
         if (this.angle > 0 && this.angle > this.maxAngle) { this.angle = this.maxAngle - 1; }
         if (this.angle < 0 && this.angle < this.minAngle) { this.angle = this.minAngle + 1; }
         if (this.angle > this.maxAngle) { return; }
@@ -40,7 +44,9 @@ export class DrumMachineKnobDirective implements AfterViewInit {
         this.cx = this.circ.attr('cx');
         this.cy = this.circ.attr('cy');
         this.angle += dx / 10;
-        this.valueOut();
+        if (init !== true) {
+            this.valueOut();
+        }
         this.s.transform('r' + [this.angle, this.cx, this.cy]);
     }
 
@@ -51,9 +57,10 @@ export class DrumMachineKnobDirective implements AfterViewInit {
         return valueOut;
     }
 
-    // calculateInitialAngleFromValue() {
-    //     let angle = this.startingAngle * (this.maxAngle - this.minAngle) + this.minAngle;
-    // }
+    calculateInitialAngleFromValue() {
+        let angle = this.startingAngle * (this.maxAngle - this.minAngle) + this.minAngle;
+        return angle;
+    }
 
     valueOut() {
         this.value.emit({

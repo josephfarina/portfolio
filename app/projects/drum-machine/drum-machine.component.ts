@@ -30,6 +30,7 @@ export class DrumMachineComponent {
         this.metronomeService.setSequencerLineUp(this.sequencerLineUp);
         this.metronomeService.init();
     }
+
     start() { this.metronomeService.play(); }
     stop() { this.metronomeService.stop(); }
 
