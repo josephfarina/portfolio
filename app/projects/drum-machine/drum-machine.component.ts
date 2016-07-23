@@ -66,6 +66,7 @@ export class DrumMachineComponent {
         console.log(event.value)
         this.sequencerLineUp['projectSettings']['volume'] = event.value;
         this.update();
+        console.log(this.sequencerLineUp);
     }
 
     beatOutputValue(event: any, beatNum: number) {

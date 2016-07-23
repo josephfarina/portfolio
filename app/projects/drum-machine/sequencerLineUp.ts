@@ -1,64 +1,64 @@
 export let SEQUENCER_LINEUP: Object = {
   'projectSettings': {
     'tempo': .5,
-    'volume': .9,
+    'volume': .5,
     'reverb': 1,
     'beat': 0
   },
   'instrumentSettings': {
     'kick': {
-      'level': .25,
+      'level': .5,
       'attack': 0,
-      'decay': 0.6,
-      'distortion': 0.3
+      'decay': 0,
+      'distortion': 0
     },
     'snare': {
-      'level': 1,
+      'level': .5,
       'attack': 0,
-      'decay': 0.5,
-      'distortion': 1
+      'decay': 0,
+      'distortion': 0
     },
     'lowtom': {
-      'level': 1,
+      'level': .5,
       'attack': 0,
-      'decay': 0.5,
+      'decay': 0,
       'distortion': 0
     },
     'midtom': {
-      'level': 1,
+      'level': .5,
       'attack': 0,
-      'decay': 0.5,
+      'decay': 0,
       'distortion': 0
     },
     'hitom': {
-      'level': 1,
+      'level': .5,
       'attack': 0,
-      'decay': 0.5,
+      'decay': 0,
       'distortion': 0
     },
     'rimshot': {
-      'level': 0.8,
-      'attack': 0.5,
-      'decay': 1,
+      'level': .5,
+      'attack': 0,
+      'decay': 0,
       'distortion': 0
     },
     'clap': {
-      'level': 1,
-      'attack': 0.2,
-      'decay': 0.5,
+      'level': .5,
+      'attack': 0,
+      'decay': 0,
       'distortion': 0
     },
     'hihat': {
-      'level': 0.2,
-      'attack': 1,
+      'level': .5,
+      'attack': 0,
       'decay': 0,
-      'distortion': 0.5
+      'distortion': 0
     },
     'cymbal': {
-      'level': 1,
-      'attack': 0.6,
+      'level': .5,
+      'attack': 0,
       'decay': 0,
-      'distortion': 0.3
+      'distortion': 0
     }
   },
   'rhythmSettings': {

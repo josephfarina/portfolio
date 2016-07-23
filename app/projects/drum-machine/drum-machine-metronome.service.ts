@@ -135,10 +135,12 @@ export class DrumMachineMetronomeService {
             decayLevel = 1 - this.sequencerLineUp['instrumentSettings'][type]['decay'];
 
         // dont let decay leval equal 0 -- it will not output a noise then
-        if (decayLevel === 0) {decayLevel = .05; };
         if (decayLevel > 1) { decayLevel = 1; }
         decay.gain.setValueAtTime(1, time);
-        decay.gain.linearRampToValueAtTime(0, time + (this.noteLength * decayLevel));
+        // formula to calculate the decay level onto a 0 - 1 scale
+        let decayValue = (time + this.noteLength + (this.noteLength * .25)) - (this.noteLength * (1 - decayLevel));
+        console.log(decayValue);
+        decay.gain.linearRampToValueAtTime(0, decayValue) ;
         return decay;
     }
 
@@ -149,7 +151,7 @@ export class DrumMachineMetronomeService {
 
         if (attackLevel > 1) { attackLevel = 1; }
         attack.gain.setValueAtTime(0, time);
-        attack.gain.linearRampToValueAtTime(1, time + (this.noteLength * attackLevel));
+        attack.gain.linearRampToValueAtTime(1, time + (this.noteLength * (attackLevel * 10)));
         return attack;
     }
 
