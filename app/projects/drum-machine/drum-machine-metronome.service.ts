@@ -13,7 +13,7 @@ export class DrumMachineMetronomeService {
     private tempo: number;
     private nextNoteTime: number = 0;
     private lookahead: number = 25.0;
-    private scheduleAheadTime: number = .2;
+    private scheduleAheadTime: number = .5;
     private noteLength: number = .25;
     private context: any;
     private isPlaying: boolean = false;
@@ -27,6 +27,7 @@ export class DrumMachineMetronomeService {
 
     init() {
         this.loadAudioSamples();
+        console.log(this.sampleBuffers);
         // this.context = new AudioContext();
         this.createAudioContext();
         this.timeWorker = new Worker('./app/projects/drum-machine/timeWorker.js');
@@ -104,15 +105,13 @@ export class DrumMachineMetronomeService {
 
 
     playSample(drumType: string, time: number, beat: number) {
-        console.log(beat);
         let source = this.context.createBufferSource(),
             level = this.level(drumType),
             decay = this.decay(drumType, time),
             volume = this.globalVolume(beat),
             attack = this.attack(drumType, time),
             distortion = this.distortion(drumType),
-            distortionGain = this.distortionGain(drumType),
-            convolver = this.convolver();
+            distortionGain = this.distortionGain(drumType);
 
         source.connect(decay);
         decay.connect(attack);
@@ -122,7 +121,6 @@ export class DrumMachineMetronomeService {
         distortionGain.connect(volume);
 
         volume.connect(this.context.destination);
-        // convolver.connect(this.context.destination);
         source.buffer = this.sampleBuffers[this.sequencerLineUp['projectSettings']['kit']][drumType];
         source.start(time);
     }
@@ -182,6 +180,7 @@ export class DrumMachineMetronomeService {
         let distortionAmount: number  = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 100;
 
         // i have no idea how this function works -- found on Mozilla
+        // TODO: Make this more effiecient it is using 10% of the memory
         function makeDistortionCurve(amount: number) {
             let k = typeof amount === 'number' ? amount : 50,
                 n_samples = 44100,
@@ -209,12 +208,6 @@ export class DrumMachineMetronomeService {
         if (levelLevel > 1) { levelLevel = 1; }
         level.gain.value = .8 - (this.sequencerLineUp['instrumentSettings'][type]['distortion'] * .5 );
         return level;
-    }
-
-    convolver() {
-        let convolver = this.context.createConvolver();
-        convolver.buffer = this.impulse;
-        return convolver;
     }
 
     getAudioContext(): any {

@@ -6,7 +6,8 @@ import { DrumMachineButtonDirective } from './directives/drum-machine-button.dir
 import { DrumMachineInstrumentButtonDirective } from './directives/drum-machine-instrumentbutton.directive';
 import { DrumMachineInstrumentBeatDirective } from './directives/drum-machine-beat.directive';
 import { DrumMachineStartButtonDirective } from './directives/drum-machine-startbutton.directive';
-import { DrumMachineClickKnobDirective } from './directives/drum-machine-clickknob.directive';
+import { DrumMachineKitButtonDirective } from './directives/drum-machine-kit.directive';
+
 
 @Component({
     moduleId: module.id,
@@ -19,7 +20,7 @@ import { DrumMachineClickKnobDirective } from './directives/drum-machine-clickkn
         DrumMachineInstrumentButtonDirective,
         DrumMachineInstrumentBeatDirective,
         DrumMachineStartButtonDirective,
-        DrumMachineClickKnobDirective
+        DrumMachineKitButtonDirective
     ]
 })
 
