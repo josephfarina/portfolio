@@ -10,7 +10,7 @@ export class DrumMachineInstrumentBeatDirective implements AfterViewInit, OnChan
     @Input('current-beat') currentBeat: number;
     private el: HTMLElement;
     private s: any;
-    private color: Object = { 'active': 'red', 'inactive': 'gray' };
+    private color: Object = { 'active': '#39B54A', 'inactive': '#003B05' };
     private checkIfSnapInit: boolean = false;
     constructor(private _el: ElementRef) { this.el = _el.nativeElement; }
 

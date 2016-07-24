@@ -117,7 +117,6 @@ export class DrumMachineMetronomeService {
 
         volume.connect(convolver);
         convolver.connect(this.context.destination);
-    
         source.buffer = this.sampleBuffers[type];
         source.start(time);
     }

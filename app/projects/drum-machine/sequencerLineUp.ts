@@ -4,7 +4,8 @@ export let SEQUENCER_LINEUP: Object = {
     'volume': .5,
     'reverb': 1,
     'beat': 0,
-    'accent': 0
+    'accent': 0,
+    'kit': '808'
   },
   'instrumentSettings': {
     'kick': {

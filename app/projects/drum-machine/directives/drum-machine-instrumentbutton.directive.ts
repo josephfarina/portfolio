@@ -9,6 +9,9 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
     @Output() value = new EventEmitter();
     @Input('type') instrument: string = 'default';
     @Input('current') currentInstrument: string = '';
+    @Input('button-group') buttonGroup: string = '';
+    @Input('kit') kit: string = 'default';
+    @Input('current-kit') currentKit: string;
 
     private el: HTMLElement;
     private s: any;
@@ -64,32 +67,66 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
     }
 
     check() {
-        if (this.instrument === this.currentInstrument) {
-            this.s.animate({ transform: 't0,1.2, s.98, .97' }, 100, mina.elastic );
+        console.log(this.buttonGroup);
+        if (this.buttonGroup === 'instrument') {
+            if (this.instrument === this.currentInstrument) {
+                this.s.animate({ transform: 't0,1.2, s.98, .97' }, 100, mina.elastic );
 
-            this.activeIndicator.animate({
-                    fill: this.colors['active'] },
-                    100,
-                    mina.easein
-                );
+                this.activeIndicator.animate({
+                        fill: this.colors['active'] },
+                        100,
+                        mina.easein
+                    );
 
-            this.text.forEach( (elem: any) => {
-                elem.animate({
-                    fill: this.colors['light-active']},
-                    100,
-                    mina.easein
-                );
-            });
-        } else {
-            this.activeIndicator.attr({ fill: this.colors['inactive'] });
-            this.text.forEach( (elem: any) => { elem.attr({ fill: this.colors['light-inactive']}); });
-            this.s.animate({ transform: '' }, 100, mina.elastic );
+                this.text.forEach( (elem: any) => {
+                    elem.animate({
+                        fill: this.colors['light-active']},
+                        100,
+                        mina.easein
+                    );
+                });
+            } else {
+                this.activeIndicator.attr({ fill: this.colors['inactive'] });
+                this.text.forEach( (elem: any) => { elem.attr({ fill: this.colors['light-inactive']}); });
+                this.s.animate({ transform: '' }, 100, mina.elastic );
+            }
         }
+        if (this.buttonGroup === 'kit') {
+            if (this.kit === this.currentKit) {
+                this.s.animate({ transform: 't0,1.2, s.98, .97' }, 100, mina.elastic );
+
+                this.activeIndicator.animate({
+                        fill: this.colors['active'] },
+                        100,
+                        mina.easein
+                    );
+
+                this.text.forEach( (elem: any) => {
+                    elem.animate({
+                        fill: this.colors['light-active']},
+                        100,
+                        mina.easein
+                    );
+                });
+            } else {
+                this.activeIndicator.attr({ fill: this.colors['inactive'] });
+                this.text.forEach( (elem: any) => { elem.attr({ fill: this.colors['light-inactive']}); });
+                this.s.animate({ transform: '' }, 100, mina.elastic );
+            }
+        }
+
     }
 
     valueOut() {
-        this.value.emit({
-            value: this.instrument
-        });
+        if (this.buttonGroup === 'instrument') {
+            this.value.emit({
+                value: this.instrument
+            });
+        }
+        if (this.buttonGroup === 'kit') {
+            this.value.emit({
+                value: this.kit
+            });
+        }
     }
 }

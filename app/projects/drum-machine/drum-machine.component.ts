@@ -56,6 +56,11 @@ export class DrumMachineComponent {
         this.currentType = event.value;
     }
 
+    kitSet(event: any) {
+        console.log(event);
+        this.sequencerLineUp['projectSettings']['kit'] = event.value;
+    }
+
     tempoValue(event: any) {
         console.log(event.value);
         // let tempo = (event.value * 120) + 60;

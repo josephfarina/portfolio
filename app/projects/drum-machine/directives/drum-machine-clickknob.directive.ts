@@ -25,16 +25,20 @@ export class DrumMachineClickKnobDirective implements AfterViewInit {
     private circ: any;
     constructor(private _el: ElementRef) { this.el = _el.nativeElement; }
 
-    @HostListener('wheel', ['$event']) onClick(e: any) {
+    @HostListener('wheel', ['$event']) onWheel(e: any) {
         e.preventDefault();
         let rotate = false;
-        console.log(rotate, e.deltaY)
-        if (e.deltaY > -.5 &&  e.deltaY < .5) {
+        if (e.deltaY === 0) {
+            console.log('euqls =0')
             rotate = true;
+            console.log('r', rotate);
         }
-        if (rotate) {
-         this.rotate(e.deltaY);
-         rotate = false;
+
+        console.log(e.deltaY, rotate)
+        if (e.deltaY < 0 || e.deltaY > 0 && rotate) {
+           this.rotate(e.deltaY);
+            console.log('> -0 &&  rotate')
+            rotate = false;
         }
     }
 
