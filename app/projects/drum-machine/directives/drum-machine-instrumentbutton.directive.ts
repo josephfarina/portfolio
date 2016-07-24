@@ -67,7 +67,7 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
     }
 
     check() {
-        console.log(this.buttonGroup);
+        // console.log(this.buttonGroup);
         if (this.buttonGroup === 'instrument') {
             if (this.instrument === this.currentInstrument) {
                 this.s.animate({ transform: 't0,1.2, s.98, .97' }, 100, mina.elastic );

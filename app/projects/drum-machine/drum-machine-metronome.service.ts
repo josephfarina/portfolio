@@ -1,3 +1,6 @@
+// TODO: I renamed all the hihat-closed to just hihat rename back when that function is added in
+
+// FIXMe: Very odd bug that is making all samples playback twice and causing extreme slowness
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -15,9 +18,12 @@ export class DrumMachineMetronomeService {
     private context: any;
     private isPlaying: boolean = false;
     private sequencerLineUp: Object = null;
-    private sampleBuffers: Object = {};
+    private sampleBuffers: Object = {
+        '808': {},
+        '909': {},
+        'acoustic': {}
+    };
     private impulse: any;
-    private samples: string[] = ['snare', 'clap', 'kick', 'cymbal', 'hihat', 'hitom', 'lowtom', 'midtom', 'rimshot'];
 
     init() {
         this.loadAudioSamples();
@@ -97,15 +103,15 @@ export class DrumMachineMetronomeService {
     }
 
 
-    playSample(type: string, time: number, beat: number) {
-
+    playSample(drumType: string, time: number, beat: number) {
+        console.log(beat);
         let source = this.context.createBufferSource(),
-            level = this.level(type),
-            decay = this.decay(type, time),
+            level = this.level(drumType),
+            decay = this.decay(drumType, time),
             volume = this.globalVolume(beat),
-            attack = this.attack(type, time),
-            distortion = this.distortion(type),
-            distortionGain = this.distortionGain(type),
+            attack = this.attack(drumType, time),
+            distortion = this.distortion(drumType),
+            distortionGain = this.distortionGain(drumType),
             convolver = this.convolver();
 
         source.connect(decay);
@@ -115,9 +121,9 @@ export class DrumMachineMetronomeService {
         distortion.connect(distortionGain);
         distortionGain.connect(volume);
 
-        volume.connect(convolver);
-        convolver.connect(this.context.destination);
-        source.buffer = this.sampleBuffers[type];
+        volume.connect(this.context.destination);
+        // convolver.connect(this.context.destination);
+        source.buffer = this.sampleBuffers[this.sequencerLineUp['projectSettings']['kit']][drumType];
         source.start(time);
     }
 
@@ -156,7 +162,6 @@ export class DrumMachineMetronomeService {
         decay.gain.setValueAtTime(1, time);
         // formula to calculate the decay level onto a 0 - 1 scale
         let decayValue = (time + this.noteLength + (this.noteLength * .25)) - (this.noteLength * (1 - decayLevel));
-        console.log(decayValue);
         decay.gain.linearRampToValueAtTime(0, decayValue) ;
         return decay;
     }
@@ -217,31 +222,38 @@ export class DrumMachineMetronomeService {
     }
 
     loadAudioSamples() {
-        let urlBody = 'public/909_Samples/';
+        this.loadDrumKit();
 
-        for (let i = 0; i < this.samples.length; i++) {
-            let request = new XMLHttpRequest();
-            request.open('GET', urlBody + this.samples[i] + '.wav', true);
-            request.responseType = 'arraybuffer';
-            request.onload = () => {
-                this.context.decodeAudioData(request.response).then((decodedData: any) => {
-                    this.sampleBuffers[this.samples[i]] = decodedData;
-
-                }, (e: any) => { console.log('Error with decoding audio data' + e.err); });
-            };
-            request.send();
-        }
-
+        let urlBody = 'public/samples/impulse/';
         let impulse = new XMLHttpRequest();
-        impulse.open('GET', urlBody + 'FatMansMisery.wav', true);
+        impulse.open('GET', urlBody + 'church_impulse.wav', true);
         impulse.responseType = 'arraybuffer';
         impulse.onload = () => {;
             this.context.decodeAudioData(impulse.response).then((decodedData: any) => {
                 this.impulse = decodedData;
-
-            }, (e: any) => { console.log('Error with decoding audio data' + e.err); });
+            }, (e: any) => { console.log('Error with reverb audio data' + e.err); });
         };
         impulse.send();
+    }
+
+    loadDrumKit() {
+        let kits: string[] = ['808', '909', 'acoustic'],
+            samples: string[] = ['snare', 'clap', 'kick', 'cymbal', 'hihat', 'hitom', 'lowtom', 'midtom', 'rimshot'],
+            urlBody = 'public/samples/';
+
+        for (let kit = 0; kit < kits.length; kit++) {
+            for (let sample = 0; sample < samples.length; sample++) {
+                let request = new XMLHttpRequest();
+                request.open('GET', urlBody + kits[kit] + '/' + samples[sample] + '.wav', true);
+                request.responseType = 'arraybuffer';
+                request.onload = () => {
+                    this.context.decodeAudioData(request.response).then((decodedData: any) => {
+                        this.sampleBuffers[kits[kit]][samples[sample]] = decodedData;
+                    }, (e: any) => { console.log('Error with drum audio data' + e.err); });
+                };
+                request.send();
+            }
+        }
     }
 
 }

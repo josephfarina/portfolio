@@ -19,7 +19,7 @@ export class DrumMachineInstrumentBeatDirective implements AfterViewInit, OnChan
         if (this.checkIfSnapInit) {
             this.check();
         };
-        console.log('changed', this.currentBeat);
+        // console.log('changed', this.currentBeat);
     }
 
     ngAfterViewInit() {

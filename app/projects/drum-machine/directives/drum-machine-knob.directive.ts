@@ -59,7 +59,6 @@ export class DrumMachineKnobDirective implements AfterViewInit {
 
     calculateInitialAngleFromValue() {
         let angle = this.startingAngle * (this.maxAngle - this.minAngle) + this.minAngle;
-        console.log(angle);
         return angle * 10;
     }
 

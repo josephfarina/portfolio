@@ -48,7 +48,7 @@ export class DrumMachineComponent {
 
     instrumentKnob(event: any, type: string, knob: string) {
         this.sequencerLineUp['instrumentSettings'][type][knob] = event.value;
-        console.log(event.value, type, knob);
+        // console.log(event.value, type, knob);
         this.update();
     }
 
@@ -57,12 +57,13 @@ export class DrumMachineComponent {
     }
 
     kitSet(event: any) {
-        console.log(event);
+        // console.log(event);
         this.sequencerLineUp['projectSettings']['kit'] = event.value;
+        this.update();
     }
 
     tempoValue(event: any) {
-        console.log(event.value);
+        // console.log(event.value);
         // let tempo = (event.value * 120) + 60;
         // tempo / 2 is only because the beat is in double time
         this.sequencerLineUp['projectSettings']['tempo'] = event.value;
@@ -75,25 +76,25 @@ export class DrumMachineComponent {
     }
 
     volumeValue(event: any) {
-        console.log(event.value)
+        // console.log(event.value)
         this.sequencerLineUp['projectSettings']['volume'] = event.value;
         this.update();
-        console.log(this.sequencerLineUp);
+        // console.log(this.sequencerLineUp);
     }
 
     reverbValue(event: any) {
-        console.log(event);
+        // console.log(event);
     }
 
     beatOutputValue(event: any, beatNum: number) {
-        console.log(event.value, beatNum);
+        // console.log(event.value, beatNum);
         // beatnum - 1 is changing the rythm 1-16 into a 0-15 array
         this.sequencerLineUp['rhythmSettings'][beatNum - 1][this.currentType] = event.value;
     }
 
     outputValue(event: any, knob: string) {
         // TODO: set this up so it assigns the value of each knob to its rightful value
-        console.log(event, knob);
+        // console.log(event, knob);
         switch (knob) {
             case 'tempo':
                 this.sequencerLineUp['projectSettings']['tempo'] = event.value;

@@ -29,15 +29,15 @@ export class DrumMachineClickKnobDirective implements AfterViewInit {
         e.preventDefault();
         let rotate = false;
         if (e.deltaY === 0) {
-            console.log('euqls =0')
+            // console.log('euqls =0')
             rotate = true;
-            console.log('r', rotate);
+            // console.log('r', rotate);
         }
 
-        console.log(e.deltaY, rotate)
+        // console.log(e.deltaY, rotate)
         if (e.deltaY < 0 || e.deltaY > 0 && rotate) {
            this.rotate(e.deltaY);
-            console.log('> -0 &&  rotate')
+            // console.log('> -0 &&  rotate')
             rotate = false;
         }
     }
@@ -110,7 +110,7 @@ export class DrumMachineClickKnobDirective implements AfterViewInit {
 
     calculateInitialAngleFromValue() {
         let angle = this.startingAngle * (this.maxAngle - this.minAngle) + this.minAngle;
-        console.log(angle);
+        // console.log(angle);
         return angle * 10;
     }
 
