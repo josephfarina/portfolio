@@ -1,9 +1,10 @@
+@import 'https://fonts.googleapis.com/css?family=Arvo:700|Roboto+Condensed';
 /*
  * Base styles
  */
-body {
+body, p, .p {
   color: black;
-  font-size: 18px;
+  font-size: 1.5rem;
   font-family: "Roboto Condensed", sans-serif;
   font-weight: 300;
   line-height: 1.6; }
@@ -11,29 +12,6 @@ body {
 /*
  * Typography
  */
-.link, a {
-  color: red;
-  text-decoration: none; }
-  .link:visited, a:visited {
-    color: red; }
-  .link:hover, a:hover, .link:visited:hover, a:visited:hover {
-    color: red;
-    text-decoration: underline; }
-
-.fixed, pre,
-code {
-  font-family: "Andale Mono", AndaleMono, monospace;
-  font-size: 15px;
-  line-height: 1.2; }
-
-.italic, i,
-em {
-  font-style: italic; }
-
-.bold, b,
-strong {
-  font-weight: 700; }
-
 .h1, h1,
 .h2,
 h2,
@@ -45,7 +23,7 @@ h4,
 h5,
 .h6,
 h6 {
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Arvo", serif;
   font-weight: 700; }
 
 .h1, h1,
@@ -59,7 +37,7 @@ h4 {
   line-height: 1.3; }
 
 .h1, h1 {
-  font-size: 400%;
+  font-size: 500%;
   letter-spacing: -2px; }
 
 .h2, h2 {
@@ -78,18 +56,6 @@ h4 {
 .h6, h6 {
   font-size: 100%; }
 
-.block-margins, p,
-ul,
-ol,
-pre {
-  margin: 1em 0; }
-
-.unordered-list, ul {
-  list-style-type: disc; }
-
-.ordered-list, ol {
-  list-style: decimal; }
-
 .text-left {
   text-align: left   !important; }
 
@@ -99,18 +65,59 @@ pre {
 .text-right {
   text-align: right  !important; }
 
-/*
- * Object definitions
- */
-.header-block {
-  font-size: 110%; }
-  .header-block .h1, .header-block h1 {
-    font-size: 450%;
-    margin-top: 0 !important; }
+.small-text {
+  font-size: 90%;
+  text-transform: uppercase; }
 
-.author-block {
-  border-top: 3px double black;
-  margin-top: 4em; }
+body {
+  height: 100%;
+  background-color: #EE4236;
+  color: white;
+  overflow: hidden; }
+
+p, .p {
+  color: white; }
+
+.project-container {
+  margin-top: 200px;
+  margin-left: 50px;
+  max-width: 500px;
+  border-left: .5px solid white; }
+
+.project-description {
+  margin-left: 25px;
+  margin-bottom: 25px; }
+
+.project-container-heading {
+  padding-left: 25px; }
+
+.project-groups {
+  max-height: 30vh;
+  overflow-y: scroll;
+  margin-bottom: 0; }
+
+.project-group {
+  position: relative;
+  margin-top: 15px;
+  cursor: pointer; }
+
+.project-group-heading {
+  margin-bottom: 0;
+  padding-bottom: 0; }
+
+.project-group-number {
+  float: left;
+  padding-right: 20px;
+  padding-top: 18px;
+  padding-bottom: 25px;
+  padding-left: 25px; }
+
+.project-group-caption {
+  padding-top: 0;
+  margin-top: 0; }
+
+.inactive {
+  color: black; }
 
 .navbar {
   z-index: 1000;
@@ -291,7 +298,8 @@ section.show-divider {
   right: 0;
   top: 0; }
   .box-content h3,
-  .box-content p {
+  .box-content p,
+  .box-content .p {
     text-align: center; }
   .box-content:hover {
     cursor: pointer; }
@@ -522,13 +530,10 @@ pre[class*="language-"] {
   color: #e90; }
 
 .token.important,
-.token.bold,
-b.token,
-strong.token {
+.token.bold {
   font-weight: bold; }
 
-.token.italic, i.token,
-em.token {
+.token.italic {
   font-style: italic; }
 
 .token.entity {

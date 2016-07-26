@@ -1,0 +1,61 @@
+$project-container-marginleft: 25px;
+
+body {
+    height: 100%;
+    background-color: #EE4236;
+    color: white;
+    overflow: hidden;
+}
+
+p {
+    color: white;
+}
+
+.project-container {
+    margin-top: 200px;
+    margin-left: 50px;
+    max-width: 500px;
+    border-left: .5px solid white;    
+}
+.project-description {
+    margin-left: $project-container-marginleft;
+    margin-bottom: 25px;
+}
+
+.project-container-heading {
+    padding-left: $project-container-marginleft;
+}
+
+.project-groups {
+    max-height: 30vh;
+    overflow-y: scroll;
+    margin-bottom: 0;
+}
+
+.project-group {
+    position: relative;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.project-group-heading {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.project-group-number {
+    float: left; 
+    padding-right: 20px;
+    padding-top: 18px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+}
+
+.project-group-caption {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.inactive {
+    color: black;
+}

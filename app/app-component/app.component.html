@@ -1,4 +1,39 @@
-<nav class="navbar navbar-default navbar-fixed-top" [class.is-active]="isActive">
+<div class="clearfix"></div>
+
+<div class="project-container">
+    <p class="project-description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae aut assumenda laborum fugit est quibusdam quo minus! Lorem
+        ipsum dolor sit amet, consectetur adipisicing elit.
+    </p>
+    <p class="project-container-heading small-text">Showcase</p>
+    <div class="project-groups">
+
+        <div class="project-group" *ngFor="let project of projects" (mouseenter)="setActiveProject(project)" [class.inactive]="project === activeProject">
+            <span class="project-group-number small-text">{{project.number}}</span>
+            <h3 class="project-group-heading">{{project.heading}}</h3>
+            <p class=" project-group-caption small-text" [class.inactive]="project === activeProject">{{project.caption}}</p>
+        </div>
+
+    </div>
+</div>
+
+// TODO: make image animate in like http://www.alexandre-pidault.com/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<nav class="navbar navbar-default navbar-fixed-top" [class.is-active]="isActive">
     <div class="container-fluid">
         <div class="h5 light">{{routeName}}</div>
     </div>
@@ -26,6 +61,5 @@
 </nav>
 <div class="nav-overlay" [class.is-active]="isActive" (click)="toggleActive()"></div>
 
-<!--TODO: Using 'home' as a way for ngIf is probably a bad way -- figure out a better one-->
 <my-project-view></my-project-view>
-<my-project-selections *ngIf='routeName === "Home"' ></my-project-selections>
+<my-project-selections *ngIf='routeName === "Home"' ></my-project-selections>-->
