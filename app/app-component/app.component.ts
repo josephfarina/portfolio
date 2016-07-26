@@ -24,19 +24,12 @@ export class AppComponent implements OnInit {
     private routeName: string;
     private timeToAnimate: boolean = false;
     private interval: any;
-    private activeProject: Project =
-    {
-        number: '',
-        heading: '',
-        caption: '',
-        color: ''
-    }
     private projects: Project[] = [
         {
             number: '01',
             heading: 'Sequencer',
             caption: 'UI Built with scss and makes use of bootstrap',
-            color: '#37A3FE'
+            color: '#ED4549'
         },
         {
             number: '02',
@@ -51,6 +44,8 @@ export class AppComponent implements OnInit {
             color: '#FFBE01'
         }
     ];
+    private activeProject: Project = this.projects[0];
+
     constructor(
         private navTitleService: NavTitleService,
         private router: Router) {

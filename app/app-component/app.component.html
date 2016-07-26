@@ -10,7 +10,12 @@
     </div>
 </nav>
 
-    <div [ngClass]="{'animated slideInRight': '02' === activeProject.number, 'inactive-image': '02' !== activeProject.number, 'slideInLeft': timeToAnimate}" [class.active]="'02' === activeProject.number" class="single-div-container">
+    <div 
+    [ngClass]="{
+    'active-image animated slideInRight':    '02' === activeProject.number, 
+    'inactive-image':           '02' !== activeProject.number
+    }" 
+    class="single-div-container">
         <div id="calculator" class="single-div__calculator" ></div>
     </div>
     <div class="project-container animated fadeIn">

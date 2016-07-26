@@ -9,7 +9,8 @@ body {
     height: 100%;
     background-color: #EE4236;
     color: white;
-    overflow: hidden
+    overflow: hidden;
+    transition: all .2s cubic-bezier(.87,-.41,.19,1.44);
 }
 
 p {
@@ -18,11 +19,13 @@ p {
 
 .project-container {
     position: absolute;
-    bottom: 10vh;
+    bottom: 20vh;
     margin-left: 50px;
     margin-right: 50px;
     max-width: 500px;
-    border-left: .5px solid white;    
+    border-left: .5px solid white;  
+    transition: all .2s cubic-bezier(.87,-.41,.19,1.44);
+      
 }
 .project-description {
     margin-left: $project-container-marginleft;
@@ -34,9 +37,10 @@ p {
 }
 
 .project-groups {
-    max-height: 30vh;
+    max-height: 40vh;
     overflow-y: scroll;
     margin-bottom: 0;
+    transition: all .2s cubic-bezier(.87,-.41,.19,1.44);    
 }
 
 .project-group {
@@ -67,6 +71,8 @@ p {
     position: absolute;
     top: 50vh;
     right: 250px;
+    transition: all .2s cubic-bezier(.87,-.41,.19,1.44);    
+    
 }
 
 .single-div__calculator {
@@ -75,8 +81,10 @@ p {
     transform: scale(2);
 }
 
+.active-image {
+    display: block;
+}
 .inactive-image {
-    color: black;
     display: none;
 }
 
@@ -92,14 +100,15 @@ p {
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 850px) { 
+    .project-container {
+        bottom: 5vh;
+    }
   .single-div-container {
       position: relative;
       right: auto;
-      display: block;
       margin: 0 auto;
       top: 100px;
-      
   }
   .single-div__calculator {
       transform: scale(1.3);
@@ -107,4 +116,9 @@ p {
       right: auto;
       left: auto;
   }
+}
+@media (max-width: 450px) { 
+    .project-groups {
+        max-height: 35vh;
+    }
 }
