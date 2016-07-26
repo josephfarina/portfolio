@@ -1,65 +1,77 @@
-<div class="clearfix"></div>
+<div [style.backgroundColor]="activeProject.color" class="home-container">
 
-<div class="project-container">
-    <p class="project-description">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae aut assumenda laborum fugit est quibusdam quo minus! Lorem
-        ipsum dolor sit amet, consectetur adipisicing elit.
-    </p>
-    <p class="project-container-heading small-text">Showcase</p>
-    <div class="project-groups">
+<nav class="animated fadeIn">
+    <div class="navigation-logo">
+        <h5>JOEY FARINA</h5>
+    </div>
+    <div class="navigation-menu">
+        <span class="small-text menu">resume</span>
+        <span class="small-text menu">contact</span>
+    </div>
+</nav>
 
-        <div class="project-group" *ngFor="let project of projects" (mouseenter)="setActiveProject(project)" [class.inactive]="project === activeProject">
-            <span class="project-group-number small-text">{{project.number}}</span>
-            <h3 class="project-group-heading">{{project.heading}}</h3>
-            <p class=" project-group-caption small-text" [class.inactive]="project === activeProject">{{project.caption}}</p>
+    <div [ngClass]="{'animated slideInRight': '02' === activeProject.number, 'inactive-image': '02' !== activeProject.number, 'slideInLeft': timeToAnimate}" [class.active]="'02' === activeProject.number" class="single-div-container">
+        <div id="calculator" class="single-div__calculator" ></div>
+    </div>
+    <div class="project-container animated fadeIn">
+        <p class="project-description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae aut assumenda laborum fugit est quibusdam quo minus! Lorem
+            ipsum dolor sit amet, consectetur adipisicing elit.
+        </p>
+        <p class="project-container-heading small-text">Showcase</p>
+        <div class="project-groups">
+            <div class="project-group" *ngFor="let project of projects" (mouseenter)="setActiveProject(project)" [class.inactive]="project === activeProject">
+                <span class="project-group-number small-text">{{project.number}}</span>
+                <h3 class="project-group-heading">{{project.heading}}</h3>
+                <p class=" project-group-caption small-text" [class.inactive]="project === activeProject">{{project.caption}}</p>
+            </div>
         </div>
-
     </div>
-</div>
-
-// TODO: make image animate in like http://www.alexandre-pidault.com/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<nav class="navbar navbar-default navbar-fixed-top" [class.is-active]="isActive">
-    <div class="container-fluid">
-        <div class="h5 light">{{routeName}}</div>
-    </div>
-
-    <button [class.is-active]="isActive" (click)="toggleActive()" class="hamburger">
-            <span>toggle menu</span>
-    </button>
-</nav>
-
-<nav class="nav-text" [class.is-active]="isActive">
-    <ul>
-        <a href="/calculator">
-            <li class="h2 link">Home</li>
-        </a>
-        <a href="#">
-            <li class="h2 link">Projects</li>
-        </a>
-        <a href="#">
-            <li class="h2 link">Code</li>
-        </a>
-        <a href="#">
-            <li class="h2 link">GitHub</li>
-        </a>
-    </ul>
-</nav>
-<div class="nav-overlay" [class.is-active]="isActive" (click)="toggleActive()"></div>
-
-<my-project-view></my-project-view>
-<my-project-selections *ngIf='routeName === "Home"' ></my-project-selections>-->
+    
+    
+    <!--// TODO: make image animate in like http://www.alexandre-pidault.com/-->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--<nav class="navbar navbar-default navbar-fixed-top" [class.is-active]="isActive">
+        <div class="container-fluid">
+            <div class="h5 light">{{routeName}}</div>
+        </div>
+    
+        <button [class.is-active]="isActive" (click)="toggleActive()" class="hamburger">
+                <span>toggle menu</span>
+        </button>
+    </nav>
+    
+    <nav class="nav-text" [class.is-active]="isActive">
+        <ul>
+            <a href="/calculator">
+                <li class="h2 link">Home</li>
+            </a>
+            <a href="#">
+                <li class="h2 link">Projects</li>
+            </a>
+            <a href="#">
+                <li class="h2 link">Code</li>
+            </a>
+            <a href="#">
+                <li class="h2 link">GitHub</li>
+            </a>
+        </ul>
+    </nav>
+    <div class="nav-overlay" [class.is-active]="isActive" (click)="toggleActive()"></div>
+    
+    <my-project-view></my-project-view>
+    <my-project-selections *ngIf='routeName === "Home"' ></my-project-selections>--></div>

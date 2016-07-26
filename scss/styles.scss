@@ -11,7 +11,6 @@ $gray: lighten($black, 80%);
 @import 'layout/module';
 
 body {
-  margin-top: 50px;
 }
 
 section.landing-hero {
@@ -103,4 +102,5 @@ section.show-divider {
 @import 'projects/single-divs/calculator-icon';
 @import 'projects/single-divs/creditcard-icon';
 @import 'vendor/prism';
+@import 'vendor/animate';
 @import 'projects/module';

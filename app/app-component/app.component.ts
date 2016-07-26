@@ -22,25 +22,33 @@ export class AppComponent implements OnInit {
     private showEnabled: boolean = false;
     private isActive: boolean = false;
     private routeName: string;
-    private activeProject: Project;
+    private timeToAnimate: boolean = false;
+    private interval: any;
+    private activeProject: Project =
+    {
+        number: '',
+        heading: '',
+        caption: '',
+        color: ''
+    }
     private projects: Project[] = [
         {
             number: '01',
             heading: 'Sequencer',
             caption: 'UI Built with scss and makes use of bootstrap',
-            color: 'blue'
+            color: '#37A3FE'
         },
         {
             number: '02',
             heading: 'Calculator',
             caption: 'An 808 inspired sequencer built with angular2',
-            color: 'yellow'
+            color: '#EF3A66'
         },
         {
             number: '03',
             heading: 'TicTacToe',
             caption: 'Play a couple games, eh?',
-            color: 'purple'
+            color: '#FFBE01'
         }
     ];
     constructor(
@@ -55,9 +63,16 @@ export class AppComponent implements OnInit {
         this.showEnabled = false;
     }
 
+    intervalAnimate() {
+        setTimeout(() => {
+        this.timeToAnimate = true;
+            console.log(this.timeToAnimate);
+        }, 5500);
+    }
+
     setActiveProject(project: Project) {
-        console.log(project)
         this.activeProject = project;
+        this.intervalAnimate();
     }
 
     toggleActive() {
