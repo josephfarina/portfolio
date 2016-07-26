@@ -180,7 +180,32 @@ export class DrumMachineMetronomeService {
         let distortionAmount: number  = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 100;
 
         // i have no idea how this function works -- found on Mozilla
-        // TODO: Make this more effiecient it is using 10% of the memory
+        /* TODO: Make this more effiecient it is using 10% of the memory
+
+            pb.stomp.OverdriveModel.prototype.createWSCurve = function(amount) {
+                var k = amount;
+                var n_samples = 22050;
+                this.wsCurve = new Float32Array(n_samples);
+                var deg = Math.PI / 180;
+                for (var i = 0; i < n_samples; i += 1) {
+                    var x = i * 2 / n_samples - 1;
+                    this.wsCurve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x));
+                }
+                this.waveShaper.curve = this.wsCurve;
+            };
+
+            **
+            * Sets the drive level.
+            *
+            * @param {number} newDrive Drive level to set.
+            *
+            pb.stomp.OverdriveModel.prototype.setDrive = function(newDrive) {
+                this.createWSCurve(10 * newDrive);
+            };
+
+
+        */
+
         function makeDistortionCurve(amount: number) {
             let k = typeof amount === 'number' ? amount : 50,
                 n_samples = 44100,
