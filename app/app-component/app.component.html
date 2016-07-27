@@ -28,6 +28,17 @@
     class="single-div-container">
         <img class="sequencer-image" src="public/assets/sequencer.svg" alt="sequencer">
     </div>
+
+    <div 
+    [ngClass]="{
+    'active-image animated slideInRight':    '03' === activeProject.number, 
+    'inactive-image':           '03' !== activeProject.number
+    }" 
+    class="single-div-container">
+        <img class="tictactoe-image" src="public/assets/tictactoe.svg" alt="sequencer">
+    </div>
+
+
 <!--TEXT-->
     <div class="project-container animated fadeIn">
         <p class="project-description">
@@ -48,7 +59,7 @@
     <!--// TODO: make image animate in like http://www.alexandre-pidault.com/-->
     
     
-    
+    </div>
     
     
     
@@ -90,4 +101,4 @@
     <div class="nav-overlay" [class.is-active]="isActive" (click)="toggleActive()"></div>
     
     <my-project-view></my-project-view>
-    <my-project-selections *ngIf='routeName === "Home"' ></my-project-selections>--></div>
+    <my-project-selections *ngIf='routeName === "Home"' ></my-project-selections>-->

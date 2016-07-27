@@ -149,7 +149,14 @@ p, .p {
 .sequencer-image {
   position: relative;
   bottom: 20vh;
+  right: 5;
   width: 400px; }
+
+.tictactoe-image {
+  position: relative;
+  bottom: 20vh;
+  right: 125px;
+  width: 200px; }
 
 .active-image {
   display: block; }
@@ -166,7 +173,12 @@ p, .p {
     transform: scale(1.3); }
   .sequencer-image {
     right: -10vh;
-    width: 300px; } }
+    width: 300px; }
+  .tictactoe-image {
+    position: relative;
+    bottom: 20vh;
+    right: 0;
+    width: 170px; } }
 
 @media (max-width: 950px) {
   .project-container {
@@ -187,7 +199,13 @@ p, .p {
     right: auto;
     display: block;
     margin: 0 auto;
-    width: 200px; } }
+    width: 200px; }
+  .tictactoe-image {
+    bottom: 40px;
+    right: auto;
+    display: block;
+    margin: 0 auto;
+    width: 125px; } }
 
 @media (max-width: 450px) {
   .project-groups {
