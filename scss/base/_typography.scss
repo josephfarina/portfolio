@@ -92,6 +92,10 @@ h6 {
 	@extend .h6;
 }
 
+a {
+	@extend p;
+	text-decoration: none;
+}
 
 .text-left {
 	text-align: left   !important;
