@@ -95,6 +95,10 @@ h6 {
 a {
 	@extend p;
 	text-decoration: none;
+	&:hover {
+	@extend p;
+	text-decoration: none;		
+	}
 }
 
 .text-left {
