@@ -15,18 +15,18 @@ $nav-transition-close: opacity .5s, visibility .6s;
 }
 
 .navigation-logo {
-    left: 100px;
+    left: 75px;
 }
 
 @media (max-width: 850px) {
   .navigation-logo {
       transform: rotate(90deg);
-      left: 15px;
+      left: 0px;
       top: 100px;
   }
   .navigation-menu {
       transform: rotate(90deg);
-      left: 0px;
+      left: -15px;
       right: auto;
       top: 117px;      
   } 

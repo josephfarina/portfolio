@@ -29,19 +29,19 @@ export class AppComponent implements OnInit {
             number: '01',
             heading: 'Sequencer',
             caption: 'UI Built with scss and makes use of bootstrap',
-            color: '#ED4549'
+            color: '#36D2C7'
         },
         {
             number: '02',
             heading: 'Calculator',
             caption: 'An 808 inspired sequencer built with angular2',
-            color: '#EF3A66'
+            color: '#8EDB37'
         },
         {
             number: '03',
             heading: 'TicTacToe',
             caption: 'Play a couple games, eh?',
-            color: '#FFBE01'
+            color: '#FFAF27'
         }
     ];
     private activeProject: Project = this.projects[0];

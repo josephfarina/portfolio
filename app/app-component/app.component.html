@@ -10,6 +10,7 @@
     </div>
 </nav>
 
+<!--IMAGES-->
     <div 
     [ngClass]="{
     'active-image animated slideInRight':    '02' === activeProject.number, 
@@ -18,6 +19,16 @@
     class="single-div-container">
         <div id="calculator" class="single-div__calculator" ></div>
     </div>
+
+    <div 
+    [ngClass]="{
+    'active-image animated slideInRight':    '01' === activeProject.number, 
+    'inactive-image':           '01' !== activeProject.number
+    }" 
+    class="single-div-container">
+        <img class="sequencer-image" src="public/assets/sequencer.svg" alt="sequencer">
+    </div>
+<!--TEXT-->
     <div class="project-container animated fadeIn">
         <p class="project-description">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae aut assumenda laborum fugit est quibusdam quo minus! Lorem
@@ -25,10 +36,10 @@
         </p>
         <p class="project-container-heading small-text">Showcase</p>
         <div class="project-groups">
-            <div class="project-group" *ngFor="let project of projects" (mouseenter)="setActiveProject(project)" [class.inactive]="project === activeProject">
+            <div class="project-group" *ngFor="let project of projects" (mouseenter)="setActiveProject(project)" [class.text-inactive]="project !== activeProject">
                 <span class="project-group-number small-text">{{project.number}}</span>
                 <h3 class="project-group-heading">{{project.heading}}</h3>
-                <p class=" project-group-caption small-text" [class.inactive]="project === activeProject">{{project.caption}}</p>
+                <p class=" project-group-caption small-text" [class.text-inactive]="project !== activeProject">{{project.caption}}</p>
             </div>
         </div>
     </div>
