@@ -20,7 +20,7 @@ p {
 .project-container {
     position: absolute;
     bottom: 20vh;
-    margin-left: 50px;
+    margin-left: 100px;
     margin-right: 50px;
     max-width: 500px;
     border-left: .5px solid white;  
@@ -99,7 +99,10 @@ p {
 
 
 
-@media (max-width: 1150px) and (min-width: 900px) {
+@media (max-width: 1150px) and (min-width: 950px) {
+.project-container {
+    margin-left: 75px;
+}
   .single-div-container {
       right: 150px;
   }
@@ -115,8 +118,9 @@ p {
 
 }
 
-@media (max-width: 900px) { 
+@media (max-width: 950px) { 
     .project-container {
+        margin-left: 50px;
         bottom: 5vh;
     }
   .single-div-container {
