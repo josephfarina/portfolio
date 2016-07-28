@@ -1,5 +1,4 @@
 import { Directive, ElementRef, EventEmitter, AfterViewInit, OnChanges, SimpleChanges, Output, Input } from '@angular/core';
-let Snap = require( 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js');
 
 @Directive({ selector: '[my-button-pusher]' })
 
@@ -7,8 +6,7 @@ export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
     @Output() value = new EventEmitter();
     @Input('initial') isActivated: boolean = false;
 
-    private el: HTMLElement;
-    private isClicked: boolean = false;
+    private el: any;
     private s: any;
     private activeIndicator: any;
     private activeLight: Object = { active: 'red' };
@@ -22,7 +20,6 @@ export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         // FIXME: this is a hacky way of making sure that Snap has been initiated -- It cant be called before snap is created
         if (this.checkIfSnapInit) {
-            console.log('ch', this.isActivated);
             this.check();
         };
     }
@@ -34,21 +31,21 @@ export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
         this.init();
         this.checkIfSnapInit = true;
 
-        this.s.hover(() => {
+        this.s.hover( (e: any) => {
             if (this.isActivated) {
                 this.s.animate({ transform: 't0, -2.5' }, 200, mina.elastic);
                 this.activeIndicator.animate({ fill: '#FF4856' }, 200, mina.easeinout);
             }
         });
 
-        this.s.mouseout(() => {
+        this.s.mouseout( (e: any) => {
             if (this.isActivated) {
                 this.s.animate({ transform: '' }, 200, mina.elastic);
                 this.activeIndicator.animate({ fill: this.activeLight['inactive'] }, 200, mina.easeinout);
             }
         });
 
-        this.s.click(() => {
+        this.s.click( (e: any) => {
             this.check();
             this.valueOut();
         });

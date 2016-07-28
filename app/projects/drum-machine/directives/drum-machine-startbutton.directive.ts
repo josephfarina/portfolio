@@ -1,5 +1,4 @@
 import { Directive, ElementRef, EventEmitter, AfterViewInit, Output, Input, OnChanges, SimpleChanges } from '@angular/core';
-let Snap = require( 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js');
 
 @Directive({
     selector: '[my-start-button-pusher]'
@@ -8,7 +7,7 @@ let Snap = require( 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/d
 export class DrumMachineStartButtonDirective implements AfterViewInit, OnChanges {
     @Output() value = new EventEmitter();
 
-    private el: HTMLElement;
+    private el: any;
     private s: any;
     private text: any;
     private background: any;
@@ -34,21 +33,21 @@ export class DrumMachineStartButtonDirective implements AfterViewInit, OnChanges
         this.checkIfSnapInit = true;
         this.check();
 
-        this.s.hover(() => {
+        this.s.hover((e: any) => {
             if (this.start === true) {
                 this.text.forEach((x: any) => { x.animate({ fill: this.colors['active-text'] }, 100, mina.easein); });
                 this.s.animate({ transform: 't0,1, s.99, .98' }, 100, mina.elastic);
             }
         });
 
-        this.s.mouseout(() => {
+        this.s.mouseout((e: any) => {
             if (this.start === true) {
                 this.text.forEach((x: any) => { x.animate({ fill: this.colors['inactive-text'] }, 100, mina.easein); });
                 this.s.animate({ transform: '' }, 100, mina.elastic);
             }
         });
 
-        this.s.click(() => {
+        this.s.click((e: any) => {
             this.valueOut();
             this.check();
         });
