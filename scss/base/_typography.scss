@@ -1,60 +1,35 @@
+@import 'https://fonts.googleapis.com/css?family=Arvo:700|Roboto+Condensed';
+
 $text-color: $primary-color;
 $heading-color: $light-color;
 $link-color: $accent-color;
 $link-hover-color: saturate($link-color, 20%);
 $link-visited-color: saturate($link-color, 10%);
 $base-font-family: 'Roboto Condensed', sans-serif;
-$base-font-size: 18px;
+$base-font-size: 1.5rem;
 $base-font-weight: 300;
 $fixed-font-family: 'Andale Mono', AndaleMono, monospace;
-$fixed-font-size: 15px;
+$fixed-font-size: 2rem;
 $fixed-line-height: 1.2;
-$heading-font-family: 'Roboto Condensed', sans-serif;
+$heading-font-family: 'Arvo', serif;
 $heading-font-weight: 700;
 
 /*
  * Base styles
  */
 
-body {
+body, p {
 	color: $text-color;
 	font-size: $base-font-size;
 	font-family: $base-font-family;
 	font-weight: $base-font-weight;
 	line-height: 1.6;
+	letter-spacing: 1px;
 }
 
 /*
  * Typography
  */
-
-.link {
-	color: $link-color;
-	text-decoration: none;
-
-	&:visited {
-		color: $link-visited-color;
-	}
-
-	&:hover,
-	&:visited:hover {
-		color: $link-hover-color;
-		text-decoration: underline;
-	}
-}
-
-.fixed {
-	font-family: $fixed-font-family;
-	font-size: $fixed-font-size;
-	line-height: $fixed-line-height;
-}
-
-.italic {
-	font-style: italic;
-}
-.bold {
-	font-weight: 700;
-}
 
 .h1,
 .h2,
@@ -74,7 +49,7 @@ body {
 	line-height: 1.3;
 }
 .h1 {
-	font-size: 400%;
+	font-size: 500%;
 	letter-spacing: -2px;
 }
 .h2 {
@@ -94,28 +69,8 @@ body {
 	font-size: 100%;
 }
 
-.block-margins {
-	margin: 1em 0;
-}
-
-.unordered-list {
-	list-style-type: disc;
-}
-.ordered-list {
-	list-style: decimal;
-}
-
-a {
-	@extend .link;
-}
-
-i,
-em {
-	@extend .italic;
-}
-b,
-strong {
-	@extend .bold;
+.p {
+	@extend p;
 }
 
 h1 {
@@ -137,25 +92,14 @@ h6 {
 	@extend .h6;
 }
 
-p,
-ul,
-ol,
-pre {
-	@extend .block-margins;
+a {
+	@extend p;
+	text-decoration: none;
+	&:hover {
+	@extend p;
+	text-decoration: none;		
+	}
 }
-
-ul {
-	@extend .unordered-list;
-}
-ol {
-	@extend .ordered-list;
-}
-
-pre,
-code {
-	@extend .fixed;
-}
-
 
 .text-left {
 	text-align: left   !important;
@@ -166,21 +110,17 @@ code {
 .text-right {
 	text-align: right  !important;
 }
-
-/*
- * Object definitions
- */
-
-.header-block {
-	font-size: 110%;
-
-	.h1 {
-		font-size: 450%;
-		margin-top: 0 !important;
-	}
+.small-text {
+	font-size: 90%;
+	text-transform: uppercase;
+	letter-spacing: 2px;
 }
 
-.author-block {
-	border-top: 3px double $text-color;
-	margin-top: 4em;
+.menu {
+	padding-right: 5px;
+}
+
+.text-inactive {
+	color: black;
+	opacity: .4;
 }

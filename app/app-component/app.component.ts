@@ -22,6 +22,30 @@ export class AppComponent implements OnInit {
     private showEnabled: boolean = false;
     private isActive: boolean = false;
     private routeName: string;
+    private timeToAnimate: boolean = false;
+    private interval: any;
+    private projects: Project[] = [
+        {
+            number: '01',
+            heading: 'Sequencer',
+            caption: 'UI Built with scss and makes use of bootstrap',
+            color: '#36D2C7'
+        },
+        {
+            number: '02',
+            heading: 'Calculator',
+            caption: 'An 808 inspired sequencer built with angular2',
+            color: '#8EDB37'
+        },
+        {
+            number: '03',
+            heading: 'TicTacToe',
+            caption: 'Play a couple games, eh?',
+            color: '#FFAF27'
+        }
+    ];
+    private activeProject: Project = this.projects[0];
+
     constructor(
         private navTitleService: NavTitleService,
         private router: Router) {
@@ -34,6 +58,18 @@ export class AppComponent implements OnInit {
         this.showEnabled = false;
     }
 
+    intervalAnimate() {
+        setTimeout(() => {
+        this.timeToAnimate = true;
+            console.log(this.timeToAnimate);
+        }, 5500);
+    }
+
+    setActiveProject(project: Project) {
+        this.activeProject = project;
+        this.intervalAnimate();
+    }
+
     toggleActive() {
         this.isActive = !this.isActive;
     }
@@ -41,3 +77,10 @@ export class AppComponent implements OnInit {
 
 // stupid hack to have a blank router at times when others arent selected
 @Component({ selector: 'blank', template: '' }) export class EmptyComponent { }
+
+export interface Project {
+    number: string;
+    heading: string;
+    caption: string;
+    color: string;
+}
