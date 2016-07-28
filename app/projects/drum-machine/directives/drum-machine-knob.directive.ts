@@ -1,6 +1,6 @@
 import { Directive, Input,HostListener, ElementRef, EventEmitter, AfterViewInit, Output, OnInit } from '@angular/core';
 import { DrumMachineMetronomeService } from './../drum-machine-metronome.service';
-let Snap = require('Snap');
+let Snap = require( 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js');
 
 @Directive({
     selector: '[my-knob-turner]'

@@ -11,7 +11,6 @@ import { TicTacToeService, Player, TileType } from './tictactoe.service';
         <router-outlet></router-outlet>
     </div>
     `,
-    styleUrls: ['tictactoe.component.style.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [TicTacToeService]
 

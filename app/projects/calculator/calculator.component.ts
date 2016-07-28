@@ -5,7 +5,6 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     moduleId: module.id,
     selector: 'my-calculator',
     templateUrl: 'calculator.component.html',
-    styleUrls: ['calculator.component.style.css'],
     directives: [ROUTER_DIRECTIVES]
 })
 

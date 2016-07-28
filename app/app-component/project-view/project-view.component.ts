@@ -6,7 +6,6 @@ import { CodeContainer } from './../../shared/code-container/code-container.comp
     moduleId: module.id,
     selector: 'my-project-view',
     templateUrl: 'project-view.component.html',
-    styleUrls: ['project-view.component.css'],
     directives: [
         ROUTER_DIRECTIVES,
         CodeContainer
@@ -15,7 +14,4 @@ import { CodeContainer } from './../../shared/code-container/code-container.comp
 
 export class ProjectViewComponent {
     private isActive: boolean = false;
-    toggleActive() {
-        this.isActive = !this.isActive;
-    }
 }

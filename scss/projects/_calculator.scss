@@ -1,0 +1,124 @@
+@import 'https://fonts.googleapis.com/css?family=Share+Tech+Mono';
+$calc-color: #f0ede6;
+$btn-color: #f7f4ef;
+$btn-orange-color: #e57c46;
+$btn-gray-color: #888b98;
+$black: #000;
+$white: #fff;
+$display: rgba(211, 211, 211, .5);
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 15px;
+  margin: 0;
+}
+
+.calculator {
+  background-color: $calc-color;
+  border: .5px solid darken($calc-color, 20%);
+  border-radius: 10px;
+  margin: 50px auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 350px;
+  min-width: 350px;
+  padding: 15px;
+  position: relative;
+}
+
+.button-group {
+  margin-top: 9px;
+}
+
+.button {
+  background-color: $btn-color;
+  border: .5px solid darken($calc-color, 20%);
+  border-radius: 5px;
+  box-shadow: 0 2px 3px darken($calc-color, 10%);
+  color: $black;
+  display: table;
+  margin: 9px 8px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 40px;
+  padding-bottom: 10%;
+  position: relative;
+  text-align: center;
+  width: 80%;
+
+  &:hover {
+    background-color: darken($btn-color, 15%);
+    cursor: hand;
+  }
+
+  &.display {
+    background-image: linear-gradient(to bottom, $display 10%, $white 25%);
+    border-width: .5px;
+    color: $black;
+    cursor: text;
+    font-size: 30px;
+    height: 80px;
+    min-height: 30px;
+    padding: 15px;
+    text-align: right;
+    width: 95%;
+
+    &::selection {
+      background: $btn-orange-color;
+      color: $btn-color;
+    }
+  }
+
+  &.operator {
+    font-size: 20px;
+
+    .button-content {
+      top: 7px;
+    }
+  }
+
+  &.equals {
+    background-color: $btn-gray-color;
+    color: $btn-color;
+
+    &:hover {
+      background-color: darken($btn-gray-color, 15%);
+    }
+  }
+
+  &.clear {
+    background-color: $btn-orange-color;
+    color: $btn-color;
+
+    &:hover {
+      background-color: darken($btn-orange-color, 15%);
+    }
+  }
+
+  &.double-button {
+    width: 90%;
+  }
+
+  .button-content {
+    position: relative;
+    top: 9px;
+  }
+}
+
+.calc-btn {
+  width:100%;
+  background-color: $btn-color;
+  color: $black;
+}

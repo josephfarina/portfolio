@@ -1,5 +1,5 @@
 import { Directive, ElementRef, EventEmitter, AfterViewInit, OnChanges, SimpleChanges, Output, Input } from '@angular/core';
-let Snap = require('Snap');
+let Snap = require( 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js');
 
 @Directive({ selector: '[my-button-pusher]' })
 

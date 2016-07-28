@@ -5,7 +5,6 @@ import { HoverEffectDirective } from './../../shared/directives/hover-effect.dir
     moduleId: module.id,
     selector: 'my-project-selections',
     templateUrl: 'project-selections.component.html',
-    styleUrls: ['project-selections.component.css'],
     directives: [
         ROUTER_DIRECTIVES,
         HoverEffectDirective

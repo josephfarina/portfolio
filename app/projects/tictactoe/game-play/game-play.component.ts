@@ -1,8 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-let Snap = require('Snap');
-
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { TicTacToeService, Player, TileType } from './../tictactoe.service';
 import { TileTypeDirective } from '../directives/tiletype.directive';
 

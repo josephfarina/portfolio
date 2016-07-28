@@ -6,10 +6,12 @@ import { CodeblockComponent } from "./../prismjs/codeblock.component";
   moduleId: module.id,
   selector: 'accordion',
   templateUrl: 'accordion.component.html',
-  styleUrls : ['./accordion.component.css']
-  // host: {
-  //   'class': 'accordion-tabs'
-  // }
+  styles: [
+    `.show {
+  display: block;
+}
+`
+  ]
 })
 
 export class Accordion {
@@ -41,7 +43,10 @@ export class Accordion {
   moduleId: module.id,
   selector: 'accordion-group',
   templateUrl: 'accordion-group.component.html',
-  styleUrls: ['./accordion-group.component.css'],
+  styles: [`.show {
+  display: block;
+}
+`],
   directives: [
     PrismJsDirective, 
     CodeblockComponent],
