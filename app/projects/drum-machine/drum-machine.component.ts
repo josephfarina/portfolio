@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
 import { SEQUENCER_LINEUP } from './sequencerLineUp';
 import { DrumMachineKnobDirective } from './directives/drum-machine-knob.directive';
@@ -25,7 +25,7 @@ import { DrumMachineKitButtonDirective } from './directives/drum-machine-kit.dir
     ]
 })
 
-export class DrumMachineComponent {
+export class DrumMachineComponent implements OnDestroy {
     private sequencerLineUp: Object = SEQUENCER_LINEUP;
     private instruments: string[] = ['kick', 'snare', 'lowtom', 'midtom', 'hitom', 'rimshot', 'clap', 'hihat', 'cymbal'];
     private currentType: string = 'kick';
@@ -33,6 +33,10 @@ export class DrumMachineComponent {
     constructor(private metronomeService: DrumMachineMetronomeService) {
         this.metronomeService.setSequencerLineUp(this.sequencerLineUp);
         this.metronomeService.init();
+    }
+
+    ngOnDestroy() {
+        this.stop();
     }
 
     start() { this.metronomeService.play(); }
