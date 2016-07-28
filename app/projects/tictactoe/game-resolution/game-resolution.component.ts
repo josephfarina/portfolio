@@ -6,7 +6,6 @@ import { TicTacToeService, Player } from './../tictactoe.service';
     moduleId: module.id,
     selector: 'my-game-resolution',    
     templateUrl: 'game-resolution.component.html',
-    styleUrls: ['game-resolution.component.style.css'],
     directives: [ROUTER_DIRECTIVES]
 })
 

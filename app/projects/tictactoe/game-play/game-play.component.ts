@@ -7,7 +7,6 @@ import { TileTypeDirective } from '../directives/tiletype.directive';
     moduleId: module.id,
     selector: 'my-game-play',
     templateUrl: 'game-play.component.html',
-    styleUrls: ['game-play.component.style.css'],
     directives: [
         ROUTER_DIRECTIVES,
         TileTypeDirective
