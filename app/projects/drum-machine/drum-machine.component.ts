@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
 import { SEQUENCER_LINEUP } from './sequencerLineUp';
 import { DrumMachineKnobDirective } from './directives/drum-machine-knob.directive';
@@ -8,7 +8,7 @@ import { DrumMachineInstrumentBeatDirective } from './directives/drum-machine-be
 import { DrumMachineStartButtonDirective } from './directives/drum-machine-startbutton.directive';
 import { DrumMachineKitButtonDirective } from './directives/drum-machine-kit.directive';
 
-// maybe change the global knobs so they all veritcally align
+// TODO: maybe change the global knobs so they all veritcally align
 
 @Component({
     moduleId: module.id,
