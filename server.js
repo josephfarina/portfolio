@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var app = express();
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+//app.use(favicon(path.join(__dirname, 'public', 'assets/favicon.ico')));
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -18,13 +18,8 @@ app.use(function(req, res, next) {
 
 var router = express.Router();
 
-router.get('/', function (req, res, next) {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.get('*', function (req, res) {
-    res.redirect('/');
-});
+router.get('/', function (req, res, next) { res.sendFile(path.join(__dirname, 'public', 'index.html')); });
+app.get('*', function (req, res) { res.redirect('/'); });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
