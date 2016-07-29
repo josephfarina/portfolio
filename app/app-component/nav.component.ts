@@ -8,7 +8,7 @@ import { NavTitleService } from './../shared/services/nav-title.service';
     providers: [NavTitleService],
     selector: 'my-nav',
     template: `
-    <nav (mouseenter)="isNewRoute = !isNewRoute"   [ngClass]="{ 'animated fadeInDownBig':  isNewRoute }">
+    <nav [ngClass]="{ 'animated fadeInDown':  isNewRoute }">
         <div class="navigation-logo">
             <h5>{{routeName | uppercase}}</h5>
         </div>
@@ -19,6 +19,8 @@ import { NavTitleService } from './../shared/services/nav-title.service';
     </nav>
     `,
 })
+
+// TODO: Fix glitch on calc animation -- and make it so it doesnt swing down on project pages
 
 export class NavComponent {
     private routeName: string = '';

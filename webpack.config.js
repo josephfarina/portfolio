@@ -22,10 +22,12 @@ var webpackConfig = {
 
   module: {
     loaders: [
-      { test: /\.ts$/, loaders: ['ts-loader', 'angular2-template-loader'] },
-      { test: /\.css$/, loaders: ['to-string-loader', 'css-loader'] },
-      { test: /\.html$/, loader: 'raw-loader' },
-      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.ts$/,    loaders: ['ts-loader', 'angular2-template-loader'] },
+      { test: /\.css$/,   loaders: ['to-string-loader', 'css-loader'] },
+      { test: /\.html$/,  loader: 'raw-loader' },
+      { test: /\.json$/,  loader: 'json-loader' },
+      { test: /\.scss$/,  loaders: ["style", "css", "sass"] },
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ]
   }
 };
