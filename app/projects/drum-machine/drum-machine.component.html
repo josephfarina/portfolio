@@ -1958,7 +1958,7 @@
           </g>
         </g>
       </g>
-      <g my-knob-turner (value)="tempoValue($event)" id="tempo_knob" [starting]="sequencerLineUp['projectSettings']['tempo']">
+      <g my-knob-turner (value)="updateProjectSettings($event, 'tempo')" id="tempo_knob" [starting]="sequencerLineUp['projectSettings']['tempo']">
         <circle id="circle" cx="1182.59" cy="1402.13" r="83.14" fill="#fffef6" />
         <path d="M1212.57,1346.6a90,90,0,1,0,90,90A90,90,0,0,0,1212.57,1346.6Zm0,173.16a83.14,83.14,0,0,1-6.56-166v23.57a2.06,2.06,0,0,0,2.06,2.06h9a2.06,2.06,0,0,0,2.06-2.06v-23.58A83.15,83.15,0,0,1,1212.57,1519.76Z"
           transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -2027,7 +2027,7 @@
         </g>
 
         <g id="_808" data-name="808">
-      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'808'" (value)="kitSet($event)"  >
+      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'808'" (value)="updateProjectSettings($event, 'kit')"  >
         <rect id="background-28" data-name="background" x="989.98" y="740.72" width="76.21" height="24.13" rx="3" ry="3" fill="#b3b8b6"/>
         <circle id="indicator-26" data-name="indicator" cx="1010.9" cy="752.78" r="7.31" fill="#39b54a"/>
         <g>
@@ -2038,7 +2038,7 @@
       </g>
         </g>
         <g id="_909" data-name="909">
-      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'909'" (value)="kitSet($event)">
+      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'909'" (value)="updateProjectSettings($event, 'kit')" >
         <rect id="background-29" data-name="background" x="1075.45" y="740.72" width="76.21" height="24.13" rx="3" ry="3" fill="#b3b8b6"/>
         <circle id="indicator-27" data-name="indicator" cx="1096.37" cy="752.78" r="7.31" fill="#39b54a"/>
         <g>
@@ -2049,7 +2049,7 @@
       </g>
         </g>
         <g id="Acoustic">
-      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'acoustic'" (value)="kitSet($event)">
+      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'acoustic'" (value)="updateProjectSettings($event, 'kit')" >
         <rect id="background-30" data-name="background" x="1161.33" y="740.72" width="115.21" height="24.13" rx="3" ry="3" fill="#b3b8b6"/>
         <circle id="indicator-28" data-name="indicator" cx="1182.25" cy="752.78" r="7.31" fill="#39b54a"/>
         <g>

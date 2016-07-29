@@ -242,9 +242,3 @@ export let SEQUENCER_LINEUP: Object = {
     }
   }
 };
-
-
-
-// 0 to 1 -- 1 is 100% : 0 is 0% 
-
-
