@@ -7,13 +7,29 @@ import { WatchesComponent } from './../projects/watches/watches.component';
 import { DrumMachineComponent} from './../projects/drum-machine/drum-machine.component';
 
 export const routes: RouterConfig = [
-    ...TicTacToeRoutes,
-    { path: '', component: HomeComponent },
-    { path: 'calculator', component: CalculatorComponent },
-    { path: 'tictactoe', component: TicTacToeComponent},
-    { path: 'drum', component: DrumMachineComponent},
-    { path: 'watches', component: WatchesComponent}
+  {
+    component: HomeComponent,
+    path: ''
+  },
+  {
+    component: CalculatorComponent,
+    path: 'calculator'
+  },
+  {
+    component: TicTacToeComponent,
+    path: 'tictactoe'
+  },
+  ...TicTacToeRoutes,
+  {
+    component: DrumMachineComponent,
+    path: 'drum'
+  },
+  {
+    component: WatchesComponent,
+    path: 'watches'
+  }
 ];
+
 export const APP_ROUTER_PROVIDERS = [
   provideRouter(routes)
 ];

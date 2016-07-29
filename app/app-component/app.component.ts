@@ -7,15 +7,15 @@ import { CodeContainer } from './../shared/code-container/code-container.compone
 
 
 @Component({
-    moduleId: module.id,
-    selector: 'my-app',
-    templateUrl: 'app.component.html',
-    providers: [NavTitleService],
     directives: [
         ROUTER_DIRECTIVES,
         ProjectViewComponent,
         ProjectSelectionsComponent,
-        CodeContainer]
+        CodeContainer],
+    moduleId: module.id,
+    providers: [NavTitleService],
+    selector: 'my-app',
+    templateUrl: 'app.component.html',
 })
 
 export class AppComponent implements OnInit {
@@ -26,22 +26,22 @@ export class AppComponent implements OnInit {
     private interval: any;
     private projects: Project[] = [
         {
-            number: '01',
-            heading: 'Sequencer',
             caption: 'UI Built with scss and makes use of bootstrap',
-            color: '#36D2C7'
+            color: '#36D2C7',
+            heading: 'Sequencer',
+            number: '01',
         },
         {
-            number: '02',
-            heading: 'Calculator',
             caption: 'An 808 inspired sequencer built with angular2',
-            color: '#8EDB37'
+            color: '#8EDB37',
+            heading: 'Calculator',
+            number: '02',
         },
         {
-            number: '03',
-            heading: 'TicTacToe',
             caption: 'Play a couple games, eh?',
-            color: '#FFAF27'
+            color: '#FFAF27',
+            heading: 'TicTacToe',
+            number: '03',
         }
     ];
     private activeProject: Project = this.projects[0];
