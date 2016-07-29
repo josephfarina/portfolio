@@ -3,6 +3,8 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var app = express();
+var express = require('express');
+var router = express.Router();
 
 //app.use(favicon(path.join(__dirname, 'public', 'assets/favicon.ico')));
 app.use(logger('dev'));
@@ -16,7 +18,6 @@ app.use(function(req, res, next) {
 
 // ROUTING
 
-var router = app.Router();
 
 router.get('/', function (req, res, next) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
