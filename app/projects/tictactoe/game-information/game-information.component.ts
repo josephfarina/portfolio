@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
-import { GithubCodeService } from './../../../shared/services/github-code-retriever.service';
 import { TicTacToeService, Player, TileType } from './../tictactoe.service';
 
 @Component({

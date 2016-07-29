@@ -1,6 +1,8 @@
 import { provideRouter, RouterConfig } from '@angular/router';
+
 import { TicTacToeRoutes } from './../projects/tictactoe/tictactoe.routes';
-import { HomeComponent } from './../app-component/home/home.component';
+
+import { HomeComponent } from './../app-component/home.component';
 import { CalculatorComponent } from './../projects/calculator/calculator.component';
 import { TicTacToeComponent } from './../projects/tictactoe/tictactoe.component';
 import { WatchesComponent } from './../projects/watches/watches.component';
