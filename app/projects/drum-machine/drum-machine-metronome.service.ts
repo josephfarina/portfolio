@@ -242,7 +242,7 @@ export class DrumMachineMetronomeService {
     loadAudioSamples() {
         this.loadDrumKit();
 
-        let urlBody = 'public/samples/impulse/';
+        let urlBody = 'samples/impulse/';
         let impulse = new XMLHttpRequest();
         impulse.open('GET', urlBody + 'church_impulse.wav', true);
         impulse.responseType = 'arraybuffer';
@@ -257,7 +257,7 @@ export class DrumMachineMetronomeService {
     loadDrumKit() {
         let kits: string[] = ['808', '909', 'acoustic'],
             samples: string[] = ['snare', 'clap', 'kick', 'cymbal', 'hihat', 'hitom', 'lowtom', 'midtom', 'rimshot'],
-            urlBody = 'public/samples/';
+            urlBody = 'samples/';
 
         for (let kit = 0; kit < kits.length; kit++) {
             for (let sample = 0; sample < samples.length; sample++) {

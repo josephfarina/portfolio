@@ -5,10 +5,9 @@
  *   
  */
 
-
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
-// require('./calculator.component.style.scss');
+require('./calculator.component.style.scss');
 
 @Component({
     directives: [ROUTER_DIRECTIVES],

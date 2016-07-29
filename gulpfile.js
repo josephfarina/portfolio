@@ -8,6 +8,12 @@ var purify = require('gulp-purifycss');
 var rename = require('gulp-rename');
 
 // SASS ================================================================
+gulp.task('copy-snap', function() {
+    gulp
+        .src(['lib/snap.js'])
+        .pipe(gulp.dest('public/javascripts'));    
+})
+
 gulp.task('sass', ['sass:main']);
 
 gulp.task('sass:main', function() {
@@ -35,4 +41,4 @@ gulp.task('watch', function() {
     gulp.watch(['./app/**/*.scss', './scss/**/*.scss'], ['sass']);
 })
 
-gulp.task('default', ['sass', 'watch']);
+gulp.task('default', ['copy-snap', 'sass', 'watch']);
