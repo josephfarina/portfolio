@@ -1981,7 +1981,7 @@
             fill="#fff" />
         </g>
         
-      <g my-knob-turner (value)="volumeValue($event)" [starting]="sequencerLineUp['projectSettings']['volume']" id="volume_knob">
+      <g my-knob-turner (value)="updateProjectSettings($event, 'volume')" [starting]="sequencerLineUp['projectSettings']['volume']" id="volume_knob">
         <circle id="circle-2" data-name="circle" cx="1257.69" cy="1028.84" r="49.22" fill="#fffef6" />
         <path d="M1287.67,1010a53.29,53.29,0,1,0,53.29,53.29A53.29,53.29,0,0,0,1287.67,1010Zm0,102.51a49.22,49.22,0,0,1-3.88-98.29v14a1.22,1.22,0,0,0,1.22,1.22h5.33a1.22,1.22,0,0,0,1.22-1.22v-14A49.22,49.22,0,0,1,1287.67,1112.55Z"
           transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -2003,7 +2003,7 @@
           <rect id="min1-38" data-name="min1" x="1234.39" y="1108.75" width="1.96" height="17.52" rx="0.61" ry="0.61" transform="translate(1122.05 -580.72) rotate(45)"
             fill="#fff" />
         </g>
-      <g  my-knob-turner (value)="accentValue($event)" [starting]="sequencerLineUp['projectSettings']['accent']" id="accent_knob">
+      <g  my-knob-turner (value)="updateProjectSettings($event, 'accent')" [starting]="sequencerLineUp['projectSettings']['accent']" id="accent_knob">
         <circle id="circle-3" data-name="circle" cx="1070.4" cy="1140.65" r="38.07" fill="#fffef6" />
         <path d="M1100.38,1133.93a41.22,41.22,0,1,0,41.22,41.22A41.22,41.22,0,0,0,1100.38,1133.93Zm0,79.29a38.07,38.07,0,0,1-3-76V1148a0.94,0.94,0,0,0,.94.94h4.12a0.94,0.94,0,0,0,.94-0.94v-10.8A38.07,38.07,0,0,1,1100.38,1213.22Z"
           transform="translate(-29.98 -34.49)" fill="#111815" />

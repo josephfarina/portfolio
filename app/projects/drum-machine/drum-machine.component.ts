@@ -29,8 +29,7 @@ import { DrumMachineKitButtonDirective } from './directives/drum-machine-kit.dir
 })
 
 export class DrumMachineComponent implements OnDestroy {
-    private sequencerLineUp: SEQUENCER_LINEUP = SEQUENCER_LINEUP;
-    private instruments: string[] = ['kick', 'snare', 'lowtom', 'midtom', 'hitom', 'rimshot', 'clap', 'hihat', 'cymbal'];
+    private sequencerLineUp: any = SEQUENCER_LINEUP;
     private currentType: string = 'kick';
 
     constructor(private metronomeService: DrumMachineMetronomeService) {
@@ -43,16 +42,13 @@ export class DrumMachineComponent implements OnDestroy {
     stop() { this.metronomeService.stop(); }
 
     togglePlay(e: any) {
-        if (e.value === true) {
-            this.metronomeService.play();
-        } else {
-            this.metronomeService.stop();
-        }
+        if (e.value === true) { this.metronomeService.play();
+        } else { this.metronomeService.stop(); }
     }
 
     update() { this.metronomeService.setSequencerLineUp(this.sequencerLineUp); }
 
-    // change to updateKnob()
+    // change name to updateInstrumentKnob()
     instrumentKnob(event: any, instrument: string, knob: string) {
         this.sequencerLineUp['instrumentSettings'][instrument][knob] = event.value;
         this.update();
@@ -60,16 +56,6 @@ export class DrumMachineComponent implements OnDestroy {
 
     instrumentSet(event: any) {
         this.currentType = event.value;
-    }
-
-    accentValue(event: any) {
-        this.sequencerLineUp['projectSettings']['accent'] = event.value;
-        this.update();
-    }
-
-    volumeValue(event: any) {
-        this.sequencerLineUp['projectSettings']['volume'] = event.value;
-        this.update();
     }
 
     beatOutputValue(event: any, beatNum: number) {
