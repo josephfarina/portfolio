@@ -1764,7 +1764,7 @@ pre.line-numbers > code {
     opacity: 0; } }
 
 .drum-machine-wrapper {
-  height: 150%;
+  height: 100%;
   overflow: hidden;
   background-color: #36D2C7; }
 
@@ -1772,7 +1772,7 @@ pre.line-numbers > code {
   position: absolute;
   display: block;
   margin: auto;
-  left: -22vw;
-  top: -25vh;
-  height: 150%;
-  width: 150%; }
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%; }
