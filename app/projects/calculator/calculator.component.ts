@@ -18,7 +18,7 @@ require('./calculator.component.style.scss');
 })
 
 export class CalculatorComponent {
-    // Show how the variables are working in live time
+    // Show how the variables are working
     private showVariables: boolean = false;
 
     private displayValue: string = '0';

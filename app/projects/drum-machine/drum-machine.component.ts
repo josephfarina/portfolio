@@ -1,6 +1,11 @@
+/**
+ * TODO:
+ *  change the SVG to the new vertically aligning knobs
+ */
+
 import { Component, OnDestroy } from '@angular/core';
 import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
-import { SEQUENCER_LINEUP } from './sequencerLineUp';
+import { SEQUENCER_LINEUP } from './SEQUENCER_LINEUP';
 import { DrumMachineKnobDirective } from './directives/drum-machine-knob.directive';
 import { DrumMachineButtonDirective } from './directives/drum-machine-button.directive';
 import { DrumMachineInstrumentButtonDirective } from './directives/drum-machine-instrumentbutton.directive';
@@ -8,13 +13,7 @@ import { DrumMachineInstrumentBeatDirective } from './directives/drum-machine-be
 import { DrumMachineStartButtonDirective } from './directives/drum-machine-startbutton.directive';
 import { DrumMachineKitButtonDirective } from './directives/drum-machine-kit.directive';
 
-// TODO: maybe change the global knobs so they all veritcally align
-
 @Component({
-    moduleId: module.id,
-    selector: 'my-drum-machine',
-    templateUrl: 'drum-machine.component.html',
-    providers: [DrumMachineMetronomeService],
     directives: [
         DrumMachineKnobDirective,
         DrumMachineButtonDirective,
@@ -22,7 +21,11 @@ import { DrumMachineKitButtonDirective } from './directives/drum-machine-kit.dir
         DrumMachineInstrumentBeatDirective,
         DrumMachineStartButtonDirective,
         DrumMachineKitButtonDirective
-    ]
+    ],
+    moduleId: module.id,
+    providers: [DrumMachineMetronomeService],
+    selector: 'my-drum-machine',
+    templateUrl: 'drum-machine.component.html',
 })
 
 export class DrumMachineComponent implements OnDestroy {
@@ -35,10 +38,7 @@ export class DrumMachineComponent implements OnDestroy {
         this.metronomeService.init();
     }
 
-    ngOnDestroy() {
-        this.stop();
-    }
-
+    ngOnDestroy() { this.stop(); }
     start() { this.metronomeService.play(); }
     stop() { this.metronomeService.stop(); }
 
@@ -54,7 +54,6 @@ export class DrumMachineComponent implements OnDestroy {
 
     instrumentKnob(event: any, type: string, knob: string) {
         this.sequencerLineUp['instrumentSettings'][type][knob] = event.value;
-        // console.log(event.value, type, knob);
         this.update();
     }
 
@@ -63,15 +62,11 @@ export class DrumMachineComponent implements OnDestroy {
     }
 
     kitSet(event: any) {
-        // console.log(event);
         this.sequencerLineUp['projectSettings']['kit'] = event.value;
         this.update();
     }
 
     tempoValue(event: any) {
-        // console.log(event.value);
-        // let tempo = (event.value * 120) + 60;
-        // tempo / 2 is only because the beat is in double time
         this.sequencerLineUp['projectSettings']['tempo'] = event.value;
         this.update();
     }
@@ -82,35 +77,11 @@ export class DrumMachineComponent implements OnDestroy {
     }
 
     volumeValue(event: any) {
-        // console.log(event.value)
         this.sequencerLineUp['projectSettings']['volume'] = event.value;
         this.update();
-        // console.log(this.sequencerLineUp);
-    }
-
-    reverbValue(event: any) {
-        // console.log(event);
     }
 
     beatOutputValue(event: any, beatNum: number) {
-        // console.log(event.value, beatNum);
-        // beatnum - 1 is changing the rythm 1-16 into a 0-15 array
         this.sequencerLineUp['rhythmSettings'][beatNum - 1][this.currentType] = event.value;
     }
-
-    outputValue(event: any, knob: string) {
-        // TODO: set this up so it assigns the value of each knob to its rightful value
-        // console.log(event, knob);
-        switch (knob) {
-            case 'tempo':
-                this.sequencerLineUp['projectSettings']['tempo'] = event.value;
-                break;
-            case 'volume':
-                this.sequencerLineUp['projectSettings']['volume'] = event.value;
-                break;
-        }
-        this.update();
-    }
 }
-
-
