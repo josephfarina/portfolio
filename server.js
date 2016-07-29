@@ -16,8 +16,10 @@ app.use(function(req, res, next) {
 
 // ROUTING
 
-app.all('/*', function(req, res, next) {
-    res.send(path.join(__dirname, 'public', 'index.html'));
+var router = app.Router();
+
+router.get('/', function (req, res, next) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // catch 404 and forward to error handler
