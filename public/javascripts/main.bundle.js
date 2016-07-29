@@ -1734,6 +1734,7 @@ webpackJsonp([2],{
 	};
 	// FIXMe: Very odd bug that is making all samples playback twice and causing extreme slowness
 	var core_1 = __webpack_require__(1);
+	var TimeWorker = __webpack_require__(697);
 	var DrumMachineMetronomeService = (function () {
 	    function DrumMachineMetronomeService() {
 	        this.timeWorker = null;
@@ -1756,7 +1757,7 @@ webpackJsonp([2],{
 	        console.log(this.sampleBuffers);
 	        // this.context = new AudioContext();
 	        this.createAudioContext();
-	        this.timeWorker = new Worker('./app/projects/drum-machine/timeWorker.js');
+	        this.timeWorker = new TimeWorker();
 	        this.timeWorker.onmessage = function (e) { if (e.data === 'tick') {
 	            _this.schedule();
 	        }
@@ -2534,6 +2535,44 @@ webpackJsonp([2],{
 	    router_1.provideRouter(exports.routes)
 	];
 	
+
+/***/ },
+
+/***/ 696:
+/***/ function(module, exports) {
+
+	// http://stackoverflow.com/questions/10343913/how-to-create-a-web-worker-from-a-string
+
+	var URL = window.URL || window.webkitURL;
+	module.exports = function(content, url) {
+		try {
+			try {
+				var blob;
+				try { // BlobBuilder = Deprecated, but widely implemented
+					var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder;
+					blob = new BlobBuilder();
+					blob.append(content);
+					blob = blob.getBlob();
+				} catch(e) { // The proposed API
+					blob = new Blob([content]);
+				}
+				return new Worker(URL.createObjectURL(blob));
+			} catch(e) {
+				return new Worker('data:application/javascript,' + encodeURIComponent(content));
+			}
+		} catch(e) {
+			return new Worker(url);
+		}
+	}
+
+/***/ },
+
+/***/ 697:
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = function() {
+		return __webpack_require__(696)("/******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n\n/******/ \t\t// Check if module is in cache\n/******/ \t\tif(installedModules[moduleId])\n/******/ \t\t\treturn installedModules[moduleId].exports;\n\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\texports: {},\n/******/ \t\t\tid: moduleId,\n/******/ \t\t\tloaded: false\n/******/ \t\t};\n\n/******/ \t\t// Execute the module function\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n\n/******/ \t\t// Flag the module as loaded\n/******/ \t\tmodule.loaded = true;\n\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n\n\n/******/ \t// expose the modules object (__webpack_modules__)\n/******/ \t__webpack_require__.m = modules;\n\n/******/ \t// expose the module cache\n/******/ \t__webpack_require__.c = installedModules;\n\n/******/ \t// __webpack_public_path__\n/******/ \t__webpack_require__.p = \"\";\n\n/******/ \t// Load entry module and return exports\n/******/ \treturn __webpack_require__(0);\n/******/ })\n/************************************************************************/\n/******/ ([\n/* 0 */\n/***/ function(module, exports) {\n\n\tvar timerID=null;\n\tvar interval=100;\n\n\tself.onmessage=function(e){\n\t\tif (e.data==\"start\") {\n\t\t\tconsole.log(\"starting\");\n\t\t\ttimerID=setInterval(function(){ postMessage(\"tick\"); },interval)\n\t\t}\n\t\telse if (e.data.interval) {\n\t\t\tinterval=e.data.interval;\n\t\t\tif (timerID) {\n\t\t\t\tclearInterval(timerID);\n\t\t\t\ttimerID=setInterval(function(){postMessage(\"tick\");},interval)\n\t\t\t}\n\t\t}\n\t\telse if (e.data==\"stop\") {\n\t\t\tconsole.log(\"stopping\");\n\t\t\tclearInterval(timerID);\n\t\t\ttimerID=null;\n\t\t}\n\t};\n\n\tpostMessage('worker called');\n\n/***/ }\n/******/ ]);\n//# sourceMappingURL=main.map", __webpack_require__.p + "f32a803771fe39de9f1d.worker.js");
+	};
 
 /***/ }
 

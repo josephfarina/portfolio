@@ -2,6 +2,7 @@
 
 // FIXMe: Very odd bug that is making all samples playback twice and causing extreme slowness
 import { Injectable } from '@angular/core';
+let TimeWorker =  require('worker?inline!./timeWorker.js');
 
 @Injectable()
 export class DrumMachineMetronomeService {
@@ -30,7 +31,7 @@ export class DrumMachineMetronomeService {
         console.log(this.sampleBuffers);
         // this.context = new AudioContext();
         this.createAudioContext();
-        this.timeWorker = new Worker('./app/projects/drum-machine/timeWorker.js');
+        this.timeWorker = new TimeWorker();
         this.timeWorker.onmessage = (e: any) => { if (e.data === 'tick') { this.schedule(); } else { console.log(e.data); } };
         this.timeWorker.postMessage({ 'interval': this.lookahead });
     }

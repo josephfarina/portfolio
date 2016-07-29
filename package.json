@@ -49,7 +49,6 @@
     "canonical-path": "0.0.2",
     "concurrently": "^2.0.0",
     "css-loader": "^0.23.1",
-    "purifycss-loader": "^1.0.1",
     "del": "^2.2.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
@@ -77,6 +76,7 @@
     "lite-server": "^2.2.0",
     "lodash": "^4.11.1",
     "node-sass": "^3.8.0",
+    "purifycss-loader": "^1.0.1",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.2",
     "sass-loader": "^4.0.0",
@@ -87,6 +87,7 @@
     "typings": "^1.0.4",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
-    "webpack-merge": "^0.14.1"
+    "webpack-merge": "^0.14.1",
+    "worker-loader": "^0.7.1"
   }
 }

@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var PurifyCssPlugin = require('purifycss-loader/PurifyCssPlugin');
 
+
 // Webpack Config
 var webpackConfig = {
   entry: {
