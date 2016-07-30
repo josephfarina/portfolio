@@ -1,3 +1,58 @@
+// TODO: figure out a way to get this to load before since the css is in the JS
+.spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 50px;
+	width: 50px;
+	border-radius: 30%;
+  border: 5px solid;
+	animation: spin 1.2s infinite ease;
+}
+
+@keyframes spin {
+	0% { 
+    border-radius: 0;
+    border-color:#2196F3;
+    background-color: #3F51B5;
+    transform: rotate(0deg); }
+  10% {
+    border-color:#03A9F4;
+    background-color: #2196F3;}
+  20% {
+    border-color:#00BCD4;
+    background-color: #03A9F4;}
+  30% {
+    border-color:#009688;
+    background-color: #00BCD4;}
+  40% {
+    border-color:#2196F3;
+    background-color: #009688;}
+  50% {
+    border-color:#CDDC39;
+    border-radius: 50%;
+    background-color: #4CAF50;}
+  60% {
+    border-color:#FFEB3B;
+    background-color: #CDDC39;}
+  70% {
+    border-color:#FFC107;
+    background-color: #FFEB3B;}
+  80% {
+    border-color:#FF9800;
+    background-color: #FFC107;}
+  90% {
+    border-color:#FF5722;
+    background-color: #FF9800;}  
+	100% { 
+    border-color:#3F51B5;
+    border-radius: 0;
+    background-color: #FF5722;
+    transform: rotate(360deg); }
+}
+
+
+
 .fade {
   animation-duration: .7s;
   animation-fill-mode: both;
