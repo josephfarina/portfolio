@@ -2,21 +2,21 @@
 
     <!--IMAGES-->
     <div [ngClass]="{
-    'active-image animated slideInRight':       '02' === activeProject.number, 
+    'active-image slide':       '02' === activeProject.number, 
     'inactive-image':           '02' !== activeProject.number
     }" class="single-div-container">
         <div id="calculator" class="single-div__calculator"></div>
     </div>
 
     <div [ngClass]="{
-    'active-image animated slideInRight':       '01' === activeProject.number, 
+    'active-image slide':       '01' === activeProject.number, 
     'inactive-image':                           '01' !== activeProject.number
     }" class="single-div-container">
         <img class="sequencer-image" src="assets/sequencer.svg" alt="sequencer">
     </div>
 
     <div [ngClass]="{
-    'active-image animated slideInRight':    '03' === activeProject.number, 
+    'active-image slide':    '03' === activeProject.number, 
     'inactive-image':           '03' !== activeProject.number
     }" class="single-div-container">
         <img class="tictactoe-image" src="assets/tictactoe.svg" alt="sequencer">

@@ -1,0 +1,47 @@
+.fade {
+  animation-duration: .7s;
+  animation-fill-mode: both;
+  animation-name: fade-down;  
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.slide {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: slide-in;    
+}
+
+@keyframes slide-in {
+  from {
+    transform: translate3d(500%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.row.no-gutters {
+	margin-right: 0;
+	margin-left: 0;
+	& > [class^='col-'],
+	& > [class*=' col-'] {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+
+@import 'base/module';
+@import 'projects/single-divs/calculator-icon';

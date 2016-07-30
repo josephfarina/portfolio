@@ -9,6 +9,7 @@ import { NavTitleService } from './../shared/services/nav-title.service';
     moduleId: module.id,
     providers: [NavTitleService],
     selector: 'my-home',
+    styles: [require('./../../scss/layout/home.scss').toString()],
     templateUrl: 'home.component.html'
 })
 

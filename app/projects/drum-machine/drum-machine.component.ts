@@ -22,6 +22,7 @@ import { DrumMachineKitButtonDirective } from './directives/drum-machine-kit.dir
         DrumMachineStartButtonDirective,
         DrumMachineKitButtonDirective
     ],
+    styles: [require('./../../../scss/projects/drum-machine.scss').toString()],
     moduleId: module.id,
     providers: [DrumMachineMetronomeService],
     selector: 'my-drum-machine',

@@ -7,12 +7,12 @@
 
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
-require('./calculator.component.style.scss');
 
 @Component({
     directives: [ROUTER_DIRECTIVES],
     moduleId: module.id,
     selector: 'my-calculator',
+    styles: [require('./../../../scss/projects/calculator.scss').toString()],
     templateUrl: 'calculator.component.html',
 })
 

@@ -9,6 +9,7 @@ import { NavComponent } from './nav.component';
     ],
     moduleId: module.id,
     selector: 'my-app',
+    styles: [require('./../../scss/global.scss').toString()],
     template: `
     <my-nav></my-nav>
     <router-outlet></router-outlet>
