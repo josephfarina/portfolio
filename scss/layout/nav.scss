@@ -2,37 +2,37 @@ $nav-color: green;
 $nav-transition-open: opacity .5s;
 $nav-transition-close: opacity .5s, visibility .6s;
 
+nav {
+    .navigation-logo,
+    .navigation-menu {
+        position: absolute;
+        top: 50px;
+        transition: all 0.6s cubic-bezier(.87,-.41,.19,1.44)
+    }
 
-.navigation-logo,
-.navigation-menu {
-    position: absolute;
-    top: 50px;
-    transition: all 0.6s cubic-bezier(.87,-.41,.19,1.44)
-}
+    .navigation-menu {
+        right: 100px;
+        span {
+            color: white;
+        }
+    }
 
-.navigation-menu {
-    right: 100px;
-}
+    .navigation-logo {
+        color: white;
+        left: 75px;
+    }
 
-.navigation-logo {
-    left: 75px;
-    color: white;
-}
-
-@media (max-width: 850px) {
-  .navigation-logo {
-      transform: rotate(90deg);
-      left: 7px;
-      top: 100px;
-  }
-  .navigation-menu {
-      transform: rotate(90deg);
-      left: -15px;
-      right: auto;
-      top: 110px;
-
-      .menu-item {
-          left: -35px;
-      }
-  } 
+    @media (max-width: 850px) {
+        .navigation-logo {
+            transform: rotate(90deg);
+            left: 5px;
+            top: 110px;
+        }
+        .navigation-menu {
+            transform: rotate(90deg);
+            left: -15px;
+            right: auto;
+            top: 125px;
+        } 
+    }
 }

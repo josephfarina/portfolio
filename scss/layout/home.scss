@@ -33,10 +33,12 @@ p {
 }
 
 .project-container-heading {
+    color: white;
     padding-left: $project-container-marginleft;
 }
 
 .project-groups {
+    color: white;
     max-height: 40vh;
     overflow-y: scroll;
     margin-bottom: 0;
@@ -44,17 +46,20 @@ p {
 }
 
 .project-group {
+    color: white;
     position: relative;
     margin-top: 15px;
     cursor: pointer;
 }
 
 .project-group-heading {
+    color: white;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
 .project-group-number {
+    color: white;
     float: left; 
     padding-right: 20px;
     padding-top: 18px;
@@ -63,6 +68,7 @@ p {
 }
 
 .project-group-caption {
+    color: white;
     padding-top: 0;
     margin-top: 0;
 }
@@ -136,7 +142,7 @@ p {
 @media (max-width: 950px) { 
     .project-container {
         margin-left: 50px;
-        bottom: 5vh;
+        bottom: 0vh;
     }
   .single-div-container {
       position: relative;

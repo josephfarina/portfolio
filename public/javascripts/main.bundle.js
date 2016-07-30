@@ -5,10 +5,10 @@ webpackJsonp([2],{
 
 	"use strict";
 	var platform_browser_dynamic_1 = __webpack_require__(296);
-	var app_component_1 = __webpack_require__(678);
+	var app_component_1 = __webpack_require__(686);
 	var http_1 = __webpack_require__(288);
 	var common_1 = __webpack_require__(29);
-	var app_routes_1 = __webpack_require__(696);
+	var app_routes_1 = __webpack_require__(704);
 	var forms_1 = __webpack_require__(281);
 	platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
 	    app_routes_1.APP_ROUTER_PROVIDERS,
@@ -22,7 +22,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 136:
+/***/ 137:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -130,7 +130,7 @@ webpackJsonp([2],{
 	};
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(30);
-	var tictactoe_service_1 = __webpack_require__(136);
+	var tictactoe_service_1 = __webpack_require__(137);
 	var TicTacToeComponent = (function () {
 	    function TicTacToeComponent(router) {
 	        this.router = router;
@@ -139,7 +139,7 @@ webpackJsonp([2],{
 	        core_1.Component({
 	            moduleId: module.id,
 	            selector: 'my-tictactoe',
-	            styles: [__webpack_require__(719).toString()],
+	            styles: [__webpack_require__(685).toString()],
 	            template: "\n    <div class=\"col-md-6 col-md-offset-3 tictactoe\">\n        <router-outlet></router-outlet>\n    </div>\n    ",
 	            directives: [router_1.ROUTER_DIRECTIVES],
 	            providers: [tictactoe_service_1.TicTacToeService]
@@ -191,7 +191,7 @@ webpackJsonp([2],{
 	                title = 'Tic Tac Toe';
 	                break;
 	            case 'drum':
-	                title = 'Drum Machine';
+	                title = 'Sequencer';
 	                break;
 	        }
 	        return title;
@@ -217,7 +217,7 @@ webpackJsonp([2],{
 /***/ 457:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"cal\">\n    <div class=\"calculator animated fadeInDownBig\">\n        <pre *ngIf=\"showVariables\">\n            Display Value: {{displayValue}} \n            Operator Value: {{operatorValue}} \n            Current Value: {{currentValue}} \n            Calue To Operate: {{valueToOperate}}\n            Operator Pressed: {{operatorPressed}} \n            Is Negative: {{isNegative}} \n            Display Reset After Operator: {{displayResetAfterOperator}}\n        </pre>\n        <div class=\"row no-gutters\">\n            <!-- display -->\n            <input class=\"col-xs-12 button display\" [(ngModel)]=\"displayValue\" type=\"number\" />\n        </div>\n\n        <div class=\"button-group\">\n\n            <div class=\"row no-gutters\">\n                <!-- first row -->\n                <div class=\"col-xs-3\" (click)=\"clear()\">\n                    <div class=\"button functions clear\"><span class=\"button-content\">C</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"delete()\">\n                    <div class=\"button functions\"><span class=\"button-content\">Del</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"toggleNegative()\">\n                    <div class=\"button functions\"><span class=\"button-content\">+/-</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setOperator('/')\">\n                    <div class=\"button operator\"><span class=\"button-content\">&#247;</span></div>\n                </div>\n            </div>\n\n            <div class=\"row no-gutters\">\n                <!-- second row -->\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(7)\">\n                    <div class=\"button number\"><span class=\"button-content\">7</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(8)\">\n                    <div class=\"button number\"><span class=\"button-content\">8</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(9)\">\n                    <div class=\"button number\"><span class=\"button-content\">9</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setOperator('*')\">\n                    <div class=\"button operator\"><span class=\"button-content\">*</span></div>\n                </div>\n            </div>\n\n            <div class=\"row no-gutters\">\n                <!-- third row -->\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(4)\">\n                    <div class=\"button number\"><span class=\"button-content\">4</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(5)\">\n                    <div class=\"button number\"><span class=\"button-content\">5</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(6)\">\n                    <div class=\"button number\"><span class=\"button-content\">6</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setOperator('(-)')\">\n                    <div class=\"button operator\"><span class=\"button-content\">-</span></div>\n                </div>\n            </div>\n\n            <div class=\"row no-gutters\">\n                <!-- fourth row -->\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(1)\">\n                    <div class=\"button number\"><span class=\"button-content\">1</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(2)\">\n                    <div class=\"button number\"><span class=\"button-content\">2</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(3)\">\n                    <div class=\"button number\"><span class=\"button-content\">3</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setOperator('+')\">\n                    <div class=\"button operator\"><span class=\"button-content\">+</span></div>\n                </div>\n            </div>\n\n            <div class=\"row no-gutters\">\n                <!-- fith row -->\n                <div class=\"col-xs-6\" (click)=\"setDisplayValue(0)\">\n                    <div class=\"button number double-button\"><span class=\"button-content\">0</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue('.')\">\n                    <div class=\"button number\"><span class=\"button-content\">.</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"equals()\">\n                    <div class=\"button operator equals\"><span class=\"button-content\">=</span></div>\n                </div>\n            </div>\n    <button class='btn calc-btn' (click)=\"showVariables = !showVariables\">See The Variables in Action</button>\n\n        </div>\n    </div>\n    \n</div>"
+	module.exports = " <div class=\"calc\">\n    <div class=\"calculator animated fadeInDownBig\">\n        <pre *ngIf=\"showVariables\">\n            Display Value: {{displayValue}} \n            Operator Value: {{operatorValue}} \n            Current Value: {{currentValue}} \n            Calue To Operate: {{valueToOperate}}\n            Operator Pressed: {{operatorPressed}} \n            Is Negative: {{isNegative}} \n            Display Reset After Operator: {{displayResetAfterOperator}}\n        </pre>\n        <div class=\"row no-gutters\">\n            <!-- display -->\n            <input class=\"col-xs-12 button display\" [(ngModel)]=\"displayValue\" type=\"number\" />\n        </div>\n\n        <div class=\"button-group\">\n\n            <div class=\"row no-gutters\">\n                <!-- first row -->\n                <div class=\"col-xs-3\" (click)=\"clear()\">\n                    <div class=\"button functions clear\"><span class=\"button-content\">C</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"delete()\">\n                    <div class=\"button functions\"><span class=\"button-content\">Del</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"toggleNegative()\">\n                    <div class=\"button functions\"><span class=\"button-content\">+/-</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setOperator('/')\">\n                    <div class=\"button operator\"><span class=\"button-content\">&#247;</span></div>\n                </div>\n            </div>\n\n            <div class=\"row no-gutters\">\n                <!-- second row -->\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(7)\">\n                    <div class=\"button number\"><span class=\"button-content\">7</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(8)\">\n                    <div class=\"button number\"><span class=\"button-content\">8</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(9)\">\n                    <div class=\"button number\"><span class=\"button-content\">9</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setOperator('*')\">\n                    <div class=\"button operator\"><span class=\"button-content\">*</span></div>\n                </div>\n            </div>\n\n            <div class=\"row no-gutters\">\n                <!-- third row -->\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(4)\">\n                    <div class=\"button number\"><span class=\"button-content\">4</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(5)\">\n                    <div class=\"button number\"><span class=\"button-content\">5</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(6)\">\n                    <div class=\"button number\"><span class=\"button-content\">6</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setOperator('(-)')\">\n                    <div class=\"button operator\"><span class=\"button-content\">-</span></div>\n                </div>\n            </div>\n\n            <div class=\"row no-gutters\">\n                <!-- fourth row -->\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(1)\">\n                    <div class=\"button number\"><span class=\"button-content\">1</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(2)\">\n                    <div class=\"button number\"><span class=\"button-content\">2</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue(3)\">\n                    <div class=\"button number\"><span class=\"button-content\">3</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setOperator('+')\">\n                    <div class=\"button operator\"><span class=\"button-content\">+</span></div>\n                </div>\n            </div>\n\n            <div class=\"row no-gutters\">\n                <!-- fith row -->\n                <div class=\"col-xs-6\" (click)=\"setDisplayValue(0)\">\n                    <div class=\"button number double-button\"><span class=\"button-content\">0</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"setDisplayValue('.')\">\n                    <div class=\"button number\"><span class=\"button-content\">.</span></div>\n                </div>\n                <div class=\"col-xs-3\" (click)=\"equals()\">\n                    <div class=\"button operator equals\"><span class=\"button-content\">=</span></div>\n                </div>\n            </div>\n    <button class='btn calc-btn' (click)=\"showVariables = !showVariables\">See The Variables in Action</button>\n\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
@@ -249,7 +249,211 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 678:
+/***/ 462:
+/***/ function(module, exports) {
+
+	module.exports = "@import https://fonts.googleapis.com/css?family=Arvo:700|Roboto+Condensed|Share+Tech+Mono;\n.fade {\n  animation-duration: .7s;\n  animation-fill-mode: both;\n  animation-name: fade-down; }\n\n@keyframes fade-down {\n  from {\n    opacity: 0;\n    transform: translate3d(0, -2000px, 0); }\n  to {\n    opacity: 1;\n    transform: none; } }\n\n.slide {\n  animation-duration: 1s;\n  animation-fill-mode: both;\n  animation-name: slide-in; }\n\n@keyframes slide-in {\n  from {\n    transform: translate3d(500%, 0, 0);\n    visibility: visible; }\n  to {\n    transform: translate3d(0, 0, 0); } }\n\n.row.no-gutters {\n  margin-right: 0;\n  margin-left: 0; }\n  .row.no-gutters > [class^='col-'],\n  .row.no-gutters > [class*=' col-'] {\n    padding-right: 0;\n    padding-left: 0; }\n\n/*\n * Base styles\n */\nbody, p, .p, a, a:hover {\n  color: black;\n  font-size: 1.5rem;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 300;\n  line-height: 1.6;\n  letter-spacing: 1px; }\n\n/*\n * Typography\n */\n.h1, h1,\n.h2,\nh2,\n.h3,\nh3,\n.h4,\nh4,\n.h5,\nh5,\n.h6,\nh6 {\n  font-family: \"Arvo\", serif;\n  font-weight: 700; }\n\n.h1, h1,\n.h2,\nh2 {\n  line-height: 1.1; }\n\n.h3, h3,\n.h4,\nh4 {\n  line-height: 1.3; }\n\n.h1, h1 {\n  font-size: 500%;\n  letter-spacing: -2px; }\n\n.h2, h2 {\n  font-size: 250%;\n  letter-spacing: -1px; }\n\n.h3, h3 {\n  font-size: 200%; }\n\n.h4, h4 {\n  font-size: 180%; }\n\n.h5, h5 {\n  font-size: 130%; }\n\n.h6, h6 {\n  font-size: 100%; }\n\na {\n  text-decoration: none; }\n  a:hover {\n    text-decoration: none; }\n\n.text-left {\n  text-align: left   !important; }\n\n.text-center {\n  text-align: center !important; }\n\n.text-right {\n  text-align: right  !important; }\n\n.small-text__project {\n  font-size: 90%;\n  text-transform: uppercase;\n  letter-spacing: 2px; }\n\n.menu {\n  padding-right: 5px; }\n\n.text-inactive {\n  color: black;\n  opacity: .4; }\n\n#calculator {\n  background-color: #f0ede6;\n  border: 0.1px solid #ddd6c6;\n  border-radius: 10px;\n  height: 120px;\n  margin-left: auto;\n  margin-right: auto;\n  position: relative;\n  width: 100px; }\n  #calculator::after {\n    background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 5%, #f6eddc 60%);\n    border: 0.5px solid #ddd6c6;\n    border-radius: 3px;\n    content: '307';\n    display: block;\n    font-family: 'Share Tech Mono', monospace;\n    font-size: 15px;\n    height: 25px;\n    left: 9px;\n    line-height: 27px;\n    position: absolute;\n    text-indent: 48px;\n    top: 12px;\n    width: 80px; }\n  #calculator::before {\n    background-color: #f7f4ef;\n    border: 0.1px solid #ddd6c6;\n    border-radius: 3px;\n    box-shadow: 29px 0 0 -1px #f7f4ef, 29px 0 0 0 #ddd6c6, 58px 0 0 -1px #f7f4ef, 58px 0 0 0 #ddd6c6, 0 22px 0 -1px #f7f4ef, 0 22px 0 0 #ddd6c6, 29px 22px 0 -1px #f7f4ef, 29px 22px 0 0 #ddd6c6, 58px 22px 0 -1px #f7f4ef, 58px 22px 0 0 #ddd6c6, 0 44px 0 -1px #f7f4ef, 0 44px 0 0 #ddd6c6, 29px 44px 0 -1px #f7f4ef, 29px 44px 0 0 #ddd6c6, 58px 44px 0 -1px #f7f4ef, 58px 44px 0 0 #ddd6c6;\n    content: '';\n    display: block;\n    height: 15px;\n    left: 9px;\n    position: absolute;\n    top: 49px;\n    width: 24px; }\n"
+
+/***/ },
+
+/***/ 463:
+/***/ function(module, exports) {
+
+	module.exports = "body {\n  margin-top: 0; }\n\n.home-container {\n  height: 100%;\n  background-color: #EE4236;\n  color: white;\n  overflow: hidden;\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\np {\n  color: white; }\n\n.project-container {\n  position: absolute;\n  bottom: 20vh;\n  margin-left: 100px;\n  margin-right: 50px;\n  max-width: 500px;\n  border-left: .5px solid white;\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.project-description {\n  margin-left: 25px;\n  margin-bottom: 25px; }\n\n.project-container-heading {\n  color: white;\n  padding-left: 25px; }\n\n.project-groups {\n  color: white;\n  max-height: 40vh;\n  overflow-y: scroll;\n  margin-bottom: 0;\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.project-group {\n  color: white;\n  position: relative;\n  margin-top: 15px;\n  cursor: pointer; }\n\n.project-group-heading {\n  color: white;\n  margin-bottom: 0;\n  padding-bottom: 0; }\n\n.project-group-number {\n  color: white;\n  float: left;\n  padding-right: 20px;\n  padding-top: 18px;\n  padding-bottom: 25px;\n  padding-left: 25px; }\n\n.project-group-caption {\n  color: white;\n  padding-top: 0;\n  margin-top: 0; }\n\n.single-div-container {\n  position: absolute;\n  top: 50vh;\n  right: 200px;\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.single-div__calculator {\n  position: relative;\n  bottom: 15vh;\n  height: 500px;\n  right: 150px;\n  transform: scale(2); }\n\n.sequencer-image {\n  position: relative;\n  bottom: 20vh;\n  right: 5;\n  width: 400px; }\n\n.tictactoe-image {\n  position: relative;\n  bottom: 20vh;\n  right: 125px;\n  width: 200px; }\n\n.active-image {\n  display: block; }\n\n.inactive-image {\n  display: none; }\n\n@media (max-width: 1150px) and (min-width: 950px) {\n  .project-container {\n    margin-left: 75px; }\n  .single-div-container {\n    right: 150px; }\n  .single-div__calculator {\n    transform: scale(1.3); }\n  .sequencer-image {\n    right: -10vh;\n    width: 300px; }\n  .tictactoe-image {\n    position: relative;\n    bottom: 20vh;\n    right: 0;\n    width: 170px; } }\n\n@media (max-width: 950px) {\n  .project-container {\n    margin-left: 50px;\n    bottom: 0vh; }\n  .single-div-container {\n    position: relative;\n    right: auto;\n    margin: 0 auto;\n    top: 100px; }\n  .single-div__calculator {\n    transform: scale(1.3);\n    bottom: 45px;\n    right: auto;\n    left: auto; }\n  .sequencer-image {\n    bottom: 15px;\n    right: auto;\n    display: block;\n    margin: 0 auto;\n    width: 200px; }\n  .tictactoe-image {\n    bottom: 40px;\n    right: auto;\n    display: block;\n    margin: 0 auto;\n    width: 125px; } }\n\n@media (max-width: 450px) {\n  .project-groups {\n    max-height: 35vh; } }\n"
+
+/***/ },
+
+/***/ 464:
+/***/ function(module, exports) {
+
+	module.exports = "nav .navigation-logo,\nnav .navigation-menu {\n  position: absolute;\n  top: 50px;\n  transition: all 0.6s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\nnav .navigation-menu {\n  right: 100px; }\n  nav .navigation-menu span {\n    color: white; }\n\nnav .navigation-logo {\n  color: white;\n  left: 75px; }\n\n@media (max-width: 850px) {\n  nav .navigation-logo {\n    transform: rotate(90deg);\n    left: 5px;\n    top: 110px; }\n  nav .navigation-menu {\n    transform: rotate(90deg);\n    left: -15px;\n    right: auto;\n    top: 125px; } }\n"
+
+/***/ },
+
+/***/ 465:
+/***/ function(module, exports) {
+
+	module.exports = "input[type='number']::-webkit-inner-spin-button,\ninput[type='number']::-webkit-outer-spin-button {\n  -webkit-appearance: none;\n  margin: 0; }\n\n.calc {\n  height: 150%;\n  overflow: hidden;\n  background-color: #8EDB37; }\n  .calc div,\n  .calc h1,\n  .calc h2,\n  .calc h3,\n  .calc h4,\n  .calc h5,\n  .calc p {\n    font-family: 'Share Tech Mono', monospace;\n    font-size: 15px;\n    margin: 0; }\n  .calc .calculator {\n    background-color: #f0ede6;\n    border: 0.5px solid #cabfa6;\n    border-radius: 10px;\n    margin-top: 125px;\n    margin-left: auto;\n    margin-right: auto;\n    max-width: 350px;\n    min-width: 350px;\n    padding: 15px;\n    position: relative; }\n  .calc .button-group {\n    margin-top: 9px; }\n  .calc .button {\n    background-color: #f7f4ef;\n    border: 0.5px solid #cabfa6;\n    border-radius: 5px;\n    box-shadow: 0 2px 3px #ddd6c6;\n    color: #000;\n    display: table;\n    margin: 9px 8px;\n    margin-left: auto;\n    margin-right: auto;\n    min-height: 40px;\n    padding-bottom: 10%;\n    position: relative;\n    text-align: center;\n    width: 80%; }\n    .calc .button:hover {\n      background-color: #ded1bc;\n      cursor: hand; }\n    .calc .button.display {\n      background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 10%, #fff 25%);\n      border-width: .5px;\n      color: #000;\n      cursor: text;\n      font-size: 30px;\n      height: 80px;\n      min-height: 30px;\n      padding: 15px;\n      text-align: right;\n      width: 95%; }\n      .calc .button.display::selection {\n        background: #e57c46;\n        color: #f7f4ef; }\n    .calc .button.operator {\n      font-size: 20px; }\n      .calc .button.operator .button-content {\n        top: 7px; }\n    .calc .button.equals {\n      background-color: #888b98;\n      color: #f7f4ef; }\n      .calc .button.equals:hover {\n        background-color: #626571; }\n    .calc .button.clear {\n      background-color: #e57c46;\n      color: #f7f4ef; }\n      .calc .button.clear:hover {\n        background-color: #c3541b; }\n    .calc .button.double-button {\n      width: 90%; }\n    .calc .button .button-content {\n      position: relative;\n      top: 9px; }\n  .calc .calc-btn {\n    width: 100%;\n    background-color: #f7f4ef;\n    color: #000; }\n"
+
+/***/ },
+
+/***/ 466:
+/***/ function(module, exports) {
+
+	module.exports = ".drum-machine-wrapper {\n  height: 100%;\n  overflow: hidden;\n  background-color: #36D2C7; }\n\n#drum {\n  position: absolute;\n  display: block;\n  margin: auto;\n  left: 0;\n  top: 0;\n  height: 100%;\n  width: 100%; }\n"
+
+/***/ },
+
+/***/ 467:
+/***/ function(module, exports) {
+
+	module.exports = ".tictactoe {\n  display: block;\n  height: 100vh; }\n\n.ttc__game-board {\n  position: relative;\n  height: 80vh; }\n\n.ttc__resolution {\n  position: relative;\n  height: 80vh;\n  text-align: center;\n  margin-top: 10vh; }\n\n.ttc__user-scoreboard {\n  position: relative;\n  height: 20vh; }\n\n.ttc__game-board-row {\n  height: 33.3%; }\n  .ttc__game-board-row:first-child {\n    border-bottom: 1px solid gray; }\n  .ttc__game-board-row:last-child {\n    border-top: 1px solid gray; }\n\n.ttc__game-board-tile {\n  height: 100%;\n  overflow: scroll; }\n  .ttc__game-board-tile:nth-child(1) {\n    border-right: 1px solid gray; }\n  .ttc__game-board-tile:nth-child(3) {\n    border-left: 1px solid gray; }\n\n.x, .o, .null {\n  margin-top: 35px;\n  margin-left: auto;\n  margin-right: auto; }\n\n.x {\n  position: relative;\n  vertical-align: middle;\n  width: 1em;\n  height: 5em;\n  background: #2C2C2C;\n  transform: rotate(45deg);\n  font-size: 22px; }\n  .x:after {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 1em;\n    height: 5em;\n    background: #2C2C2C;\n    transform: rotate(-90deg); }\n\n.o {\n  height: 5em;\n  width: 5em;\n  border-radius: 50%;\n  border: solid 1em #2c2c2c;\n  font-size: 22px; }\n\n@media only screen and (max-width: 500px) {\n  .x, .x:after, .o {\n    height: 3.5em;\n    width: 3.5em;\n    font-size: 12px; } }\n\n.null:before {\n  position: absolute;\n  top: 25%;\n  left: 25%;\n  bottom: 25%;\n  right: 25%;\n  content: '';\n  border-radius: 75%;\n  background-color: lightgray;\n  opacity: .1; }\n\n.ttt__animation-in {\n  animation: fadeIn 1000ms; }\n\n@keyframes in {\n  from {\n    opacity: 0;\n    transform: rotate(180deg); }\n  to {\n    opacity: 1;\n    transform: rotate(0deg); } }\n\n@keyframes out {\n  from {\n    transform: scale(0, 0); }\n  to {\n    transform: scale(3, 3);\n    opacity: 0; } }\n"
+
+/***/ },
+
+/***/ 680:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(462);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(63)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/raw-loader/index.js!./../node_modules/sass-loader/index.js!./global.scss", function() {
+				var newContent = require("!!./../node_modules/raw-loader/index.js!./../node_modules/sass-loader/index.js!./global.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 681:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(463);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(63)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./home.scss", function() {
+				var newContent = require("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./home.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 682:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(464);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(63)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss", function() {
+				var newContent = require("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 683:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(465);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(63)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./calculator.scss", function() {
+				var newContent = require("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./calculator.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 684:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(466);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(63)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./drum-machine.scss", function() {
+				var newContent = require("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./drum-machine.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 685:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(467);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(63)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./tictactoe.scss", function() {
+				var newContent = require("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./tictactoe.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 686:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -264,7 +468,8 @@ webpackJsonp([2],{
 	};
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(30);
-	var nav_component_1 = __webpack_require__(680);
+	var nav_component_1 = __webpack_require__(688);
+	var core_2 = __webpack_require__(1);
 	var AppComponent = (function () {
 	    function AppComponent() {
 	    }
@@ -274,9 +479,10 @@ webpackJsonp([2],{
 	                router_1.ROUTER_DIRECTIVES,
 	                nav_component_1.NavComponent
 	            ],
+	            encapsulation: core_2.ViewEncapsulation.None,
 	            moduleId: module.id,
 	            selector: 'my-app',
-	            styles: [__webpack_require__(713).toString()],
+	            styles: [__webpack_require__(680).toString()],
 	            template: "\n    <my-nav></my-nav>\n    <router-outlet></router-outlet>\n    ",
 	        }), 
 	        __metadata('design:paramtypes', [])
@@ -288,7 +494,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 679:
+/***/ 687:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -320,7 +526,7 @@ webpackJsonp([2],{
 	            moduleId: module.id,
 	            providers: [nav_title_service_1.NavTitleService],
 	            selector: 'my-home',
-	            styles: [__webpack_require__(717).toString()],
+	            styles: [__webpack_require__(681).toString()],
 	            template: __webpack_require__(456)
 	        }), 
 	        __metadata('design:paramtypes', [])
@@ -355,7 +561,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 680:
+/***/ 688:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -383,7 +589,7 @@ webpackJsonp([2],{
 	            setTimeout(function () {
 	                _this.isNewRoute = false;
 	            }, 1500);
-	            _this.routeName = _this.navTitleService.getCurrentUrl();
+	            _this.routeName = _this.navTitleService.getCurrentUrl().trim();
 	        });
 	    }
 	    NavComponent = __decorate([
@@ -392,8 +598,8 @@ webpackJsonp([2],{
 	            moduleId: module.id,
 	            providers: [nav_title_service_1.NavTitleService],
 	            selector: 'my-nav',
-	            styles: [__webpack_require__(715).toString()],
-	            template: "\n    <nav [ngClass]=\"{ 'fade':  isNewRoute }\">\n        <div class=\"navigation-logo\">\n            {{routeName | uppercase}}\n        </div>\n        <div class=\"navigation-menu\">\n            <span class=\"p menu-item\">RESUME</span>\n            <span class=\"p menu-item\">CONTACT</span>\n        </div>\n    </nav>\n    ",
+	            styles: [__webpack_require__(682).toString()],
+	            template: "\n    <nav [ngClass]=\"{ 'fade':  isNewRoute }\">\n        <span  class=\"h5 navigation-logo\">\n            {{routeName | uppercase}}\n        </span>\n        <div class=\"navigation-menu\">\n            <span class=\"p menu-item\">RESUME</span>\n            <span class=\"p menu-item\">CONTACT</span>\n        </div>\n    </nav>\n    "
 	        }), 
 	        __metadata('design:paramtypes', [nav_title_service_1.NavTitleService, router_1.Router])
 	    ], NavComponent);
@@ -404,13 +610,14 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 681:
+/***/ 689:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * TODO:
 	 *   fix the way the variables look when its opened
 	 *   fix the button that toggles import
+	 *   add a click
 	 *
 	 */
 	"use strict";
@@ -425,6 +632,7 @@ webpackJsonp([2],{
 	};
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(30);
+	var core_2 = __webpack_require__(1);
 	var CalculatorComponent = (function () {
 	    function CalculatorComponent() {
 	        // Show how the variables are working
@@ -513,8 +721,9 @@ webpackJsonp([2],{
 	            directives: [router_1.ROUTER_DIRECTIVES],
 	            moduleId: module.id,
 	            selector: 'my-calculator',
-	            styles: [__webpack_require__(711).toString()],
+	            styles: [__webpack_require__(683).toString()],
 	            template: __webpack_require__(457),
+	            encapsulation: core_2.ViewEncapsulation.Emulated
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], CalculatorComponent);
@@ -525,7 +734,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 682:
+/***/ 690:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -777,7 +986,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 683:
+/***/ 691:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -838,7 +1047,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 684:
+/***/ 692:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -934,7 +1143,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 685:
+/***/ 693:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1064,7 +1273,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 686:
+/***/ 694:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1173,7 +1382,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 687:
+/***/ 695:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1284,7 +1493,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 688:
+/***/ 696:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1372,7 +1581,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 689:
+/***/ 697:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1386,7 +1595,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var TimeWorker = __webpack_require__(703);
+	var TimeWorker = __webpack_require__(711);
 	var DrumMachineMetronomeService = (function () {
 	    function DrumMachineMetronomeService() {
 	        this.timeWorker = null;
@@ -1638,7 +1847,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 690:
+/***/ 698:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1656,14 +1865,14 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var drum_machine_metronome_service_1 = __webpack_require__(689);
-	var SEQUENCER_LINEUP_1 = __webpack_require__(682);
-	var drum_machine_knob_directive_1 = __webpack_require__(687);
-	var drum_machine_button_directive_1 = __webpack_require__(684);
-	var drum_machine_instrumentbutton_directive_1 = __webpack_require__(685);
-	var drum_machine_beat_directive_1 = __webpack_require__(683);
-	var drum_machine_startbutton_directive_1 = __webpack_require__(688);
-	var drum_machine_kit_directive_1 = __webpack_require__(686);
+	var drum_machine_metronome_service_1 = __webpack_require__(697);
+	var SEQUENCER_LINEUP_1 = __webpack_require__(690);
+	var drum_machine_knob_directive_1 = __webpack_require__(695);
+	var drum_machine_button_directive_1 = __webpack_require__(692);
+	var drum_machine_instrumentbutton_directive_1 = __webpack_require__(693);
+	var drum_machine_beat_directive_1 = __webpack_require__(691);
+	var drum_machine_startbutton_directive_1 = __webpack_require__(696);
+	var drum_machine_kit_directive_1 = __webpack_require__(694);
 	var DrumMachineComponent = (function () {
 	    function DrumMachineComponent(metronomeService) {
 	        this.metronomeService = metronomeService;
@@ -1709,7 +1918,7 @@ webpackJsonp([2],{
 	                drum_machine_startbutton_directive_1.DrumMachineStartButtonDirective,
 	                drum_machine_kit_directive_1.DrumMachineKitButtonDirective
 	            ],
-	            styles: [__webpack_require__(709).toString()],
+	            styles: [__webpack_require__(684).toString()],
 	            moduleId: module.id,
 	            providers: [drum_machine_metronome_service_1.DrumMachineMetronomeService],
 	            selector: 'my-drum-machine',
@@ -1724,7 +1933,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 691:
+/***/ 699:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1793,7 +2002,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 692:
+/***/ 700:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1808,7 +2017,7 @@ webpackJsonp([2],{
 	};
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(30);
-	var tictactoe_service_1 = __webpack_require__(136);
+	var tictactoe_service_1 = __webpack_require__(137);
 	var GameInformationComponent = (function () {
 	    function GameInformationComponent(router, ticTacToeService) {
 	        this.router = router;
@@ -1870,7 +2079,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 693:
+/***/ 701:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1885,8 +2094,8 @@ webpackJsonp([2],{
 	};
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(30);
-	var tictactoe_service_1 = __webpack_require__(136);
-	var tiletype_directive_1 = __webpack_require__(691);
+	var tictactoe_service_1 = __webpack_require__(137);
+	var tiletype_directive_1 = __webpack_require__(699);
 	var GamePlayComponent = (function () {
 	    function GamePlayComponent(ticTacToeService, router) {
 	        this.ticTacToeService = ticTacToeService;
@@ -2065,7 +2274,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 694:
+/***/ 702:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2080,7 +2289,7 @@ webpackJsonp([2],{
 	};
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(30);
-	var tictactoe_service_1 = __webpack_require__(136);
+	var tictactoe_service_1 = __webpack_require__(137);
 	var GameResolutionComponent = (function () {
 	    function GameResolutionComponent(ticTacToeService, router) {
 	        this.ticTacToeService = ticTacToeService;
@@ -2116,14 +2325,14 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 695:
+/***/ 703:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var tictactoe_component_1 = __webpack_require__(336);
-	var game_play_component_1 = __webpack_require__(693);
-	var game_information_component_1 = __webpack_require__(692);
-	var game_resolution_component_1 = __webpack_require__(694);
+	var game_play_component_1 = __webpack_require__(701);
+	var game_information_component_1 = __webpack_require__(700);
+	var game_resolution_component_1 = __webpack_require__(702);
 	exports.TicTacToeRoutes = [
 	    {
 	        path: 'tictactoe',
@@ -2139,16 +2348,16 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 696:
+/***/ 704:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var router_1 = __webpack_require__(30);
-	var tictactoe_routes_1 = __webpack_require__(695);
-	var home_component_1 = __webpack_require__(679);
-	var calculator_component_1 = __webpack_require__(681);
+	var tictactoe_routes_1 = __webpack_require__(703);
+	var home_component_1 = __webpack_require__(687);
+	var calculator_component_1 = __webpack_require__(689);
 	var tictactoe_component_1 = __webpack_require__(336);
-	var drum_machine_component_1 = __webpack_require__(690);
+	var drum_machine_component_1 = __webpack_require__(698);
 	exports.routes = [
 	    {
 	        component: home_component_1.HomeComponent,
@@ -2175,7 +2384,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 702:
+/***/ 710:
 /***/ function(module, exports) {
 
 	// http://stackoverflow.com/questions/10343913/how-to-create-a-web-worker-from-a-string
@@ -2204,216 +2413,12 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 703:
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = function() {
-		return __webpack_require__(702)("/******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n\n/******/ \t\t// Check if module is in cache\n/******/ \t\tif(installedModules[moduleId])\n/******/ \t\t\treturn installedModules[moduleId].exports;\n\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\texports: {},\n/******/ \t\t\tid: moduleId,\n/******/ \t\t\tloaded: false\n/******/ \t\t};\n\n/******/ \t\t// Execute the module function\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n\n/******/ \t\t// Flag the module as loaded\n/******/ \t\tmodule.loaded = true;\n\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n\n\n/******/ \t// expose the modules object (__webpack_modules__)\n/******/ \t__webpack_require__.m = modules;\n\n/******/ \t// expose the module cache\n/******/ \t__webpack_require__.c = installedModules;\n\n/******/ \t// __webpack_public_path__\n/******/ \t__webpack_require__.p = \"\";\n\n/******/ \t// Load entry module and return exports\n/******/ \treturn __webpack_require__(0);\n/******/ })\n/************************************************************************/\n/******/ ([\n/* 0 */\n/***/ function(module, exports) {\n\n\tvar timerID=null;\n\tvar interval=100;\n\n\tself.onmessage=function(e){\n\t\tif (e.data==\"start\") {\n\t\t\tconsole.log(\"starting\");\n\t\t\ttimerID=setInterval(function(){ postMessage(\"tick\"); },interval)\n\t\t}\n\t\telse if (e.data.interval) {\n\t\t\tinterval=e.data.interval;\n\t\t\tif (timerID) {\n\t\t\t\tclearInterval(timerID);\n\t\t\t\ttimerID=setInterval(function(){postMessage(\"tick\");},interval)\n\t\t\t}\n\t\t}\n\t\telse if (e.data==\"stop\") {\n\t\t\tconsole.log(\"stopping\");\n\t\t\tclearInterval(timerID);\n\t\t\ttimerID=null;\n\t\t}\n\t};\n\n\tpostMessage('worker called');\n\n/***/ }\n/******/ ]);\n//# sourceMappingURL=main.map", __webpack_require__.p + "f32a803771fe39de9f1d.worker.js");
-	};
-
-/***/ },
-
-/***/ 708:
-/***/ function(module, exports) {
-
-	module.exports = ".drum-machine-wrapper {\n  height: 100%;\n  overflow: hidden;\n  background-color: #36D2C7; }\n\n#drum {\n  position: absolute;\n  display: block;\n  margin: auto;\n  left: 0;\n  top: 0;\n  height: 100%;\n  width: 100%; }\n"
-
-/***/ },
-
-/***/ 709:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(708);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(217)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./drum-machine.scss", function() {
-				var newContent = require("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./drum-machine.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 710:
-/***/ function(module, exports) {
-
-	module.exports = "input[type='number']::-webkit-inner-spin-button,\ninput[type='number']::-webkit-outer-spin-button {\n  -webkit-appearance: none;\n  margin: 0; }\n\n.cal {\n  height: 150%;\n  overflow: hidden;\n  background-color: #8EDB37; }\n  .cal div,\n  .cal h1,\n  .cal h2,\n  .cal h3,\n  .cal h4,\n  .cal h5,\n  .cal p {\n    font-family: 'Share Tech Mono', monospace;\n    font-size: 15px;\n    margin: 0; }\n  .cal .calculator {\n    background-color: #f0ede6;\n    border: 0.5px solid #cabfa6;\n    border-radius: 10px;\n    margin-top: 125px;\n    margin-left: auto;\n    margin-right: auto;\n    max-width: 350px;\n    min-width: 350px;\n    padding: 15px;\n    position: relative; }\n  .cal .button-group {\n    margin-top: 9px; }\n  .cal .button {\n    background-color: #f7f4ef;\n    border: 0.5px solid #cabfa6;\n    border-radius: 5px;\n    box-shadow: 0 2px 3px #ddd6c6;\n    color: #000;\n    display: table;\n    margin: 9px 8px;\n    margin-left: auto;\n    margin-right: auto;\n    min-height: 40px;\n    padding-bottom: 10%;\n    position: relative;\n    text-align: center;\n    width: 80%; }\n    .cal .button:hover {\n      background-color: #ded1bc;\n      cursor: hand; }\n    .cal .button.display {\n      background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 10%, #fff 25%);\n      border-width: .5px;\n      color: #000;\n      cursor: text;\n      font-size: 30px;\n      height: 80px;\n      min-height: 30px;\n      padding: 15px;\n      text-align: right;\n      width: 95%; }\n      .cal .button.display::selection {\n        background: #e57c46;\n        color: #f7f4ef; }\n    .cal .button.operator {\n      font-size: 20px; }\n      .cal .button.operator .button-content {\n        top: 7px; }\n    .cal .button.equals {\n      background-color: #888b98;\n      color: #f7f4ef; }\n      .cal .button.equals:hover {\n        background-color: #626571; }\n    .cal .button.clear {\n      background-color: #e57c46;\n      color: #f7f4ef; }\n      .cal .button.clear:hover {\n        background-color: #c3541b; }\n    .cal .button.double-button {\n      width: 90%; }\n    .cal .button .button-content {\n      position: relative;\n      top: 9px; }\n  .cal .calc-btn {\n    width: 100%;\n    background-color: #f7f4ef;\n    color: #000; }\n"
-
-/***/ },
-
 /***/ 711:
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(710);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(217)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./calculator.scss", function() {
-				var newContent = require("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./calculator.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 712:
-/***/ function(module, exports) {
-
-	module.exports = "@import https://fonts.googleapis.com/css?family=Arvo:700|Roboto+Condensed|Share+Tech+Mono;\n.fade {\n  animation-duration: .7s;\n  animation-fill-mode: both;\n  animation-name: fade-down; }\n\n@keyframes fade-down {\n  from {\n    opacity: 0;\n    transform: translate3d(0, -2000px, 0); }\n  to {\n    opacity: 1;\n    transform: none; } }\n\n.slide {\n  animation-duration: 1s;\n  animation-fill-mode: both;\n  animation-name: slide-in; }\n\n@keyframes slide-in {\n  from {\n    transform: translate3d(500%, 0, 0);\n    visibility: visible; }\n  to {\n    transform: translate3d(0, 0, 0); } }\n\n.row.no-gutters {\n  margin-right: 0;\n  margin-left: 0; }\n  .row.no-gutters > [class^='col-'],\n  .row.no-gutters > [class*=' col-'] {\n    padding-right: 0;\n    padding-left: 0; }\n\n/*\n * Base styles\n */\nbody, p, .p, a, a:hover {\n  color: black;\n  font-size: 1.5rem;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 300;\n  line-height: 1.6;\n  letter-spacing: 1px; }\n\n/*\n * Typography\n */\n.h1, h1,\n.h2,\nh2,\n.h3,\nh3,\n.h4,\nh4,\n.h5,\nh5,\n.h6,\nh6 {\n  font-family: \"Arvo\", serif;\n  font-weight: 700; }\n\n.h1, h1,\n.h2,\nh2 {\n  line-height: 1.1; }\n\n.h3, h3,\n.h4,\nh4 {\n  line-height: 1.3; }\n\n.h1, h1 {\n  font-size: 500%;\n  letter-spacing: -2px; }\n\n.h2, h2 {\n  font-size: 250%;\n  letter-spacing: -1px; }\n\n.h3, h3 {\n  font-size: 200%; }\n\n.h4, h4 {\n  font-size: 180%; }\n\n.h5, h5 {\n  font-size: 130%; }\n\n.h6, h6 {\n  font-size: 100%; }\n\na {\n  text-decoration: none; }\n  a:hover {\n    text-decoration: none; }\n\n.text-left {\n  text-align: left   !important; }\n\n.text-center {\n  text-align: center !important; }\n\n.text-right {\n  text-align: right  !important; }\n\n.small-text__project {\n  font-size: 90%;\n  text-transform: uppercase;\n  letter-spacing: 2px; }\n\n.menu {\n  padding-right: 5px; }\n\n.text-inactive {\n  color: black;\n  opacity: .4; }\n\n#calculator {\n  background-color: #f0ede6;\n  border: 0.1px solid #ddd6c6;\n  border-radius: 10px;\n  height: 120px;\n  margin-left: auto;\n  margin-right: auto;\n  position: relative;\n  width: 100px; }\n  #calculator::after {\n    background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 5%, #f6eddc 60%);\n    border: 0.5px solid #ddd6c6;\n    border-radius: 3px;\n    content: '307';\n    display: block;\n    font-family: 'Share Tech Mono', monospace;\n    font-size: 15px;\n    height: 25px;\n    left: 9px;\n    line-height: 27px;\n    position: absolute;\n    text-indent: 48px;\n    top: 12px;\n    width: 80px; }\n  #calculator::before {\n    background-color: #f7f4ef;\n    border: 0.1px solid #ddd6c6;\n    border-radius: 3px;\n    box-shadow: 29px 0 0 -1px #f7f4ef, 29px 0 0 0 #ddd6c6, 58px 0 0 -1px #f7f4ef, 58px 0 0 0 #ddd6c6, 0 22px 0 -1px #f7f4ef, 0 22px 0 0 #ddd6c6, 29px 22px 0 -1px #f7f4ef, 29px 22px 0 0 #ddd6c6, 58px 22px 0 -1px #f7f4ef, 58px 22px 0 0 #ddd6c6, 0 44px 0 -1px #f7f4ef, 0 44px 0 0 #ddd6c6, 29px 44px 0 -1px #f7f4ef, 29px 44px 0 0 #ddd6c6, 58px 44px 0 -1px #f7f4ef, 58px 44px 0 0 #ddd6c6;\n    content: '';\n    display: block;\n    height: 15px;\n    left: 9px;\n    position: absolute;\n    top: 49px;\n    width: 24px; }\n"
-
-/***/ },
-
-/***/ 713:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(712);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(217)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/raw-loader/index.js!./../node_modules/sass-loader/index.js!./global.scss", function() {
-				var newContent = require("!!./../node_modules/raw-loader/index.js!./../node_modules/sass-loader/index.js!./global.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 714:
-/***/ function(module, exports) {
-
-	module.exports = ".navigation-logo,\n.navigation-menu {\n  position: absolute;\n  top: 50px;\n  transition: all 0.6s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.navigation-menu {\n  right: 100px; }\n\n.navigation-logo {\n  left: 75px;\n  color: white; }\n\n@media (max-width: 850px) {\n  .navigation-logo {\n    transform: rotate(90deg);\n    left: 7px;\n    top: 100px; }\n  .navigation-menu {\n    transform: rotate(90deg);\n    left: -15px;\n    right: auto;\n    top: 110px; }\n    .navigation-menu .menu-item {\n      left: -35px; } }\n"
-
-/***/ },
-
-/***/ 715:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(714);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(217)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss", function() {
-				var newContent = require("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 716:
-/***/ function(module, exports) {
-
-	module.exports = "body {\n  margin-top: 0; }\n\n.home-container {\n  height: 100%;\n  background-color: #EE4236;\n  color: white;\n  overflow: hidden;\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\np {\n  color: white; }\n\n.project-container {\n  position: absolute;\n  bottom: 20vh;\n  margin-left: 100px;\n  margin-right: 50px;\n  max-width: 500px;\n  border-left: .5px solid white;\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.project-description {\n  margin-left: 25px;\n  margin-bottom: 25px; }\n\n.project-container-heading {\n  padding-left: 25px; }\n\n.project-groups {\n  max-height: 40vh;\n  overflow-y: scroll;\n  margin-bottom: 0;\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.project-group {\n  position: relative;\n  margin-top: 15px;\n  cursor: pointer; }\n\n.project-group-heading {\n  margin-bottom: 0;\n  padding-bottom: 0; }\n\n.project-group-number {\n  float: left;\n  padding-right: 20px;\n  padding-top: 18px;\n  padding-bottom: 25px;\n  padding-left: 25px; }\n\n.project-group-caption {\n  padding-top: 0;\n  margin-top: 0; }\n\n.single-div-container {\n  position: absolute;\n  top: 50vh;\n  right: 200px;\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.single-div__calculator {\n  position: relative;\n  bottom: 15vh;\n  height: 500px;\n  right: 150px;\n  transform: scale(2); }\n\n.sequencer-image {\n  position: relative;\n  bottom: 20vh;\n  right: 5;\n  width: 400px; }\n\n.tictactoe-image {\n  position: relative;\n  bottom: 20vh;\n  right: 125px;\n  width: 200px; }\n\n.active-image {\n  display: block; }\n\n.inactive-image {\n  display: none; }\n\n@media (max-width: 1150px) and (min-width: 950px) {\n  .project-container {\n    margin-left: 75px; }\n  .single-div-container {\n    right: 150px; }\n  .single-div__calculator {\n    transform: scale(1.3); }\n  .sequencer-image {\n    right: -10vh;\n    width: 300px; }\n  .tictactoe-image {\n    position: relative;\n    bottom: 20vh;\n    right: 0;\n    width: 170px; } }\n\n@media (max-width: 950px) {\n  .project-container {\n    margin-left: 50px;\n    bottom: 5vh; }\n  .single-div-container {\n    position: relative;\n    right: auto;\n    margin: 0 auto;\n    top: 100px; }\n  .single-div__calculator {\n    transform: scale(1.3);\n    bottom: 45px;\n    right: auto;\n    left: auto; }\n  .sequencer-image {\n    bottom: 15px;\n    right: auto;\n    display: block;\n    margin: 0 auto;\n    width: 200px; }\n  .tictactoe-image {\n    bottom: 40px;\n    right: auto;\n    display: block;\n    margin: 0 auto;\n    width: 125px; } }\n\n@media (max-width: 450px) {\n  .project-groups {\n    max-height: 35vh; } }\n"
-
-/***/ },
-
-/***/ 717:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(716);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(217)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./home.scss", function() {
-				var newContent = require("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./home.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 718:
-/***/ function(module, exports) {
-
-	module.exports = ".tictactoe {\n  display: block;\n  height: 100vh; }\n\n.ttc__game-board {\n  position: relative;\n  height: 80vh; }\n\n.ttc__resolution {\n  position: relative;\n  height: 80vh;\n  text-align: center;\n  margin-top: 10vh; }\n\n.ttc__user-scoreboard {\n  position: relative;\n  height: 20vh; }\n\n.ttc__game-board-row {\n  height: 33.3%; }\n  .ttc__game-board-row:first-child {\n    border-bottom: 1px solid gray; }\n  .ttc__game-board-row:last-child {\n    border-top: 1px solid gray; }\n\n.ttc__game-board-tile {\n  height: 100%;\n  overflow: scroll; }\n  .ttc__game-board-tile:nth-child(1) {\n    border-right: 1px solid gray; }\n  .ttc__game-board-tile:nth-child(3) {\n    border-left: 1px solid gray; }\n\n.x, .o, .null {\n  margin-top: 35px;\n  margin-left: auto;\n  margin-right: auto; }\n\n.x {\n  position: relative;\n  vertical-align: middle;\n  width: 1em;\n  height: 5em;\n  background: #2C2C2C;\n  transform: rotate(45deg);\n  font-size: 22px; }\n  .x:after {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 1em;\n    height: 5em;\n    background: #2C2C2C;\n    transform: rotate(-90deg); }\n\n.o {\n  height: 5em;\n  width: 5em;\n  border-radius: 50%;\n  border: solid 1em #2c2c2c;\n  font-size: 22px; }\n\n@media only screen and (max-width: 500px) {\n  .x, .x:after, .o {\n    height: 3.5em;\n    width: 3.5em;\n    font-size: 12px; } }\n\n.null:before {\n  position: absolute;\n  top: 25%;\n  left: 25%;\n  bottom: 25%;\n  right: 25%;\n  content: '';\n  border-radius: 75%;\n  background-color: lightgray;\n  opacity: .1; }\n\n.ttt__animation-in {\n  animation: fadeIn 1000ms; }\n\n@keyframes in {\n  from {\n    opacity: 0;\n    transform: rotate(180deg); }\n  to {\n    opacity: 1;\n    transform: rotate(0deg); } }\n\n@keyframes out {\n  from {\n    transform: scale(0, 0); }\n  to {\n    transform: scale(3, 3);\n    opacity: 0; } }\n"
-
-/***/ },
-
-/***/ 719:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(718);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(217)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./tictactoe.scss", function() {
-				var newContent = require("!!./../../node_modules/raw-loader/index.js!./../../node_modules/sass-loader/index.js!./tictactoe.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	module.exports = function() {
+		return __webpack_require__(710)("/******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n\n/******/ \t\t// Check if module is in cache\n/******/ \t\tif(installedModules[moduleId])\n/******/ \t\t\treturn installedModules[moduleId].exports;\n\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\texports: {},\n/******/ \t\t\tid: moduleId,\n/******/ \t\t\tloaded: false\n/******/ \t\t};\n\n/******/ \t\t// Execute the module function\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n\n/******/ \t\t// Flag the module as loaded\n/******/ \t\tmodule.loaded = true;\n\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n\n\n/******/ \t// expose the modules object (__webpack_modules__)\n/******/ \t__webpack_require__.m = modules;\n\n/******/ \t// expose the module cache\n/******/ \t__webpack_require__.c = installedModules;\n\n/******/ \t// __webpack_public_path__\n/******/ \t__webpack_require__.p = \"\";\n\n/******/ \t// Load entry module and return exports\n/******/ \treturn __webpack_require__(0);\n/******/ })\n/************************************************************************/\n/******/ ([\n/* 0 */\n/***/ function(module, exports) {\n\n\tvar timerID=null;\n\tvar interval=100;\n\n\tself.onmessage=function(e){\n\t\tif (e.data==\"start\") {\n\t\t\tconsole.log(\"starting\");\n\t\t\ttimerID=setInterval(function(){ postMessage(\"tick\"); },interval)\n\t\t}\n\t\telse if (e.data.interval) {\n\t\t\tinterval=e.data.interval;\n\t\t\tif (timerID) {\n\t\t\t\tclearInterval(timerID);\n\t\t\t\ttimerID=setInterval(function(){postMessage(\"tick\");},interval)\n\t\t\t}\n\t\t}\n\t\telse if (e.data==\"stop\") {\n\t\t\tconsole.log(\"stopping\");\n\t\t\tclearInterval(timerID);\n\t\t\ttimerID=null;\n\t\t}\n\t};\n\n\tpostMessage('worker called');\n\n/***/ }\n/******/ ]);\n//# sourceMappingURL=main.map", __webpack_require__.p + "f32a803771fe39de9f1d.worker.js");
+	};
 
 /***/ }
 

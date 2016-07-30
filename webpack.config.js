@@ -27,9 +27,13 @@ var webpackConfig = {
       { test: /\.((woff|woff2)(\?v=\d+\.\d+\.\d+)?|png|jpg|eot|ttf|gif)$/, loader: 'url-loader?limit=10000' },
       { test: /\.html$/, loader: 'raw-loader' },
       { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.scss$/, loader: 'style!raw!sass' },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        loaders: ['raw-loader', 'sass-loader'] // sass-loader not scss-loader
+      },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
-      ]
+    ]
   }
 };
 

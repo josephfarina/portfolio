@@ -2,11 +2,13 @@
  * TODO: 
  *   fix the way the variables look when its opened
  *   fix the button that toggles import
+ *   add a click 
  *   
  */
 
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import {ViewEncapsulation} from '@angular/core';
 
 @Component({
     directives: [ROUTER_DIRECTIVES],
@@ -14,6 +16,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     selector: 'my-calculator',
     styles: [require('./../../../scss/projects/calculator.scss').toString()],
     templateUrl: 'calculator.component.html',
+    encapsulation: ViewEncapsulation.Emulated
 })
 
 export class CalculatorComponent {

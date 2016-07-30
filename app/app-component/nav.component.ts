@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router} from '@angular/router';
 import { NavTitleService } from './../shared/services/nav-title.service';
+import {ViewEncapsulation} from '@angular/core';
 
 @Component({
     directives: [ ROUTER_DIRECTIVES ],
@@ -10,15 +11,15 @@ import { NavTitleService } from './../shared/services/nav-title.service';
     styles: [require('./../../scss/layout/nav.scss').toString()],
     template: `
     <nav [ngClass]="{ 'fade':  isNewRoute }">
-        <div class="navigation-logo">
+        <span  class="h5 navigation-logo">
             {{routeName | uppercase}}
-        </div>
+        </span>
         <div class="navigation-menu">
             <span class="p menu-item">RESUME</span>
             <span class="p menu-item">CONTACT</span>
         </div>
     </nav>
-    `,
+    `
 })
 
 // TODO: Fix glitch on calc animation -- and make it so it doesnt swing down on project pages
@@ -34,7 +35,7 @@ export class NavComponent {
             setTimeout(() => {
                  this.isNewRoute = false;
              }, 1500);
-            this.routeName = this.navTitleService.getCurrentUrl();
+            this.routeName = this.navTitleService.getCurrentUrl().trim();
         });
     }
 }
