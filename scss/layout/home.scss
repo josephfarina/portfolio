@@ -9,7 +9,7 @@ body {
     min-height: 100%;
     background-color: #EE4236;
     color: white;
-    overflow: hidden;
+    overflow-X: hidden;
     transition: all .2s cubic-bezier(.87,-.41,.19,1.44);
 }
 
@@ -142,8 +142,8 @@ p {
 @media (max-width: 950px) { 
     .project-container {
         margin-left: 50px;
-        //bottom: 0vh;
     }
+
   .single-div-container {
       position: relative;
       right: auto;
@@ -171,11 +171,15 @@ p {
         display: block;
         margin: 0 auto;        
         width: 125px;  
-    }   
+    }  
+    .project-groups {
+        max-height: 200px;;
+    } 
 
 }
 @media (max-width: 450px) { 
     .project-groups {
-        max-height: 35vh;
+        max-height: 300px;
+        margin-bottom: 100px;
     }
 }

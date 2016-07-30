@@ -25,7 +25,7 @@ var webpackConfig = {
     loaders: [
       { test: /\.ts$/, loaders: ['ts-loader', 'angular2-template-loader'] },
       { test: /\.css$/, loader: "style-loader!css-loader" },
-      { test: /\.((woff|woff2)(\?v=\d+\.\d+\.\d+)?|png|jpg|eot|ttf|gif)$/, loader: 'url-loader?limit=10000' },
+      { test: /\.((woff|woff2)(\?v=\d+\.\d+\.\d+)?|png|jpg|eot|ttf|gif)$/, loader: 'file?name=public/fonts/[name].[ext]' },
       { test: /\.html$/, loader: 'raw-loader' },
       { test: /\.json$/, loader: 'json-loader' },
       {
