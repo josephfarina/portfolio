@@ -8,7 +8,6 @@ var router = express.Router();
 
 //app.use(favicon(path.join(__dirname, 'public', 'assets/favicon.ico')));
 app.use(logger('dev'));
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,6 +17,9 @@ app.use(function(req, res, next) {
 
 // ROUTING
 
+var publicPath = path.resolve(__dirname, 'public');
+// We point to our static assets
+app.use(express.static(publicPath));
 
 router.get('/', function (req, res, next) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));

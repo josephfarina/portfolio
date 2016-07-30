@@ -1,8 +1,5 @@
-// TODO: I renamed all the hihat-closed to just hihat rename back when that function is added in
-
-// FIXMe: Very odd bug that is making all samples playback twice and causing extreme slowness
 import { Injectable } from '@angular/core';
-let TimeWorker =  require('worker?inline!./timeWorker.js');
+let TimeWorker = require('worker?inline!./timeWorker.js');
 
 @Injectable()
 export class DrumMachineMetronomeService {
@@ -27,9 +24,8 @@ export class DrumMachineMetronomeService {
     private impulse: any;
 
     init() {
-        this.loadAudioSamples();
+        this.loadDrumKit();
         console.log(this.sampleBuffers);
-        // this.context = new AudioContext();
         this.createAudioContext();
         this.timeWorker = new TimeWorker();
         this.timeWorker.onmessage = (e: any) => { if (e.data === 'tick') { this.schedule(); } else { console.log(e.data); } };
@@ -99,9 +95,9 @@ export class DrumMachineMetronomeService {
     }
 
     setBeatValueAtTime(time: number, beat: number) {
-        window.setTimeout( () => {
+        window.setTimeout(() => {
             this.sequencerLineUp['projectSettings']['beat'] = beat;
-        }, (time - this.context.currentTime) * 1000 );
+        }, (time - this.context.currentTime) * 1000);
     }
 
 
@@ -161,7 +157,7 @@ export class DrumMachineMetronomeService {
         decay.gain.setValueAtTime(1, time);
         // formula to calculate the decay level onto a 0 - 1 scale
         let decayValue = (time + this.noteLength + (this.noteLength * .25)) - (this.noteLength * (1 - decayLevel));
-        decay.gain.linearRampToValueAtTime(0, decayValue) ;
+        decay.gain.linearRampToValueAtTime(0, decayValue);
         return decay;
     }
 
@@ -178,7 +174,7 @@ export class DrumMachineMetronomeService {
 
     distortion(type: string) {
         let distortion = this.context.createWaveShaper();
-        let distortionAmount: number  = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 100;
+        let distortionAmount: number = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 100;
 
         // i have no idea how this function works -- found on Mozilla
         /* TODO: Make this more effiecient it is using 10% of the memory
@@ -214,10 +210,10 @@ export class DrumMachineMetronomeService {
                 deg = Math.PI / 180,
                 i = 0,
                 x: any;
-                for ( ; i < n_samples; ++i ) {
-                    x = i * 2 / n_samples - 1;
-                    curve[i] = ( 3 + k ) * x * 20 * deg / ( Math.PI + k * Math.abs(x) );
-                }
+            for (; i < n_samples; ++i) {
+                x = i * 2 / n_samples - 1;
+                curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x));
+            }
             return curve;
         };
 
@@ -232,7 +228,7 @@ export class DrumMachineMetronomeService {
 
         // dont let level leval equal 0 -- it will not output a noise then
         if (levelLevel > 1) { levelLevel = 1; }
-        level.gain.value = .8 - (this.sequencerLineUp['instrumentSettings'][type]['distortion'] * .5 );
+        level.gain.value = .8 - (this.sequencerLineUp['instrumentSettings'][type]['distortion'] * .5);
         return level;
     }
 
@@ -240,22 +236,8 @@ export class DrumMachineMetronomeService {
         return this.context;
     }
 
-    loadAudioSamples() {
-        this.loadDrumKit();
-
-        let urlBody = 'samples/impulse/';
-        let impulse = new XMLHttpRequest();
-        impulse.open('GET', urlBody + 'church_impulse.wav', true);
-        impulse.responseType = 'arraybuffer';
-        impulse.onload = () => {;
-            this.context.decodeAudioData(impulse.response).then((decodedData: any) => {
-                this.impulse = decodedData;
-            }, (e: any) => { console.log('Error with reverb audio data' + e.err); });
-        };
-        impulse.send();
-    }
-
     loadDrumKit() {
+
         let kits: string[] = ['808', '909', 'acoustic'],
             samples: string[] = ['snare', 'clap', 'kick', 'cymbal', 'hihat', 'hitom', 'lowtom', 'midtom', 'rimshot'],
             urlBody = 'samples/';
