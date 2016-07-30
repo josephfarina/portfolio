@@ -7,10 +7,12 @@ webpackJsonp([2],{
 	var platform_browser_dynamic_1 = __webpack_require__(295);
 	var app_component_1 = __webpack_require__(675);
 	var http_1 = __webpack_require__(287);
+	var common_1 = __webpack_require__(31);
 	var app_routes_1 = __webpack_require__(693);
 	var forms_1 = __webpack_require__(280);
 	platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
 	    app_routes_1.APP_ROUTER_PROVIDERS,
+	    { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy },
 	    http_1.HTTP_PROVIDERS,
 	    forms_1.disableDeprecatedForms(),
 	    forms_1.provideForms()
