@@ -6,7 +6,7 @@ body {
 
 
 .home-container {
-    height: 100%;
+    min-height: 100%;
     background-color: #EE4236;
     color: white;
     overflow: hidden;
@@ -18,8 +18,8 @@ p {
 }
 
 .project-container {
-    position: absolute;
-    bottom: 20vh;
+    position: relative;
+    top: 150px;
     margin-left: 100px;
     margin-right: 50px;
     max-width: 500px;
@@ -142,7 +142,7 @@ p {
 @media (max-width: 950px) { 
     .project-container {
         margin-left: 50px;
-        bottom: 0vh;
+        //bottom: 0vh;
     }
   .single-div-container {
       position: relative;

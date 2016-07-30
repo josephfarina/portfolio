@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var autoprefixer = require('autoprefixer');
 
 // Webpack Config
 var webpackConfig = {
@@ -30,11 +31,14 @@ var webpackConfig = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        loaders: ['raw-loader', 'sass-loader'] // sass-loader not scss-loader
+        loader: 'raw-loader!postcss-loader!sass-loader'
       },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
     ]
-  }
+  },
+    postcss: function () {
+        return [require('autoprefixer')];
+    }
 };
 
 // Our Webpack Defaults
