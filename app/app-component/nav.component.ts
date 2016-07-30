@@ -10,13 +10,19 @@ import {ViewEncapsulation} from '@angular/core';
     selector: 'my-nav',
     styles: [require('./../../scss/layout/nav.scss').toString()],
     template: `
-    <nav [ngClass]="{ 'fade':  isNewRoute }">
-        <span  class="h5 navigation-logo">
-            {{routeName | uppercase}}
-        </span>
-        <div class="navigation-menu">
-            <span class="p menu-item">RESUME</span>
-            <span class="p menu-item">CONTACT</span>
+    
+    <nav [ngClass]="{
+    'home':                     routeName === 'Joey Farina', 
+    'project':                  routeName !== 'Joey Farina'
+    }">
+        <div [ngClass]="{ 'fade':  isNewRoute }">
+            <span  class="h5 navigation-logo">
+                {{routeName | uppercase}}
+            </span>
+            <div class="navigation-menu">
+                <span class="p menu-item">RESUME</span>
+                <span class="p menu-item">CONTACT</span>
+            </div>
         </div>
     </nav>
     `

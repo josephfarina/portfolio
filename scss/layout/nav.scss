@@ -2,7 +2,9 @@ $nav-color: green;
 $nav-transition-open: opacity .5s;
 $nav-transition-close: opacity .5s, visibility .6s;
 
-nav {
+.project,
+.home {
+
     .navigation-logo,
     .navigation-menu {
         position: absolute;
@@ -12,6 +14,7 @@ nav {
 
     .navigation-menu {
         right: 100px;
+        top: 55px;
         span {
             color: white;
         }
@@ -21,6 +24,18 @@ nav {
         color: white;
         left: 75px;
     }
+
+    @media (max-width: 850px) {
+
+        .navigation-menu {
+            left: 75px;
+            top: 75px;
+            
+        } 
+    }    
+}
+
+.home {
 
     @media (max-width: 850px) {
         .navigation-logo {

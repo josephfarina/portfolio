@@ -266,7 +266,7 @@ webpackJsonp([2],{
 /***/ 464:
 /***/ function(module, exports) {
 
-	module.exports = "nav .navigation-logo,\nnav .navigation-menu {\n  position: absolute;\n  top: 50px;\n  transition: all 0.6s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\nnav .navigation-menu {\n  right: 100px; }\n  nav .navigation-menu span {\n    color: white; }\n\nnav .navigation-logo {\n  color: white;\n  left: 75px; }\n\n@media (max-width: 850px) {\n  nav .navigation-logo {\n    transform: rotate(90deg);\n    left: 5px;\n    top: 110px; }\n  nav .navigation-menu {\n    transform: rotate(90deg);\n    left: -15px;\n    right: auto;\n    top: 125px; } }\n"
+	module.exports = ".project .navigation-logo,\n.project .navigation-menu,\n.home .navigation-logo,\n.home .navigation-menu {\n  position: absolute;\n  top: 50px;\n  transition: all 0.6s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.project .navigation-menu,\n.home .navigation-menu {\n  right: 100px;\n  top: 55px; }\n  .project .navigation-menu span,\n  .home .navigation-menu span {\n    color: white; }\n\n.project .navigation-logo,\n.home .navigation-logo {\n  color: white;\n  left: 75px; }\n\n@media (max-width: 850px) {\n  .project .navigation-menu,\n  .home .navigation-menu {\n    left: 75px;\n    top: 75px; } }\n\n@media (max-width: 850px) {\n  .home .navigation-logo {\n    transform: rotate(90deg);\n    left: 5px;\n    top: 110px; }\n  .home .navigation-menu {\n    transform: rotate(90deg);\n    left: -15px;\n    right: auto;\n    top: 125px; } }\n"
 
 /***/ },
 
@@ -599,7 +599,7 @@ webpackJsonp([2],{
 	            providers: [nav_title_service_1.NavTitleService],
 	            selector: 'my-nav',
 	            styles: [__webpack_require__(682).toString()],
-	            template: "\n    <nav [ngClass]=\"{ 'fade':  isNewRoute }\">\n        <span  class=\"h5 navigation-logo\">\n            {{routeName | uppercase}}\n        </span>\n        <div class=\"navigation-menu\">\n            <span class=\"p menu-item\">RESUME</span>\n            <span class=\"p menu-item\">CONTACT</span>\n        </div>\n    </nav>\n    "
+	            template: "\n    \n    <nav [ngClass]=\"{\n    'home':                     routeName === 'Joey Farina', \n    'project':                  routeName !== 'Joey Farina'\n    }\">\n        <div [ngClass]=\"{ 'fade':  isNewRoute }\">\n            <span  class=\"h5 navigation-logo\">\n                {{routeName | uppercase}}\n            </span>\n            <div class=\"navigation-menu\">\n                <span class=\"p menu-item\">RESUME</span>\n                <span class=\"p menu-item\">CONTACT</span>\n            </div>\n        </div>\n    </nav>\n    "
 	        }), 
 	        __metadata('design:paramtypes', [nav_title_service_1.NavTitleService, router_1.Router])
 	    ], NavComponent);

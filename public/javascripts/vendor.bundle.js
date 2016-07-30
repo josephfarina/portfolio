@@ -11,10 +11,9 @@ webpackJsonp([1],[
 	__webpack_require__(288);
 	__webpack_require__(30);
 	__webpack_require__(281);
-	// RxJS 5
 	__webpack_require__(472);
 	var Snap = __webpack_require__(453);
-	// CSS
+	// Stylesheets
 	__webpack_require__(679);
 	
 
@@ -58837,7 +58836,7 @@ webpackJsonp([1],[
 /* 453 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_LOCAL_MODULE_0__;var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*** IMPORTS FROM imports-loader ***/
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_LOCAL_MODULE_0__;/*** IMPORTS FROM imports-loader ***/
 	(function() {
 	var fix = module.exports=0;
 

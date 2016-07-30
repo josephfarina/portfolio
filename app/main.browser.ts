@@ -1,7 +1,7 @@
 import { bootstrap }    from '@angular/platform-browser-dynamic';
 import { AppComponent } from './app-component/app.component';
 import { HTTP_PROVIDERS } from '@angular/http';
-import {  LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { APP_ROUTER_PROVIDERS } from './routes/app.routes';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
