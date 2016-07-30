@@ -1,0 +1,43 @@
+<div [style.backgroundColor]="activeProject.color" class="home-container">
+
+    <!--IMAGES-->
+    <div [ngClass]="{
+    'active-image slide':       '02' === activeProject.number, 
+    'inactive-image':           '02' !== activeProject.number
+    }" class="single-div-container">
+        <div id="calculator" class="single-div__calculator"></div>
+    </div>
+
+    <div [ngClass]="{
+    'active-image slide':       '01' === activeProject.number, 
+    'inactive-image':                           '01' !== activeProject.number
+    }" class="single-div-container">
+        <img class="sequencer-image" src="assets/sequencer.svg" alt="sequencer">
+    </div>
+
+    <div [ngClass]="{
+    'active-image slide':    '03' === activeProject.number, 
+    'inactive-image':           '03' !== activeProject.number
+    }" class="single-div-container">
+        <img class="tictactoe-image" src="assets/tictactoe.svg" alt="sequencer">
+    </div>
+
+
+    <!--TEXT-->
+    <div class="project-container animated fadeIn">
+        <p class="project-description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae aut assumenda laborum fugit est quibusdam quo minus! Lorem
+            ipsum dolor sit amet, consectetur adipisicing elit.
+        </p>
+        <p class="project-container-heading p">SHOWCASE</p>
+        <div class="project-groups">
+            <div class="project-group" *ngFor="let project of projects" (mouseenter)="setActiveProject(project)" [class.text-inactive]="project !== activeProject">
+                <a [routerLink]="'/' + project.link">
+                    <span class="p project-group-number">{{project.number}}</span>
+                    <h3 class="project-group-heading">{{project.heading}}</h3>
+                    <p class=" project-group-caption" [class.text-inactive]="project !== activeProject">{{project.caption}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

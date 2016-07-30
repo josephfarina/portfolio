@@ -1958,7 +1958,7 @@
           </g>
         </g>
       </g>
-      <g my-knob-turner (value)="tempoValue($event)" id="tempo_knob" [starting]="sequencerLineUp['projectSettings']['tempo']">
+      <g my-knob-turner (value)="updateProjectSettings($event, 'tempo')" id="tempo_knob" [starting]="sequencerLineUp['projectSettings']['tempo']">
         <circle id="circle" cx="1182.59" cy="1402.13" r="83.14" fill="#fffef6" />
         <path d="M1212.57,1346.6a90,90,0,1,0,90,90A90,90,0,0,0,1212.57,1346.6Zm0,173.16a83.14,83.14,0,0,1-6.56-166v23.57a2.06,2.06,0,0,0,2.06,2.06h9a2.06,2.06,0,0,0,2.06-2.06v-23.58A83.15,83.15,0,0,1,1212.57,1519.76Z"
           transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1981,7 +1981,7 @@
             fill="#fff" />
         </g>
         
-      <g my-knob-turner (value)="volumeValue($event)" [starting]="sequencerLineUp['projectSettings']['volume']" id="volume_knob">
+      <g my-knob-turner (value)="updateProjectSettings($event, 'volume')" [starting]="sequencerLineUp['projectSettings']['volume']" id="volume_knob">
         <circle id="circle-2" data-name="circle" cx="1257.69" cy="1028.84" r="49.22" fill="#fffef6" />
         <path d="M1287.67,1010a53.29,53.29,0,1,0,53.29,53.29A53.29,53.29,0,0,0,1287.67,1010Zm0,102.51a49.22,49.22,0,0,1-3.88-98.29v14a1.22,1.22,0,0,0,1.22,1.22h5.33a1.22,1.22,0,0,0,1.22-1.22v-14A49.22,49.22,0,0,1,1287.67,1112.55Z"
           transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -2003,7 +2003,7 @@
           <rect id="min1-38" data-name="min1" x="1234.39" y="1108.75" width="1.96" height="17.52" rx="0.61" ry="0.61" transform="translate(1122.05 -580.72) rotate(45)"
             fill="#fff" />
         </g>
-      <g  my-knob-turner (value)="accentValue($event)" [starting]="sequencerLineUp['projectSettings']['accent']" id="accent_knob">
+      <g  my-knob-turner (value)="updateProjectSettings($event, 'accent')" [starting]="sequencerLineUp['projectSettings']['accent']" id="accent_knob">
         <circle id="circle-3" data-name="circle" cx="1070.4" cy="1140.65" r="38.07" fill="#fffef6" />
         <path d="M1100.38,1133.93a41.22,41.22,0,1,0,41.22,41.22A41.22,41.22,0,0,0,1100.38,1133.93Zm0,79.29a38.07,38.07,0,0,1-3-76V1148a0.94,0.94,0,0,0,.94.94h4.12a0.94,0.94,0,0,0,.94-0.94v-10.8A38.07,38.07,0,0,1,1100.38,1213.22Z"
           transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -2027,7 +2027,7 @@
         </g>
 
         <g id="_808" data-name="808">
-      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'808'" (value)="kitSet($event)"  >
+      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'808'" (value)="updateProjectSettings($event, 'kit')"  >
         <rect id="background-28" data-name="background" x="989.98" y="740.72" width="76.21" height="24.13" rx="3" ry="3" fill="#b3b8b6"/>
         <circle id="indicator-26" data-name="indicator" cx="1010.9" cy="752.78" r="7.31" fill="#39b54a"/>
         <g>
@@ -2038,7 +2038,7 @@
       </g>
         </g>
         <g id="_909" data-name="909">
-      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'909'" (value)="kitSet($event)">
+      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'909'" (value)="updateProjectSettings($event, 'kit')" >
         <rect id="background-29" data-name="background" x="1075.45" y="740.72" width="76.21" height="24.13" rx="3" ry="3" fill="#b3b8b6"/>
         <circle id="indicator-27" data-name="indicator" cx="1096.37" cy="752.78" r="7.31" fill="#39b54a"/>
         <g>
@@ -2049,7 +2049,7 @@
       </g>
         </g>
         <g id="Acoustic">
-      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'acoustic'" (value)="kitSet($event)">
+      <g my-kit-button-pusher [current-kit]="sequencerLineUp['projectSettings']['kit']" [kit]="'acoustic'" (value)="updateProjectSettings($event, 'kit')" >
         <rect id="background-30" data-name="background" x="1161.33" y="740.72" width="115.21" height="24.13" rx="3" ry="3" fill="#b3b8b6"/>
         <circle id="indicator-28" data-name="indicator" cx="1182.25" cy="752.78" r="7.31" fill="#39b54a"/>
         <g>

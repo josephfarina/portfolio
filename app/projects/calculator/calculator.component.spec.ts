@@ -21,21 +21,23 @@ describe('Testing Quote Component:', () => {
         CalculatorComponent
     ]);
 
-    beforeEach(inject([TestComponentBuilder], (_tcb:any) => {
-        tcb = _tcb
+    beforeEach(inject([TestComponentBuilder], (_tcb: any) => {
+        tcb = _tcb;
     }));
 
     it('should fulfill dependencies', injectAsync(
         [TestComponentBuilder], (tcb: any) => {
-            return tcb.createAsync(CalculatorComponent).then((fixture: any) => {});
+            return tcb.createAsync(CalculatorComponent).then((fixture: any) => {
+                return;
+            });
         }
     ));
 
 
     describe('toggleNegative():', () => {
 
-        it('should toggle negative', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('should toggle negative', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
                 calc.setDisplayValue('5');
@@ -46,11 +48,11 @@ describe('Testing Quote Component:', () => {
 
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
-        it('toggle should work if start as negative', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('toggle should work if start as negative', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
                 calc.setDisplayValue('-5');
@@ -63,11 +65,11 @@ describe('Testing Quote Component:', () => {
 
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
-        it('toggle should do nothing for 0', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('toggle should do nothing for 0', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
                 calc.setDisplayValue('0');
@@ -80,15 +82,15 @@ describe('Testing Quote Component:', () => {
 
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
     });
 
     describe('setDisplayValue():', () => {
 
-        it('display should concat numbers', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('display should concat numbers', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
                 calc.setDisplayValue('6');
@@ -100,11 +102,11 @@ describe('Testing Quote Component:', () => {
 
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
-        it('should let you type 0 after a number', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('should let you type 0 after a number', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
                 calc.setDisplayValue('1');
@@ -112,25 +114,25 @@ describe('Testing Quote Component:', () => {
                 expect(calc.displayValue).toBe('10');
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
-        it('should let you type 0 after a number when operator is negative', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('should let you type 0 after a number when operator is negative', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
-                
+
                 calc.setOperator('(-)');
                 calc.setDisplayValue('1');
                 calc.setDisplayValue('0');
                 expect(calc.displayValue).toBe('10');
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
 
-        it('should not allow multiple zero\'s at the beginning', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('should not allow multiple zero\'s at the beginning', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
                 calc.setDisplayValue('0');
@@ -143,46 +145,46 @@ describe('Testing Quote Component:', () => {
 
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
     });
 
     describe('setOperator():', () => {
 
-        it('should set currentValue', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('should set currentValue', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
-                calc.setDisplayValue('365')
+                calc.setDisplayValue('365');
                 calc.setOperator('+');
                 expect(calc.currentValue).toBe(365);
 
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
-        it('should set the currentvalue from the displayvalue', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('should set the currentvalue from the displayvalue', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
-                calc.setDisplayValue('365')
+                calc.setDisplayValue('365');
                 calc.setOperator('-');
                 expect(typeof calc.currentValue).toEqual('number');
                 expect(calc.currentValue).toBe(365);
-    
+
                 done();
             })
-                .catch((e:any) => done.fail(e));
-        });        
+                .catch((e: any) => done.fail(e));
+        });
 
     });
 
     describe('equals():', () => {
 
-        it('should add', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('should add', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
                 calc.setDisplayValue('2');
@@ -199,11 +201,11 @@ describe('Testing Quote Component:', () => {
 
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
-        it('should update display when operator\'s pressed', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('should update display when operator\'s pressed', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
                 calc.setDisplayValue('10');
@@ -215,11 +217,11 @@ describe('Testing Quote Component:', () => {
 
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
-        it('should update when you press an operator', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('should update when you press an operator', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
                 calc.setDisplayValue('10');
@@ -230,11 +232,11 @@ describe('Testing Quote Component:', () => {
 
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
-        it('should subtract', (done:any) => {
-            tcb.createAsync(CalculatorComponent).then((fixture:any) => {
+        it('should subtract', (done: any) => {
+            tcb.createAsync(CalculatorComponent).then((fixture: any) => {
                 let calc = fixture.componentInstance;
 
                 calc.setDisplayValue('10');
@@ -245,7 +247,7 @@ describe('Testing Quote Component:', () => {
 
                 done();
             })
-                .catch((e:any) => done.fail(e));
+                .catch((e: any) => done.fail(e));
         });
 
     });

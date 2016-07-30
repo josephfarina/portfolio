@@ -1,5 +1,4 @@
 import { Directive, ElementRef, EventEmitter, AfterViewInit, Output, Input, OnChanges, SimpleChanges } from '@angular/core';
-let Snap = require('Snap');
 
 @Directive({
     selector: '[my-kit-button-pusher]'
@@ -10,7 +9,7 @@ export class DrumMachineKitButtonDirective implements AfterViewInit, OnChanges {
     @Input('kit') kit: string = 'default';
     @Input('current-kit') currentKit: string;
 
-    private el: HTMLElement;
+    private el: any;
     private s: any;
     private activeIndicator: any;
     private text: any;
@@ -38,7 +37,7 @@ export class DrumMachineKitButtonDirective implements AfterViewInit, OnChanges {
 
         this.checkIfSnapInit = true;
         this.check();
-        this.s.hover(() => {
+        this.s.hover( (e: any) => {
             if (this.kit !== this.currentKit) {
                 this.background.animate({
                         fill: this.colors['background-hover']
@@ -49,7 +48,7 @@ export class DrumMachineKitButtonDirective implements AfterViewInit, OnChanges {
             }
         });
 
-        this.s.mouseout(() => {
+        this.s.mouseout((e: any) => {
             if (this.kit !== this.currentKit) {
                 this.background.animate({ fill: this.colors['background'],
                                           transform: '' }, 100,  mina.easein );
@@ -57,7 +56,7 @@ export class DrumMachineKitButtonDirective implements AfterViewInit, OnChanges {
             }
         });
 
-        this.s.click(() => {
+        this.s.click((e: any) => {
             this.valueOut();
             this.check();
         });

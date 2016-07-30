@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
-import { GithubCodeService } from './../../../shared/services/github-code-retriever.service';
 import { TicTacToeService, Player, TileType } from './../tictactoe.service';
 
 @Component({
   moduleId: module.id,
   selector: 'my-game-information',
   templateUrl: 'game-information.component.html',
-  styleUrls: ['game-information.component.style.css'],
+  styles: [`h2 { 
+    color: black;
+    text-align: center;
+}
+
+  `],
   directives: [ROUTER_DIRECTIVES]
 })
 

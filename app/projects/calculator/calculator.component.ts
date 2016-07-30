@@ -1,16 +1,26 @@
+/**
+ * TODO: 
+ *   fix the way the variables look when its opened
+ *   fix the button that toggles import
+ *   add a click 
+ *   
+ */
+
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import {ViewEncapsulation} from '@angular/core';
 
 @Component({
+    directives: [ROUTER_DIRECTIVES],
     moduleId: module.id,
     selector: 'my-calculator',
+    styles: [require('./../../../scss/projects/calculator.scss').toString()],
     templateUrl: 'calculator.component.html',
-    styleUrls: ['calculator.component.style.css'],
-    directives: [ROUTER_DIRECTIVES]
+    encapsulation: ViewEncapsulation.Emulated
 })
 
 export class CalculatorComponent {
-    // toggle variables in the html
+    // Show how the variables are working
     private showVariables: boolean = false;
 
     private displayValue: string = '0';
@@ -23,23 +33,21 @@ export class CalculatorComponent {
 
     toggleNegative() {
         if (this.displayValue[0] === '0') { return; }
-
-        if (this.displayValue[0] === '-') {
-            this.isNegative = true;
-        }
+        if (this.displayValue[0] === '-') { this.isNegative = true;
+        } else { this.isNegative = false; }
 
         this.isNegative = !this.isNegative;
 
         if (this.isNegative && this.displayValue[0] !== '-') {
             this.displayValue = '-' + this.displayValue;
         }
+
         if (!this.isNegative && this.displayValue[0] === '-') {
             this.displayValue = this.displayValue.substr(1);
         }
     }
 
     setDisplayValue(digit?: string) {
-
         if (this.operatorPressed && !this.displayResetAfterOperator) {
             this.displayResetAfterOperator = true;
             this.displayValue = '0';
@@ -53,24 +61,20 @@ export class CalculatorComponent {
             this.displayValue = this.displayValue;
             return;
         }
-        // dont let multiple decimals
+
         if (this.displayValue.indexOf('.') >= 0 && digit === '.') {
             digit = '';
         }
+
         this.displayValue += digit;
     }
 
     setOperator(operator: string) {
         this.operatorValue = operator;
-        if (this.operatorPressed) {
-            this.equals();
-        } else {
-            this.currentValue = Number(this.displayValue);     
-        }
-        // this.currentValue = Number(this.displayValue);
+        if (this.operatorPressed) { this.equals();
+        } else { this.currentValue = Number(this.displayValue); }
         this.operatorPressed = true;
         this.displayResetAfterOperator = false;
-        // this.displayValue = '0';
     }
 
     equals() {

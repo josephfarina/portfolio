@@ -1,0 +1,53 @@
+$nav-color: green;
+$nav-transition-open: opacity .5s;
+$nav-transition-close: opacity .5s, visibility .6s;
+
+.project,
+.home {
+
+    .navigation-logo,
+    .navigation-menu {
+        position: absolute;
+        top: 50px;
+        transition: all 0.6s cubic-bezier(.87,-.41,.19,1.44)
+    }
+
+    .navigation-menu {
+        right: 100px;
+        top: 55px;
+        span {
+            color: white;
+        }
+    }
+
+    .navigation-logo {
+        color: white;
+        left: 75px;
+    }
+
+    @media (max-width: 850px) {
+
+        .navigation-menu {
+            left: 75px;
+            top: 75px;
+            
+        } 
+    }    
+}
+
+.home {
+
+    @media (max-width: 850px) {
+        .navigation-logo {
+            transform: rotate(90deg);
+            left: 5px;
+            top: 110px;
+        }
+        .navigation-menu {
+            transform: rotate(90deg);
+            left: -15px;
+            right: auto;
+            top: 125px;
+        } 
+    }
+}

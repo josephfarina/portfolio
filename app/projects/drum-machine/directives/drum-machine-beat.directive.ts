@@ -1,5 +1,4 @@
 import { Directive, ElementRef, EventEmitter, AfterViewInit, Output, Input, OnChanges, DoCheck, SimpleChanges } from '@angular/core';
-let Snap = require('Snap');
 
 @Directive({
     selector: '[my-instrument-beat-changer]'
@@ -8,7 +7,7 @@ let Snap = require('Snap');
 export class DrumMachineInstrumentBeatDirective implements AfterViewInit, OnChanges {
     @Input('beat') beat: number;
     @Input('current-beat') currentBeat: number;
-    private el: HTMLElement;
+    private el: any;
     private s: any;
     private color: Object = { 'active': '#39B54A', 'inactive': '#003B05' };
     private checkIfSnapInit: boolean = false;

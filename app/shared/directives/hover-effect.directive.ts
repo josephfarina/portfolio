@@ -9,11 +9,11 @@ export class HoverEffectDirective {
     private yCoord: number;
     private el: HTMLElement;
     private element: Object = {
-        top: null,
         bottom: null,
+        height: null,
         left: null,
         right: null,
-        height: null,
+        top: null,
         width: null
     };
 

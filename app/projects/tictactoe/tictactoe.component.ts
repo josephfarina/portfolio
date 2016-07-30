@@ -6,12 +6,12 @@ import { TicTacToeService, Player, TileType } from './tictactoe.service';
 @Component({
     moduleId: module.id,
     selector: 'my-tictactoe',
+    styles: [require('./../../../scss/projects/tictactoe.scss').toString()],
     template: `
     <div class="col-md-6 col-md-offset-3 tictactoe">
         <router-outlet></router-outlet>
     </div>
     `,
-    styleUrls: ['tictactoe.component.style.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [TicTacToeService]
 

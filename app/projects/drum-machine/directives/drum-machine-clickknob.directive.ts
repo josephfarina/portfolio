@@ -1,7 +1,5 @@
 import { Directive, Input, HostListener, ElementRef, EventEmitter, AfterViewInit, Output, OnInit } from '@angular/core';
 
-let Snap = require('Snap');
-
 @Directive({
     selector: '[my-clickknob-turner]'
 })
@@ -15,7 +13,7 @@ export class DrumMachineClickKnobDirective implements AfterViewInit {
     @Output() value = new EventEmitter();
     @Input('starting') startingAngle: number;
     private angle: number = 0;
-    private el: HTMLElement;
+    private el: any;
     private minAngle: number = -135;
     private maxAngle: number = 135;
     private cx: number;

@@ -1,0 +1,15 @@
+.drum-machine-wrapper {
+    height: 100%;
+    overflow: hidden;
+    background-color: #36D2C7;
+}
+
+#drum {
+    position: absolute;
+    display: block;
+    margin: auto;
+    left:  0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}

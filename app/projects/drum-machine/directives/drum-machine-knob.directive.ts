@@ -1,6 +1,5 @@
 import { Directive, Input,HostListener, ElementRef, EventEmitter, AfterViewInit, Output, OnInit } from '@angular/core';
 import { DrumMachineMetronomeService } from './../drum-machine-metronome.service';
-let Snap = require('Snap');
 
 @Directive({
     selector: '[my-knob-turner]'
@@ -10,7 +9,7 @@ export class DrumMachineKnobDirective implements AfterViewInit {
     @Output() value = new EventEmitter();
     @Input('starting') startingAngle: number;
     private angle: number = 0;
-    private el: HTMLElement;
+    private el: any;
     private minAngle: number = -130;
     private maxAngle: number = 130;
     private cx: number;
@@ -20,7 +19,7 @@ export class DrumMachineKnobDirective implements AfterViewInit {
     private circ: any;
     constructor(private _el: ElementRef) { this.el = _el.nativeElement; }
 
-    @HostListener('mousewheel', ['$event']) onClick(e: any) {
+    @HostListener('mousewheel', ['$event']) onMouse(e: any) {
         e.preventDefault();
         this.rotate(e.deltaY);
     }
