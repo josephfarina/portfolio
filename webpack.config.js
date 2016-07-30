@@ -1,14 +1,12 @@
 var webpack = require('webpack');
 var path = require('path');
-var PurifyCssPlugin = require('purifycss-loader/PurifyCssPlugin');
-
 
 // Webpack Config
 var webpackConfig = {
   entry: {
-    'polyfills':    './app/polyfills.browser.ts',
-    'vendor':       './app/vendor.browser.ts',
-    'main':         './app/main.browser.ts',
+    'polyfills': './app/polyfills.browser.ts',
+    'vendor': './app/vendor.browser.ts',
+    'main': './app/main.browser.ts',
   },
 
   output: {
@@ -24,13 +22,14 @@ var webpackConfig = {
 
   module: {
     loaders: [
-      { test: /\.ts$/,    loaders: ['ts-loader', 'angular2-template-loader'] },
-      { test: /\.css$/,   loaders: ['to-string-loader', 'css-loader'] },
-      { test: /\.html$/,  loader: 'raw-loader' },
-      { test: /\.json$/,  loader: 'json-loader' },
-      { test: /\.scss$/,  loaders: ["style", "css", "sass"] },
-      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
-    ]
+      { test: /\.ts$/, loaders: ['ts-loader', 'angular2-template-loader'] },
+      { test: /\.css$/, loader: "style-loader!css-loader" },
+      { test: /\.((woff|woff2)(\?v=\d+\.\d+\.\d+)?|png|jpg|eot|ttf|gif)$/, loader: 'url-loader?limit=10000' },
+      { test: /\.html$/, loader: 'raw-loader' },
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.scss$/, loader: 'style!raw!sass' },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
+      ]
   }
 };
 
@@ -46,7 +45,7 @@ var defaultConfig = {
   },
 
   resolve: {
-    root: [ path.join(__dirname, 'client') ],
+    root: [path.join(__dirname, 'client')],
     extensions: ['', '.ts', '.js', '.json']
   },
 

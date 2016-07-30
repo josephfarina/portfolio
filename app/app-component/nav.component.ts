@@ -7,14 +7,15 @@ import { NavTitleService } from './../shared/services/nav-title.service';
     moduleId: module.id,
     providers: [NavTitleService],
     selector: 'my-nav',
+    styles: [require('./../../scss/nav.scss').toString()],
     template: `
     <nav [ngClass]="{ 'animated fadeInDown':  isNewRoute }">
         <div class="navigation-logo">
-            <h5>{{routeName | uppercase}}</h5>
+            {{routeName | uppercase}}
         </div>
         <div class="navigation-menu">
-            <span class="small-text menu">resume</span>
-            <span class="small-text menu">contact</span>
+            <span class="p menu-item">RESUME</span>
+            <span class="p menu-item">CONTACT</span>
         </div>
     </nav>
     `,

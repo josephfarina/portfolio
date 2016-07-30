@@ -29,13 +29,13 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae aut assumenda laborum fugit est quibusdam quo minus! Lorem
             ipsum dolor sit amet, consectetur adipisicing elit.
         </p>
-        <p class="project-container-heading small-text">Showcase</p>
+        <p class="project-container-heading p">SHOWCASE</p>
         <div class="project-groups">
             <div class="project-group" *ngFor="let project of projects" (mouseenter)="setActiveProject(project)" [class.text-inactive]="project !== activeProject">
                 <a [routerLink]="'/' + project.link">
-                    <span class="project-group-number small-text">{{project.number}}</span>
+                    <span class="p project-group-number">{{project.number}}</span>
                     <h3 class="project-group-heading">{{project.heading}}</h3>
-                    <p class=" project-group-caption small-text" [class.text-inactive]="project !== activeProject">{{project.caption}}</p>
+                    <p class=" project-group-caption" [class.text-inactive]="project !== activeProject">{{project.caption}}</p>
                 </a>
             </div>
         </div>

@@ -5,6 +5,9 @@ import {  LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { APP_ROUTER_PROVIDERS } from './routes/app.routes';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
+require('./../scss/styles.scss');
+
+
 bootstrap(AppComponent, [
     APP_ROUTER_PROVIDERS,
     { provide: LocationStrategy, useClass: HashLocationStrategy },

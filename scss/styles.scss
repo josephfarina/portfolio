@@ -1,43 +1,5 @@
 $white: #F6EDDC;
 $brown: #C7AD88;
-$blue: #37D9EE;
-$light-blue: #B0E5DD;
-$red: #935347;
-$yellow: #FDBE3C;
-$black: #000;
-$gray: lighten($black, 80%);
-
-@import 'base/module';
-@import 'layout/module';
-
-body {
-}
-
-section.landing-hero {
-	background-color: $blue;
-	min-height: 50vh;
-	padding: 50px;
-	position: relative;
-	text-align: center;
-
-	div.hero-copy {
-		position: relative;
-		top: 10%;
-	}
-}
-
-section.show-divider {
-	background-color: $blue;
-	min-height: 50px;
-	text-align: center;
-
-	h2 {
-		margin-bottom: 0;
-		margin-top: 0;
-		padding-top: 0;
-	}
-}
-
 .row.no-gutters {
 	margin-right: 0;
 	margin-left: 0;
@@ -48,59 +10,8 @@ section.show-divider {
 	}
 }
 
-.box {
-	overflow: hidden;
-	position: relative;
-	width: 100%;
-
-	&::before {
-		content: '';
-		display: block;
-		padding-top: 90%;
-	}
-}
-
-.red {
-	background-color: $red;
-}
-
-.white {
-	background-color: $white;
-	color: $black;
-}
-
-.brown {
-	background-color: $brown;
-}
-
-.blue {
-	background-color: $light-blue;
-}
-
-.yellow {
-	background-color: $yellow;
-}
-
-.box-content {
-	bottom: 0;
-	left: 0;
-	position: absolute;
-	right: 0;
-	top: 0;
-
-	h3,
-	p {
-		text-align: center;
-	}
-
-	&:hover {
-		cursor: pointer;
-	}
-}
-
-@import 'components/accordion';
+@import 'base/module';
 @import 'projects/single-divs/calculator-icon';
-@import 'projects/single-divs/creditcard-icon';
-@import 'vendor/prism';
 @import 'vendor/animate';
 @import 'projects/module';
+@import 'layout/module';
