@@ -7,10 +7,10 @@ import {
     async, inject, injectAsync
 } from '@angular/core/testing';
 
-import { TestComponentBuilder } from '@angular/compiler/testing';
-import { By }             from '@angular/platform-browser';
-import { provide, ViewMetadata }        from '@angular/core';
-import { PromiseWrapper } from '@angular/core/src/facade/promise';
+import { TestComponentBuilder }     from '@angular/compiler/testing';
+import { By }                       from '@angular/platform-browser';
+import { provide, ViewMetadata }    from '@angular/core';
+import { PromiseWrapper }           from '@angular/core/src/facade/promise';
 
 describe('TicTacToe Service:', () => {
     let service: any;
@@ -20,9 +20,9 @@ describe('TicTacToe Service:', () => {
         TicTacToeService
     ]);
 
-    beforeEach(inject([TicTacToeService], (s:any) => {
+    beforeEach(inject([TicTacToeService], (s: any) => {
         service = s;
-    })); 
+    }));
 
     it('should get default userOne', () => {
         let userOne: Player = service.getUserOne();
@@ -36,10 +36,10 @@ describe('TicTacToe Service:', () => {
         expect(userOne.name).toEqual('Player 2');
         expect(userOne.score).toEqual(0);
         expect(userOne.tileType).toEqual(TileType.X);
-    }); 
+    });
 
     it('should set userOne', () => {
-        let playerOneName: string = "Joey F.";
+        let playerOneName: string = 'Joey F.';
         let playerOneTileType: TileType = TileType.X;
         service.setUserOne(playerOneName, playerOneTileType);
         expect(service.userOne.name).toEqual(playerOneName);
@@ -47,7 +47,7 @@ describe('TicTacToe Service:', () => {
     });
 
     it('should set userTwo', () => {
-        let playerTwoName: string = "Joey F.";
+        let playerTwoName: string = 'Joey F.';
         let playerTwoTileType: TileType = TileType.X;
         service.setUserTwo(playerTwoName, playerTwoTileType);
         expect(service.userTwo.name).toEqual(playerTwoName);
@@ -72,7 +72,7 @@ describe('TicTacToe Service:', () => {
         let playerOneNameNull: any = null;
         service.setUserOne(playerOneNameNull, playerOneTileType);
         userOne = service.getUserOne();
-        expect(userOne.name).toEqual('Player 1');    
+        expect(userOne.name).toEqual('Player 1');
 
         // PLAYER Two
         let playerTwoNameString: string = '';
@@ -88,7 +88,7 @@ describe('TicTacToe Service:', () => {
         let playerTwoNameNull: any = null;
         service.setUserTwo(playerTwoNameNull, playerTwoTileType);
         userTwo = service.getUserTwo();
-        expect(userTwo.name).toEqual('Player 2');               
+        expect(userTwo.name).toEqual('Player 2');
     });
 
     it('Set player one\'s tiletype and change twos', () => {
@@ -104,11 +104,11 @@ describe('TicTacToe Service:', () => {
 
         service.setUserOne(playerOneName, TileType.X);
         expect(service.userOne.tileType).toEqual(TileType.X);
-        expect(service.userTwo.tileType).toEqual(TileType.O);  
+        expect(service.userTwo.tileType).toEqual(TileType.O);
 
         service.setUserOne(playerOneName, TileType.O);
         expect(service.userOne.tileType).toEqual(TileType.O);
-        expect(service.userTwo.tileType).toEqual(TileType.X);  
+        expect(service.userTwo.tileType).toEqual(TileType.X);
     });
 
     it('Set player twos\'s tiletype and change ones', () => {

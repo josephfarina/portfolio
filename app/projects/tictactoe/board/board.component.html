@@ -1,0 +1,23 @@
+<div class="game-board">
+    <span class="h4 current-player">{{currentPlayer.name}}'s Turn</span>
+    <div class="board-rows">
+        <div class="board-row" *ngFor="let tileRow of tileBoard; let y = index">
+            <div *ngFor="let tile of tileRow; let x = index" class="board-tile" (click)="setTile(x,y)">
+                <div [ngClass]="{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }"></div>
+            </div>
+        </div>
+    </div>
+    <div class="scoreboard">
+        <div class="player player-one">
+            <div>{{userOne.name}}</div>
+            <div>Score: {{userOne.score}}</div>
+        </div>
+        <h5 class="scoreboard-title">Score</h5>
+
+        <div class="player player-two">
+            <div>{{userTwo.name}}</div>
+            <div>Score: {{userTwo.score}}</div>
+        </div>   
+        <span class="stretch"></span>     
+    </div>
+</div>
