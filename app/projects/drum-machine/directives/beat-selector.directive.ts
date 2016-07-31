@@ -2,26 +2,20 @@ import { Directive, ElementRef, EventEmitter, AfterViewInit, OnChanges, SimpleCh
 
 @Directive({ selector: '[my-button-pusher]' })
 
-export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
+export class BeatSelectorDirective implements AfterViewInit, OnChanges {
     @Output() value = new EventEmitter();
     @Input('initial') isActivated: boolean = false;
-
     private el: any;
     private s: any;
     private activeIndicator: any;
     private activeLight: Object = { active: 'red' };
-
     private checkIfSnapInit: boolean = false;
-
     constructor(private _el: ElementRef) {
         this.el = _el.nativeElement;
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        // FIXME: this is a hacky way of making sure that Snap has been initiated -- It cant be called before snap is created
-        if (this.checkIfSnapInit) {
-            this.check();
-        };
+        if (this.checkIfSnapInit) { this.check(); };
     }
 
     ngAfterViewInit() {
@@ -30,7 +24,6 @@ export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
         this.activeLight['inactive'] = this.activeIndicator.attr('fill');
         this.init();
         this.checkIfSnapInit = true;
-
         this.s.hover( (e: any) => {
             if (this.isActivated) {
                 this.s.animate({ transform: 't0, -2.5' }, 200, mina.elastic);
@@ -72,8 +65,6 @@ export class DrumMachineButtonDirective implements AfterViewInit, OnChanges {
     }
 
     valueOut() {
-        this.value.emit({
-            value: !this.isActivated
-        });
+        this.value.emit({ value: !this.isActivated });
     }
 }

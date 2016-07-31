@@ -1,10 +1,8 @@
 import { Directive, ElementRef, EventEmitter, AfterViewInit, Output, Input, OnChanges, DoCheck, SimpleChanges } from '@angular/core';
 
-@Directive({
-    selector: '[my-instrument-beat-changer]'
-})
+@Directive({ selector: '[my-instrument-beat-changer]' })
 
-export class DrumMachineInstrumentBeatDirective implements AfterViewInit, OnChanges {
+export class BeatWatcherDirective implements AfterViewInit, OnChanges {
     @Input('beat') beat: number;
     @Input('current-beat') currentBeat: number;
     private el: any;
@@ -14,11 +12,7 @@ export class DrumMachineInstrumentBeatDirective implements AfterViewInit, OnChan
     constructor(private _el: ElementRef) { this.el = _el.nativeElement; }
 
     ngOnChanges(changes: SimpleChanges) {
-        // FIXME: this is a hacky way of making sure that Snap has been initiated -- It cant be called before snap is created
-        if (this.checkIfSnapInit) {
-            this.check();
-        };
-        // console.log('changed', this.currentBeat);
+        if (this.checkIfSnapInit) {  this.check(); };
     }
 
     ngAfterViewInit() {

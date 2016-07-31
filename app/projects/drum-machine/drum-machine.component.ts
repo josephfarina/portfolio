@@ -1,21 +1,21 @@
 import { Component, OnDestroy } from '@angular/core';
 import { DrumMachineService } from './drum-machine.service';
 import { SEQUENCER_LINEUP } from './SEQUENCER_LINEUP';
-import { DrumMachineKnobDirective } from './directives/drum-machine-knob.directive';
-import { DrumMachineButtonDirective } from './directives/drum-machine-button.directive';
-import { DrumMachineInstrumentButtonDirective } from './directives/drum-machine-instrumentbutton.directive';
-import { DrumMachineInstrumentBeatDirective } from './directives/drum-machine-beat.directive';
-import { DrumMachineStartButtonDirective } from './directives/drum-machine-startbutton.directive';
-import { DrumMachineKitButtonDirective } from './directives/drum-machine-kit.directive';
+import { KnobsDirective } from './directives/knobs.directive';
+import { BeatSelectorDirective } from './directives/beat-selector.directive';
+import { InstrumentSelectorDirective } from './directives/instrument-selector.directive';
+import { BeatWatcherDirective } from './directives/beat-watcher.directive';
+import { StartButtonDirective } from './directives/startbutton.directive';
+import { KitSelectorDirective } from './directives/kit-selector.directive';
 
 @Component({
     directives: [
-        DrumMachineKnobDirective,
-        DrumMachineButtonDirective,
-        DrumMachineInstrumentButtonDirective,
-        DrumMachineInstrumentBeatDirective,
-        DrumMachineStartButtonDirective,
-        DrumMachineKitButtonDirective
+        KnobsDirective,
+        BeatSelectorDirective,
+        InstrumentSelectorDirective,
+        BeatWatcherDirective,
+        StartButtonDirective,
+        KitSelectorDirective
     ],
     moduleId: module.id,
     providers: [DrumMachineService],
@@ -27,7 +27,6 @@ import { DrumMachineKitButtonDirective } from './directives/drum-machine-kit.dir
 export class DrumMachineComponent implements OnDestroy {
     private sequencerLineUp: any = SEQUENCER_LINEUP;
     private currentType: string = 'kick';
-
     constructor(private drumService: DrumMachineService) {
         this.drumService.setSequencerLineUp(this.sequencerLineUp);
         this.drumService.init();
@@ -62,5 +61,4 @@ export class DrumMachineComponent implements OnDestroy {
         this.sequencerLineUp['projectSettings'][valueToUpdate] = event.value;
         this.update();
     }
-
 }

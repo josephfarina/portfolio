@@ -1,8 +1,8 @@
-import { Directive, Input,HostListener, ElementRef, EventEmitter, AfterViewInit, Output, OnInit } from '@angular/core';
+import { Directive, Input, HostListener, ElementRef, EventEmitter, AfterViewInit, Output, OnInit } from '@angular/core';
 
 @Directive({ selector: '[my-knob-turner]' })
 
-export class DrumMachineKnobDirective implements AfterViewInit {
+export class KnobsDirective implements AfterViewInit {
     @Output() value = new EventEmitter();
     @Input('starting') startingAngle: number;
     private angle: number = 0;
@@ -54,7 +54,6 @@ export class DrumMachineKnobDirective implements AfterViewInit {
     }
 
     calculateInitialAngleFromValue() {
-        // Used for the firstTurn reverse the calculateValue
         let angle = this.startingAngle * (this.maxAngle - this.minAngle) + this.minAngle;
         return angle * 10;
     }
