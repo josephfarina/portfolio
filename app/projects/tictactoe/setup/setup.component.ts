@@ -4,13 +4,13 @@ import { TicTacToeService, Player, TileType } from './../tictactoe.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'my-game-information',
-  templateUrl: 'game-information.component.html',
+  selector: 'my-setup',
+  templateUrl: 'setup.component.html',
   styles: [require('./../../../../scss/projects/tictactoe/tictactoe-setup-end.scss').toString()],
   directives: [ROUTER_DIRECTIVES]
 })
 
-export class GameInformationComponent implements OnInit {
+export class SetupComponent implements OnInit {
 
   // TODO: set user one and two in the service
   private userOne: Player;

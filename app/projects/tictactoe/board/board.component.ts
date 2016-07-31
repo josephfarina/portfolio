@@ -4,15 +4,15 @@ import { TicTacToeService, Player, TileType } from './../tictactoe.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'my-game-play',
-    templateUrl: 'game-play.component.html',
+    selector: 'my-board',
+    templateUrl: 'board.component.html',
     styles: [require('./../../../../scss/projects/tictactoe/tictactoe-board.scss').toString()],
     directives: [
         ROUTER_DIRECTIVES
     ]
 })
 
-export class GamePlayComponent implements OnInit, OnDestroy {
+export class BoardComponent implements OnInit, OnDestroy {
     private tileSetCount: number = 0;
     private currentPlayer: Player = this.userOne;
     private userOne: Player;

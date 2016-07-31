@@ -1,8 +1,8 @@
-import { RouterConfig }          from '@angular/router';
-import { TicTacToeComponent } from './tictactoe.component';
-import { GamePlayComponent }     from './game-play/game-play.component';
-import { GameInformationComponent } from './game-information/game-information.component';
-import { GameResolutionComponent } from './game-resolution/game-resolution.component';
+import { RouterConfig }           from '@angular/router';
+import { TicTacToeComponent }     from './tictactoe.component';
+import { SetupComponent }         from './setup/setup.component';
+import { BoardComponent }     from './board/board.component';
+import { EndComponent } from './end/end.component';
 
 export const TicTacToeRoutes: RouterConfig = [
   {
@@ -10,16 +10,16 @@ export const TicTacToeRoutes: RouterConfig = [
     path: 'tictactoe',
     children: [
       {
-        component: GameInformationComponent,
+        component: SetupComponent,
+        path: 'setup'
+      },
+      {
+        component: BoardComponent,
+        path: 'board'
+      },
+      {
+        component: EndComponent,
         path: 'new'
-      },
-      {
-        component: GamePlayComponent,
-        path: 'play'
-      },
-      {
-        component: GameResolutionComponent,
-        path: 'end'
       }
     ]
   }

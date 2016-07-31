@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { GamePlayComponent } from './game-play.component';
+import { BoardComponent } from './board.component';
 import { TicTacToeService, Player } from './../tictactoe.service';
 import {
     expect, it, iit, xit,
@@ -7,7 +7,6 @@ import {
     beforeEach, beforeEachProviders, withProviders,
     async, inject, injectAsync
 } from '@angular/core/testing';
-
 import { TestComponentBuilder } from '@angular/compiler/testing';
 import { By }             from '@angular/platform-browser';
 import { provide, ViewMetadata }        from '@angular/core';
@@ -18,7 +17,7 @@ describe('TicTacToe Component:', () => {
 
     beforeEachProviders(() => [
         TestComponentBuilder,
-        GamePlayComponent,
+        BoardComponent,
         TicTacToeService
     ]);
 
@@ -29,14 +28,14 @@ describe('TicTacToe Component:', () => {
 
     it('should fulfill dependencies', injectAsync(
         [TestComponentBuilder], (tcb: any) => {
-            return tcb.createAsync(GamePlayComponent).then((fixture: any) => { });
+            return tcb.createAsync(BoardComponent).then((fixture: any) => { });
         }
     ));
 
     describe('setPlayer():', () => {
 
         it('should toggle between userOne and userTwo', (done: any) => {
-            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
+            tcb.createAsync(BoardComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 ttt.currentPlayer = ttt.userOne;
@@ -51,7 +50,7 @@ describe('TicTacToe Component:', () => {
         });
 
         it('should toggle between userTwo and userOne', (done: any) => {
-            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
+            tcb.createAsync(BoardComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 ttt.currentPlayer = ttt.userTwo;
@@ -70,7 +69,7 @@ describe('TicTacToe Component:', () => {
     describe('setTile():', () => {
 
         it('should toggle between userOne and userTwo', (done: any) => {
-            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
+            tcb.createAsync(BoardComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 ttt.currentPlayer = ttt.userOne;
@@ -88,7 +87,7 @@ describe('TicTacToe Component:', () => {
 
     describe('titleTypeClass:', () => {
         it('titletype x should have class x', (done: any) => {
-            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
+            tcb.createAsync(BoardComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
                 done();
             })
@@ -100,7 +99,7 @@ describe('TicTacToe Component:', () => {
     describe('checkWinner()', () => {
 
         it('horizontal should return true', (done: any) => {
-            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
+            tcb.createAsync(BoardComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 for (let i = 0; i <= 1; i++) {
@@ -132,7 +131,7 @@ describe('TicTacToe Component:', () => {
         });
 
         it('vertical should return true', (done: any) => {
-            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
+            tcb.createAsync(BoardComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 for (let i = 0; i <= 1; i++) {
@@ -165,7 +164,7 @@ describe('TicTacToe Component:', () => {
         });
 
         it('diagonal should return true', (done: any) => {
-            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
+            tcb.createAsync(BoardComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
                 for (let i = 0; i <= 1; i++) {
@@ -208,7 +207,7 @@ describe('TicTacToe Component:', () => {
         });
 
         it('wrong answers should return false', (done: any) => {
-            tcb.createAsync(GamePlayComponent).then((fixture: any) => {
+            tcb.createAsync(BoardComponent).then((fixture: any) => {
                 let ttt = fixture.componentInstance;
 
 
