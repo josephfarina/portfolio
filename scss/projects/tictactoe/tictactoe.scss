@@ -5,12 +5,8 @@ $ttc-color-o: green;
 $ttc-color-x: red;
 
 .tictactoe-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    min-height: 150%;
+    min-height: 100%;
+    overflow: hidden;
     background-color: #FFAF27; 
 }
 

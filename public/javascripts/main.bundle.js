@@ -279,7 +279,7 @@ webpackJsonp([2],{
 /***/ 471:
 /***/ function(module, exports) {
 
-	module.exports = ".tictactoe-wrapper {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  min-height: 150%;\n  background-color: #FFAF27; }\n\n.tictactoe {\n  position: relative;\n  top: 50px;\n  max-width: 320px;\n  min-height: 250px;\n  margin-left: auto;\n  margin-right: auto;\n  border-radius: 25px;\n  background-color: white; }\n"
+	module.exports = ".tictactoe-wrapper {\n  min-height: 100%;\n  overflow: hidden;\n  background-color: #FFAF27; }\n\n.tictactoe {\n  position: relative;\n  top: 50px;\n  max-width: 320px;\n  min-height: 250px;\n  margin-left: auto;\n  margin-right: auto;\n  border-radius: 25px;\n  background-color: white; }\n"
 
 /***/ },
 
