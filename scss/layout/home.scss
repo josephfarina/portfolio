@@ -6,7 +6,7 @@ body {
 
 
 .home-container {
-    min-height: 100%;
+    min-height: 100vh;
     background-color: #EE4236;
     color: white;
     overflow-X: hidden;
@@ -20,7 +20,7 @@ p {
 .project-container {
     position: relative;
     top: 150px;
-    margin-left: 100px;
+    margin-left: 75px;
     margin-right: 50px;
     max-width: 500px;
     border-left: .5px solid white;  

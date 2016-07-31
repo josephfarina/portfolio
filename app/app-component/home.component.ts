@@ -16,11 +16,13 @@ import { NavTitleService } from './../shared/services/nav-title.service';
 export class HomeComponent {
     private projects: Project[] = MY_PROJECTS;
     private activeProject: Project = this.projects[0];
+    constructor(private router: Router) {
+        this.router.events.subscribe(route => { this.activeProject = this.projects[0]; });
+    }
 
     setActiveProject(project: Project) {
         this.activeProject = project;
     }
-
 }
 
 export interface Project {
