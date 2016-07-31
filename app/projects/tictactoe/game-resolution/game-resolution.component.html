@@ -1,15 +1,19 @@
 <div class="game-end">
-    <div *ngIf="!isTie">
+    <div class="info-text" *ngIf="!isTie">
         <h2>{{winner.name}} Won!</h2>
         <h5>Score: {{winner.score}}</h5>
         <h5>Tile: {{winner.tileType}}</h5>
     </div>
-    <div *ngIf='isTie'>
+    <div class="info-text" *ngIf='isTie'>
         <h2 >It was a tie!</h2>
         <h6>Try Again!</h6>
     </div>
-    <div class="btn-group btn-group-justified" role="group" aria-label="Basic example">
+    <div class="btn-group btn-group-justified" role="group">
+        <div class="btn-group" role="group">
         <button type="button" (click)="playAgain()" class="btn btn-tile">Play Again!</button>
+        </div>
+        <div class="btn-group" role="group">
         <button type="button" (click)="newGame()" class="btn btn-tile">New Game</button>
+        </div>
     </div>
 </div>

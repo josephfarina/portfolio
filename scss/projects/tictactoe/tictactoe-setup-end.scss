@@ -7,10 +7,15 @@
         margin-bottom: 10px;
     }
 
+    .info-text {
+        text-align: center;
+    }
+
     .btn-tile {
         color: white;
         background-color: #4CAAF5;
         border: 1px solid #4CAAF5;
+        text-decoration: none;
 
         &:hover {
             color: #4CAAF5;
