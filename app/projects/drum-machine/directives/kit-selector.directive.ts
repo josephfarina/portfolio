@@ -1,36 +1,25 @@
 import { Directive, ElementRef, EventEmitter, AfterViewInit, Output, Input, OnChanges, SimpleChanges } from '@angular/core';
 
-@Directive({ selector: '[my-instrument-button-pusher]' })
+@Directive({ selector: '[my-kit-button-pusher]' })
 
-export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnChanges {
+export class KitSelectorDirective implements AfterViewInit, OnChanges {
     @Output() value = new EventEmitter();
-    @Input('type') instrument: string = 'default';
-    @Input('current') currentInstrument: string = '';
-    @Input('button-group') buttonGroup: string = '';
     @Input('kit') kit: string = 'default';
     @Input('current-kit') currentKit: string;
-
     private el: any;
     private s: any;
     private activeIndicator: any;
     private text: any;
     private background: any;
-
     private colors: Object = {
         'active': '#39B54A', 'inactive': '#003B05', 'light-active': 'white',
         'light-inactive': 'black', 'background-hover': 'lightgray'
     };
     private checkIfSnapInit: boolean = false;
-
-    constructor(private _el: ElementRef) {
-        this.el = _el.nativeElement;
-    }
+    constructor(private _el: ElementRef) { this.el = _el.nativeElement; }
 
     ngOnChanges(changes: SimpleChanges) {
-        // FIXME: this is a hacky way of making sure that Snap has been initiated -- It cant be called before snap is created
-        if (this.checkIfSnapInit) {
-            this.check();
-        };
+        if (this.checkIfSnapInit) { this.check(); };
     }
 
     ngAfterViewInit() {
@@ -39,22 +28,17 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
         this.activeIndicator = this.s.select('circle');
         this.text = this.s.selectAll('path');
         this.colors['background'] = this.background.attr('fill');
-
         this.checkIfSnapInit = true;
         this.check();
         this.s.hover((e: any) => {
-            if (this.instrument !== this.currentInstrument) {
-                this.background.animate({
-                    fill: this.colors['background-hover']
-                }, 100, mina.easein);
-                this.s.animate({
-                    transform: 't0,1, s.99, .98'
-                }, 100, mina.elastic);
+            if (this.kit !== this.currentKit) {
+                this.background.animate({ fill: this.colors['background-hover'] }, 100, mina.easein);
+                this.s.animate({ transform: 't0,1, s.99, .98' }, 100, mina.elastic);
             }
         });
 
         this.s.mouseout((e: any) => {
-            if (this.instrument !== this.currentInstrument) {
+            if (this.kit !== this.currentKit) {
                 this.background.animate({
                     fill: this.colors['background'],
                     transform: ''
@@ -70,23 +54,11 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
     }
 
     check() {
-        if (this.instrument === this.currentInstrument) {
+        if (this.kit === this.currentKit) {
             this.s.animate({ transform: 't0,1.2, s.98, .97' }, 100, mina.elastic);
-
-            this.activeIndicator.animate({
-                fill: this.colors['active']
-            },
-                100,
-                mina.easein
-            );
-
+            this.activeIndicator.animate({ fill: this.colors['active'] }, 100,  mina.easein );
             this.text.forEach((elem: any) => {
-                elem.animate({
-                    fill: this.colors['light-active']
-                },
-                    100,
-                    mina.easein
-                );
+                elem.animate({ fill: this.colors['light-active'] }, 100, mina.easein );
             });
         } else {
             this.activeIndicator.attr({ fill: this.colors['inactive'] });
@@ -96,10 +68,6 @@ export class DrumMachineInstrumentButtonDirective implements AfterViewInit, OnCh
     }
 
     valueOut() {
-        if (this.buttonGroup === 'instrument') {
-            this.value.emit({
-                value: this.instrument
-            });
-        }
+        this.value.emit({ value: this.kit });
     }
 }

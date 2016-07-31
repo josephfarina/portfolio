@@ -1,7 +1,7 @@
 <div class="drum-machine-wrapper">
 
-  <svg class="animated fadeInDownBig" id="drum" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3954.04 1350.11">
-    <title>beatbox</title>
+  <svg class="fade" id="drum" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3954.04 1350.11">
+    Unfortunately due to the use of SVG and the Web Audio Api this doesn't work on your browser!
     <!--<rect width="3954.04" height="2585.11" fill="#839b99" />-->
     <g  transform="translate(0 -550.49)">
       <g id="base">
@@ -659,7 +659,7 @@
       
       <circle my-instrument-beat-changer [beat]="0" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat" cx="1396.82" cy="1591.03" r="5.66" fill="#39b54a" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 1)" [initial]="sequencerLineUp['rhythmSettings'][0][currentType]" id="_1" data-name="1">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 1)" [initial]="sequencerLineUp['rhythmSettings'][0][currentType]" id="_1" data-name="1">
         <rect id="background-2" data-name="background" x="1382.69" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35" fill="#f58667"
         />
         <polygon id="highlight" points="1440.09 1648.86 1440.09 1713.32 1434.69 1655.86 1388.09 1655.86 1382.69 1713.32 1382.69 1648.86 1440.09 1648.86"
@@ -669,7 +669,7 @@
       
       <circle my-instrument-beat-changer [beat]="1" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-2" data-name="beat" cx="1480.16" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 2)" [initial]="sequencerLineUp['rhythmSettings'][1][currentType]" id="_2" data-name="2">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 2)" [initial]="sequencerLineUp['rhythmSettings'][1][currentType]" id="_2" data-name="2">
         <rect id="background-3" data-name="background" x="1465.09" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35" fill="#f58667"
         />
         <polygon id="highlight-2" data-name="highlight" points="1522.49 1648.86 1522.49 1713.32 1517.09 1655.86 1470.49 1655.86 1465.09 1713.32 1465.09 1648.86 1522.49 1648.86"
@@ -679,7 +679,7 @@
       
       <circle my-instrument-beat-changer [beat]="2" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-3"  data-name="beat" cx="1561.78" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 3)" [initial]="sequencerLineUp['rhythmSettings'][2][currentType]" id="_3" data-name="3">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 3)" [initial]="sequencerLineUp['rhythmSettings'][2][currentType]" id="_3" data-name="3">
         <rect id="background-4" data-name="background" x="1545.57" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35" fill="#f58667"
         />
         <polygon id="highlight-3" data-name="highlight" points="1602.97 1648.86 1602.97 1713.32 1597.57 1655.86 1550.97 1655.86 1545.57 1713.32 1545.57 1648.86 1602.97 1648.86"
@@ -689,7 +689,7 @@
       
       <circle my-instrument-beat-changer [beat]="3" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-4"  data-name="beat" cx="1644.96" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 4)" [initial]="sequencerLineUp['rhythmSettings'][3][currentType]" id="_4" data-name="4">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 4)" [initial]="sequencerLineUp['rhythmSettings'][3][currentType]" id="_4" data-name="4">
         <rect id="background-5" data-name="background" x="1627.97" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35" fill="#f58667"
         />
         <polygon id="highlight-4" data-name="highlight" points="1685.37 1648.86 1685.37 1713.32 1679.97 1655.86 1633.37 1655.86 1627.97 1713.32 1627.97 1648.86 1685.37 1648.86"
@@ -699,7 +699,7 @@
       
       <circle my-instrument-beat-changer [beat]="4" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-5" data-name="beat" cx="1725.02" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 5)" [initial]="sequencerLineUp['rhythmSettings'][4][currentType]" id="_5" data-name="5">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 5)" [initial]="sequencerLineUp['rhythmSettings'][4][currentType]" id="_5" data-name="5">
         <rect id="background-6" data-name="background" x="1708.7" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35" fill="#f8995c"
         />
         <polygon id="highlight-5" data-name="highlight" points="1766.1 1648.86 1766.1 1713.32 1760.7 1655.86 1714.1 1655.86 1708.7 1713.32 1708.7 1648.86 1766.1 1648.86"
@@ -709,7 +709,7 @@
       
       <circle my-instrument-beat-changer [beat]="5" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-6" data-name="beat" cx="1808.89" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 6)" [initial]="sequencerLineUp['rhythmSettings'][5][currentType]" id="_6" data-name="6">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 6)" [initial]="sequencerLineUp['rhythmSettings'][5][currentType]" id="_6" data-name="6">
         <rect id="background-7" data-name="background" x="1791.1" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35" fill="#f8995c"
         />
         <polygon id="highlight-6" data-name="highlight" points="1848.5 1648.86 1848.5 1713.32 1843.1 1655.86 1796.5 1655.86 1791.1 1713.32 1791.1 1648.86 1848.5 1648.86"
@@ -719,7 +719,7 @@
       
       <circle my-instrument-beat-changer [beat]="6" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-7" data-name="beat" cx="1889.05" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 7)" [initial]="sequencerLineUp['rhythmSettings'][6][currentType]" id="_7" data-name="7">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 7)" [initial]="sequencerLineUp['rhythmSettings'][6][currentType]" id="_7" data-name="7">
         <rect id="background-8" data-name="background" x="1871.57" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35" fill="#f8995c"
         />
         <polygon id="highlight-7" data-name="highlight" points="1928.97 1648.86 1928.97 1713.32 1923.58 1655.86 1876.97 1655.86 1871.58 1713.32 1871.58 1648.86 1928.97 1648.86"
@@ -729,7 +729,7 @@
       
       <circle my-instrument-beat-changer [beat]="7" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-8" data-name="beat" cx="1970.34" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 8)" [initial]="sequencerLineUp['rhythmSettings'][7][currentType]" id="_8" data-name="8">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 8)" [initial]="sequencerLineUp['rhythmSettings'][7][currentType]" id="_8" data-name="8">
         <rect id="background-9" data-name="background" x="1953.97" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35" fill="#f8995c"
         />
         <polygon id="highlight-8" data-name="highlight" points="2011.38 1648.86 2011.38 1713.32 2005.98 1655.86 1959.38 1655.86 1953.98 1713.32 1953.98 1648.86 2011.38 1648.86"
@@ -739,7 +739,7 @@
       
       <circle my-instrument-beat-changer [beat]="8" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-9" data-name="beat" cx="2053.66" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 9)" [initial]="sequencerLineUp['rhythmSettings'][8][currentType]" id="_9" data-name="9">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 9)" [initial]="sequencerLineUp['rhythmSettings'][8][currentType]" id="_9" data-name="9">
         <rect id="background-10" data-name="background" x="2036.78" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35"
           fill="#fde56c" />
         <polygon id="highlight-9" data-name="highlight" points="2094.18 1648.86 2094.18 1713.32 2088.78 1655.86 2042.18 1655.86 2036.79 1713.32 2036.79 1648.86 2094.18 1648.86"
@@ -749,7 +749,7 @@
       
       <circle my-instrument-beat-changer [beat]="9" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-10" data-name="beat" cx="2134.55" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 10)" [initial]="sequencerLineUp['rhythmSettings'][9][currentType]" id="_10" data-name="10">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 10)" [initial]="sequencerLineUp['rhythmSettings'][9][currentType]" id="_10" data-name="10">
         <rect id="background-11" data-name="background" x="2119.18" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35"
           fill="#fde56c" />
         <polygon id="highlight-10" data-name="highlight" points="2176.59 1648.86 2176.59 1713.32 2171.19 1655.86 2124.59 1655.86 2119.19 1713.32 2119.19 1648.86 2176.59 1648.86"
@@ -759,7 +759,7 @@
       
       <circle my-instrument-beat-changer [beat]="10" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-11" data-name="beat" cx="2215.36" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 11)"  [initial]="sequencerLineUp['rhythmSettings'][10][currentType]" id="_11" data-name="11">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 11)"  [initial]="sequencerLineUp['rhythmSettings'][10][currentType]" id="_11" data-name="11">
         <rect id="background-12" data-name="background" x="2199.66" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35"
           fill="#fde56c" />
         <polygon id="highlight-11" data-name="highlight" points="2257.06 1648.86 2257.06 1713.32 2251.66 1655.86 2205.06 1655.86 2199.66 1713.32 2199.66 1648.86 2257.06 1648.86"
@@ -769,7 +769,7 @@
       
       <circle my-instrument-beat-changer [beat]="11" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-12" data-name="beat" cx="2298.1" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 12)" [initial]="sequencerLineUp['rhythmSettings'][11][currentType]" id="_12" data-name="12">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 12)" [initial]="sequencerLineUp['rhythmSettings'][11][currentType]" id="_12" data-name="12">
         <rect id="background-13" data-name="background" x="2283.06" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35"
           fill="#fde56c" />
         <polygon id="highlight-12" data-name="highlight" points="2340.46 1648.86 2340.46 1713.32 2335.06 1655.86 2288.46 1655.86 2283.06 1713.32 2283.06 1648.86 2340.46 1648.86"
@@ -779,7 +779,7 @@
       
       <circle my-instrument-beat-changer [beat]="12" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-13" data-name="beat" cx="2380.63" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 13)" [initial]="sequencerLineUp['rhythmSettings'][12][currentType]" id="_13" data-name="13">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 13)" [initial]="sequencerLineUp['rhythmSettings'][12][currentType]" id="_13" data-name="13">
         <rect id="background-14" data-name="background" x="2363.78" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35"
           fill="#fff" />
         <polygon id="highlight-13" data-name="highlight" points="2421.18 1648.86 2421.18 1713.32 2415.78 1655.86 2369.18 1655.86 2363.78 1713.32 2363.78 1648.86 2421.18 1648.86"
@@ -789,7 +789,7 @@
       
       <circle my-instrument-beat-changer [beat]="13" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-14" data-name="beat" cx="2462.64" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 14)" [initial]="sequencerLineUp['rhythmSettings'][13][currentType]" id="_14" data-name="14">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 14)" [initial]="sequencerLineUp['rhythmSettings'][13][currentType]" id="_14" data-name="14">
         <rect id="background-15" data-name="background" x="2446.18" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35"
           fill="#fff" />
         <polygon id="highlight-14" data-name="highlight" points="2503.59 1648.86 2503.59 1713.32 2498.19 1655.86 2451.59 1655.86 2446.19 1713.32 2446.19 1648.86 2503.59 1648.86"
@@ -799,7 +799,7 @@
       
       <circle my-instrument-beat-changer [beat]="14" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-15" data-name="beat" cx="2542.95" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 15)" [initial]="sequencerLineUp['rhythmSettings'][14][currentType]" id="_15" data-name="15">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 15)" [initial]="sequencerLineUp['rhythmSettings'][14][currentType]" id="_15" data-name="15">
         <rect id="background-16" data-name="background" x="2526.66" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35"
           fill="#fff" />
         <polygon id="highlight-15" data-name="highlight" points="2584.06 1648.86 2584.06 1713.32 2578.66 1655.86 2532.06 1655.86 2526.66 1713.32 2526.66 1648.86 2584.06 1648.86"
@@ -809,7 +809,7 @@
       
       <circle my-instrument-beat-changer [beat]="15" [current-beat]="sequencerLineUp['projectSettings']['beat']" id="beat-16" data-name="beat" cx="2626.39" cy="1591.03" r="5.66" fill="#003b05" />
       
-      <g my-button-pusher (value)="beatOutputValue($event, 16)"  [initial]="sequencerLineUp['rhythmSettings'][15][currentType]" id="_16" data-name="16">
+      <g my-button-pusher (value)="updateRhythmSettings($event, 16)"  [initial]="sequencerLineUp['rhythmSettings'][15][currentType]" id="_16" data-name="16">
         <rect id="background-17" data-name="background" x="2610.06" y="1619.42" width="57.4" height="100.25" rx="6.35" ry="6.35"
           fill="#fff" />
         <polygon id="highlight-16" data-name="highlight" points="2667.46 1648.86 2667.46 1713.32 2662.06 1655.86 2615.46 1655.86 2610.06 1713.32 2610.06 1648.86 2667.46 1648.86"
@@ -850,7 +850,7 @@
       
       <!--INSTRUMENT SELECTORS-->
       <g>
-        <g my-instrument-button-pusher [current]="currentType" [type]="'kick'" [button-group]="'instrument'" (value)="instrumentSet($event)"  id="kick">
+        <g my-instrument-button-pusher [current]="currentType" [type]="'kick'"   (value)="instrumentSet($event)"  id="kick">
           <rect id="background-19" data-name="background" x="1388.55" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
           />
           <circle id="indicator-17" data-name="indicator" cx="1403.47" cy="1350.87" r="7.31" fill="#39b54a" />
@@ -872,7 +872,7 @@
               transform="translate(-29.98 -34.49)" fill="#231f20" />
           </g>
         </g>
-        <g my-instrument-button-pusher [current]="currentType" [type]="'snare'" [button-group]="'instrument'" (value)="instrumentSet($event)"  id="snare">
+        <g my-instrument-button-pusher [current]="currentType" [type]="'snare'"   (value)="instrumentSet($event)"  id="snare">
           <rect id="background-20" data-name="background" x="1554.76" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
           />
           <circle id="indicator-18" data-name="indicator" cx="1569.68" cy="1350.87" r="7.31" fill="#003b05" />
@@ -897,7 +897,7 @@
               transform="translate(-29.98 -34.49)" fill="#231f20" />
           </g>
         </g>
-        <g my-instrument-button-pusher [current]="currentType" [type]="'lowtom'" [button-group]="'instrument'" (value)="instrumentSet($event)"  id="lowtom">
+        <g my-instrument-button-pusher [current]="currentType" [type]="'lowtom'"   (value)="instrumentSet($event)"  id="lowtom">
           <rect id="background-21" data-name="background" x="1719.33" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
           />
           <circle id="indicator-19" data-name="indicator" cx="1734.25" cy="1350.87" r="7.31" fill="#003b05" />
@@ -914,7 +914,7 @@
               transform="translate(-29.98 -34.49)" fill="#231f20" />
           </g>
         </g>
-        <g my-instrument-button-pusher [current]="currentType" [type]="'midtom'" [button-group]="'instrument'" (value)="instrumentSet($event)"  id="midtom">
+        <g my-instrument-button-pusher [current]="currentType" [type]="'midtom'"   (value)="instrumentSet($event)"  id="midtom">
           <rect id="background-22" data-name="background" x="1884.13" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
           />
           <circle id="indicator-20" data-name="indicator" cx="1899.04" cy="1350.87" r="7.31" fill="#003b05" />
@@ -931,7 +931,7 @@
               transform="translate(-29.98 -34.49)" fill="#231f20" />
           </g>
         </g>
-        <g my-instrument-button-pusher [current]="currentType" [type]="'hitom'"  [button-group]="'instrument'" (value)="instrumentSet($event)"  id="hitom">
+        <g my-instrument-button-pusher [current]="currentType" [type]="'hitom'"    (value)="instrumentSet($event)"  id="hitom">
           <rect id="background-23" data-name="background" x="2048.92" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
           />
           <circle id="indicator-21" data-name="indicator" cx="2063.84" cy="1350.87" r="7.31" fill="#003b05" />
@@ -946,7 +946,7 @@
               transform="translate(-29.98 -34.49)" fill="#231f20" />
           </g>
         </g>
-        <g my-instrument-button-pusher [current]="currentType" [type]="'rimshot'" [button-group]="'instrument'" (value)="instrumentSet($event)"  id="rimshot">
+        <g my-instrument-button-pusher [current]="currentType" [type]="'rimshot'"   (value)="instrumentSet($event)"  id="rimshot">
           <rect id="background-24" data-name="background" x="2213.72" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
           />
           <circle id="indicator-22" data-name="indicator" cx="2228.64" cy="1350.87" r="7.31" fill="#003b05" />
@@ -965,7 +965,7 @@
             <path d="M2344.66,1380.52h7v2h-2.35v7.92H2347v-7.92h-2.35v-2Z" transform="translate(-29.98 -34.49)" fill="#231f20" />
           </g>
         </g>
-        <g my-instrument-button-pusher [current]="currentType" [type]="'clap'"  [button-group]="'instrument'" (value)="instrumentSet($event)" id="clap">
+        <g my-instrument-button-pusher [current]="currentType" [type]="'clap'"    (value)="instrumentSet($event)" id="clap">
           <rect id="background-25" data-name="background" x="2378.51" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
           />
           <circle id="indicator-23" data-name="indicator" cx="2393.43" cy="1350.87" r="7.31" fill="#003b05" />
@@ -979,7 +979,7 @@
               transform="translate(-29.98 -34.49)" fill="#231f20" />
           </g>
         </g>
-        <g my-instrument-button-pusher [current]="currentType" [type]="'hihat'" [button-group]="'instrument'" (value)="instrumentSet($event)"  id="hihat">
+        <g my-instrument-button-pusher [current]="currentType" [type]="'hihat'"   (value)="instrumentSet($event)"  id="hihat">
           <rect id="background-26" data-name="background" x="2543.31" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
           />
           <circle id="indicator-24" data-name="indicator" cx="2558.23" cy="1350.87" r="7.31" fill="#003b05" />
@@ -994,7 +994,7 @@
             <path d="M2662.6,1380.52h7v2h-2.35v7.92h-2.25v-7.92h-2.35v-2Z" transform="translate(-29.98 -34.49)" fill="#231f20" />
           </g>
         </g>
-        <g my-instrument-button-pusher [current]="currentType" [type]="'cymbal'" [button-group]="'instrument'" (value)="instrumentSet($event)"   id="cymbal">
+        <g my-instrument-button-pusher [current]="currentType" [type]="'cymbal'"   (value)="instrumentSet($event)"   id="cymbal">
           <rect id="background-27" data-name="background" x="2708.1" y="1338.81" width="146.42" height="24.13" rx="3" ry="3" fill="#b3b8b6"
           />
           <circle id="indicator-25" data-name="indicator" cx="2723.02" cy="1350.87" r="7.31" fill="#003b05" />
@@ -1016,7 +1016,7 @@
       
       <g id="kick_knobs">
         <g id="kick_level">
-          <g my-knob-turner (value)="instrumentKnob($event, 'kick', 'level')" [starting]="sequencerLineUp['instrumentSettings']['kick']['level']" >
+          <g my-knob-turner (value)="updateInstrumentSettings($event, 'kick', 'level')" [starting]="sequencerLineUp['instrumentSettings']['kick']['level']" >
             <circle cx="1462.35" cy="889.64" r="33.08" fill="#e7745a" />
             <path d="M1492.94,889.28a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1492.94,889.28Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41H1495a0.41,0.41,0,0,0,.4-0.41V892.83c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1492.94,954.25Z"
               transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1042,7 +1042,7 @@
         </g>
         <g id="kick_decay">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'kick', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['kick']['attack']" >
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'kick', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['kick']['attack']" >
               <circle cx="1462.95" cy="1017.14" r="33.12" fill="#fffef6" />
               <path d="M1492.94,1017.37a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1492.94,1017.37Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41H1495a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1492.94,1082.34Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1068,7 +1068,7 @@
         </g>
         <g id="kick_attack">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'kick', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['kick']['decay']" >
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'kick', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['kick']['decay']" >
               <circle cx="1462.95" cy="1145.45" r="33.12" fill="#fffef6" />
               <path d="M1492.94,1145.78a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1492.94,1145.78Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69V1160a0.4,0.4,0,0,0,.4.41H1495a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1492.94,1210.75Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1094,7 +1094,7 @@
         </g>
         <g id="kick_distortion">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'kick', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['kick']['distortion']" >
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'kick', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['kick']['distortion']" >
               <circle cx="1463.03" cy="1273.73" r="33.12" fill="#fffef6" />
               <path d="M1492.94,1274a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1492.94,1274Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41H1495a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1492.94,1338.93Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1121,7 +1121,7 @@
       </g>
       <g id="snare_knobs">
         <g id="kick_level_copy" data-name="kick_level copy">
-          <g my-knob-turner (value)="instrumentKnob($event, 'snare', 'level')" [starting]="sequencerLineUp['instrumentSettings']['snare']['level']" >
+          <g my-knob-turner (value)="updateInstrumentSettings($event, 'snare', 'level')" [starting]="sequencerLineUp['instrumentSettings']['snare']['level']" >
             <circle cx="1625.54" cy="889.64" r="33.08" fill="#e7745a" />
             <path d="M1656.13,889.28a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1656.13,889.28Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41V892.83c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1656.13,954.25Z"
               transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1146,7 +1146,7 @@
         </g>
         <g id="kick_decay_copy" data-name="kick_decay copy">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'snare', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['snare']['attack']" >
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'snare', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['snare']['attack']" >
               <circle cx="1626.14" cy="1017.14" r="33.12" fill="#fffef6" />
               <path d="M1656.13,1017.37a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1656.13,1017.37Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1656.13,1082.34Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1172,7 +1172,7 @@
         </g>
         <g id="kick_attack_copy" data-name="kick_attack copy">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'snare', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['snare']['decay']" >
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'snare', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['snare']['decay']" >
               <circle cx="1626.14" cy="1145.45" r="33.12" fill="#fffef6" />
               <path d="M1656.13,1145.78a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1656.13,1145.78Zm0,65A30.73,30.73,0,0,1,1625.4,1180c0-16.58,11.81-30.08,28.25-30.69V1160a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1656.13,1210.75Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1198,7 +1198,7 @@
         </g>
         <g id="kick_distortion_copy" data-name="kick_distortion copy">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'snare', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['snare']['distortion']" >
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'snare', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['snare']['distortion']" >
               <circle cx="1626.22" cy="1273.73" r="33.12" fill="#fffef6" />
               <path d="M1656.13,1274a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1656.13,1274Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1656.13,1338.93Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1225,7 +1225,7 @@
       </g>
       <g id="lowtom_knobs">
         <g id="kick_level_copy_2" data-name="kick_level copy 2">
-          <g my-knob-turner (value)="instrumentKnob($event, 'lowtom', 'level')" [starting]="sequencerLineUp['instrumentSettings']['lowtom']['level']" >
+          <g my-knob-turner (value)="updateInstrumentSettings($event, 'lowtom', 'level')" [starting]="sequencerLineUp['instrumentSettings']['lowtom']['level']" >
             <circle cx="1791.94" cy="889.64" r="33.08" fill="#e7745a" />
             <path d="M1822.53,889.28a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1822.53,889.28Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41V892.83c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1822.53,954.25Z"
               transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1251,7 +1251,7 @@
         </g>
         <g id="kick_decay_copy_2" data-name="kick_decay copy 2">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'lowtom', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['lowtom']['attack']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'lowtom', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['lowtom']['attack']">
               <circle cx="1792.54" cy="1017.14" r="33.12" fill="#fffef6" />
               <path d="M1822.53,1017.37a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1822.53,1017.37Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1822.53,1082.34Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1277,7 +1277,7 @@
         </g>
         <g id="kick_attack_copy_2" data-name="kick_attack copy 2">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'lowtom', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['lowtom']['decay']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'lowtom', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['lowtom']['decay']">
               <circle cx="1792.54" cy="1145.45" r="33.12" fill="#fffef6" />
               <path d="M1822.53,1145.78a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1822.53,1145.78Zm0,65A30.73,30.73,0,0,1,1791.8,1180c0-16.58,11.81-30.08,28.25-30.69V1160a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1822.53,1210.75Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1303,7 +1303,7 @@
         </g>
         <g id="kick_distortion_copy_2" data-name="kick_distortion copy 2">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'lowtom', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['lowtom']['distortion']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'lowtom', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['lowtom']['distortion']">
               <circle cx="1792.61" cy="1273.73" r="33.12" fill="#fffef6" />
               <path d="M1822.53,1274a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1822.53,1274Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1822.53,1338.93Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1330,7 +1330,7 @@
       </g>
       <g id="midtom_knobs">
         <g id="kick_level_copy_3" data-name="kick_level copy 3">
-          <g my-knob-turner (value)="instrumentKnob($event, 'midtom', 'level')" [starting]="sequencerLineUp['instrumentSettings']['midtom']['level']">
+          <g my-knob-turner (value)="updateInstrumentSettings($event, 'midtom', 'level')" [starting]="sequencerLineUp['instrumentSettings']['midtom']['level']">
             <circle cx="1953.37" cy="889.64" r="33.08" fill="#e7745a" />
             <path d="M1984,889.28a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1984,889.28Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41H1986a0.41,0.41,0,0,0,.4-0.41V892.83c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1984,954.25Z"
               transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1356,7 +1356,7 @@
         </g>
         <g id="kick_decay_copy_3" data-name="kick_decay copy 3">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'midtom', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['midtom']['attack']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'midtom', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['midtom']['attack']">
               <circle cx="1953.97" cy="1017.14" r="33.12" fill="#fffef6" />
               <path d="M1984,1017.37a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1984,1017.37Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41H1986a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1984,1082.34Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1382,7 +1382,7 @@
         </g>
         <g id="kick_attack_copy_3" data-name="kick_attack copy 3">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'midtom', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['midtom']['decay']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'midtom', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['midtom']['decay']">
               <circle cx="1953.97" cy="1145.45" r="33.12" fill="#fffef6" />
               <path d="M1984,1145.78A34.25,34.25,0,1,0,2018.2,1180,34.25,34.25,0,0,0,1984,1145.78Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69V1160a0.4,0.4,0,0,0,.4.41H1986a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1984,1210.75Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1408,7 +1408,7 @@
         </g>
         <g id="kick_distortion_copy_3" data-name="kick_distortion copy 3">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'midtom', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['midtom']['distortion']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'midtom', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['midtom']['distortion']">
               <circle cx="1954.05" cy="1273.73" r="33.12" fill="#fffef6" />
               <path d="M1984,1274a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,1984,1274Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41H1986a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,1984,1338.93Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1435,7 +1435,7 @@
       </g>
       <g id="hitom_knobs">
         <g id="kick_level_copy_4" data-name="kick_level copy 4">
-          <g my-knob-turner (value)="instrumentKnob($event, 'hitom', 'level')" [starting]="sequencerLineUp['instrumentSettings']['hitom']['level']">
+          <g my-knob-turner (value)="updateInstrumentSettings($event, 'hitom', 'level')" [starting]="sequencerLineUp['instrumentSettings']['hitom']['level']">
             <circle cx="2121.53" cy="889.64" r="33.08" fill="#e7745a" />
             <path d="M2152.12,889.28a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2152.12,889.28Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41V892.83c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2152.12,954.25Z"
               transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1461,7 +1461,7 @@
         </g>
         <g id="kick_decay_copy_4" data-name="kick_decay copy 4">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'hitom', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['hitom']['attack']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'hitom', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['hitom']['attack']">
               <circle cx="2122.13" cy="1017.14" r="33.12" fill="#fffef6" />
               <path d="M2152.12,1017.37a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2152.12,1017.37Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2152.12,1082.34Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1487,7 +1487,7 @@
         </g>
         <g id="kick_attack_copy_4" data-name="kick_attack copy 4">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'hitom', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['hitom']['decay']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'hitom', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['hitom']['decay']">
               <circle cx="2122.13" cy="1145.45" r="33.12" fill="#fffef6" />
               <path d="M2152.12,1145.78a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2152.12,1145.78Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69V1160a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2152.12,1210.75Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1513,7 +1513,7 @@
         </g>
         <g id="kick_distortion_copy_4" data-name="kick_distortion copy 4">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'hitom', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['hitom']['distortion']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'hitom', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['hitom']['distortion']">
               <circle cx="2122.21" cy="1273.73" r="33.12" fill="#fffef6" />
               <path d="M2152.12,1274a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2152.12,1274Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2152.12,1338.93Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1540,7 +1540,7 @@
       </g>
       <g id="rimshot_knobs">
         <g id="kick_level_copy_5" data-name="kick_level copy 5">
-          <g my-knob-turner (value)="instrumentKnob($event, 'rimshot', 'level')" [starting]="sequencerLineUp['instrumentSettings']['rimshot']['level']">
+          <g my-knob-turner (value)="updateInstrumentSettings($event, 'rimshot', 'level')" [starting]="sequencerLineUp['instrumentSettings']['rimshot']['level']">
             <circle cx="2286.32" cy="889.64" r="33.08" fill="#e7745a" />
             <path d="M2316.92,889.28a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2316.92,889.28Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41H2319a0.41,0.41,0,0,0,.4-0.41V892.83c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2316.92,954.25Z"
               transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1566,7 +1566,7 @@
         </g>
         <g id="kick_decay_copy_5" data-name="kick_decay copy 5">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'rimshot', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['rimshot']['attack']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'rimshot', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['rimshot']['attack']">
               <circle cx="2286.93" cy="1017.14" r="33.12" fill="#fffef6" />
               <path d="M2316.92,1017.37a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2316.92,1017.37Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41H2319a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2316.92,1082.34Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1592,7 +1592,7 @@
         </g>
         <g id="kick_attack_copy_5" data-name="kick_attack copy 5">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'rimshot', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['rimshot']['decay']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'rimshot', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['rimshot']['decay']">
               <circle cx="2286.93" cy="1145.45" r="33.12" fill="#fffef6" />
               <path d="M2316.92,1145.78a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2316.92,1145.78Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69V1160a0.4,0.4,0,0,0,.4.41H2319a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2316.92,1210.75Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1618,7 +1618,7 @@
         </g>
         <g id="kick_distortion_copy_5" data-name="kick_distortion copy 5">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'rimshot', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['rimshot']['distortion']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'rimshot', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['rimshot']['distortion']">
               <circle cx="2287" cy="1273.73" r="33.12" fill="#fffef6" />
               <path d="M2316.92,1274a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2316.92,1274Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41H2319a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2316.92,1338.93Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1645,7 +1645,7 @@
       </g>
       <g id="clap_knobs">
         <g id="kick_level_copy_6" data-name="kick_level copy 6">
-          <g my-knob-turner (value)="instrumentKnob($event, 'clap', 'level')" [starting]="sequencerLineUp['instrumentSettings']['clap']['level']">
+          <g my-knob-turner (value)="updateInstrumentSettings($event, 'clap', 'level')" [starting]="sequencerLineUp['instrumentSettings']['clap']['level']">
             <circle cx="2451.12" cy="889.64" r="33.08" fill="#e7745a" />
             <path d="M2481.71,889.28A34.25,34.25,0,1,0,2516,923.52,34.25,34.25,0,0,0,2481.71,889.28Zm0,65A30.73,30.73,0,0,1,2451,923.52c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41V892.83c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2481.71,954.25Z"
               transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1671,7 +1671,7 @@
         </g>
         <g id="kick_decay_copy_6" data-name="kick_decay copy 6">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'clap', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['clap']['attack']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'clap', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['clap']['attack']">
               <circle cx="2451.72" cy="1017.14" r="33.12" fill="#fffef6" />
               <path d="M2481.71,1017.37a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2481.71,1017.37Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2481.71,1082.34Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1697,7 +1697,7 @@
         </g>
         <g id="kick_attack_copy_6" data-name="kick_attack copy 6">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'clap', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['clap']['decay']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'clap', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['clap']['decay']">
               <circle cx="2451.72" cy="1145.45" r="33.12" fill="#fffef6" />
               <path d="M2481.71,1145.78A34.25,34.25,0,1,0,2516,1180,34.25,34.25,0,0,0,2481.71,1145.78Zm0,65A30.73,30.73,0,0,1,2451,1180c0-16.58,11.81-30.08,28.25-30.69V1160a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2481.71,1210.75Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1723,7 +1723,7 @@
         </g>
         <g id="kick_distortion_copy_6" data-name="kick_distortion copy 6">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'clap', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['clap']['distortion']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'clap', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['clap']['distortion']">
               <circle cx="2451.8" cy="1273.73" r="33.12" fill="#fffef6" />
               <path d="M2481.71,1274a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2481.71,1274Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2481.71,1338.93Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1750,7 +1750,7 @@
       </g>
       <g id="hihat_knobs">
         <g id="kick_level_copy_7" data-name="kick_level copy 7">
-          <g my-knob-turner (value)="instrumentKnob($event, 'hihat', 'level')" [starting]="sequencerLineUp['instrumentSettings']['hihat']['level']">
+          <g my-knob-turner (value)="updateInstrumentSettings($event, 'hihat', 'level')" [starting]="sequencerLineUp['instrumentSettings']['hihat']['level']">
             <circle cx="2615.91" cy="889.64" r="33.08" fill="#e7745a" />
             <path d="M2646.51,889.28a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2646.51,889.28Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41V892.83c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2646.51,954.25Z"
               transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1776,7 +1776,7 @@
         </g>
         <g id="kick_decay_copy_7" data-name="kick_decay copy 7">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'hihat', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['hihat']['attack']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'hihat', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['hihat']['attack']">
               <circle cx="2616.52" cy="1017.14" r="33.12" fill="#fffef6" />
               <path d="M2646.51,1017.37a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2646.51,1017.37Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2646.51,1082.34Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1802,7 +1802,7 @@
         </g>
         <g id="kick_attack_copy_7" data-name="kick_attack copy 7">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'hihat', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['hihat']['decay']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'hihat', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['hihat']['decay']">
               <circle cx="2616.52" cy="1145.45" r="33.12" fill="#fffef6" />
               <path d="M2646.51,1145.78a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2646.51,1145.78Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69V1160a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2646.51,1210.75Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1828,7 +1828,7 @@
         </g>
         <g id="kick_distortion_copy_7" data-name="kick_distortion copy 7">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'hihat', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['hihat']['distortion']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'hihat', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['hihat']['distortion']">
               <circle cx="2616.59" cy="1273.73" r="33.12" fill="#fffef6" />
               <path d="M2646.51,1274a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2646.51,1274Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2646.51,1338.93Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1855,7 +1855,7 @@
       </g>
       <g id="cymbal_knobs">
         <g id="kick_level_copy_8" data-name="kick_level copy 8">
-          <g my-knob-turner (value)="instrumentKnob($event, 'cymbal', 'level')" [starting]="sequencerLineUp['instrumentSettings']['cymbal']['level']">
+          <g my-knob-turner (value)="updateInstrumentSettings($event, 'cymbal', 'level')" [starting]="sequencerLineUp['instrumentSettings']['cymbal']['level']">
             <circle cx="2780.71" cy="889.64" r="33.08" fill="#e7745a" />
             <path d="M2811.3,889.28a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2811.3,889.28Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41V892.83c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2811.3,954.25Z"
               transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1881,7 +1881,7 @@
         </g>
         <g id="kick_decay_copy_8" data-name="kick_decay copy 8">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'cymbal', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['cymbal']['attack']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'cymbal', 'attack')" [starting]="sequencerLineUp['instrumentSettings']['cymbal']['attack']">
               <circle cx="2781.31" cy="1017.14" r="33.12" fill="#fffef6" />
               <path d="M2811.3,1017.37a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2811.3,1017.37Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2811.3,1082.34Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1907,7 +1907,7 @@
         </g>
         <g id="kick_attack_copy_8" data-name="kick_attack copy 8">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'cymbal', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['cymbal']['decay']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'cymbal', 'decay')" [starting]="sequencerLineUp['instrumentSettings']['cymbal']['decay']">
               <circle cx="2781.31" cy="1145.45" r="33.12" fill="#fffef6" />
               <path d="M2811.3,1145.78a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2811.3,1145.78Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69V1160a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2811.3,1210.75Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -1933,7 +1933,7 @@
         </g>
         <g id="kick_distortion_copy_8" data-name="kick_distortion copy 8">
           <g>
-            <g my-knob-turner (value)="instrumentKnob($event, 'cymbal', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['cymbal']['distortion']">
+            <g my-knob-turner (value)="updateInstrumentSettings($event, 'cymbal', 'distortion')" [starting]="sequencerLineUp['instrumentSettings']['cymbal']['distortion']">
               <circle cx="2781.39" cy="1273.73" r="33.12" fill="#fffef6" />
               <path d="M2811.3,1274a34.25,34.25,0,1,0,34.24,34.24A34.25,34.25,0,0,0,2811.3,1274Zm0,65a30.73,30.73,0,0,1-30.73-30.73c0-16.58,11.81-30.08,28.25-30.69v10.66a0.4,0.4,0,0,0,.4.41h4.16a0.41,0.41,0,0,0,.4-0.41v-10.66c16.44,0.61,28.24,14.11,28.24,30.69A30.72,30.72,0,0,1,2811.3,1338.93Z"
                 transform="translate(-29.98 -34.49)" fill="#111815" />
@@ -2078,4 +2078,44 @@
     </g>
 
   </svg>
+
+  <div class="project-description"> 
+    <h3>A Rhythm Sequencer Made with Angular 2 and TypeScript</h3>
+    <p>To adjust the instrument knobs hover your mouse and scroll or drag horizontally.</p>
+    <h5>Problems Solved:</h5>
+    <ul>
+      <li>
+        Making directives <a class="github-link" href="">directive</a> that made the SVG knobs rotatable or clickable and have them output a value for the service to interpret. 
+      </li> 
+      <li>
+        Enabling the drum machine to be updated with minimal delay by using a <a class="github-link" href="">JSON object</a> to manage the machines state and only telling the Audio Context what to play when it needs to know.
+      </li>
+      <li>
+        Designing the SVG in Adobe Illustrator in an organized and planned way that enabled it to be used as an interface.
+      </li>
+    </ul>
+    <pre>
+      <code>
+        FILE TREE:
+        drum-machine/
+        ----- drum-machine.component.html
+        ----- drum-machine.component.ts
+        ----- drum-machine.service.ts
+        ----- SEQUENCER_LINEUP.ts 
+        ----- timeWorker.js
+
+        ----- directives/
+        ---------- beat-selector.directive.ts
+        ---------- beat-watcher.directive.ts
+        ---------- instrument-selector.directive.ts
+        ---------- kit-selector.directive.ts
+        ---------- knobs.directive.ts
+        ---------- startbutton.directive.ts
+
+        SCSS FILE:
+        drum-machine.scss
+      </code>
+    </pre>
+  </div>
 </div>
+

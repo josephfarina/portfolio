@@ -1,71 +1,64 @@
-/**
- * TODO:
- *  change the SVG to the new vertically aligning knobs
- */
-
 import { Component, OnDestroy } from '@angular/core';
-import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
+import { DrumMachineService } from './drum-machine.service';
 import { SEQUENCER_LINEUP } from './SEQUENCER_LINEUP';
-import { DrumMachineKnobDirective } from './directives/drum-machine-knob.directive';
-import { DrumMachineButtonDirective } from './directives/drum-machine-button.directive';
-import { DrumMachineInstrumentButtonDirective } from './directives/drum-machine-instrumentbutton.directive';
-import { DrumMachineInstrumentBeatDirective } from './directives/drum-machine-beat.directive';
-import { DrumMachineStartButtonDirective } from './directives/drum-machine-startbutton.directive';
-import { DrumMachineKitButtonDirective } from './directives/drum-machine-kit.directive';
+import { KnobsDirective } from './directives/knobs.directive';
+import { BeatSelectorDirective } from './directives/beat-selector.directive';
+import { InstrumentSelectorDirective } from './directives/instrument-selector.directive';
+import { BeatWatcherDirective } from './directives/beat-watcher.directive';
+import { StartButtonDirective } from './directives/startbutton.directive';
+import { KitSelectorDirective } from './directives/kit-selector.directive';
 
 @Component({
     directives: [
-        DrumMachineKnobDirective,
-        DrumMachineButtonDirective,
-        DrumMachineInstrumentButtonDirective,
-        DrumMachineInstrumentBeatDirective,
-        DrumMachineStartButtonDirective,
-        DrumMachineKitButtonDirective
+        KnobsDirective,
+        BeatSelectorDirective,
+        InstrumentSelectorDirective,
+        BeatWatcherDirective,
+        StartButtonDirective,
+        KitSelectorDirective
     ],
-    styles: [require('./../../../scss/projects/drum-machine.scss').toString()],
     moduleId: module.id,
-    providers: [DrumMachineMetronomeService],
+    providers: [DrumMachineService],
     selector: 'my-drum-machine',
+    styles: [require('./../../../scss/projects/drum-machine.scss').toString()],
     templateUrl: 'drum-machine.component.html',
 })
 
 export class DrumMachineComponent implements OnDestroy {
     private sequencerLineUp: any = SEQUENCER_LINEUP;
     private currentType: string = 'kick';
-
-    constructor(private metronomeService: DrumMachineMetronomeService) {
-        this.metronomeService.setSequencerLineUp(this.sequencerLineUp);
-        this.metronomeService.init();
+    constructor(private drumService: DrumMachineService) {
+        this.drumService.setSequencerLineUp(this.sequencerLineUp);
+        this.drumService.init();
     }
 
+    start() { this.drumService.play(); }
+    stop() { this.drumService.stop(); }
+    update() { this.drumService.setSequencerLineUp(this.sequencerLineUp); }
     ngOnDestroy() { this.stop(); }
-    start() { this.metronomeService.play(); }
-    stop() { this.metronomeService.stop(); }
 
     togglePlay(e: any) {
-        if (e.value === true) { this.metronomeService.play();
-        } else { this.metronomeService.stop(); }
-    }
-
-    update() { this.metronomeService.setSequencerLineUp(this.sequencerLineUp); }
-
-    // change name to updateInstrumentKnob()
-    instrumentKnob(event: any, instrument: string, knob: string) {
-        this.sequencerLineUp['instrumentSettings'][instrument][knob] = event.value;
-        this.update();
+        if (e.value === true) {
+            this.drumService.play();
+        } else { this.drumService.stop(); }
     }
 
     instrumentSet(event: any) {
         this.currentType = event.value;
     }
 
-    beatOutputValue(event: any, beatNum: number) {
+    updateRhythmSettings(event: any, beatNum: number) {
         this.sequencerLineUp['rhythmSettings'][beatNum - 1][this.currentType] = event.value;
+        this.update();
+    }
+
+    updateInstrumentSettings(event: any, instrument: string, knob: string) {
+        this.sequencerLineUp['instrumentSettings'][instrument][knob] = event.value;
+        this.update();
     }
 
     updateProjectSettings(event: any, valueToUpdate: string) {
         this.sequencerLineUp['projectSettings'][valueToUpdate] = event.value;
         this.update();
     }
-
 }
