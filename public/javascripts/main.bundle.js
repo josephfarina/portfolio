@@ -140,7 +140,7 @@ webpackJsonp([2],{
 	            moduleId: module.id,
 	            selector: 'my-tictactoe',
 	            styles: [__webpack_require__(469).toString()],
-	            template: "\n    <div class=\"col-md-6 col-md-offset-3 tictactoe\">\n        <router-outlet></router-outlet>\n    </div>\n    ",
+	            template: "\n    <div class=\"tictactoe-wrapper\">\n        <div class=\"tictactoe fade\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n    ",
 	            directives: [router_1.ROUTER_DIRECTIVES],
 	            providers: [tictactoe_service_1.TicTacToeService]
 	        }), 
@@ -238,7 +238,7 @@ webpackJsonp([2],{
 /***/ 462:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"col-md-12\">\n    <h2>{{currentPlayer.name}}</h2>\n</div>\n\n<!--generate the gameboard-->\n<div class=\"col-md-12 ttc__game-board\">\n    <div class=\"row no-gutters ttc__game-board-row\" *ngFor=\"let tileRow of tileBoard; let y = index\">\n        <div *ngFor=\"let tile of tileRow; let x = index\" \n         class=\"col-xs-4 ttc__game-board-tile\"\n         (click)=\"setTile(x,y)\">\n            <div \n            [ngClass]=\"{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }\"\n            >\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"col-md-12 ttc__user-scoreboard\">\n    <div class=\"col-md-6 ttc__user-score\">\n        <h5 class=\"ttc__user-name\">{{userOne.name}}</h5>\n        <h5 class=\"ttc__user-tile\">\n            <span [ngSwitch]=\"userOne.tileType\">\n                <span *ngSwitchWhen=\"0\">X</span>\n                <span *ngSwitchWhen=\"1\">O</span>\n            </span>\n        </h5>\n        <h5 class=\"ttc__user-score\">Score: {{userOne.score}}</h5>\n    </div>\n    <div class=\"col-md-6 ttc__user-score\">\n        <h5 class=\"ttc__user-name\">{{userTwo.name}}</h5>\n        <h5 class=\"ttc__user-tile\">\n            <span [ngSwitch]=\"userTwo.tileType\">\n                <span *ngSwitchWhen=\"0\">X</span>\n                <span *ngSwitchWhen=\"1\">O</span>\n            </span>\n        </h5>\n        <h5 class=\"ttc__user-score\">Score: {{userTwo.score}}</h5>\n    </div>\n</div>"
+	module.exports = "<div class=\"col-md-12\">\n    <h2>{{currentPlayer.name}}</h2>\n</div>\n\n<!--generate the gameboard-->\n<div class=\"ttc__game-board\">\n    <div class=\"ttc__game-board-row\" *ngFor=\"let tileRow of tileBoard; let y = index\">\n        <div *ngFor=\"let tile of tileRow; let x = index\" \n         class=\"ttc__game-board-tile\"\n         (click)=\"setTile(x,y)\">\n            <div \n            [ngClass]=\"{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }\"\n            >\n            </div>\n        </div>\n    </div>\n</div>\n\n<!--\n<div class=\"col-md-12 ttc__user-scoreboard\">\n    <div class=\"col-md-6 ttc__user-score\">\n        <h5 class=\"ttc__user-name\">{{userOne.name}}</h5>\n        <h5 class=\"ttc__user-tile\">\n            <span [ngSwitch]=\"userOne.tileType\">\n                <span *ngSwitchWhen=\"0\">X</span>\n                <span *ngSwitchWhen=\"1\">O</span>\n            </span>\n        </h5>\n        <h5 class=\"ttc__user-score\">Score: {{userOne.score}}</h5>\n    </div>\n    <div class=\"col-md-6 ttc__user-score\">\n        <h5 class=\"ttc__user-name\">{{userTwo.name}}</h5>\n        <h5 class=\"ttc__user-tile\">\n            <span [ngSwitch]=\"userTwo.tileType\">\n                <span *ngSwitchWhen=\"0\">X</span>\n                <span *ngSwitchWhen=\"1\">O</span>\n            </span>\n        </h5>\n        <h5 class=\"ttc__user-score\">Score: {{userTwo.score}}</h5>\n    </div>\n</div>-->"
 
 /***/ },
 
@@ -287,7 +287,7 @@ webpackJsonp([2],{
 /***/ 469:
 /***/ function(module, exports) {
 
-	module.exports = ".tictactoe {\n  display: block;\n  height: 100vh; }\n\n.ttc__game-board {\n  position: relative;\n  height: 80vh; }\n\n.ttc__resolution {\n  position: relative;\n  height: 80vh;\n  text-align: center;\n  margin-top: 10vh; }\n\n.ttc__user-scoreboard {\n  position: relative;\n  height: 20vh; }\n\n.ttc__game-board-row {\n  height: 33.3%; }\n  .ttc__game-board-row:first-child {\n    border-bottom: 1px solid gray; }\n  .ttc__game-board-row:last-child {\n    border-top: 1px solid gray; }\n\n.ttc__game-board-tile {\n  height: 100%;\n  overflow: scroll; }\n  .ttc__game-board-tile:nth-child(1) {\n    border-right: 1px solid gray; }\n  .ttc__game-board-tile:nth-child(3) {\n    border-left: 1px solid gray; }\n\n.x, .o, .null {\n  margin-top: 35px;\n  margin-left: auto;\n  margin-right: auto; }\n\n.x {\n  position: relative;\n  vertical-align: middle;\n  width: 1em;\n  height: 5em;\n  background: #2C2C2C;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  font-size: 22px; }\n  .x:after {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 1em;\n    height: 5em;\n    background: #2C2C2C;\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg); }\n\n.o {\n  height: 5em;\n  width: 5em;\n  border-radius: 50%;\n  border: solid 1em #2c2c2c;\n  font-size: 22px; }\n\n@media only screen and (max-width: 500px) {\n  .x, .x:after, .o {\n    height: 3.5em;\n    width: 3.5em;\n    font-size: 12px; } }\n\n.null:before {\n  position: absolute;\n  top: 25%;\n  left: 25%;\n  bottom: 25%;\n  right: 25%;\n  content: '';\n  border-radius: 75%;\n  background-color: lightgray;\n  opacity: .1; }\n\n.ttt__animation-in {\n  -webkit-animation: fadeIn 1000ms;\n          animation: fadeIn 1000ms; }\n\n@-webkit-keyframes in {\n  from {\n    opacity: 0;\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg); }\n  to {\n    opacity: 1;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); } }\n\n@keyframes in {\n  from {\n    opacity: 0;\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg); }\n  to {\n    opacity: 1;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); } }\n\n@-webkit-keyframes out {\n  from {\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0); }\n  to {\n    -webkit-transform: scale(3, 3);\n            transform: scale(3, 3);\n    opacity: 0; } }\n\n@keyframes out {\n  from {\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0); }\n  to {\n    -webkit-transform: scale(3, 3);\n            transform: scale(3, 3);\n    opacity: 0; } }\n"
+	module.exports = ".tictactoe-wrapper {\n  position: relative;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  min-height: 100%;\n  background-color: #FFAF27; }\n\n.tictactoe {\n  position: relative;\n  top: 100px;\n  height: 400px;\n  width: 500px;\n  margin-left: auto;\n  margin-right: auto;\n  border-radius: 15px;\n  background-color: white; }\n  .tictactoe .ttc__game-board {\n    position: relative;\n    height: 100%;\n    width: 100%; }\n  .tictactoe .ttc__resolution {\n    position: relative;\n    height: 80vh;\n    text-align: center;\n    margin-top: 10vh; }\n  .tictactoe .ttc__user-scoreboard {\n    position: relative;\n    height: 20vh; }\n  .tictactoe .ttc__game-board-row {\n    height: 33.33%;\n    width: 100%; }\n    .tictactoe .ttc__game-board-row:first-child {\n      border-bottom: 1px solid gray; }\n    .tictactoe .ttc__game-board-row:last-child {\n      border-top: 1px solid gray; }\n  .tictactoe .ttc__game-board-tile {\n    background-color: black;\n    height: 100%;\n    width: 33%;\n    overflow: scroll; }\n    .tictactoe .ttc__game-board-tile:nth-child(1) {\n      border-right: 1px solid gray; }\n    .tictactoe .ttc__game-board-tile:nth-child(3) {\n      border-left: 1px solid gray; }\n  .tictactoe .x, .tictactoe .o, .tictactoe .null {\n    margin-top: 35px;\n    margin-left: auto;\n    margin-right: auto; }\n  .tictactoe .x {\n    position: relative;\n    vertical-align: middle;\n    width: 1em;\n    height: 5em;\n    background: #2C2C2C;\n    -webkit-transform: rotate(45deg);\n            transform: rotate(45deg);\n    font-size: 22px; }\n    .tictactoe .x:after {\n      content: \"\";\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 1em;\n      height: 5em;\n      background: #2C2C2C;\n      -webkit-transform: rotate(-90deg);\n              transform: rotate(-90deg); }\n  .tictactoe .o {\n    height: 5em;\n    width: 5em;\n    border-radius: 50%;\n    border: solid 1em #2c2c2c;\n    font-size: 22px; }\n  @media only screen and (max-width: 500px) {\n    .tictactoe .x, .tictactoe .x:after, .tictactoe .o {\n      height: 3.5em;\n      width: 3.5em;\n      font-size: 12px; } }\n  .tictactoe .null:before {\n    position: absolute;\n    top: 25%;\n    left: 25%;\n    bottom: 25%;\n    right: 25%;\n    content: '';\n    border-radius: 75%;\n    background-color: lightgray;\n    opacity: .1; }\n  .tictactoe .ttt__animation-in {\n    -webkit-animation: fadeIn 1000ms;\n            animation: fadeIn 1000ms; }\n\n@-webkit-keyframes in {\n  from {\n    opacity: 0;\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg); }\n  to {\n    opacity: 1;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); } }\n\n@keyframes in {\n  from {\n    opacity: 0;\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg); }\n  to {\n    opacity: 1;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); } }\n\n@-webkit-keyframes out {\n  from {\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0); }\n  to {\n    -webkit-transform: scale(3, 3);\n            transform: scale(3, 3);\n    opacity: 0; } }\n\n@keyframes out {\n  from {\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0); }\n  to {\n    -webkit-transform: scale(3, 3);\n            transform: scale(3, 3);\n    opacity: 0; } }\n"
 
 /***/ },
 
@@ -1173,19 +1173,12 @@ webpackJsonp([2],{
 	        __metadata('design:returntype', void 0)
 	    ], TileTypeDirective.prototype, "o", null);
 	    TileTypeDirective = __decorate([
-	        core_1.Directive({
-	            selector: '[ttc-tiletype-detector]'
-	        }), 
+	        core_1.Directive({ selector: '[ttc-tiletype-detector]' }), 
 	        __metadata('design:paramtypes', [])
 	    ], TileTypeDirective);
 	    return TileTypeDirective;
 	}());
 	exports.TileTypeDirective = TileTypeDirective;
-	// [ngClass]="{ 
-	//     'x':tileBoard[y][x]===0,
-	//     'o':tileBoard[y][x]===1,
-	//     'null':tileBoard[y][x]===2 
-	//     }" 
 	
 
 /***/ },
@@ -1284,6 +1277,7 @@ webpackJsonp([2],{
 	var router_1 = __webpack_require__(30);
 	var tictactoe_service_1 = __webpack_require__(136);
 	var tiletype_directive_1 = __webpack_require__(696);
+	__webpack_require__(469);
 	var GamePlayComponent = (function () {
 	    function GamePlayComponent(ticTacToeService, router) {
 	        this.ticTacToeService = ticTacToeService;
@@ -1523,12 +1517,21 @@ webpackJsonp([2],{
 	var game_resolution_component_1 = __webpack_require__(699);
 	exports.TicTacToeRoutes = [
 	    {
-	        path: 'tictactoe',
 	        component: tictactoe_component_1.TicTacToeComponent,
+	        path: 'tictactoe',
 	        children: [
-	            { path: 'new', component: game_information_component_1.GameInformationComponent },
-	            { path: 'play', component: game_play_component_1.GamePlayComponent },
-	            { path: 'end', component: game_resolution_component_1.GameResolutionComponent }
+	            {
+	                component: game_information_component_1.GameInformationComponent,
+	                path: 'new'
+	            },
+	            {
+	                component: game_play_component_1.GamePlayComponent,
+	                path: 'play'
+	            },
+	            {
+	                component: game_resolution_component_1.GameResolutionComponent,
+	                path: 'end'
+	            }
 	        ]
 	    }
 	];

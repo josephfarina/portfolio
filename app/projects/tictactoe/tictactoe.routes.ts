@@ -6,12 +6,21 @@ import { GameResolutionComponent } from './game-resolution/game-resolution.compo
 
 export const TicTacToeRoutes: RouterConfig = [
   {
-    path: 'tictactoe',
     component: TicTacToeComponent,
+    path: 'tictactoe',
     children: [
-      { path: 'new',  component: GameInformationComponent },
-      { path: 'play', component: GamePlayComponent },
-      { path: 'end',  component: GameResolutionComponent }
+      {
+        component: GameInformationComponent,
+        path: 'new'
+      },
+      {
+        component: GamePlayComponent,
+        path: 'play'
+      },
+      {
+        component: GameResolutionComponent,
+        path: 'end'
+      }
     ]
   }
 ];
