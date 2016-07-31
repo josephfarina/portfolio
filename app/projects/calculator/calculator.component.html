@@ -1,13 +1,8 @@
- <div class="calc">
+<div class="calc">
     <div class="calculator animated fadeInDownBig">
         <pre *ngIf="showVariables">
-            Display Value: {{displayValue}} 
-            Operator Value: {{operatorValue}} 
-            Current Value: {{currentValue}} 
-            Calue To Operate: {{valueToOperate}}
-            Operator Pressed: {{operatorPressed}} 
-            Is Negative: {{isNegative}} 
-            Display Reset After Operator: {{displayResetAfterOperator}}
+            Display Value: {{displayValue}} Operator Value: {{operatorValue}} Current Value: {{currentValue}} Calue To Operate: {{valueToOperate}}
+            Operator Pressed: {{operatorPressed}} Is Negative: {{isNegative}} Display Reset After Operator: {{displayResetAfterOperator}}
         </pre>
         <div class="row no-gutters">
             <!-- display -->
@@ -92,8 +87,26 @@
                     <div class="button operator equals"><span class="button-content">=</span></div>
                 </div>
             </div>
-    <button class='btn calc-btn' (click)="showVariables = !showVariables">See The Variables in Action</button>
+            <button class='btn calc-btn' (click)="showVariables = !showVariables">See The Variables in Action</button>
 
         </div>
     </div>
+
+
+<div class="project-description">
+    <h3>A Functional Calculator Made with Angular 2 and TypeScript and Designed Using Pure CSS</h3>
+    <pre>
+        <code>
+        FILE TREE:
+        <a class="github-link" target="_blank" href="https://github.com/JosephFarina/portfolio/blob/master/app/projects/calculator/">calculator/</a>
+        ----- <a class="github-link" target="_blank" href="https://github.com/JosephFarina/portfolio/blob/master/app/projects/calculator/calculator.component.ts">calculator.component.ts</a>
+        ----- <a class="github-link" target="_blank" href="https://github.com/JosephFarina/portfolio/blob/master/app/projects/calculator/calculator.component.spec.ts">calculator.component.spec.ts</a>
+        ----- <a class="github-link" target="_blank" href="https://github.com/JosephFarina/portfolio/blob/master/app/projects/calculator/calculator.component.html">calculator.component.html</a>
+
+        SCSS FILE:
+        <a class="github-link" target="_blank" href="https://github.com/JosephFarina/portfolio/blob/master/scss/projects/calculator.scss">calculator.scss</a>
+      </code>
+    </pre>
+</div>
+
 </div>

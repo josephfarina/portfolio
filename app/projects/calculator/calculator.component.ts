@@ -8,15 +8,13 @@
 
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
-import {ViewEncapsulation} from '@angular/core';
 
 @Component({
     directives: [ROUTER_DIRECTIVES],
     moduleId: module.id,
     selector: 'my-calculator',
     styles: [require('./../../../scss/projects/calculator.scss').toString()],
-    templateUrl: 'calculator.component.html',
-    encapsulation: ViewEncapsulation.Emulated
+    templateUrl: 'calculator.component.html'
 })
 
 export class CalculatorComponent {
