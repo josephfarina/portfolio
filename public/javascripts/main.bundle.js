@@ -245,7 +245,7 @@ webpackJsonp([2],{
 /***/ 463:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"game-end\">\n    <div class=\"info-text\" *ngIf=\"!isTie\">\n        <h2>{{winner.name}} Won!</h2>\n        <h5>Score: {{winner.score}}</h5>\n        <h5>Tile: {{winner.tileType}}</h5>\n    </div>\n    <div class=\"info-text\" *ngIf='isTie'>\n        <h2 >It was a tie!</h2>\n        <h6>Try Again!</h6>\n    </div>\n    <div class=\"btn-group btn-group-justified\" role=\"group\">\n        <div class=\"btn-group\" role=\"group\">\n        <button type=\"button\" (click)=\"playAgain()\" class=\"btn btn-tile\">Play Again!</button>\n        </div>\n        <div class=\"btn-group\" role=\"group\">\n        <button type=\"button\" (click)=\"newGame()\" class=\"btn btn-tile\">New Game</button>\n        </div>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"game-end\">\n    <div class=\"info-text\" *ngIf=\"!isTie\">\n        <h2>{{winner.name}} Won!</h2>\n        <h5>Current Score: {{winner.score}}</h5>\n    </div>\n    <div class=\"info-text\" *ngIf='isTie'>\n        <h2 >It was a tie!</h2>\n        <h6>Try Again!</h6>\n    </div>\n    <div class=\"btn-group btn-group-justified\" role=\"group\">\n        <div class=\"btn-group\" role=\"group\">\n        <button type=\"button\" (click)=\"playAgain()\" class=\"btn btn-tile\">Play Again!</button>\n        </div>\n        <div class=\"btn-group\" role=\"group\">\n        <button type=\"button\" (click)=\"newGame()\" class=\"btn btn-tile\">New Game</button>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
 
@@ -2088,7 +2088,7 @@ webpackJsonp([2],{
 /***/ 717:
 /***/ function(module, exports) {
 
-	module.exports = ".game-start,\n.game-end {\n  padding: 25px 50px 50px 50px; }\n  .game-start .input-group,\n  .game-end .input-group {\n    margin-bottom: 10px; }\n  .game-start .info-text,\n  .game-end .info-text {\n    text-align: center; }\n  .game-start .btn-tile,\n  .game-end .btn-tile {\n    color: white;\n    background-color: #4CAAF5;\n    border: 1px solid #4CAAF5;\n    text-decoration: none; }\n    .game-start .btn-tile:hover,\n    .game-end .btn-tile:hover {\n      color: #4CAAF5;\n      background-color: white; }\n"
+	module.exports = ".game-start,\n.game-end {\n  padding: 25px 50px 50px 50px; }\n  .game-start .input-group,\n  .game-end .input-group {\n    margin-bottom: 10px; }\n  .game-start .info-text,\n  .game-end .info-text {\n    text-align: center; }\n  .game-start .btn-tile,\n  .game-end .btn-tile {\n    color: white;\n    background-color: #4CAAF5;\n    border: 1px solid #4CAAF5; }\n    .game-start .btn-tile:hover,\n    .game-end .btn-tile:hover {\n      color: #4CAAF5;\n      background-color: white; }\n"
 
 /***/ }
 

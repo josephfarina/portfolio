@@ -1,8 +1,7 @@
 <div class="game-end">
     <div class="info-text" *ngIf="!isTie">
         <h2>{{winner.name}} Won!</h2>
-        <h5>Score: {{winner.score}}</h5>
-        <h5>Tile: {{winner.tileType}}</h5>
+        <h5>Current Score: {{winner.score}}</h5>
     </div>
     <div class="info-text" *ngIf='isTie'>
         <h2 >It was a tie!</h2>
