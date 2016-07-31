@@ -1,8 +1,3 @@
-/**
- * TODO:
- *  change the SVG to the new vertically aligning knobs
- */
-
 import { Component, OnDestroy } from '@angular/core';
 import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
 import { SEQUENCER_LINEUP } from './SEQUENCER_LINEUP';
@@ -38,9 +33,10 @@ export class DrumMachineComponent implements OnDestroy {
         this.metronomeService.init();
     }
 
-    ngOnDestroy() { this.stop(); }
     start() { this.metronomeService.play(); }
     stop() { this.metronomeService.stop(); }
+    update() { this.metronomeService.setSequencerLineUp(this.sequencerLineUp); }
+    ngOnDestroy() { this.stop(); }
 
     togglePlay(e: any) {
         if (e.value === true) {
@@ -48,16 +44,14 @@ export class DrumMachineComponent implements OnDestroy {
         } else { this.metronomeService.stop(); }
     }
 
-    update() { this.metronomeService.setSequencerLineUp(this.sequencerLineUp); }
-
     instrumentSet(event: any) {
         this.currentType = event.value;
     }
 
-    beatOutputValue(event: any, beatNum: number) {
+    updateRhythmSettings(event: any, beatNum: number) {
         this.sequencerLineUp['rhythmSettings'][beatNum - 1][this.currentType] = event.value;
+        this.update();
     }
-
 
     updateInstrumentSettings(event: any, instrument: string, knob: string) {
         this.sequencerLineUp['instrumentSettings'][instrument][knob] = event.value;
