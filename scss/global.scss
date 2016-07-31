@@ -107,6 +107,7 @@
 
 .github-link {
   color: blue;
+
   &:after {
     content: "";
     position: relative;
@@ -116,6 +117,6 @@
     width: 12px;
     display: inline-block;
     height: 12px;
-}
+  }
 
 }

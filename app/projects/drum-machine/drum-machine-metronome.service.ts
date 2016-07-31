@@ -22,7 +22,6 @@ export class DrumMachineMetronomeService {
         '909': {},
         'acoustic': {}
     };
-    private impulse: any;
 
     init() {
         this.context = new AudioContext();
@@ -212,5 +211,4 @@ export class DrumMachineMetronomeService {
             }
         }
     }
-
 }
