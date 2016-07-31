@@ -23,8 +23,24 @@ export class DrumMachineService {
         'acoustic': {}
     };
 
+    checkCompatibility() {
+        let AudioContext = window.AudioContext // Default
+            || window.webkitAudioContext // Safari and old versions of Chrome
+            || false;
+
+        if (AudioContext) {
+            this.context = new AudioContext();
+        } else {
+
+            alert(`
+            Sorry, but the Web Audio API is not supported by your browser. 
+            Please, consider upgrading to the latest version or downloading 
+            Google Chrome or Mozilla Firefox`);
+        }
+    }
+
     init() {
-        this.context = new AudioContext();
+        this.checkCompatibility();
         this.loadDrumKit();
         this.timeWorker = new TimeWorker();
         this.timeWorker.onmessage = (e: any) => {
