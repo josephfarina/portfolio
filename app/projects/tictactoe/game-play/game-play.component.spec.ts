@@ -212,13 +212,13 @@ describe('TicTacToe Component:', () => {
                 let ttt = fixture.componentInstance;
 
 
-                let callAllChecks = function() {
+                let callAllChecks = function () {
                     ttt.currentUser = twoPlayers[0];
                     for (let y = 0; y <= 2; y++) {
                         for (let x = 0; x <= 2; x++) {
                             expect(ttt.checkForWinner(x, y)).toBe(false);
                         }
-                    }                    
+                    }
                 }
 
                 ttt.tileBoard = [
@@ -238,12 +238,12 @@ describe('TicTacToe Component:', () => {
                 callAllChecks();
 
                 ttt.tileBoard = [
-                    [TileType.O,    TileType.X, TileType.X],
+                    [TileType.O, TileType.X, TileType.X],
                     [TileType.null, TileType.O, TileType.null],
-                    [TileType.X,    TileType.O, TileType.X]
+                    [TileType.X, TileType.O, TileType.X]
                 ];
 
-                callAllChecks();                
+                callAllChecks();
 
                 done();
             })

@@ -6,12 +6,7 @@ import { TicTacToeService, Player, TileType } from './../tictactoe.service';
   moduleId: module.id,
   selector: 'my-game-information',
   templateUrl: 'game-information.component.html',
-  styles: [`h2 { 
-    color: black;
-    text-align: center;
-}
-
-  `],
+  styles: [require('./../../../../scss/projects/tictactoe/tictactoe-setup-end.scss').toString()],
   directives: [ROUTER_DIRECTIVES]
 })
 

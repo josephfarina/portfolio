@@ -231,21 +231,21 @@ webpackJsonp([2],{
 /***/ 461:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"panel\">\n    <h2>Let's Play Some TicTacToe</h2>\n    <form class=\"row\">\n        <div class=\"col-sm-12\">\n            <label for=\"userTwoName\">Player One</label>\n            <div class=\"input-group\">\n                <input name=\"userOneName\" [(ngModel)]=\"userOneName\" (change)=\"updateUserOne()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n                <span class=\"input-group-btn\">\n                    <button (click)=\"toggleTile()\" class=\"btn btn-secondary\">\n                        <span *ngIf=\"userOneTileType == 0\">X</span>\n                        <span *ngIf=\"userOneTileType == 1\">O</span>\n                    </button>\n                </span>\n            </div>\n        </div>\n\n        <hr>\n\n        <div class=\"col-sm-12\">\n            <label for=\"userTwoName\">Player Two</label>\n            <div class=\"input-group\">\n                <input name=\"userTwoName\" [(ngModel)]=\"userTwoName\" (change)=\"updateUserTwo()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n                <span class=\"input-group-btn\">\n                    <button (click)=\"toggleTile()\" class=\"btn btn-secondary\">\n                        <span *ngIf=\"userTwoTileType == 0\">X</span>\n                        <span *ngIf=\"userTwoTileType == 1\">O</span>\n                    </button>\n                </span>\n            </div>\n        </div>\n        <div class=\"col-sm-12\">\n            <button (click)=\"gameStart($event)\" class=\"btn btn-default btn-block\">Start the Game!</button>\n        </div>\n    </form>\n</div>\n\n"
+	module.exports = "<div class=\"game-start\">\n    <h2>Let's Play Some TicTacToe</h2>\n    <h6>Enter Your Names and Select a Tile</h6>\n    <div class=\"input-group\">\n        <input name=\"userOneName\" [(ngModel)]=\"userOneName\" (change)=\"updateUserOne()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n        <span class=\"input-group-btn\">\n                        <button (click)=\"toggleTile()\" class=\"btn btn-tile\">\n                            <span *ngIf=\"userOneTileType == 0\">X</span>\n        <span *ngIf=\"userOneTileType == 1\">O</span>\n        </button>\n        </span>\n    </div>\n    <div class=\"input-group\">\n        <input name=\"userTwoName\" [(ngModel)]=\"userTwoName\" (change)=\"updateUserTwo()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n        <span class=\"input-group-btn\">\n                        <button (click)=\"toggleTile()\" class=\"btn btn-tile\">\n                            <span *ngIf=\"userTwoTileType == 0\">X</span>\n        <span *ngIf=\"userTwoTileType == 1\">O</span>\n        </button>\n        </span>\n    </div>\n    <button (click)=\"gameStart($event)\" class=\"btn btn-block btn-tile\">Start the Game!</button>\n</div>"
 
 /***/ },
 
 /***/ 462:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"game-board\">\n    <span class=\"h4 current-player\">{{currentPlayer.name}}'s Turn</span>\n    <div class=\"board-rows\">\n        <div class=\"board-row\" *ngFor=\"let tileRow of tileBoard; let y = index\">\n            <div *ngFor=\"let tile of tileRow; let x = index\" class=\"board-tile\" (click)=\"setTile(x,y)\">\n                <div [ngClass]=\"{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }\"></div>\n            </div>\n        </div>\n    </div>\n    <div class=\"scoreboard\">\n        <div class=\"player player-one\">\n            <div>{{userOne.name}}</div>\n            <div>Score: {{userOne.score}}</div>\n        </div>\n        <h5 class=\"scoreboard-title\">Score</h5>\n\n        <div class=\"player player-two\">\n            <div>{{userTwo.name}}</div>\n            <div>Score: {{userTwo.score}}</div>\n        </div>   \n        <span class=\"stretch\"></span>     \n    </div>\n</div>\n\n<!--\n<div class=\"col-md-12 ttc__user-scoreboard\">\n    <div class=\"col-md-6 ttc__user-score\">\n        <h5 class=\"ttc__user-name\">{{userOne.name}}</h5>\n        <h5 class=\"ttc__user-tile\">\n            <span [ngSwitch]=\"userOne.tileType\">\n                <span *ngSwitchWhen=\"0\">X</span>\n                <span *ngSwitchWhen=\"1\">O</span>\n            </span>\n        </h5>\n        <h5 class=\"ttc__user-score\">Score: {{userOne.score}}</h5>\n    </div>\n    <div class=\"col-md-6 ttc__user-score\">\n        <h5 class=\"ttc__user-name\">{{userTwo.name}}</h5>\n        <h5 class=\"ttc__user-tile\">\n            <span [ngSwitch]=\"userTwo.tileType\">\n                <span *ngSwitchWhen=\"0\">X</span>\n                <span *ngSwitchWhen=\"1\">O</span>\n            </span>\n        </h5>\n        <h5 class=\"ttc__user-score\">Score: {{userTwo.score}}</h5>\n    </div>\n</div>-->"
+	module.exports = "<div class=\"game-board\">\n    <span class=\"h4 current-player\">{{currentPlayer.name}}'s Turn</span>\n    <div class=\"board-rows\">\n        <div class=\"board-row\" *ngFor=\"let tileRow of tileBoard; let y = index\">\n            <div *ngFor=\"let tile of tileRow; let x = index\" class=\"board-tile\" (click)=\"setTile(x,y)\">\n                <div [ngClass]=\"{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }\"></div>\n            </div>\n        </div>\n    </div>\n    <div class=\"scoreboard\">\n        <div class=\"player player-one\">\n            <div>{{userOne.name}}</div>\n            <div>Score: {{userOne.score}}</div>\n        </div>\n        <h5 class=\"scoreboard-title\">Score</h5>\n\n        <div class=\"player player-two\">\n            <div>{{userTwo.name}}</div>\n            <div>Score: {{userTwo.score}}</div>\n        </div>   \n        <span class=\"stretch\"></span>     \n    </div>\n</div>\n"
 
 /***/ },
 
 /***/ 463:
 /***/ function(module, exports) {
 
-	module.exports = "<section class=\"ttc__resolution\">\n    <div *ngIf=\"!isTie\">\n        <h2>{{winner.name}} Won!</h2>\n        <h5>Score: {{winner.score}}</h5>\n        <h5>Tile: {{winner.tileType}}</h5>\n    </div>\n    <h2 *ngIf='isTie'>It was a tie! Try Again!</h2>\n    \n    <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n        <button type=\"button\" (click)=\"playAgain()\" class=\"btn btn-primary\">Play Again!</button>\n        <button type=\"button\" (click)=\"newGame()\" class=\"btn btn-primary\">New Game</button>\n    </div>\n</section>"
+	module.exports = "<div class=\"game-end\">\n    <div *ngIf=\"!isTie\">\n        <h2>{{winner.name}} Won!</h2>\n        <h5>Score: {{winner.score}}</h5>\n        <h5>Tile: {{winner.tileType}}</h5>\n    </div>\n    <div *ngIf='isTie'>\n        <h2 >It was a tie!</h2>\n        <h6>Try Again!</h6>\n    </div>\n    <div class=\"btn-group btn-group-justified\" role=\"group\" aria-label=\"Basic example\">\n        <button type=\"button\" (click)=\"playAgain()\" class=\"btn btn-tile\">Play Again!</button>\n        <button type=\"button\" (click)=\"newGame()\" class=\"btn btn-tile\">New Game</button>\n    </div>\n</div>\n"
 
 /***/ },
 
@@ -1114,68 +1114,6 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 696:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(1);
-	var TileTypeDirective = (function () {
-	    function TileTypeDirective() {
-	        this._classToBind = 'null';
-	        this.tileType = 2;
-	    }
-	    TileTypeDirective.prototype.onClick = function () {
-	        if (this.tileType === 0) {
-	            this._classToBind = 'x';
-	        }
-	        if (this.tileType === 1) {
-	            this._classToBind = 'o';
-	        }
-	        if (this.tileType === 2) {
-	            this._classToBind = 'null';
-	        }
-	    };
-	    TileTypeDirective.prototype.o = function () {
-	        if (this._classToBind === 'o') {
-	            return true;
-	        }
-	    };
-	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', Number)
-	    ], TileTypeDirective.prototype, "tileType", void 0);
-	    __decorate([
-	        core_1.HostListener('click'), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', []), 
-	        __metadata('design:returntype', void 0)
-	    ], TileTypeDirective.prototype, "onClick", null);
-	    __decorate([
-	        core_1.HostBinding('class.o'), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', []), 
-	        __metadata('design:returntype', void 0)
-	    ], TileTypeDirective.prototype, "o", null);
-	    TileTypeDirective = __decorate([
-	        core_1.Directive({ selector: '[ttc-tiletype-detector]' }), 
-	        __metadata('design:paramtypes', [])
-	    ], TileTypeDirective);
-	    return TileTypeDirective;
-	}());
-	exports.TileTypeDirective = TileTypeDirective;
-	
-
-/***/ },
-
 /***/ 697:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1241,7 +1179,7 @@ webpackJsonp([2],{
 	            moduleId: module.id,
 	            selector: 'my-game-information',
 	            template: __webpack_require__(461),
-	            styles: ["h2 { \n    color: black;\n    text-align: center;\n}\n\n  "],
+	            styles: [__webpack_require__(717).toString()],
 	            directives: [router_1.ROUTER_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [router_1.Router, tictactoe_service_1.TicTacToeService])
@@ -1269,7 +1207,6 @@ webpackJsonp([2],{
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(30);
 	var tictactoe_service_1 = __webpack_require__(136);
-	var tiletype_directive_1 = __webpack_require__(696);
 	var GamePlayComponent = (function () {
 	    function GamePlayComponent(ticTacToeService, router) {
 	        this.ticTacToeService = ticTacToeService;
@@ -1408,8 +1345,7 @@ webpackJsonp([2],{
 	            template: __webpack_require__(462),
 	            styles: [__webpack_require__(714).toString()],
 	            directives: [
-	                router_1.ROUTER_DIRECTIVES,
-	                tiletype_directive_1.TileTypeDirective
+	                router_1.ROUTER_DIRECTIVES
 	            ]
 	        }), 
 	        __metadata('design:paramtypes', [tictactoe_service_1.TicTacToeService, router_1.Router])
@@ -1417,34 +1353,6 @@ webpackJsonp([2],{
 	    return GamePlayComponent;
 	}());
 	exports.GamePlayComponent = GamePlayComponent;
-	//   <rect id="background" class="cls-1" width="300" height="300"/>
-	var x2y2Circle = 'M299.56,249.56a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,299.56,249.56Z';
-	var x1y2Circle = 'M199.56,249.56a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,199.56,249.56Z';
-	var x0y2Circle = 'M99.56,249.56a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,99.56,249.56Z';
-	var x2y1Circle = 'M299.56,150a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,299.56,150Z';
-	var x1y1Circle = 'M199.56,150a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,199.56,150Z';
-	var x0y1Circle = 'M99.56,150a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,99.56,150Z';
-	var x2y0Circle = 'M299.56,50a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,299.56,50Z';
-	var x1y0Circle = 'M199.56,50a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,199.56,50Z';
-	var x0y0Circle = 'M99.56,50a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,99.56,50Z';
-	var x2y2X = 'M200,199.56h25l25,50,25-50h25v25l-50,25,50,25v25H275l-25-50-25,50H200v-25l50-25-50-25v-25Z" transform="translate(0)';
-	var x1y2X = 'M100,199.56h25l25,50,25-50h25v25l-50,25,50,25v25H175l-25-50-25,50H100v-25l50-25-50-25v-25Z" transform="translate(0)';
-	var x0y2X = 'M0,199.56H25l25,50,25-50h25v25l-50,25,50,25v25H75l-25-50-25,50H0v-25l50-25-50-25v-25Z" transform="translate(0)';
-	var x2y1X = 'M200,100h25l25,50,25-50h25v25l-50,25,50,25v25H275l-25-50-25,50H200V175l50-25-50-25V100Z" transform="translate(0)';
-	var x1y1X = 'M100,100h25l25,50,25-50h25v25l-50,25,50,25v25H175l-25-50-25,50H100V175l50-25-50-25V100Z" transform="translate(0)';
-	var x0y1X = 'M0,100H25l25,50,25-50h25v25L50,150l50,25v25H75L50,150,25,200H0V175l50-25L0,125V100Z" transform="translate(0)';
-	var x2y0X = 'M200,0h25l25,50L275,0h25V25L250,50l50,25v25H275L250,50l-25,50H200V75l50-25L200,25V0Z" transform="translate(0)';
-	var x1y0X = 'M100,0h25l25,50L175,0h25V25L150,50l50,25v25H175L150,50l-25,50H100V75l50-25L100,25V0Z" transform="translate(0)';
-	var x0y0X = 'M0,0H25L50,50,75,0h25V25L50,50l50,25v25H75L50,50,25,100H0V75L50,50,0,25V0Z" transform="translate(0)';
-	var x2y2Square = 'M200,199.56H300v100H200v-100Z" transform="translate(0 0)';
-	var x1y2Square = 'M100,199.56H200v100H100v-100Z" transform="translate(0 0)';
-	var x0y2Square = 'M0,199.56H100v100H0v-100Z" transform="translate(0 0)';
-	var x2y1Square = 'M200,100H300V200H200V100Z" transform="translate(0 0)';
-	var x1y1Square = 'M100,100H200V200H100V100Z" transform="translate(0 0)';
-	var x0y1Square = 'M0,100H100V200H0V100Z" transform="translate(0 0)';
-	var x2y0Square = 'M200,0H300V100H200V0Z" transform="translate(0 0)';
-	var x1y0Square = 'M100,0H200V100H100V0Z" transform="translate(0 0)';
-	var x0y0Square = 'M0,0H100V100H0V0Z" transform="translate(0 0)';
 	
 
 /***/ },
@@ -1489,6 +1397,7 @@ webpackJsonp([2],{
 	            moduleId: module.id,
 	            selector: 'my-game-resolution',
 	            template: __webpack_require__(463),
+	            styles: [__webpack_require__(717).toString()],
 	            directives: [router_1.ROUTER_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [tictactoe_service_1.TicTacToeService, router_1.Router])
@@ -2165,14 +2074,21 @@ webpackJsonp([2],{
 /***/ 714:
 /***/ function(module, exports) {
 
-	module.exports = ".game-board {\n  position: relative;\n  top: 15px; }\n  .game-board .current-player {\n    padding: 25px; }\n  .game-board .board-rows {\n    position: relative;\n    top: 12px; }\n    .game-board .board-rows .board-row {\n      position: relative;\n      margin-left: auto;\n      margin-right: auto;\n      margin-bottom: 5px;\n      height: 100px;\n      width: 300px; }\n      .game-board .board-rows .board-row .board-tile {\n        position: relative;\n        height: 90px;\n        width: 90px;\n        margin-left: 5px;\n        margin-right: 5px;\n        display: inline-block;\n        background-color: lightblue; }\n  .game-board .scoreboard {\n    width: 270px;\n    text-align: justify;\n    margin-top: 20px;\n    margin-left: auto;\n    margin-right: auto; }\n    .game-board .scoreboard .scoreboard-title {\n      display: inline-block;\n      -webkit-transform: translate(0, -50%);\n              transform: translate(0, -50%); }\n    .game-board .scoreboard .player {\n      display: inline-block; }\n    .game-board .scoreboard .player-two {\n      text-align: right; }\n    .game-board .scoreboard .stretch {\n      width: 100%;\n      display: inline-block;\n      font-size: 0;\n      line-height: 0; }\n\n.x {\n  position: relative;\n  margin: auto;\n  top: 40px;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n  width: 50px;\n  opacity: 1;\n  border-top: solid white 3px;\n  -webkit-animation: x-in .5s 1 ease-in-out;\n          animation: x-in .5s 1 ease-in-out; }\n  .x::after {\n    content: '';\n    display: block;\n    position: relative;\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n    width: 50px;\n    opacity: 1;\n    border-top: solid white 3px; }\n\n@-webkit-keyframes x-in {\n  0% {\n    opacity: 0;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); }\n  100% {\n    opacity: 1;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); } }\n\n@keyframes x-in {\n  0% {\n    opacity: 0;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); }\n  100% {\n    opacity: 1;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); } }\n\n.o {\n  position: relative;\n  margin: auto;\n  top: 20px;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  border: 3px solid white;\n  -webkit-animation: rotate-anchor .5s 1 ease-in-out;\n          animation: rotate-anchor .5s 1 ease-in-out; }\n\n@-webkit-keyframes rotate-anchor {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n    border-top-color: white; }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n    border-left-color: white; } }\n\n@keyframes rotate-anchor {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n    border-top-color: white; }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n    border-left-color: white; } }\n"
+	module.exports = ".game-board {\n  position: relative;\n  top: 15px; }\n  .game-board .current-player {\n    padding: 25px; }\n  .game-board .board-rows {\n    position: relative;\n    top: 12px; }\n    .game-board .board-rows .board-row {\n      position: relative;\n      margin-left: auto;\n      margin-right: auto;\n      margin-bottom: 5px;\n      height: 100px;\n      width: 300px; }\n      .game-board .board-rows .board-row .board-tile {\n        position: relative;\n        height: 90px;\n        width: 90px;\n        margin-left: 5px;\n        margin-right: 5px;\n        display: inline-block;\n        background-color: #4CAAF5; }\n  .game-board .scoreboard {\n    width: 270px;\n    text-align: justify;\n    margin-top: 20px;\n    margin-left: auto;\n    margin-right: auto;\n    padding-bottom: 20px; }\n    .game-board .scoreboard .scoreboard-title {\n      display: inline-block;\n      -webkit-transform: translate(0, -50%);\n              transform: translate(0, -50%); }\n    .game-board .scoreboard .player {\n      display: inline-block; }\n    .game-board .scoreboard .player-two {\n      text-align: right; }\n    .game-board .scoreboard .stretch {\n      width: 100%;\n      display: inline-block;\n      font-size: 0;\n      line-height: 0; }\n\n.x {\n  position: relative;\n  margin: auto;\n  top: 40px;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n  width: 50px;\n  opacity: 1;\n  border-top: solid white 3px;\n  -webkit-animation: x-in .5s 1 ease-in-out;\n          animation: x-in .5s 1 ease-in-out; }\n  .x::after {\n    content: '';\n    display: block;\n    position: relative;\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n    width: 50px;\n    opacity: 1;\n    border-top: solid white 3px; }\n\n@-webkit-keyframes x-in {\n  0% {\n    opacity: 0;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); }\n  100% {\n    opacity: 1;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); } }\n\n@keyframes x-in {\n  0% {\n    opacity: 0;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); }\n  100% {\n    opacity: 1;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); } }\n\n.o {\n  position: relative;\n  margin: auto;\n  top: 20px;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  border: 3px solid white;\n  -webkit-animation: o-in .5s 1 ease-in-out;\n          animation: o-in .5s 1 ease-in-out; }\n\n@-webkit-keyframes o-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n    border-top-color: white; }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n    border-left-color: white; } }\n\n@keyframes o-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n    border-top-color: white; }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n    border-left-color: white; } }\n"
 
 /***/ },
 
 /***/ 715:
 /***/ function(module, exports) {
 
-	module.exports = ".tictactoe-wrapper {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  min-height: 150%;\n  background-color: #FFAF27; }\n\n.tictactoe {\n  position: relative;\n  top: 50px;\n  max-width: 320px;\n  min-height: 450px;\n  margin-left: auto;\n  margin-right: auto;\n  border-radius: 25px;\n  background-color: white; }\n"
+	module.exports = ".tictactoe-wrapper {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  min-height: 150%;\n  background-color: #FFAF27; }\n\n.tictactoe {\n  position: relative;\n  top: 50px;\n  max-width: 320px;\n  min-height: 250px;\n  margin-left: auto;\n  margin-right: auto;\n  border-radius: 25px;\n  background-color: white; }\n"
+
+/***/ },
+
+/***/ 717:
+/***/ function(module, exports) {
+
+	module.exports = ".game-start,\n.game-end {\n  padding: 25px 50px 50px 50px; }\n  .game-start .input-group,\n  .game-end .input-group {\n    margin-bottom: 10px; }\n  .game-start .btn-tile,\n  .game-end .btn-tile {\n    color: white;\n    background-color: #4CAAF5;\n    border: 1px solid #4CAAF5; }\n    .game-start .btn-tile:hover,\n    .game-end .btn-tile:hover {\n      color: #4CAAF5;\n      background-color: white; }\n"
 
 /***/ }
 

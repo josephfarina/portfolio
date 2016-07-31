@@ -28,7 +28,7 @@ $board-height: 300px;
                 margin-left: 5px;
                 margin-right: 5px;
                 display: inline-block;
-                background-color: lightblue;   
+                background-color:#4CAAF5;   
             }
         }
     }
@@ -39,6 +39,7 @@ $board-height: 300px;
         margin-top: 20px;
         margin-left: auto;
         margin-right: auto;
+        padding-bottom: 20px;
 
         .scoreboard-title {
             display: inline-block;
@@ -95,10 +96,10 @@ $board-height: 300px;
   height: 50px;
   border-radius: 50%;
   border: 3px solid white;
-  animation: rotate-anchor .5s 1 ease-in-out;
+  animation: o-in .5s 1 ease-in-out;
 }
 
-@keyframes rotate-anchor {
+@keyframes o-in {
     0% { 
         transform: scale(0);
         opacity: 0; 

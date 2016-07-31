@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { TicTacToeService, Player, TileType } from './../tictactoe.service';
-import { TileTypeDirective } from '../directives/tiletype.directive';
 
 @Component({
     moduleId: module.id,
@@ -9,8 +8,7 @@ import { TileTypeDirective } from '../directives/tiletype.directive';
     templateUrl: 'game-play.component.html',
     styles: [require('./../../../../scss/projects/tictactoe/tictactoe-board.scss').toString()],
     directives: [
-        ROUTER_DIRECTIVES,
-        TileTypeDirective
+        ROUTER_DIRECTIVES
     ]
 })
 
@@ -121,37 +119,3 @@ export class GamePlayComponent implements OnInit, OnDestroy {
     }
 
 }
-
-
-//   <rect id="background" class="cls-1" width="300" height="300"/>
-
-let x2y2Circle: string = 'M299.56,249.56a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,299.56,249.56Z';
-let x1y2Circle: string = 'M199.56,249.56a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,199.56,249.56Z';
-let x0y2Circle: string = 'M99.56,249.56a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,99.56,249.56Z';
-let x2y1Circle: string = 'M299.56,150a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,299.56,150Z';
-let x1y1Circle: string = 'M199.56,150a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,199.56,150Z';
-let x0y1Circle: string = 'M99.56,150a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,99.56,150Z';
-let x2y0Circle: string = 'M299.56,50a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,299.56,50Z';
-let x1y0Circle: string = 'M199.56,50a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,199.56,50Z';
-let x0y0Circle: string = 'M99.56,50a49.4,49.4,0,1,1-3.89-19.29A49.4,49.4,0,0,1,99.56,50Z';
-
-
-let x2y2X: string = 'M200,199.56h25l25,50,25-50h25v25l-50,25,50,25v25H275l-25-50-25,50H200v-25l50-25-50-25v-25Z" transform="translate(0)';
-let x1y2X: string = 'M100,199.56h25l25,50,25-50h25v25l-50,25,50,25v25H175l-25-50-25,50H100v-25l50-25-50-25v-25Z" transform="translate(0)';
-let x0y2X: string = 'M0,199.56H25l25,50,25-50h25v25l-50,25,50,25v25H75l-25-50-25,50H0v-25l50-25-50-25v-25Z" transform="translate(0)';
-let x2y1X: string = 'M200,100h25l25,50,25-50h25v25l-50,25,50,25v25H275l-25-50-25,50H200V175l50-25-50-25V100Z" transform="translate(0)';
-let x1y1X: string = 'M100,100h25l25,50,25-50h25v25l-50,25,50,25v25H175l-25-50-25,50H100V175l50-25-50-25V100Z" transform="translate(0)';
-let x0y1X: string = 'M0,100H25l25,50,25-50h25v25L50,150l50,25v25H75L50,150,25,200H0V175l50-25L0,125V100Z" transform="translate(0)';
-let x2y0X: string = 'M200,0h25l25,50L275,0h25V25L250,50l50,25v25H275L250,50l-25,50H200V75l50-25L200,25V0Z" transform="translate(0)';
-let x1y0X: string = 'M100,0h25l25,50L175,0h25V25L150,50l50,25v25H175L150,50l-25,50H100V75l50-25L100,25V0Z" transform="translate(0)';
-let x0y0X: string = 'M0,0H25L50,50,75,0h25V25L50,50l50,25v25H75L50,50,25,100H0V75L50,50,0,25V0Z" transform="translate(0)';
-
-let x2y2Square: string = 'M200,199.56H300v100H200v-100Z" transform="translate(0 0)';
-let x1y2Square: string = 'M100,199.56H200v100H100v-100Z" transform="translate(0 0)';
-let x0y2Square: string = 'M0,199.56H100v100H0v-100Z" transform="translate(0 0)';
-let x2y1Square: string = 'M200,100H300V200H200V100Z" transform="translate(0 0)';
-let x1y1Square: string = 'M100,100H200V200H100V100Z" transform="translate(0 0)';
-let x0y1Square: string = 'M0,100H100V200H0V100Z" transform="translate(0 0)';
-let x2y0Square: string = 'M200,0H300V100H200V0Z" transform="translate(0 0)';
-let x1y0Square: string = 'M100,0H200V100H100V0Z" transform="translate(0 0)';
-let x0y0Square: string = 'M0,0H100V100H0V0Z" transform="translate(0 0)';
