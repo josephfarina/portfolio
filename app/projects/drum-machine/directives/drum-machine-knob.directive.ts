@@ -1,9 +1,6 @@
 import { Directive, Input,HostListener, ElementRef, EventEmitter, AfterViewInit, Output, OnInit } from '@angular/core';
-import { DrumMachineMetronomeService } from './../drum-machine-metronome.service';
 
-@Directive({
-    selector: '[my-knob-turner]'
-})
+@Directive({ selector: '[my-knob-turner]' })
 
 export class DrumMachineKnobDirective implements AfterViewInit {
     @Output() value = new EventEmitter();
@@ -14,7 +11,6 @@ export class DrumMachineKnobDirective implements AfterViewInit {
     private maxAngle: number = 130;
     private cx: number;
     private cy: number;
-
     private s: any;
     private circ: any;
     constructor(private _el: ElementRef) { this.el = _el.nativeElement; }
@@ -27,15 +23,18 @@ export class DrumMachineKnobDirective implements AfterViewInit {
     ngAfterViewInit() {
         this.s = Snap(this.el);
         this.circ = this.s.select('circle');
-
         this.rotate(this.calculateInitialAngleFromValue(), true);
-
         this.circ.drag((dx: number, dy: number) => {
             this.rotate(dx);
         }, () => { this.resetMaxandMin(); });
     }
 
-    rotate(dx: number, init?: boolean) {
+    resetMaxandMin() {
+        if (this.angle > 0 && this.angle > this.maxAngle) { this.angle = this.maxAngle - 1; }
+        if (this.angle < 0 && this.angle < this.minAngle) { this.angle = this.minAngle + 1; }
+    }
+
+    rotate(dx: number, firstTurn?: boolean) {
         if (this.angle > 0 && this.angle > this.maxAngle) { this.angle = this.maxAngle - 1; }
         if (this.angle < 0 && this.angle < this.minAngle) { this.angle = this.minAngle + 1; }
         if (this.angle > this.maxAngle) { return; }
@@ -43,9 +42,7 @@ export class DrumMachineKnobDirective implements AfterViewInit {
         this.cx = this.circ.attr('cx');
         this.cy = this.circ.attr('cy');
         this.angle += dx / 10;
-        if (init !== true) {
-            this.valueOut();
-        }
+        if (firstTurn !== true) { this.valueOut(); }
         this.s.transform('r' + [this.angle, this.cx, this.cy]);
     }
 
@@ -57,18 +54,12 @@ export class DrumMachineKnobDirective implements AfterViewInit {
     }
 
     calculateInitialAngleFromValue() {
+        // Used for the firstTurn reverse the calculateValue
         let angle = this.startingAngle * (this.maxAngle - this.minAngle) + this.minAngle;
         return angle * 10;
     }
 
     valueOut() {
-        this.value.emit({
-            value: this.calculateValue()
-        });
-    }
-
-    resetMaxandMin() {
-        if (this.angle > 0 && this.angle > this.maxAngle) { this.angle = this.maxAngle - 1; }
-        if (this.angle < 0 && this.angle < this.minAngle) { this.angle = this.minAngle + 1; }
+        this.value.emit({ value: this.calculateValue() });
     }
 }

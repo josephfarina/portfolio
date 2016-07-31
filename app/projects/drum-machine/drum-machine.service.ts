@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 let TimeWorker = require('worker?inline!./timeWorker.js');
 
 @Injectable()
-export class DrumMachineMetronomeService {
+export class DrumMachineService {
     private timeWorker: any = null;
     private noteTime: number;
     private startTime: number;

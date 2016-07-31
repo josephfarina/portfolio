@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { DrumMachineMetronomeService } from './drum-machine-metronome.service';
+import { DrumMachineService } from './drum-machine.service';
 import { SEQUENCER_LINEUP } from './SEQUENCER_LINEUP';
 import { DrumMachineKnobDirective } from './directives/drum-machine-knob.directive';
 import { DrumMachineButtonDirective } from './directives/drum-machine-button.directive';
@@ -18,7 +18,7 @@ import { DrumMachineKitButtonDirective } from './directives/drum-machine-kit.dir
         DrumMachineKitButtonDirective
     ],
     moduleId: module.id,
-    providers: [DrumMachineMetronomeService],
+    providers: [DrumMachineService],
     selector: 'my-drum-machine',
     styles: [require('./../../../scss/projects/drum-machine.scss').toString()],
     templateUrl: 'drum-machine.component.html',
@@ -28,20 +28,20 @@ export class DrumMachineComponent implements OnDestroy {
     private sequencerLineUp: any = SEQUENCER_LINEUP;
     private currentType: string = 'kick';
 
-    constructor(private metronomeService: DrumMachineMetronomeService) {
-        this.metronomeService.setSequencerLineUp(this.sequencerLineUp);
-        this.metronomeService.init();
+    constructor(private drumService: DrumMachineService) {
+        this.drumService.setSequencerLineUp(this.sequencerLineUp);
+        this.drumService.init();
     }
 
-    start() { this.metronomeService.play(); }
-    stop() { this.metronomeService.stop(); }
-    update() { this.metronomeService.setSequencerLineUp(this.sequencerLineUp); }
+    start() { this.drumService.play(); }
+    stop() { this.drumService.stop(); }
+    update() { this.drumService.setSequencerLineUp(this.sequencerLineUp); }
     ngOnDestroy() { this.stop(); }
 
     togglePlay(e: any) {
         if (e.value === true) {
-            this.metronomeService.play();
-        } else { this.metronomeService.stop(); }
+            this.drumService.play();
+        } else { this.drumService.stop(); }
     }
 
     instrumentSet(event: any) {

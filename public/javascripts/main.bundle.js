@@ -1256,7 +1256,15 @@ webpackJsonp([2],{
 	            _this.rotate(dx);
 	        }, function () { _this.resetMaxandMin(); });
 	    };
-	    DrumMachineKnobDirective.prototype.rotate = function (dx, init) {
+	    DrumMachineKnobDirective.prototype.resetMaxandMin = function () {
+	        if (this.angle > 0 && this.angle > this.maxAngle) {
+	            this.angle = this.maxAngle - 1;
+	        }
+	        if (this.angle < 0 && this.angle < this.minAngle) {
+	            this.angle = this.minAngle + 1;
+	        }
+	    };
+	    DrumMachineKnobDirective.prototype.rotate = function (dx, firstTurn) {
 	        if (this.angle > 0 && this.angle > this.maxAngle) {
 	            this.angle = this.maxAngle - 1;
 	        }
@@ -1272,7 +1280,7 @@ webpackJsonp([2],{
 	        this.cx = this.circ.attr('cx');
 	        this.cy = this.circ.attr('cy');
 	        this.angle += dx / 10;
-	        if (init !== true) {
+	        if (firstTurn !== true) {
 	            this.valueOut();
 	        }
 	        this.s.transform('r' + [this.angle, this.cx, this.cy]);
@@ -1288,21 +1296,12 @@ webpackJsonp([2],{
 	        return valueOut;
 	    };
 	    DrumMachineKnobDirective.prototype.calculateInitialAngleFromValue = function () {
+	        // Used for the firstTurn reverse the calculateValue
 	        var angle = this.startingAngle * (this.maxAngle - this.minAngle) + this.minAngle;
 	        return angle * 10;
 	    };
 	    DrumMachineKnobDirective.prototype.valueOut = function () {
-	        this.value.emit({
-	            value: this.calculateValue()
-	        });
-	    };
-	    DrumMachineKnobDirective.prototype.resetMaxandMin = function () {
-	        if (this.angle > 0 && this.angle > this.maxAngle) {
-	            this.angle = this.maxAngle - 1;
-	        }
-	        if (this.angle < 0 && this.angle < this.minAngle) {
-	            this.angle = this.minAngle + 1;
-	        }
+	        this.value.emit({ value: this.calculateValue() });
 	    };
 	    __decorate([
 	        core_1.Output(), 
@@ -1319,9 +1318,7 @@ webpackJsonp([2],{
 	        __metadata('design:returntype', void 0)
 	    ], DrumMachineKnobDirective.prototype, "onMouse", null);
 	    DrumMachineKnobDirective = __decorate([
-	        core_1.Directive({
-	            selector: '[my-knob-turner]'
-	        }), 
+	        core_1.Directive({ selector: '[my-knob-turner]' }), 
 	        __metadata('design:paramtypes', [core_1.ElementRef])
 	    ], DrumMachineKnobDirective);
 	    return DrumMachineKnobDirective;
@@ -1433,224 +1430,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var TimeWorker = __webpack_require__(705);
-	var DrumMachineMetronomeService = (function () {
-	    function DrumMachineMetronomeService() {
-	        this.timeWorker = null;
-	        this.rhythmIndex = 1;
-	        this.nextNoteTime = 0;
-	        this.lookahead = 25.0;
-	        this.scheduleAheadTime = .5;
-	        this.noteLength = .25;
-	        this.isPlaying = false;
-	        this.sequencerLineUp = null;
-	        this.instruments = ['kick', 'snare', 'lowtom', 'midtom', 'hitom', 'rimshot', 'clap', 'hihat', 'cymbal'];
-	        this.sampleBuffers = {
-	            '808': {},
-	            '909': {},
-	            'acoustic': {}
-	        };
-	    }
-	    DrumMachineMetronomeService.prototype.init = function () {
-	        var _this = this;
-	        this.context = new AudioContext();
-	        this.loadDrumKit();
-	        this.timeWorker = new TimeWorker();
-	        this.timeWorker.onmessage = function (e) {
-	            if (e.data === 'tick') {
-	                _this.schedule();
-	            }
-	            else {
-	                console.log(e.data);
-	            }
-	        };
-	        // WHY?
-	        this.timeWorker.postMessage({ 'interval': this.lookahead });
-	    };
-	    DrumMachineMetronomeService.prototype.play = function () {
-	        if (!this.isPlaying) {
-	            this.context = new AudioContext();
-	            this.isPlaying = true;
-	            this.noteTime = 0;
-	            this.rhythmIndex = 0;
-	            this.nextNoteTime = 0;
-	            this.startTime = this.context.currentTime;
-	            this.timeWorker.postMessage('start');
-	        }
-	    };
-	    DrumMachineMetronomeService.prototype.stop = function () {
-	        if (this.isPlaying) {
-	            this.isPlaying = false;
-	            this.timeWorker.postMessage('stop');
-	            this.context.close();
-	        }
-	    };
-	    DrumMachineMetronomeService.prototype.setSequencerLineUp = function (sequence) {
-	        this.sequencerLineUp = sequence;
-	    };
-	    DrumMachineMetronomeService.prototype.schedule = function () {
-	        // Normalize the current time
-	        this.currentTime = this.context.currentTime - this.startTime;
-	        // Only set notes within the specified schedule ahead time
-	        while (this.nextNoteTime < this.context.currentTime + this.scheduleAheadTime) {
-	            this.setBeat(this.nextNoteTime, this.rhythmIndex);
-	            this.nextNote();
-	        }
-	    };
-	    DrumMachineMetronomeService.prototype.nextNote = function () {
-	        this.tempo = ((this.sequencerLineUp['projectSettings']['tempo'] * 120) + 60) / 2;
-	        var secondsPerBeat = 60 / this.tempo;
-	        this.nextNoteTime += this.noteLength * secondsPerBeat;
-	        this.rhythmIndex++;
-	        if (this.rhythmIndex === 16) {
-	            this.rhythmIndex = 0;
-	        }
-	    };
-	    DrumMachineMetronomeService.prototype.setBeat = function (time, beat) {
-	        var _this = this;
-	        this.setBeatValueAtTime(time, beat);
-	        this.instruments.forEach(function (instrument) {
-	            if (_this.sequencerLineUp['rhythmSettings'][beat][instrument]) {
-	                _this.playSample(instrument, time, beat);
-	            }
-	        });
-	    };
-	    DrumMachineMetronomeService.prototype.setBeatValueAtTime = function (time, beat) {
-	        var _this = this;
-	        // Sets the beat when it is actually going to be fired. Due to the lookahead.
-	        window.setTimeout(function () {
-	            _this.sequencerLineUp['projectSettings']['beat'] = beat;
-	        }, (time - this.context.currentTime) * 1000);
-	    };
-	    DrumMachineMetronomeService.prototype.playSample = function (drumType, time, beat) {
-	        var source = this.context.createBufferSource(), level = this.level(drumType), decay = this.decay(drumType, time), volume = this.globalVolume(beat), attack = this.attack(drumType, time), distortion = this.distortion(drumType), distortionGain = this.distortionGain(drumType);
-	        source.connect(decay);
-	        decay.connect(attack);
-	        attack.connect(level);
-	        level.connect(distortion);
-	        distortion.connect(distortionGain);
-	        distortionGain.connect(volume);
-	        volume.connect(this.context.destination);
-	        source.buffer = this.sampleBuffers[this.sequencerLineUp['projectSettings']['kit']][drumType];
-	        source.start(time);
-	    };
-	    /**
-	     * * Functions used to handle the instrument's knobs
-	    */
-	    DrumMachineMetronomeService.prototype.globalVolume = function (beat) {
-	        var level = this.context.createGain(), volume = this.sequencerLineUp['projectSettings']['volume'];
-	        if (volume > 1) {
-	            volume = 1;
-	        }
-	        // Handles the accent knobs data
-	        if (beat === 0 || beat === 4 || beat === 8 || beat === 12) {
-	            volume += this.sequencerLineUp['projectSettings']['accent'];
-	        }
-	        level.gain.value = volume;
-	        return level;
-	    };
-	    DrumMachineMetronomeService.prototype.level = function (type) {
-	        var level = this.context.createGain(), levelLevel = this.sequencerLineUp['instrumentSettings'][type]['level'];
-	        if (levelLevel > 1) {
-	            levelLevel = 1;
-	        }
-	        level.gain.value = levelLevel;
-	        return level;
-	    };
-	    DrumMachineMetronomeService.prototype.decay = function (type, time) {
-	        var decay = this.context.createGain(), decayLevel = 1 - this.sequencerLineUp['instrumentSettings'][type]['decay'];
-	        if (decayLevel > 1) {
-	            decayLevel = 1;
-	        }
-	        decay.gain.setValueAtTime(1, time);
-	        var decayValue = (time + this.noteLength + (this.noteLength * .25)) - (this.noteLength * (1 - decayLevel));
-	        decay.gain.linearRampToValueAtTime(0, decayValue);
-	        return decay;
-	    };
-	    DrumMachineMetronomeService.prototype.attack = function (type, time) {
-	        var attack = this.context.createGain(), attackLevel = this.sequencerLineUp['instrumentSettings'][type]['attack'] * .1; // the .1 is to make it so it doesnt get too soft
-	        if (attackLevel > 1) {
-	            attackLevel = 1;
-	        }
-	        attack.gain.setValueAtTime(0, time);
-	        attack.gain.linearRampToValueAtTime(1, time + (this.noteLength * (attackLevel * 10)));
-	        return attack;
-	    };
-	    DrumMachineMetronomeService.prototype.distortion = function (type) {
-	        var distortion = this.context.createWaveShaper();
-	        var distortionAmount = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 100;
-	        // Function found on Mozilla Developer
-	        function makeDistortionCurve(amount) {
-	            var k = typeof amount === 'number' ? amount : 50, n_samples = 44100, curve = new Float32Array(n_samples), deg = Math.PI / 180, i = 0, x;
-	            for (; i < n_samples; ++i) {
-	                x = i * 2 / n_samples - 1;
-	                curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x));
-	            }
-	            return curve;
-	        }
-	        ;
-	        distortion.curve = makeDistortionCurve(distortionAmount);
-	        distortion.oversample = 'none';
-	        return distortion;
-	    };
-	    // Used to offset the additional volume created by distortion
-	    DrumMachineMetronomeService.prototype.distortionGain = function (type) {
-	        var level = this.context.createGain(), levelLevel = this.sequencerLineUp['instrumentSettings'][type]['level'];
-	        if (levelLevel > 1) {
-	            levelLevel = 1;
-	        }
-	        level.gain.value = .8 - (this.sequencerLineUp['instrumentSettings'][type]['distortion'] * .5);
-	        return level;
-	    };
-	    DrumMachineMetronomeService.prototype.loadDrumKit = function () {
-	        var _this = this;
-	        var kits = ['808', '909', 'acoustic'], samples = this.instruments, urlBody = 'samples/';
-	        var _loop_1 = function(kit) {
-	            var _loop_2 = function(sample) {
-	                var request = new XMLHttpRequest();
-	                request.open('GET', urlBody + kits[kit] + '/' + samples[sample] + '.wav', true);
-	                request.responseType = 'arraybuffer';
-	                request.onload = function () {
-	                    _this.context.decodeAudioData(request.response).then(function (decodedData) {
-	                        _this.sampleBuffers[kits[kit]][samples[sample]] = decodedData;
-	                    }, function (e) { console.log('Error with drum audio data' + e.err); });
-	                };
-	                request.send();
-	            };
-	            for (var sample = 0; sample < samples.length; sample++) {
-	                _loop_2(sample);
-	            }
-	        };
-	        for (var kit = 0; kit < kits.length; kit++) {
-	            _loop_1(kit);
-	        }
-	    };
-	    DrumMachineMetronomeService = __decorate([
-	        core_1.Injectable(), 
-	        __metadata('design:paramtypes', [])
-	    ], DrumMachineMetronomeService);
-	    return DrumMachineMetronomeService;
-	}());
-	exports.DrumMachineMetronomeService = DrumMachineMetronomeService;
-	
-
-/***/ },
-
-/***/ 695:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(1);
-	var drum_machine_metronome_service_1 = __webpack_require__(694);
+	var drum_machine_service_1 = __webpack_require__(695);
 	var SEQUENCER_LINEUP_1 = __webpack_require__(687);
 	var drum_machine_knob_directive_1 = __webpack_require__(692);
 	var drum_machine_button_directive_1 = __webpack_require__(689);
@@ -1659,23 +1439,23 @@ webpackJsonp([2],{
 	var drum_machine_startbutton_directive_1 = __webpack_require__(693);
 	var drum_machine_kit_directive_1 = __webpack_require__(691);
 	var DrumMachineComponent = (function () {
-	    function DrumMachineComponent(metronomeService) {
-	        this.metronomeService = metronomeService;
+	    function DrumMachineComponent(drumService) {
+	        this.drumService = drumService;
 	        this.sequencerLineUp = SEQUENCER_LINEUP_1.SEQUENCER_LINEUP;
 	        this.currentType = 'kick';
-	        this.metronomeService.setSequencerLineUp(this.sequencerLineUp);
-	        this.metronomeService.init();
+	        this.drumService.setSequencerLineUp(this.sequencerLineUp);
+	        this.drumService.init();
 	    }
-	    DrumMachineComponent.prototype.start = function () { this.metronomeService.play(); };
-	    DrumMachineComponent.prototype.stop = function () { this.metronomeService.stop(); };
-	    DrumMachineComponent.prototype.update = function () { this.metronomeService.setSequencerLineUp(this.sequencerLineUp); };
+	    DrumMachineComponent.prototype.start = function () { this.drumService.play(); };
+	    DrumMachineComponent.prototype.stop = function () { this.drumService.stop(); };
+	    DrumMachineComponent.prototype.update = function () { this.drumService.setSequencerLineUp(this.sequencerLineUp); };
 	    DrumMachineComponent.prototype.ngOnDestroy = function () { this.stop(); };
 	    DrumMachineComponent.prototype.togglePlay = function (e) {
 	        if (e.value === true) {
-	            this.metronomeService.play();
+	            this.drumService.play();
 	        }
 	        else {
-	            this.metronomeService.stop();
+	            this.drumService.stop();
 	        }
 	    };
 	    DrumMachineComponent.prototype.instrumentSet = function (event) {
@@ -1704,16 +1484,233 @@ webpackJsonp([2],{
 	                drum_machine_kit_directive_1.DrumMachineKitButtonDirective
 	            ],
 	            moduleId: module.id,
-	            providers: [drum_machine_metronome_service_1.DrumMachineMetronomeService],
+	            providers: [drum_machine_service_1.DrumMachineService],
 	            selector: 'my-drum-machine',
 	            styles: [__webpack_require__(468).toString()],
 	            template: __webpack_require__(460),
 	        }), 
-	        __metadata('design:paramtypes', [drum_machine_metronome_service_1.DrumMachineMetronomeService])
+	        __metadata('design:paramtypes', [drum_machine_service_1.DrumMachineService])
 	    ], DrumMachineComponent);
 	    return DrumMachineComponent;
 	}());
 	exports.DrumMachineComponent = DrumMachineComponent;
+	
+
+/***/ },
+
+/***/ 695:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(1);
+	var TimeWorker = __webpack_require__(705);
+	var DrumMachineService = (function () {
+	    function DrumMachineService() {
+	        this.timeWorker = null;
+	        this.rhythmIndex = 1;
+	        this.nextNoteTime = 0;
+	        this.lookahead = 25.0;
+	        this.scheduleAheadTime = .5;
+	        this.noteLength = .25;
+	        this.isPlaying = false;
+	        this.sequencerLineUp = null;
+	        this.instruments = ['kick', 'snare', 'lowtom', 'midtom', 'hitom', 'rimshot', 'clap', 'hihat', 'cymbal'];
+	        this.sampleBuffers = {
+	            '808': {},
+	            '909': {},
+	            'acoustic': {}
+	        };
+	    }
+	    DrumMachineService.prototype.init = function () {
+	        var _this = this;
+	        this.context = new AudioContext();
+	        this.loadDrumKit();
+	        this.timeWorker = new TimeWorker();
+	        this.timeWorker.onmessage = function (e) {
+	            if (e.data === 'tick') {
+	                _this.schedule();
+	            }
+	            else {
+	                console.log(e.data);
+	            }
+	        };
+	        // WHY?
+	        this.timeWorker.postMessage({ 'interval': this.lookahead });
+	    };
+	    DrumMachineService.prototype.play = function () {
+	        if (!this.isPlaying) {
+	            this.context = new AudioContext();
+	            this.isPlaying = true;
+	            this.noteTime = 0;
+	            this.rhythmIndex = 0;
+	            this.nextNoteTime = 0;
+	            this.startTime = this.context.currentTime;
+	            this.timeWorker.postMessage('start');
+	        }
+	    };
+	    DrumMachineService.prototype.stop = function () {
+	        if (this.isPlaying) {
+	            this.isPlaying = false;
+	            this.timeWorker.postMessage('stop');
+	            this.context.close();
+	        }
+	    };
+	    DrumMachineService.prototype.setSequencerLineUp = function (sequence) {
+	        this.sequencerLineUp = sequence;
+	    };
+	    DrumMachineService.prototype.schedule = function () {
+	        // Normalize the current time
+	        this.currentTime = this.context.currentTime - this.startTime;
+	        // Only set notes within the specified schedule ahead time
+	        while (this.nextNoteTime < this.context.currentTime + this.scheduleAheadTime) {
+	            this.setBeat(this.nextNoteTime, this.rhythmIndex);
+	            this.nextNote();
+	        }
+	    };
+	    DrumMachineService.prototype.nextNote = function () {
+	        this.tempo = ((this.sequencerLineUp['projectSettings']['tempo'] * 120) + 60) / 2;
+	        var secondsPerBeat = 60 / this.tempo;
+	        this.nextNoteTime += this.noteLength * secondsPerBeat;
+	        this.rhythmIndex++;
+	        if (this.rhythmIndex === 16) {
+	            this.rhythmIndex = 0;
+	        }
+	    };
+	    DrumMachineService.prototype.setBeat = function (time, beat) {
+	        var _this = this;
+	        this.setBeatValueAtTime(time, beat);
+	        this.instruments.forEach(function (instrument) {
+	            if (_this.sequencerLineUp['rhythmSettings'][beat][instrument]) {
+	                _this.playSample(instrument, time, beat);
+	            }
+	        });
+	    };
+	    DrumMachineService.prototype.setBeatValueAtTime = function (time, beat) {
+	        var _this = this;
+	        // Sets the beat when it is actually going to be fired. Due to the lookahead.
+	        window.setTimeout(function () {
+	            _this.sequencerLineUp['projectSettings']['beat'] = beat;
+	        }, (time - this.context.currentTime) * 1000);
+	    };
+	    DrumMachineService.prototype.playSample = function (drumType, time, beat) {
+	        var source = this.context.createBufferSource(), level = this.level(drumType), decay = this.decay(drumType, time), volume = this.globalVolume(beat), attack = this.attack(drumType, time), distortion = this.distortion(drumType), distortionGain = this.distortionGain(drumType);
+	        source.connect(decay);
+	        decay.connect(attack);
+	        attack.connect(level);
+	        level.connect(distortion);
+	        distortion.connect(distortionGain);
+	        distortionGain.connect(volume);
+	        volume.connect(this.context.destination);
+	        source.buffer = this.sampleBuffers[this.sequencerLineUp['projectSettings']['kit']][drumType];
+	        source.start(time);
+	    };
+	    /**
+	     * * Functions used to handle the instrument's knobs
+	    */
+	    DrumMachineService.prototype.globalVolume = function (beat) {
+	        var level = this.context.createGain(), volume = this.sequencerLineUp['projectSettings']['volume'];
+	        if (volume > 1) {
+	            volume = 1;
+	        }
+	        // Handles the accent knobs data
+	        if (beat === 0 || beat === 4 || beat === 8 || beat === 12) {
+	            volume += this.sequencerLineUp['projectSettings']['accent'];
+	        }
+	        level.gain.value = volume;
+	        return level;
+	    };
+	    DrumMachineService.prototype.level = function (type) {
+	        var level = this.context.createGain(), levelLevel = this.sequencerLineUp['instrumentSettings'][type]['level'];
+	        if (levelLevel > 1) {
+	            levelLevel = 1;
+	        }
+	        level.gain.value = levelLevel;
+	        return level;
+	    };
+	    DrumMachineService.prototype.decay = function (type, time) {
+	        var decay = this.context.createGain(), decayLevel = 1 - this.sequencerLineUp['instrumentSettings'][type]['decay'];
+	        if (decayLevel > 1) {
+	            decayLevel = 1;
+	        }
+	        decay.gain.setValueAtTime(1, time);
+	        var decayValue = (time + this.noteLength + (this.noteLength * .25)) - (this.noteLength * (1 - decayLevel));
+	        decay.gain.linearRampToValueAtTime(0, decayValue);
+	        return decay;
+	    };
+	    DrumMachineService.prototype.attack = function (type, time) {
+	        var attack = this.context.createGain(), attackLevel = this.sequencerLineUp['instrumentSettings'][type]['attack'] * .1; // the .1 is to make it so it doesnt get too soft
+	        if (attackLevel > 1) {
+	            attackLevel = 1;
+	        }
+	        attack.gain.setValueAtTime(0, time);
+	        attack.gain.linearRampToValueAtTime(1, time + (this.noteLength * (attackLevel * 10)));
+	        return attack;
+	    };
+	    DrumMachineService.prototype.distortion = function (type) {
+	        var distortion = this.context.createWaveShaper();
+	        var distortionAmount = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 100;
+	        // Function found on Mozilla Developer
+	        function makeDistortionCurve(amount) {
+	            var k = typeof amount === 'number' ? amount : 50, n_samples = 44100, curve = new Float32Array(n_samples), deg = Math.PI / 180, i = 0, x;
+	            for (; i < n_samples; ++i) {
+	                x = i * 2 / n_samples - 1;
+	                curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x));
+	            }
+	            return curve;
+	        }
+	        ;
+	        distortion.curve = makeDistortionCurve(distortionAmount);
+	        distortion.oversample = 'none';
+	        return distortion;
+	    };
+	    // Used to offset the additional volume created by distortion
+	    DrumMachineService.prototype.distortionGain = function (type) {
+	        var level = this.context.createGain(), levelLevel = this.sequencerLineUp['instrumentSettings'][type]['level'];
+	        if (levelLevel > 1) {
+	            levelLevel = 1;
+	        }
+	        level.gain.value = .8 - (this.sequencerLineUp['instrumentSettings'][type]['distortion'] * .5);
+	        return level;
+	    };
+	    DrumMachineService.prototype.loadDrumKit = function () {
+	        var _this = this;
+	        var kits = ['808', '909', 'acoustic'], samples = this.instruments, urlBody = 'samples/';
+	        var _loop_1 = function(kit) {
+	            var _loop_2 = function(sample) {
+	                var request = new XMLHttpRequest();
+	                request.open('GET', urlBody + kits[kit] + '/' + samples[sample] + '.wav', true);
+	                request.responseType = 'arraybuffer';
+	                request.onload = function () {
+	                    _this.context.decodeAudioData(request.response).then(function (decodedData) {
+	                        _this.sampleBuffers[kits[kit]][samples[sample]] = decodedData;
+	                    }, function (e) { console.log('Error with drum audio data' + e.err); });
+	                };
+	                request.send();
+	            };
+	            for (var sample = 0; sample < samples.length; sample++) {
+	                _loop_2(sample);
+	            }
+	        };
+	        for (var kit = 0; kit < kits.length; kit++) {
+	            _loop_1(kit);
+	        }
+	    };
+	    DrumMachineService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [])
+	    ], DrumMachineService);
+	    return DrumMachineService;
+	}());
+	exports.DrumMachineService = DrumMachineService;
 	
 
 /***/ },
@@ -2142,7 +2139,7 @@ webpackJsonp([2],{
 	var home_component_1 = __webpack_require__(684);
 	var calculator_component_1 = __webpack_require__(686);
 	var tictactoe_component_1 = __webpack_require__(336);
-	var drum_machine_component_1 = __webpack_require__(695);
+	var drum_machine_component_1 = __webpack_require__(694);
 	exports.routes = [
 	    {
 	        component: home_component_1.HomeComponent,
