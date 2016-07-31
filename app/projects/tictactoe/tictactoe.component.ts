@@ -3,9 +3,10 @@ import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { TicTacToeService, Player, TileType } from './tictactoe.service';
 
 @Component({
+    directives: [ROUTER_DIRECTIVES],
     moduleId: module.id,
     selector: 'my-tictactoe',
-    styles: [require('./../../../scss/projects/tictactoe.scss').toString()],
+    styles: [require('./../../../scss/projects/tictactoe/tictactoe.scss').toString()],
     template: `
     <div class="tictactoe-wrapper">
         <div class="tictactoe fade">
@@ -13,7 +14,6 @@ import { TicTacToeService, Player, TileType } from './tictactoe.service';
         </div>
     </div>
     `,
-    directives: [ROUTER_DIRECTIVES],
     providers: [TicTacToeService]
 
 })

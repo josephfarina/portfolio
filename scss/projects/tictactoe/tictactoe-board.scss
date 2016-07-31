@@ -1,0 +1,69 @@
+$board-width: 300px;
+$board-height: 300px;
+
+.game-board {
+    position: relative;
+    top: 15px;
+
+    .current-player {
+        margin-left: 15px;
+        margin-bottom: 10px;
+    }
+
+    .board-row {
+        margin-left: auto;
+        margin-right: auto;          
+        background-color: purple;
+        height: 100px;
+        width: 300px;
+
+        &:first-child {
+            border-bottom: 1px solid white;
+        } 
+
+        &:last-child {
+            border-top: 1px solid white;        
+        }
+
+        .board-tile {
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+            background-color: green;   
+
+            &:nth-child(1) {
+                border-right: 1px solid white;
+            }         
+            &:nth-child(3) {
+                border-left: 1px solid white;
+            }
+        }
+    }
+}
+
+.x {
+    position:relative;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    background: #2C2C2C;
+    transform: rotate(45deg);
+    font-size: 22px;
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #2C2C2C;
+        transform: rotate(-90deg);        
+    }
+}
+.o {
+    height: 100%;
+    width:  100%;
+    border-radius:50%;
+    border: 1px solid #2c2c2c;
+    font-size: 22px;
+}

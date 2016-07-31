@@ -137,11 +137,11 @@ webpackJsonp([2],{
 	    }
 	    TicTacToeComponent = __decorate([
 	        core_1.Component({
+	            directives: [router_1.ROUTER_DIRECTIVES],
 	            moduleId: module.id,
 	            selector: 'my-tictactoe',
-	            styles: [__webpack_require__(469).toString()],
+	            styles: [__webpack_require__(715).toString()],
 	            template: "\n    <div class=\"tictactoe-wrapper\">\n        <div class=\"tictactoe fade\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n    ",
-	            directives: [router_1.ROUTER_DIRECTIVES],
 	            providers: [tictactoe_service_1.TicTacToeService]
 	        }), 
 	        __metadata('design:paramtypes', [router_1.Router])
@@ -238,7 +238,7 @@ webpackJsonp([2],{
 /***/ 462:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"col-md-12\">\n    <h2>{{currentPlayer.name}}</h2>\n</div>\n\n<!--generate the gameboard-->\n<div class=\"ttc__game-board\">\n    <div class=\"ttc__game-board-row\" *ngFor=\"let tileRow of tileBoard; let y = index\">\n        <div *ngFor=\"let tile of tileRow; let x = index\" \n         class=\"ttc__game-board-tile\"\n         (click)=\"setTile(x,y)\">\n            <div \n            [ngClass]=\"{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }\"\n            >\n            </div>\n        </div>\n    </div>\n</div>\n\n<!--\n<div class=\"col-md-12 ttc__user-scoreboard\">\n    <div class=\"col-md-6 ttc__user-score\">\n        <h5 class=\"ttc__user-name\">{{userOne.name}}</h5>\n        <h5 class=\"ttc__user-tile\">\n            <span [ngSwitch]=\"userOne.tileType\">\n                <span *ngSwitchWhen=\"0\">X</span>\n                <span *ngSwitchWhen=\"1\">O</span>\n            </span>\n        </h5>\n        <h5 class=\"ttc__user-score\">Score: {{userOne.score}}</h5>\n    </div>\n    <div class=\"col-md-6 ttc__user-score\">\n        <h5 class=\"ttc__user-name\">{{userTwo.name}}</h5>\n        <h5 class=\"ttc__user-tile\">\n            <span [ngSwitch]=\"userTwo.tileType\">\n                <span *ngSwitchWhen=\"0\">X</span>\n                <span *ngSwitchWhen=\"1\">O</span>\n            </span>\n        </h5>\n        <h5 class=\"ttc__user-score\">Score: {{userTwo.score}}</h5>\n    </div>\n</div>-->"
+	module.exports = "\n\n<div class=\"game-board\">\n    <span class=\"h4 current-player\">{{currentPlayer.name}}'s Turn</span>\n    <div class=\"board-row\" *ngFor=\"let tileRow of tileBoard; let y = index\">\n        <div *ngFor=\"let tile of tileRow; let x = index\" \n         class=\"board-tile\"\n         (click)=\"setTile(x,y)\">{{x}}\n            <div [ngClass]=\"{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }\"></div>\n        </div>\n    </div>\n</div>\n\n<!--\n<div class=\"col-md-12 ttc__user-scoreboard\">\n    <div class=\"col-md-6 ttc__user-score\">\n        <h5 class=\"ttc__user-name\">{{userOne.name}}</h5>\n        <h5 class=\"ttc__user-tile\">\n            <span [ngSwitch]=\"userOne.tileType\">\n                <span *ngSwitchWhen=\"0\">X</span>\n                <span *ngSwitchWhen=\"1\">O</span>\n            </span>\n        </h5>\n        <h5 class=\"ttc__user-score\">Score: {{userOne.score}}</h5>\n    </div>\n    <div class=\"col-md-6 ttc__user-score\">\n        <h5 class=\"ttc__user-name\">{{userTwo.name}}</h5>\n        <h5 class=\"ttc__user-tile\">\n            <span [ngSwitch]=\"userTwo.tileType\">\n                <span *ngSwitchWhen=\"0\">X</span>\n                <span *ngSwitchWhen=\"1\">O</span>\n            </span>\n        </h5>\n        <h5 class=\"ttc__user-score\">Score: {{userTwo.score}}</h5>\n    </div>\n</div>-->"
 
 /***/ },
 
@@ -281,13 +281,6 @@ webpackJsonp([2],{
 /***/ function(module, exports) {
 
 	module.exports = ".drum-machine-wrapper {\n  min-height: 100%;\n  overflow: hidden;\n  background-color: #36D2C7; }\n\n#drum {\n  position: relative;\n  display: block;\n  margin: auto;\n  left: 0;\n  top: 30;\n  height: 100%;\n  width: 100%; }\n"
-
-/***/ },
-
-/***/ 469:
-/***/ function(module, exports) {
-
-	module.exports = ".tictactoe-wrapper {\n  position: relative;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  min-height: 100%;\n  background-color: #FFAF27; }\n\n.tictactoe {\n  position: relative;\n  top: 100px;\n  height: 400px;\n  width: 500px;\n  margin-left: auto;\n  margin-right: auto;\n  border-radius: 15px;\n  background-color: white; }\n  .tictactoe .ttc__game-board {\n    position: relative;\n    height: 100%;\n    width: 100%; }\n  .tictactoe .ttc__resolution {\n    position: relative;\n    height: 80vh;\n    text-align: center;\n    margin-top: 10vh; }\n  .tictactoe .ttc__user-scoreboard {\n    position: relative;\n    height: 20vh; }\n  .tictactoe .ttc__game-board-row {\n    height: 33.33%;\n    width: 100%; }\n    .tictactoe .ttc__game-board-row:first-child {\n      border-bottom: 1px solid gray; }\n    .tictactoe .ttc__game-board-row:last-child {\n      border-top: 1px solid gray; }\n  .tictactoe .ttc__game-board-tile {\n    background-color: black;\n    height: 100%;\n    width: 33%;\n    overflow: scroll; }\n    .tictactoe .ttc__game-board-tile:nth-child(1) {\n      border-right: 1px solid gray; }\n    .tictactoe .ttc__game-board-tile:nth-child(3) {\n      border-left: 1px solid gray; }\n  .tictactoe .x, .tictactoe .o, .tictactoe .null {\n    margin-top: 35px;\n    margin-left: auto;\n    margin-right: auto; }\n  .tictactoe .x {\n    position: relative;\n    vertical-align: middle;\n    width: 1em;\n    height: 5em;\n    background: #2C2C2C;\n    -webkit-transform: rotate(45deg);\n            transform: rotate(45deg);\n    font-size: 22px; }\n    .tictactoe .x:after {\n      content: \"\";\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 1em;\n      height: 5em;\n      background: #2C2C2C;\n      -webkit-transform: rotate(-90deg);\n              transform: rotate(-90deg); }\n  .tictactoe .o {\n    height: 5em;\n    width: 5em;\n    border-radius: 50%;\n    border: solid 1em #2c2c2c;\n    font-size: 22px; }\n  @media only screen and (max-width: 500px) {\n    .tictactoe .x, .tictactoe .x:after, .tictactoe .o {\n      height: 3.5em;\n      width: 3.5em;\n      font-size: 12px; } }\n  .tictactoe .null:before {\n    position: absolute;\n    top: 25%;\n    left: 25%;\n    bottom: 25%;\n    right: 25%;\n    content: '';\n    border-radius: 75%;\n    background-color: lightgray;\n    opacity: .1; }\n  .tictactoe .ttt__animation-in {\n    -webkit-animation: fadeIn 1000ms;\n            animation: fadeIn 1000ms; }\n\n@-webkit-keyframes in {\n  from {\n    opacity: 0;\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg); }\n  to {\n    opacity: 1;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); } }\n\n@keyframes in {\n  from {\n    opacity: 0;\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg); }\n  to {\n    opacity: 1;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); } }\n\n@-webkit-keyframes out {\n  from {\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0); }\n  to {\n    -webkit-transform: scale(3, 3);\n            transform: scale(3, 3);\n    opacity: 0; } }\n\n@keyframes out {\n  from {\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0); }\n  to {\n    -webkit-transform: scale(3, 3);\n            transform: scale(3, 3);\n    opacity: 0; } }\n"
 
 /***/ },
 
@@ -1277,7 +1270,6 @@ webpackJsonp([2],{
 	var router_1 = __webpack_require__(30);
 	var tictactoe_service_1 = __webpack_require__(136);
 	var tiletype_directive_1 = __webpack_require__(696);
-	__webpack_require__(469);
 	var GamePlayComponent = (function () {
 	    function GamePlayComponent(ticTacToeService, router) {
 	        this.ticTacToeService = ticTacToeService;
@@ -1414,6 +1406,7 @@ webpackJsonp([2],{
 	            moduleId: module.id,
 	            selector: 'my-game-play',
 	            template: __webpack_require__(462),
+	            styles: [__webpack_require__(714).toString()],
 	            directives: [
 	                router_1.ROUTER_DIRECTIVES,
 	                tiletype_directive_1.TileTypeDirective
@@ -2166,6 +2159,20 @@ webpackJsonp([2],{
 	}());
 	exports.StartButtonDirective = StartButtonDirective;
 	
+
+/***/ },
+
+/***/ 714:
+/***/ function(module, exports) {
+
+	module.exports = ".game-board {\n  position: relative;\n  top: 15px; }\n  .game-board .current-player {\n    margin-left: 15px;\n    margin-bottom: 10px; }\n  .game-board .board-row {\n    margin-left: auto;\n    margin-right: auto;\n    background-color: purple;\n    height: 100px;\n    width: 300px; }\n    .game-board .board-row:first-child {\n      border-bottom: 1px solid white; }\n    .game-board .board-row:last-child {\n      border-top: 1px solid white; }\n    .game-board .board-row .board-tile {\n      height: 100px;\n      width: 100px;\n      display: inline-block;\n      background-color: green; }\n      .game-board .board-row .board-tile:nth-child(1) {\n        border-right: 1px solid white; }\n      .game-board .board-row .board-tile:nth-child(3) {\n        border-left: 1px solid white; }\n\n.x {\n  position: relative;\n  vertical-align: middle;\n  width: 100%;\n  height: 100%;\n  background: #2C2C2C;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  font-size: 22px; }\n  .x:after {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #2C2C2C;\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg); }\n\n.o {\n  height: 100%;\n  width: 100%;\n  border-radius: 50%;\n  border: 1px solid #2c2c2c;\n  font-size: 22px; }\n"
+
+/***/ },
+
+/***/ 715:
+/***/ function(module, exports) {
+
+	module.exports = ".tictactoe-wrapper {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  min-height: 150%;\n  background-color: #FFAF27; }\n\n.tictactoe {\n  position: relative;\n  top: 50px;\n  max-width: 320px;\n  min-height: 450px;\n  margin-left: auto;\n  margin-right: auto;\n  border-radius: 25px;\n  background-color: white; }\n"
 
 /***/ }
 

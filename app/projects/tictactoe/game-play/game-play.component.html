@@ -1,17 +1,12 @@
-<div class="col-md-12">
-    <h2>{{currentPlayer.name}}</h2>
-</div>
 
-<!--generate the gameboard-->
-<div class="ttc__game-board">
-    <div class="ttc__game-board-row" *ngFor="let tileRow of tileBoard; let y = index">
+
+<div class="game-board">
+    <span class="h4 current-player">{{currentPlayer.name}}'s Turn</span>
+    <div class="board-row" *ngFor="let tileRow of tileBoard; let y = index">
         <div *ngFor="let tile of tileRow; let x = index" 
-         class="ttc__game-board-tile"
-         (click)="setTile(x,y)">
-            <div 
-            [ngClass]="{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }"
-            >
-            </div>
+         class="board-tile"
+         (click)="setTile(x,y)">{{x}}
+            <div [ngClass]="{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }"></div>
         </div>
     </div>
 </div>
