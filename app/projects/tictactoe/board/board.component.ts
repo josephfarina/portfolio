@@ -17,13 +17,11 @@ export class BoardComponent implements OnInit, OnDestroy {
     private currentPlayer: Player = this.userOne;
     private userOne: Player;
     private userTwo: Player;
-
     private tileBoard: any[] = [
         [TileType.null, TileType.null, TileType.null],
         [TileType.null, TileType.null, TileType.null],
         [TileType.null, TileType.null, TileType.null]
     ];
-
     constructor(private ticTacToeService: TicTacToeService, private router: Router) {
         this.userOne = this.ticTacToeService.getUserOne();
         this.userTwo = this.ticTacToeService.getUserTwo();
@@ -34,49 +32,36 @@ export class BoardComponent implements OnInit, OnDestroy {
         this.ticTacToeService.resetWinner();
     }
 
-    ngOnDestroy() {
-        this.resetTileBoard();
-    }
+    ngOnDestroy() { this.resetTileBoard(); }
 
     setPlayer() {
-        if (this.currentPlayer === this.userOne) {
-            this.currentPlayer = this.userTwo;
-        } else if (this.currentPlayer === this.userTwo) {
-            this.currentPlayer = this.userOne;
-        } else {
-            this.currentPlayer = this.userOne;
-        }
+        if (this.currentPlayer === this.userOne) { this.currentPlayer = this.userTwo;
+        } else if (this.currentPlayer === this.userTwo) { this.currentPlayer = this.userOne;
+        } else { this.currentPlayer = this.userOne; }
     }
 
     setTile(xaxis: number, yaxis: number) {
         if (this.tileBoard[yaxis][xaxis] !== TileType.null) { return; }
-
         if (xaxis === 0) {
             if (yaxis === 0) { this.tileBoard[0][0] = this.currentPlayer.tileType; }
-            else if (yaxis === 1) { this.tileBoard[1][0] = this.currentPlayer.tileType; }
-            else if (yaxis === 2) { this.tileBoard[2][0] = this.currentPlayer.tileType; }
+            if (yaxis === 1) { this.tileBoard[1][0] = this.currentPlayer.tileType; }
+            if (yaxis === 2) { this.tileBoard[2][0] = this.currentPlayer.tileType; }
         } else if (xaxis === 1) {
             if (yaxis === 0) { this.tileBoard[0][1] = this.currentPlayer.tileType; }
-            else if (yaxis === 1) { this.tileBoard[1][1] = this.currentPlayer.tileType; }
-            else if (yaxis === 2) { this.tileBoard[2][1] = this.currentPlayer.tileType; }
+            if (yaxis === 1) { this.tileBoard[1][1] = this.currentPlayer.tileType; }
+            if (yaxis === 2) { this.tileBoard[2][1] = this.currentPlayer.tileType; }
         } else if (xaxis === 2) {
             if (yaxis === 0) { this.tileBoard[0][2] = this.currentPlayer.tileType; }
-            else if (yaxis === 1) { this.tileBoard[1][2] = this.currentPlayer.tileType; }
-            else if (yaxis === 2) { this.tileBoard[2][2] = this.currentPlayer.tileType; }
+            if (yaxis === 1) { this.tileBoard[1][2] = this.currentPlayer.tileType; }
+            if (yaxis === 2) { this.tileBoard[2][2] = this.currentPlayer.tileType; }
         }
-
         this.tileSetCount++;
-
         if (this.checkForWinner(xaxis, yaxis)) {
             this.currentPlayer.score++;
             this.ticTacToeService.setWinner(this.currentPlayer);
             this.router.navigate(['/tictactoe', '/end']);
         }
-
-        if (this.tileSetCount === 9) {
-            this.router.navigate(['/tictactoe', '/end']);
-        }
-
+        if (this.tileSetCount === 9) { this.router.navigate(['/tictactoe', '/end']); }
         this.setPlayer();
     }
 

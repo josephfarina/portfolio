@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-
 export class TicTacToeService {
+  private winner: Player;
   private userOne: Player = {
-    score: 0,
     name: 'Player 1',
+    score: 0,
     tileType: TileType.O
   };
   private userTwo: Player = {
-    score: 0,
     name: 'Player 2',
+    score: 0,
     tileType: TileType.X
   };
-  private winner: Player;
 
   toggleTile(): void {
     let onePrevTile: TileType = this.userOne.tileType;
@@ -23,14 +22,8 @@ export class TicTacToeService {
   }
 
   setUserOne(name: string, tile: TileType): void {
-    if (name != null && name.length > 0) {
-      this.userOne.name = name;
-    }
-
-    if (tile !== this.userOne.tileType) {
-      this.toggleTile();
-    }
-
+    if (name != null && name.length > 0) { this.userOne.name = name; }
+    if (tile !== this.userOne.tileType) { this.toggleTile(); }
   }
 
   getUserOne(): Player {
@@ -38,14 +31,8 @@ export class TicTacToeService {
   }
 
   setUserTwo(name: string, tile: TileType): void {
-    if (name != null && name.length > 0) {
-      this.userTwo.name = name;
-    }
-
-    if (tile !== this.userTwo.tileType) {
-      this.toggleTile();
-    }
-
+    if (name != null && name.length > 0) { this.userTwo.name = name; }
+    if (tile !== this.userTwo.tileType) { this.toggleTile(); }
   }
 
   getUserTwo(): Player {
@@ -66,13 +53,13 @@ export class TicTacToeService {
 
   resetGame() {
     this.userOne = {
-      score: 0,
       name: 'Player 1',
+      score: 0,
       tileType: TileType.O
     };
     this.userTwo = {
-      score: 0,
       name: 'Player 2',
+      score: 0,
       tileType: TileType.X
     };
   }

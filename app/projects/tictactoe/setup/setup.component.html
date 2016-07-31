@@ -4,19 +4,19 @@
     <div class="input-group">
         <input name="userOneName" [(ngModel)]="userOneName" (change)="updateUserOne()" type="text" class="form-control" placeholder="Name">
         <span class="input-group-btn">
-                        <button (click)="toggleTile()" class="btn btn-tile">
-                            <span *ngIf="userOneTileType == 0">X</span>
-        <span *ngIf="userOneTileType == 1">O</span>
-        </button>
+            <button (click)="toggleTile()" class="btn btn-tile">
+                <span *ngIf="userOneTileType == 0">X</span>
+                <span *ngIf="userOneTileType == 1">O</span>
+            </button>
         </span>
     </div>
     <div class="input-group">
         <input name="userTwoName" [(ngModel)]="userTwoName" (change)="updateUserTwo()" type="text" class="form-control" placeholder="Name">
         <span class="input-group-btn">
-                        <button (click)="toggleTile()" class="btn btn-tile">
-                            <span *ngIf="userTwoTileType == 0">X</span>
-        <span *ngIf="userTwoTileType == 1">O</span>
-        </button>
+            <button (click)="toggleTile()" class="btn btn-tile">
+                <span *ngIf="userTwoTileType == 0">X</span>
+                <span *ngIf="userTwoTileType == 1">O</span>
+            </button>
         </span>
     </div>
     <button (click)="gameStart($event)" class="btn btn-block btn-tile">Start the Game!</button>

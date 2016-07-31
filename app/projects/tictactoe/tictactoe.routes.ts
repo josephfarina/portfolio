@@ -1,8 +1,8 @@
 import { RouterConfig }           from '@angular/router';
 import { TicTacToeComponent }     from './tictactoe.component';
 import { SetupComponent }         from './setup/setup.component';
-import { BoardComponent }     from './board/board.component';
-import { EndComponent } from './end/end.component';
+import { BoardComponent }         from './board/board.component';
+import { EndComponent }           from './end/end.component';
 
 export const TicTacToeRoutes: RouterConfig = [
   {
@@ -19,7 +19,11 @@ export const TicTacToeRoutes: RouterConfig = [
       },
       {
         component: EndComponent,
-        path: 'new'
+        path: 'end'
+      },
+      {
+        component: SetupComponent,
+        path: '**'
       }
     ]
   }

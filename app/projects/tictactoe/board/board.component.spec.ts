@@ -7,10 +7,10 @@ import {
     beforeEach, beforeEachProviders, withProviders,
     async, inject, injectAsync
 } from '@angular/core/testing';
-import { TestComponentBuilder } from '@angular/compiler/testing';
-import { By }             from '@angular/platform-browser';
-import { provide, ViewMetadata }        from '@angular/core';
-import { PromiseWrapper } from '@angular/core/src/facade/promise';
+import { TestComponentBuilder }     from '@angular/compiler/testing';
+import { By }                       from '@angular/platform-browser';
+import { provide, ViewMetadata }    from '@angular/core';
+import { PromiseWrapper }           from '@angular/core/src/facade/promise';
 
 describe('TicTacToe Component:', () => {
     let tcb: any;

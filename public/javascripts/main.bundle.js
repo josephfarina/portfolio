@@ -39,13 +39,13 @@ webpackJsonp([2],{
 	var TicTacToeService = (function () {
 	    function TicTacToeService() {
 	        this.userOne = {
-	            score: 0,
 	            name: 'Player 1',
+	            score: 0,
 	            tileType: TileType.O
 	        };
 	        this.userTwo = {
-	            score: 0,
 	            name: 'Player 2',
+	            score: 0,
 	            tileType: TileType.X
 	        };
 	    }
@@ -88,13 +88,13 @@ webpackJsonp([2],{
 	    };
 	    TicTacToeService.prototype.resetGame = function () {
 	        this.userOne = {
-	            score: 0,
 	            name: 'Player 1',
+	            score: 0,
 	            tileType: TileType.O
 	        };
 	        this.userTwo = {
-	            score: 0,
 	            name: 'Player 2',
+	            score: 0,
 	            tileType: TileType.X
 	        };
 	    };
@@ -139,8 +139,7 @@ webpackJsonp([2],{
 	var router_1 = __webpack_require__(30);
 	var tictactoe_service_1 = __webpack_require__(136);
 	var TicTacToeComponent = (function () {
-	    function TicTacToeComponent(router) {
-	        this.router = router;
+	    function TicTacToeComponent() {
 	    }
 	    TicTacToeComponent = __decorate([
 	        core_1.Component({
@@ -148,10 +147,10 @@ webpackJsonp([2],{
 	            moduleId: module.id,
 	            selector: 'my-tictactoe',
 	            styles: [__webpack_require__(471).toString()],
-	            template: "\n    <div class=\"tictactoe-wrapper\">\n        <div class=\"tictactoe fade\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n    ",
-	            providers: [tictactoe_service_1.TicTacToeService]
+	            template: __webpack_require__(717),
+	            providers: [tictactoe_service_1.TicTacToeService],
 	        }), 
-	        __metadata('design:paramtypes', [router_1.Router])
+	        __metadata('design:paramtypes', [])
 	    ], TicTacToeComponent);
 	    return TicTacToeComponent;
 	}());
@@ -1693,7 +1692,11 @@ webpackJsonp([2],{
 	            },
 	            {
 	                component: end_component_1.EndComponent,
-	                path: 'new'
+	                path: 'end'
+	            },
+	            {
+	                component: setup_component_1.SetupComponent,
+	                path: '**'
 	            }
 	        ]
 	    }
@@ -1779,7 +1782,7 @@ webpackJsonp([2],{
 /***/ 711:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"game-start\">\n    <h2>Let's Play Some TicTacToe</h2>\n    <h6>Enter Your Names and Select a Tile</h6>\n    <div class=\"input-group\">\n        <input name=\"userOneName\" [(ngModel)]=\"userOneName\" (change)=\"updateUserOne()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n        <span class=\"input-group-btn\">\n                        <button (click)=\"toggleTile()\" class=\"btn btn-tile\">\n                            <span *ngIf=\"userOneTileType == 0\">X</span>\n        <span *ngIf=\"userOneTileType == 1\">O</span>\n        </button>\n        </span>\n    </div>\n    <div class=\"input-group\">\n        <input name=\"userTwoName\" [(ngModel)]=\"userTwoName\" (change)=\"updateUserTwo()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n        <span class=\"input-group-btn\">\n                        <button (click)=\"toggleTile()\" class=\"btn btn-tile\">\n                            <span *ngIf=\"userTwoTileType == 0\">X</span>\n        <span *ngIf=\"userTwoTileType == 1\">O</span>\n        </button>\n        </span>\n    </div>\n    <button (click)=\"gameStart($event)\" class=\"btn btn-block btn-tile\">Start the Game!</button>\n</div>"
+	module.exports = "<div class=\"game-start\">\n    <h2>Let's Play Some TicTacToe</h2>\n    <h6>Enter Your Names and Select a Tile</h6>\n    <div class=\"input-group\">\n        <input name=\"userOneName\" [(ngModel)]=\"userOneName\" (change)=\"updateUserOne()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n        <span class=\"input-group-btn\">\n            <button (click)=\"toggleTile()\" class=\"btn btn-tile\">\n                <span *ngIf=\"userOneTileType == 0\">X</span>\n                <span *ngIf=\"userOneTileType == 1\">O</span>\n            </button>\n        </span>\n    </div>\n    <div class=\"input-group\">\n        <input name=\"userTwoName\" [(ngModel)]=\"userTwoName\" (change)=\"updateUserTwo()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n        <span class=\"input-group-btn\">\n            <button (click)=\"toggleTile()\" class=\"btn btn-tile\">\n                <span *ngIf=\"userTwoTileType == 0\">X</span>\n                <span *ngIf=\"userTwoTileType == 1\">O</span>\n            </button>\n        </span>\n    </div>\n    <button (click)=\"gameStart($event)\" class=\"btn btn-block btn-tile\">Start the Game!</button>\n</div>"
 
 /***/ },
 
@@ -1813,23 +1816,20 @@ webpackJsonp([2],{
 	        this.userTwoTileType = this.userTwo.tileType;
 	    };
 	    SetupComponent.prototype.toggleTile = function () {
-	        console.log('toggle');
 	        this.ticTacToeService.toggleTile();
 	        this.updateUserOne(true);
 	        this.updateUserTwo(true);
 	    };
-	    SetupComponent.prototype.updateUserOne = function (withoutSetting) {
-	        if (withoutSetting == null) {
-	            console.log('without');
+	    SetupComponent.prototype.updateUserOne = function (withoutUserSettings) {
+	        if (withoutUserSettings == null) {
 	            this.ticTacToeService.setUserOne(this.userOneName, this.userOneTileType);
 	        }
 	        this.userOne = this.ticTacToeService.getUserOne();
 	        this.userOneName = this.userOne.name;
 	        this.userOneTileType = this.userOne.tileType;
 	    };
-	    SetupComponent.prototype.updateUserTwo = function (withoutSetting) {
-	        if (withoutSetting == null) {
-	            console.log('without');
+	    SetupComponent.prototype.updateUserTwo = function (withoutUserSettings) {
+	        if (withoutUserSettings == null) {
 	            this.ticTacToeService.setUserTwo(this.userTwoName, this.userTwoTileType);
 	        }
 	        this.userTwo = this.ticTacToeService.getUserTwo();
@@ -1839,7 +1839,7 @@ webpackJsonp([2],{
 	    SetupComponent.prototype.gameStart = function () {
 	        this.ticTacToeService.setUserOne(this.userOneName, this.userOneTileType);
 	        this.ticTacToeService.setUserTwo(this.userTwoName, this.userTwoTileType);
-	        this.router.navigate(['/tictactoe', '/play']);
+	        this.router.navigate(['/tictactoe', '/board']);
 	        event.preventDefault();
 	        event.stopPropagation();
 	    };
@@ -1888,12 +1888,10 @@ webpackJsonp([2],{
 	            this.isTie = true;
 	        }
 	    };
-	    EndComponent.prototype.playAgain = function () {
-	        this.router.navigate(['/tictactoe', '/play']);
-	    };
+	    EndComponent.prototype.playAgain = function () { this.router.navigate(['/tictactoe', '/board']); };
 	    EndComponent.prototype.newGame = function () {
 	        this.ticTacToeService.resetGame();
-	        this.router.navigate(['/tictactoe', '/new']);
+	        this.router.navigate(['/tictactoe', '/setup']);
 	    };
 	    EndComponent = __decorate([
 	        core_1.Component({
@@ -1915,7 +1913,7 @@ webpackJsonp([2],{
 /***/ 714:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"game-end\">\n    <div class=\"info-text\" *ngIf=\"!isTie\">\n        <h2>{{winner.name}} Won!</h2>\n        <h5>Current Score: {{winner.score}}</h5>\n    </div>\n    <div class=\"info-text\" *ngIf='isTie'>\n        <h2 >It was a tie!</h2>\n        <h6>Try Again!</h6>\n    </div>\n    <div class=\"btn-group btn-group-justified\" role=\"group\">\n        <div class=\"btn-group\" role=\"group\">\n        <button type=\"button\" (click)=\"playAgain()\" class=\"btn btn-tile\">Play Again!</button>\n        </div>\n        <div class=\"btn-group\" role=\"group\">\n        <button type=\"button\" (click)=\"newGame()\" class=\"btn btn-tile\">New Game</button>\n        </div>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"game-end\">\n    <div class=\"info-text\" *ngIf=\"!isTie\">\n        <h2>{{winner.name}} Won!</h2>\n        <h5>Current Score: {{winner.score}}</h5>\n    </div>\n    <div class=\"info-text\" *ngIf='isTie'>\n        <h2>It was a tie!</h2>\n        <h6>Try Again!</h6>\n    </div>\n    <div class=\"btn-group btn-group-justified\" role=\"group\">\n        <div class=\"btn-group\" role=\"group\">\n            <button type=\"button\" (click)=\"playAgain()\" class=\"btn btn-tile\">Play Again!</button>\n        </div>\n        <div class=\"btn-group\" role=\"group\">\n            <button type=\"button\" (click)=\"newGame()\" class=\"btn btn-tile\">New Game</button>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
@@ -1960,9 +1958,7 @@ webpackJsonp([2],{
 	        this.setPlayer();
 	        this.ticTacToeService.resetWinner();
 	    };
-	    BoardComponent.prototype.ngOnDestroy = function () {
-	        this.resetTileBoard();
-	    };
+	    BoardComponent.prototype.ngOnDestroy = function () { this.resetTileBoard(); };
 	    BoardComponent.prototype.setPlayer = function () {
 	        if (this.currentPlayer === this.userOne) {
 	            this.currentPlayer = this.userTwo;
@@ -1982,10 +1978,10 @@ webpackJsonp([2],{
 	            if (yaxis === 0) {
 	                this.tileBoard[0][0] = this.currentPlayer.tileType;
 	            }
-	            else if (yaxis === 1) {
+	            if (yaxis === 1) {
 	                this.tileBoard[1][0] = this.currentPlayer.tileType;
 	            }
-	            else if (yaxis === 2) {
+	            if (yaxis === 2) {
 	                this.tileBoard[2][0] = this.currentPlayer.tileType;
 	            }
 	        }
@@ -1993,10 +1989,10 @@ webpackJsonp([2],{
 	            if (yaxis === 0) {
 	                this.tileBoard[0][1] = this.currentPlayer.tileType;
 	            }
-	            else if (yaxis === 1) {
+	            if (yaxis === 1) {
 	                this.tileBoard[1][1] = this.currentPlayer.tileType;
 	            }
-	            else if (yaxis === 2) {
+	            if (yaxis === 2) {
 	                this.tileBoard[2][1] = this.currentPlayer.tileType;
 	            }
 	        }
@@ -2004,10 +2000,10 @@ webpackJsonp([2],{
 	            if (yaxis === 0) {
 	                this.tileBoard[0][2] = this.currentPlayer.tileType;
 	            }
-	            else if (yaxis === 1) {
+	            if (yaxis === 1) {
 	                this.tileBoard[1][2] = this.currentPlayer.tileType;
 	            }
-	            else if (yaxis === 2) {
+	            if (yaxis === 2) {
 	                this.tileBoard[2][2] = this.currentPlayer.tileType;
 	            }
 	        }
@@ -2089,6 +2085,13 @@ webpackJsonp([2],{
 	}());
 	exports.BoardComponent = BoardComponent;
 	
+
+/***/ },
+
+/***/ 717:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"tictactoe-wrapper\">\n    <div class=\"tictactoe fade\">\n        <router-outlet></router-outlet>\n    </div>\n\n    <div class=\"project-description\">\n        <h3>A TicTacToe Game That Keeps Track Of The Score</h3>\n        <pre>\n            <code>\n        FILE TREE:\n\n        tictactoe/\n        ----- tictactoe.component.ts\n        ----- tictactoe.component.html\n        ----- tictactoe.routes.ts\n        ----- tictactoe.service.ts\n        ----- tictactoe.service.spec.ts\n\n        ----- setup/\n        ---------- setup.component.ts\n        ---------- setup.component.html        \n        ----- board/\n        ---------- board.component.ts\n        ---------- board.component.spec.ts    \n        ---------- board.component.html                      \n        ----- end/\n        ---------- end.component.ts\n        ---------- end.component.html           \n\n <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/calculator/calculator.component.spec.ts\"></a>\n\n        SCSS FILES:\n\n        tictactoe.scss\n        tictactoe-board.scss\n        tictactoe-setup-end.scss\n          </code>\n        </pre>\n    </div>\n</div>"
 
 /***/ }
 
