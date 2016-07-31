@@ -34,36 +34,79 @@ $board-height: 300px;
     }
 
     .scoreboard {
-        width: 300px;
-        padding-left: 25px;
+        width: 270px;
+        text-align: justify;
+        margin-top: 15px;
+        margin-left: auto;
+        margin-right: auto;
 
+        .scoreboard-title {
+            display: inline-block;
+           transform: translate(0,-50%);
+        }
+        .player {
+            display: inline-block;
+        }
+
+        .player-two {
+            text-align: right;
+        }
+
+        .stretch {
+            width: 100%;
+            display: inline-block;
+            font-size: 0;
+            line-height: 0;
+        }
     }
 }
+
 
 .x {
-    position:relative;
-    vertical-align: middle;
-    width: 100%;
-    height: 100%;
-    background: #2C2C2C;
-    transform: rotate(45deg);
-    font-size: 22px;
-
-    &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #2C2C2C;
-        transform: rotate(-90deg);        
-    }
+  position: relative;
+  margin: auto;
+  top: 40px;
+  transform: rotate(-45deg);
+  width: 50px;
+  opacity: 1;
+  border-top: solid white 3px;
+  animation: x-in .5s 1 ease-in-out;
+  &::after {
+    content: '';
+    display: block;
+    position: relative;
+    transform: rotate(-90deg);
+    width: 50px;
+    opacity: 1;
+    border-top: solid white 3px;
+  }
 }
+
+@keyframes x-in {
+  0% {opacity: 0; transform: rotate(360deg);}
+  100% {opacity: 1; transform: rotate(-45deg);}
+}
+
 .o {
-    height: 100%;
-    width:  100%;
-    border-radius:50%;
-    border: 1px solid #2c2c2c;
-    font-size: 22px;
+  position: relative;
+  margin: auto;
+  top: 20px;    
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid white;
+  animation: rotate-anchor .5s 1 ease-in-out;
+}
+
+@keyframes rotate-anchor {
+    0% { 
+        transform: scale(0);
+        opacity: 0; 
+        border-top-color: white;
+    }
+    100% { 
+        transform: scale(1);
+        opacity: 1;
+        border-left-color: white;
+    }
 }

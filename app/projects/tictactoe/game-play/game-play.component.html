@@ -8,12 +8,17 @@
         </div>
     </div>
     <div class="scoreboard">
-        <span class="player-one">
-            <p>{{userOne.name}} | Score: {{userOne.score}}</p>
-        </span>
-        <span class="player-two">
-            <p>{{userTwo.name}} | Score: {{userTwo.score}}</p>
-        </span>        
+        <div class="player player-one">
+            <div>{{userOne.name}}</div>
+            <div>Score: {{userOne.score}}</div>
+        </div>
+        <h5 class="scoreboard-title">Score</h5>
+
+        <div class="player player-two">
+            <div>{{userTwo.name}}</div>
+            <div>Score: {{userTwo.score}}</div>
+        </div>   
+        <span class="stretch"></span>     
     </div>
 </div>
 
