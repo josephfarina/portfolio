@@ -1444,6 +1444,7 @@ webpackJsonp([2],{
 	        this.noteLength = .25;
 	        this.isPlaying = false;
 	        this.sequencerLineUp = null;
+	        this.instruments = ['kick', 'snare', 'lowtom', 'midtom', 'hitom', 'rimshot', 'clap', 'hihat', 'cymbal'];
 	        this.sampleBuffers = {
 	            '808': {},
 	            '909': {},
@@ -1452,9 +1453,8 @@ webpackJsonp([2],{
 	    }
 	    DrumMachineMetronomeService.prototype.init = function () {
 	        var _this = this;
+	        this.context = new AudioContext();
 	        this.loadDrumKit();
-	        console.log(this.sampleBuffers);
-	        this.createAudioContext();
 	        this.timeWorker = new TimeWorker();
 	        this.timeWorker.onmessage = function (e) {
 	            if (e.data === 'tick') {
@@ -1464,14 +1464,12 @@ webpackJsonp([2],{
 	                console.log(e.data);
 	            }
 	        };
+	        // WHY?
 	        this.timeWorker.postMessage({ 'interval': this.lookahead });
-	    };
-	    DrumMachineMetronomeService.prototype.createAudioContext = function () {
-	        this.context = new AudioContext();
 	    };
 	    DrumMachineMetronomeService.prototype.play = function () {
 	        if (!this.isPlaying) {
-	            this.createAudioContext();
+	            this.context = new AudioContext();
 	            this.isPlaying = true;
 	            this.noteTime = 0;
 	            this.rhythmIndex = 0;
@@ -1487,8 +1485,13 @@ webpackJsonp([2],{
 	            this.context.close();
 	        }
 	    };
+	    DrumMachineMetronomeService.prototype.setSequencerLineUp = function (sequence) {
+	        this.sequencerLineUp = sequence;
+	    };
 	    DrumMachineMetronomeService.prototype.schedule = function () {
+	        // Normalize the current time
 	        this.currentTime = this.context.currentTime - this.startTime;
+	        // Only set notes within the specified schedule ahead time
 	        while (this.nextNoteTime < this.context.currentTime + this.scheduleAheadTime) {
 	            this.setBeat(this.nextNoteTime, this.rhythmIndex);
 	            this.nextNote();
@@ -1503,42 +1506,18 @@ webpackJsonp([2],{
 	            this.rhythmIndex = 0;
 	        }
 	    };
-	    DrumMachineMetronomeService.prototype.setSequencerLineUp = function (sequence) {
-	        this.sequencerLineUp = sequence;
-	    };
 	    DrumMachineMetronomeService.prototype.setBeat = function (time, beat) {
-	        this.sequencerLineUp['projectSettings']['beat'] = beat;
+	        var _this = this;
 	        this.setBeatValueAtTime(time, beat);
-	        if (this.sequencerLineUp['rhythmSettings'][beat]['kick']) {
-	            this.playSample('kick', time, beat);
-	        }
-	        if (this.sequencerLineUp['rhythmSettings'][beat]['snare']) {
-	            this.playSample('snare', time, beat);
-	        }
-	        if (this.sequencerLineUp['rhythmSettings'][beat]['lowtom']) {
-	            this.playSample('lowtom', time, beat);
-	        }
-	        if (this.sequencerLineUp['rhythmSettings'][beat]['midtom']) {
-	            this.playSample('midtom', time, beat);
-	        }
-	        if (this.sequencerLineUp['rhythmSettings'][beat]['hitom']) {
-	            this.playSample('hitom', time, beat);
-	        }
-	        if (this.sequencerLineUp['rhythmSettings'][beat]['rimshot']) {
-	            this.playSample('rimshot', time, beat);
-	        }
-	        if (this.sequencerLineUp['rhythmSettings'][beat]['clap']) {
-	            this.playSample('clap', time, beat);
-	        }
-	        if (this.sequencerLineUp['rhythmSettings'][beat]['hihat']) {
-	            this.playSample('hihat', time, beat);
-	        }
-	        if (this.sequencerLineUp['rhythmSettings'][beat]['cymbal']) {
-	            this.playSample('cymbal', time, beat);
-	        }
+	        this.instruments.forEach(function (instrument) {
+	            if (_this.sequencerLineUp['rhythmSettings'][beat][instrument]) {
+	                _this.playSample(instrument, time, beat);
+	            }
+	        });
 	    };
 	    DrumMachineMetronomeService.prototype.setBeatValueAtTime = function (time, beat) {
 	        var _this = this;
+	        // Sets the beat when it is actually going to be fired. Due to the lookahead.
 	        window.setTimeout(function () {
 	            _this.sequencerLineUp['projectSettings']['beat'] = beat;
 	        }, (time - this.context.currentTime) * 1000);
@@ -1555,12 +1534,15 @@ webpackJsonp([2],{
 	        source.buffer = this.sampleBuffers[this.sequencerLineUp['projectSettings']['kit']][drumType];
 	        source.start(time);
 	    };
-	    // get the value for each of these settings from the sequencerLineUp by type
+	    /**
+	     * * Functions used to handle the instrument's knobs
+	    */
 	    DrumMachineMetronomeService.prototype.globalVolume = function (beat) {
 	        var level = this.context.createGain(), volume = this.sequencerLineUp['projectSettings']['volume'];
 	        if (volume > 1) {
 	            volume = 1;
 	        }
+	        // Handles the accent knobs data
 	        if (beat === 0 || beat === 4 || beat === 8 || beat === 12) {
 	            volume += this.sequencerLineUp['projectSettings']['accent'];
 	        }
@@ -1569,7 +1551,6 @@ webpackJsonp([2],{
 	    };
 	    DrumMachineMetronomeService.prototype.level = function (type) {
 	        var level = this.context.createGain(), levelLevel = this.sequencerLineUp['instrumentSettings'][type]['level'];
-	        // dont let level leval equal 0 -- it will not output a noise then
 	        if (levelLevel > 1) {
 	            levelLevel = 1;
 	        }
@@ -1577,20 +1558,16 @@ webpackJsonp([2],{
 	        return level;
 	    };
 	    DrumMachineMetronomeService.prototype.decay = function (type, time) {
-	        // 1 is the MAX decay -- the longest note -- 0 is the absolute shortest
 	        var decay = this.context.createGain(), decayLevel = 1 - this.sequencerLineUp['instrumentSettings'][type]['decay'];
-	        // dont let decay leval equal 0 -- it will not output a noise then
 	        if (decayLevel > 1) {
 	            decayLevel = 1;
 	        }
 	        decay.gain.setValueAtTime(1, time);
-	        // formula to calculate the decay level onto a 0 - 1 scale
 	        var decayValue = (time + this.noteLength + (this.noteLength * .25)) - (this.noteLength * (1 - decayLevel));
 	        decay.gain.linearRampToValueAtTime(0, decayValue);
 	        return decay;
 	    };
 	    DrumMachineMetronomeService.prototype.attack = function (type, time) {
-	        // 1 is the MAX attack -- the softest note -- 0 is the hardest and fastest
 	        var attack = this.context.createGain(), attackLevel = this.sequencerLineUp['instrumentSettings'][type]['attack'] * .1; // the .1 is to make it so it doesnt get too soft
 	        if (attackLevel > 1) {
 	            attackLevel = 1;
@@ -1602,32 +1579,7 @@ webpackJsonp([2],{
 	    DrumMachineMetronomeService.prototype.distortion = function (type) {
 	        var distortion = this.context.createWaveShaper();
 	        var distortionAmount = this.sequencerLineUp['instrumentSettings'][type]['distortion'] * 100;
-	        // i have no idea how this function works -- found on Mozilla
-	        /* TODO: Make this more effiecient it is using 10% of the memory
-
-	            pb.stomp.OverdriveModel.prototype.createWSCurve = function(amount) {
-	                var k = amount;
-	                var n_samples = 22050;
-	                this.wsCurve = new Float32Array(n_samples);
-	                var deg = Math.PI / 180;
-	                for (var i = 0; i < n_samples; i += 1) {
-	                    var x = i * 2 / n_samples - 1;
-	                    this.wsCurve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x));
-	                }
-	                this.waveShaper.curve = this.wsCurve;
-	            };
-
-	            **
-	            * Sets the drive level.
-	            *
-	            * @param {number} newDrive Drive level to set.
-	            *
-	            pb.stomp.OverdriveModel.prototype.setDrive = function(newDrive) {
-	                this.createWSCurve(10 * newDrive);
-	            };
-
-
-	        */
+	        // Function found on Mozilla Developer
 	        function makeDistortionCurve(amount) {
 	            var k = typeof amount === 'number' ? amount : 50, n_samples = 44100, curve = new Float32Array(n_samples), deg = Math.PI / 180, i = 0, x;
 	            for (; i < n_samples; ++i) {
@@ -1641,21 +1593,18 @@ webpackJsonp([2],{
 	        distortion.oversample = 'none';
 	        return distortion;
 	    };
+	    // Used to offset the additional volume created by distortion
 	    DrumMachineMetronomeService.prototype.distortionGain = function (type) {
 	        var level = this.context.createGain(), levelLevel = this.sequencerLineUp['instrumentSettings'][type]['level'];
-	        // dont let level leval equal 0 -- it will not output a noise then
 	        if (levelLevel > 1) {
 	            levelLevel = 1;
 	        }
 	        level.gain.value = .8 - (this.sequencerLineUp['instrumentSettings'][type]['distortion'] * .5);
 	        return level;
 	    };
-	    DrumMachineMetronomeService.prototype.getAudioContext = function () {
-	        return this.context;
-	    };
 	    DrumMachineMetronomeService.prototype.loadDrumKit = function () {
 	        var _this = this;
-	        var kits = ['808', '909', 'acoustic'], samples = ['snare', 'clap', 'kick', 'cymbal', 'hihat', 'hitom', 'lowtom', 'midtom', 'rimshot'], urlBody = 'samples/';
+	        var kits = ['808', '909', 'acoustic'], samples = this.instruments, urlBody = 'samples/';
 	        var _loop_1 = function(kit) {
 	            var _loop_2 = function(sample) {
 	                var request = new XMLHttpRequest();
