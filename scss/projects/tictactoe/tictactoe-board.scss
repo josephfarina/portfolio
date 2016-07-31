@@ -17,21 +17,26 @@ $board-height: 300px;
             position: relative;
             margin-left: auto;
             margin-right: auto;   
-            margin-bottom: 3px;       
+            margin-bottom: 5px;       
             height: 100px;
             width: 300px;
 
             .board-tile {
                 position: relative;
-                height: 100px;
-                width: 97px;
-                margin-left: 1.5px;
-                margin-right: 1.5px;
+                height: 90px;
+                width: 90px;
+                margin-left: 5px;
+                margin-right: 5px;
                 display: inline-block;
                 background-color: lightblue;   
-
             }
         }
+    }
+
+    .scoreboard {
+        width: 300px;
+        padding-left: 25px;
+
     }
 }
 
@@ -43,6 +48,7 @@ $board-height: 300px;
     background: #2C2C2C;
     transform: rotate(45deg);
     font-size: 22px;
+
     &:after {
         content: "";
         position: absolute;
