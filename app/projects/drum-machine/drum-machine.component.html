@@ -1,7 +1,7 @@
 <div class="drum-machine-wrapper">
 
-  <svg class="animated fadeInDownBig" id="drum" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3954.04 1350.11">
-    <title>beatbox</title>
+  <svg class="fade" id="drum" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3954.04 1350.11">
+    Unfortunately due to the use of SVG and the Web Audio Api this doesn't work on your browser!
     <!--<rect width="3954.04" height="2585.11" fill="#839b99" />-->
     <g  transform="translate(0 -550.49)">
       <g id="base">
@@ -2078,4 +2078,22 @@
     </g>
 
   </svg>
+
+  <div class="project-description"> 
+    <h3>A Rhythm Sequencer Made with Angular 2 and TypeScript</h3>
+    <p>To adjust the instrument knobs hover your mouse and scroll or drag horizontally.</p>
+    <h5>Problems Solved:</h5>
+    <ul>
+      <li>
+        Making a reusable <a class="github-link" href="">directive</a> that makes the SVG knobs rotatable and outputs a value from 0 to 1. 
+      </li> 
+      <li>
+        Enabling the drum machine to be updated with minimal delay by using a <a class="github-link" href="">JSON object</a> to manage the machines state and only telling the Audio Context what to play when it needs to know.
+      </li>
+      <li>
+        Designing the SVG in Adobe Illustrator in an organized and planned way that enabled it to be used as an interface.
+      </li>
+    </ul>
+  </div>
 </div>
+

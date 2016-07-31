@@ -28,7 +28,9 @@ export class DrumMachineMetronomeService {
         console.log(this.sampleBuffers);
         this.createAudioContext();
         this.timeWorker = new TimeWorker();
-        this.timeWorker.onmessage = (e: any) => { if (e.data === 'tick') { this.schedule(); } else { console.log(e.data); } };
+        this.timeWorker.onmessage = (e: any) => { if (e.data === 'tick') { 
+            this.schedule();
+        } else { console.log(e.data); } };
         this.timeWorker.postMessage({ 'interval': this.lookahead });
     }
 

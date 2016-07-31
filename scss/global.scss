@@ -51,8 +51,6 @@
     transform: rotate(360deg); }
 }
 
-
-
 .fade {
   animation-duration: .7s;
   animation-fill-mode: both;
@@ -100,3 +98,24 @@
 
 @import 'base/module';
 @import 'projects/single-divs/calculator-icon';
+
+
+.project-description {
+  max-width: 500px;
+}
+
+
+.github-link {
+  color: blue;
+  &:after {
+    content: "";
+    position: relative;
+    top: -6px;
+    background: url(https://github.com/favicon.ico) no-repeat 0 0;
+    background-size: 100% 100%;
+    width: 12px;
+    display: inline-block;
+    height: 12px;
+}
+
+}
