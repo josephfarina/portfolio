@@ -10,25 +10,20 @@ import {ViewEncapsulation} from '@angular/core';
     selector: 'my-nav',
     styles: [require('./../../scss/layout/nav.scss').toString()],
     template: `
-    
     <nav [ngClass]="{
     'home':                     routeName === 'Joey Farina', 
     'project':                  routeName !== 'Joey Farina'
     }">
         <div [ngClass]="{ 'fade':  isNewRoute }">
-            <span  class="h5 navigation-logo">
-                {{routeName | uppercase}}
-            </span>
+                <a class="h5 navigation-logo" routerLink='/'> {{routeName | uppercase}}</a>
             <div class="navigation-menu">
                 <span class="p menu-item">RESUME</span>
-                <span class="p menu-item">CONTACT</span>
+                <span class="p menu-item"><a href="mailto:jrf61194@gmail.com">CONTACT</a></span>
             </div>
         </div>
     </nav>
     `
 })
-
-// TODO: Fix glitch on calc animation -- and make it so it doesnt swing down on project pages
 
 export class NavComponent {
     private routeName: string = '';

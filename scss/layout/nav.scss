@@ -17,6 +17,10 @@ $nav-transition-close: opacity .5s, visibility .6s;
         top: 55px;
         span {
             color: white;
+
+            a {
+                color: white;
+            }
         }
     }
 
