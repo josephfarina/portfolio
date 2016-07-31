@@ -1,9 +1,6 @@
 <div class="calc">
-    <div class="calculator animated fadeInDownBig">
-        <pre *ngIf="showVariables">
-            Display Value: {{displayValue}} Operator Value: {{operatorValue}} Current Value: {{currentValue}} Calue To Operate: {{valueToOperate}}
-            Operator Pressed: {{operatorPressed}} Is Negative: {{isNegative}} Display Reset After Operator: {{displayResetAfterOperator}}
-        </pre>
+    <div class="calculator fade">
+
         <div class="row no-gutters">
             <!-- display -->
             <input class="col-xs-12 button display" [(ngModel)]="displayValue" type="number" />
@@ -87,8 +84,6 @@
                     <div class="button operator equals"><span class="button-content">=</span></div>
                 </div>
             </div>
-            <button class='btn calc-btn' (click)="showVariables = !showVariables">See The Variables in Action</button>
-
         </div>
     </div>
 
