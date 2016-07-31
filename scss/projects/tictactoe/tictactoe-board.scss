@@ -6,36 +6,30 @@ $board-height: 300px;
     top: 15px;
 
     .current-player {
-        margin-left: 15px;
-        margin-bottom: 10px;
+        padding: 25px;
     }
 
-    .board-row {
-        margin-left: auto;
-        margin-right: auto;          
-        background-color: purple;
-        height: 100px;
-        width: 300px;
+    .board-rows {
+        position: relative;
+        top: 12px;
 
-        &:first-child {
-            border-bottom: 1px solid white;
-        } 
-
-        &:last-child {
-            border-top: 1px solid white;        
-        }
-
-        .board-tile {
+        .board-row {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;   
+            margin-bottom: 3px;       
             height: 100px;
-            width: 100px;
-            display: inline-block;
-            background-color: green;   
+            width: 300px;
 
-            &:nth-child(1) {
-                border-right: 1px solid white;
-            }         
-            &:nth-child(3) {
-                border-left: 1px solid white;
+            .board-tile {
+                position: relative;
+                height: 100px;
+                width: 97px;
+                margin-left: 1.5px;
+                margin-right: 1.5px;
+                display: inline-block;
+                background-color: lightblue;   
+
             }
         }
     }

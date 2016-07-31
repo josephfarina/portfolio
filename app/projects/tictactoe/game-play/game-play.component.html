@@ -2,12 +2,14 @@
 
 <div class="game-board">
     <span class="h4 current-player">{{currentPlayer.name}}'s Turn</span>
+    <div class="board-rows">
     <div class="board-row" *ngFor="let tileRow of tileBoard; let y = index">
         <div *ngFor="let tile of tileRow; let x = index" 
          class="board-tile"
-         (click)="setTile(x,y)">{{x}}
+         (click)="setTile(x,y)">
             <div [ngClass]="{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }"></div>
         </div>
+    </div>
     </div>
 </div>
 
