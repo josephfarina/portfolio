@@ -2085,7 +2085,7 @@
     <h5>Problems Solved:</h5>
     <ul>
       <li>
-        Making a reusable <a class="github-link" href="">directive</a> that makes the SVG knobs rotatable and outputs a value from 0 to 1. 
+        Making directives <a class="github-link" href="">directive</a> that made the SVG knobs rotatable or clickable and have them output a value for the service to interpret. 
       </li> 
       <li>
         Enabling the drum machine to be updated with minimal delay by using a <a class="github-link" href="">JSON object</a> to manage the machines state and only telling the Audio Context what to play when it needs to know.
@@ -2094,6 +2094,28 @@
         Designing the SVG in Adobe Illustrator in an organized and planned way that enabled it to be used as an interface.
       </li>
     </ul>
+    <pre>
+      <code>
+        FILE TREE:
+        drum-machine/
+        ----- drum-machine.component.html
+        ----- drum-machine.component.ts
+        ----- drum-machine.service.ts
+        ----- SEQUENCER_LINEUP.ts 
+        ----- timeWorker.js
+
+        ----- directives/
+        ---------- beat-selector.directive.ts
+        ---------- beat-watcher.directive.ts
+        ---------- instrument-selector.directive.ts
+        ---------- kit-selector.directive.ts
+        ---------- knobs.directive.ts
+        ---------- startbutton.directive.ts
+
+        SCSS FILE:
+        drum-machine.scss
+      </code>
+    </pre>
   </div>
 </div>
 
