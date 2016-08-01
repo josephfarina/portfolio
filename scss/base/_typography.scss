@@ -71,6 +71,11 @@ a.h5 {
 @extend .h5;
 }
 
+a.p {
+	color: white;
+	@extend p;
+}
+
 .p {
 	@extend p;
 }
