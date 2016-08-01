@@ -1,0 +1,18 @@
+.drum-machine-wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  background-color: #36D2C7; }
+
+#drum {
+  position: relative;
+  display: block;
+  margin: auto;
+  left: 0;
+  top: 30;
+  height: 100%;
+  width: 100%; }
+
+.browser-note {
+  color: white;
+  text-align: center;
+  margin-top: 15px; }

@@ -123,3 +123,27 @@
   }
 
 }
+
+.small-screen {
+  padding: 50px;
+  a {
+    color: blue;
+    text-decoration: underline;
+  }  
+}
+
+@media(min-width: 400px) { 
+  .small-screen {
+    display: none; 
+  }
+}
+
+@media(max-width: 400px) { 
+  .wide-screen {
+    display: none;
+  }
+  .small-screen {
+    display: block; 
+  }  
+}
+

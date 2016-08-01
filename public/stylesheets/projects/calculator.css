@@ -1,0 +1,90 @@
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+.calc {
+  min-height: 100%;
+  overflow: hidden;
+  background-color: #8EDB37; }
+  .calc div,
+  .calc p {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 15px;
+    margin: 0; }
+  .calc .calculator {
+    background-color: #f0ede6;
+    border: 0.5px solid #cabfa6;
+    border-radius: 10px;
+    margin-top: 125px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 350px;
+    min-width: 350px;
+    padding: 15px;
+    position: relative; }
+  .calc .button-group {
+    margin-top: 9px; }
+  .calc .button {
+    background-color: #f7f4ef;
+    border: 0.5px solid #cabfa6;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px #ddd6c6;
+    color: #000;
+    display: table;
+    margin: 9px 8px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 40px;
+    padding-bottom: 10%;
+    position: relative;
+    text-align: center;
+    width: 80%; }
+    .calc .button:hover {
+      background-color: #ded1bc;
+      cursor: hand; }
+    .calc .button.display {
+      background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 10%, #fff 25%);
+      border-width: .5px;
+      color: #000;
+      cursor: text;
+      font-size: 30px;
+      height: 80px;
+      min-height: 30px;
+      padding: 15px;
+      text-align: right;
+      width: 95%; }
+      .calc .button.display::-moz-selection {
+        background: #e57c46;
+        color: #f7f4ef; }
+      .calc .button.display::selection {
+        background: #e57c46;
+        color: #f7f4ef; }
+    .calc .button.operator {
+      font-size: 20px; }
+      .calc .button.operator .button-content {
+        top: 7px; }
+    .calc .button.equals {
+      background-color: #888b98;
+      color: #f7f4ef; }
+      .calc .button.equals:hover {
+        background-color: #626571; }
+    .calc .button.clear {
+      background-color: #e57c46;
+      color: #f7f4ef; }
+      .calc .button.clear:hover {
+        background-color: #c3541b; }
+    .calc .button.double-button {
+      width: 90%; }
+    .calc .button .button-content {
+      position: relative;
+      top: 9px; }
+  .calc .calc-btn {
+    width: 100%;
+    background-color: #f7f4ef;
+    color: #000; }
+  .calc .project-description {
+    position: relative;
+    max-width: 500px;
+    margin: auto;
+    margin-top: 150px; }

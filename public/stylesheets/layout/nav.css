@@ -1,0 +1,40 @@
+.project .navigation-logo,
+.project .navigation-menu,
+.home .navigation-logo,
+.home .navigation-menu {
+  position: fixed;
+  top: 50px;
+  transition: all 0.6s cubic-bezier(0.87, -0.41, 0.19, 1.44); }
+
+.project .navigation-menu,
+.home .navigation-menu {
+  right: 100px;
+  top: 55px; }
+  .project .navigation-menu span,
+  .home .navigation-menu span {
+    color: white; }
+    .project .navigation-menu span a,
+    .home .navigation-menu span a {
+      color: white; }
+
+.project .navigation-logo,
+.home .navigation-logo {
+  color: white;
+  left: 75px; }
+
+@media (max-width: 850px) {
+  .project .navigation-menu,
+  .home .navigation-menu {
+    left: 75px;
+    top: 75px; } }
+
+@media (max-width: 850px) {
+  .home .navigation-logo {
+    transform: rotate(90deg);
+    left: -40px;
+    top: 110px; }
+  .home .navigation-menu {
+    transform: rotate(90deg);
+    left: -57px;
+    right: auto;
+    top: 125px; } }

@@ -7,8 +7,8 @@ webpackJsonp([2],{
 	var platform_browser_dynamic_1 = __webpack_require__(295);
 	var app_component_1 = __webpack_require__(686);
 	var http_1 = __webpack_require__(287);
-	var common_1 = __webpack_require__(29);
-	var app_routes_1 = __webpack_require__(703);
+	var common_1 = __webpack_require__(30);
+	var app_routes_1 = __webpack_require__(704);
 	var forms_1 = __webpack_require__(280);
 	platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
 	    app_routes_1.APP_ROUTER_PROVIDERS,
@@ -136,7 +136,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
+	var router_1 = __webpack_require__(28);
 	var tictactoe_service_1 = __webpack_require__(136);
 	var TicTacToeComponent = (function () {
 	    function TicTacToeComponent() {
@@ -173,7 +173,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
+	var router_1 = __webpack_require__(28);
 	var NavTitleService = (function () {
 	    function NavTitleService(router) {
 	        this.router = router;
@@ -265,7 +265,7 @@ webpackJsonp([2],{
 /***/ 466:
 /***/ function(module, exports) {
 
-	module.exports = ".spinner {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  height: 50px;\n  width: 50px;\n  border-radius: 30%;\n  border: 5px solid;\n  -webkit-animation: spin 1.2s infinite ease;\n          animation: spin 1.2s infinite ease; }\n\n@-webkit-keyframes spin {\n  0% {\n    border-radius: 0;\n    border-color: #2196F3;\n    background-color: #3F51B5;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  10% {\n    border-color: #03A9F4;\n    background-color: #2196F3; }\n  20% {\n    border-color: #00BCD4;\n    background-color: #03A9F4; }\n  30% {\n    border-color: #009688;\n    background-color: #00BCD4; }\n  40% {\n    border-color: #2196F3;\n    background-color: #009688; }\n  50% {\n    border-color: #CDDC39;\n    border-radius: 50%;\n    background-color: #4CAF50; }\n  60% {\n    border-color: #FFEB3B;\n    background-color: #CDDC39; }\n  70% {\n    border-color: #FFC107;\n    background-color: #FFEB3B; }\n  80% {\n    border-color: #FF9800;\n    background-color: #FFC107; }\n  90% {\n    border-color: #FF5722;\n    background-color: #FF9800; }\n  100% {\n    border-color: #3F51B5;\n    border-radius: 0;\n    background-color: #FF5722;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    border-radius: 0;\n    border-color: #2196F3;\n    background-color: #3F51B5;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  10% {\n    border-color: #03A9F4;\n    background-color: #2196F3; }\n  20% {\n    border-color: #00BCD4;\n    background-color: #03A9F4; }\n  30% {\n    border-color: #009688;\n    background-color: #00BCD4; }\n  40% {\n    border-color: #2196F3;\n    background-color: #009688; }\n  50% {\n    border-color: #CDDC39;\n    border-radius: 50%;\n    background-color: #4CAF50; }\n  60% {\n    border-color: #FFEB3B;\n    background-color: #CDDC39; }\n  70% {\n    border-color: #FFC107;\n    background-color: #FFEB3B; }\n  80% {\n    border-color: #FF9800;\n    background-color: #FFC107; }\n  90% {\n    border-color: #FF5722;\n    background-color: #FF9800; }\n  100% {\n    border-color: #3F51B5;\n    border-radius: 0;\n    background-color: #FF5722;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.fade {\n  -webkit-animation-duration: .7s;\n          animation-duration: .7s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: fade-down;\n          animation-name: fade-down; }\n\n@-webkit-keyframes fade-down {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n            transform: translate3d(0, -2000px, 0); }\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n            transform: none; } }\n\n@keyframes fade-down {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n            transform: translate3d(0, -2000px, 0); }\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n            transform: none; } }\n\n.slide {\n  -webkit-animation-duration: 1s;\n          animation-duration: 1s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: slide-in;\n          animation-name: slide-in; }\n\n@-webkit-keyframes slide-in {\n  from {\n    -webkit-transform: translate3d(500%, 0, 0);\n            transform: translate3d(500%, 0, 0);\n    visibility: visible; }\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0); } }\n\n@keyframes slide-in {\n  from {\n    -webkit-transform: translate3d(500%, 0, 0);\n            transform: translate3d(500%, 0, 0);\n    visibility: visible; }\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0); } }\n\n.row.no-gutters {\n  margin-right: 0;\n  margin-left: 0; }\n  .row.no-gutters > [class^='col-'],\n  .row.no-gutters > [class*=' col-'] {\n    padding-right: 0;\n    padding-left: 0; }\n\n/*\n * Base styles\n */\nbody, p, a.p, .p, a, a:hover {\n  color: black;\n  font-size: 1.5rem;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 300;\n  line-height: 1.6;\n  letter-spacing: 1px; }\n\n/*\n * Typography\n */\n.h1, h1,\n.h2,\nh2,\n.h3,\nh3,\n.h4,\nh4,\n.h5,\na.h5,\nh5,\n.h6,\nh6 {\n  font-family: \"Arvo\", serif;\n  font-weight: 700; }\n\n.h1, h1,\n.h2,\nh2 {\n  line-height: 1.1; }\n\n.h3, h3,\n.h4,\nh4 {\n  line-height: 1.3; }\n\n.h1, h1 {\n  font-size: 500%;\n  letter-spacing: -2px; }\n\n.h2, h2 {\n  font-size: 250%;\n  letter-spacing: -1px; }\n\n.h3, h3 {\n  font-size: 200%; }\n\n.h4, h4 {\n  font-size: 180%; }\n\n.h5, a.h5, h5 {\n  font-size: 130%; }\n\n.h6, h6 {\n  font-size: 100%; }\n\na.p {\n  color: white; }\n\na {\n  text-decoration: none; }\n  a:hover {\n    text-decoration: none; }\n\n.text-left {\n  text-align: left   !important; }\n\n.text-center {\n  text-align: center !important; }\n\n.text-right {\n  text-align: right  !important; }\n\n.small-text__project {\n  font-size: 90%;\n  text-transform: uppercase;\n  letter-spacing: 2px; }\n\n.menu {\n  padding-right: 5px; }\n\n.text-inactive {\n  color: black;\n  opacity: .4; }\n\n#calculator {\n  background-color: #f0ede6;\n  border: 0.1px solid #ddd6c6;\n  border-radius: 10px;\n  height: 120px;\n  margin-left: auto;\n  margin-right: auto;\n  position: relative;\n  width: 100px; }\n  #calculator::after {\n    background-image: -webkit-linear-gradient(top, rgba(211, 211, 211, 0.5) 5%, #f6eddc 60%);\n    background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 5%, #f6eddc 60%);\n    border: 0.5px solid #ddd6c6;\n    border-radius: 3px;\n    content: '307';\n    display: block;\n    font-family: 'Share Tech Mono', monospace;\n    font-size: 15px;\n    height: 25px;\n    left: 9px;\n    line-height: 27px;\n    position: absolute;\n    text-indent: 48px;\n    top: 12px;\n    width: 80px; }\n  #calculator::before {\n    background-color: #f7f4ef;\n    border: 0.1px solid #ddd6c6;\n    border-radius: 3px;\n    box-shadow: 29px 0 0 -1px #f7f4ef, 29px 0 0 0 #ddd6c6, 58px 0 0 -1px #f7f4ef, 58px 0 0 0 #ddd6c6, 0 22px 0 -1px #f7f4ef, 0 22px 0 0 #ddd6c6, 29px 22px 0 -1px #f7f4ef, 29px 22px 0 0 #ddd6c6, 58px 22px 0 -1px #f7f4ef, 58px 22px 0 0 #ddd6c6, 0 44px 0 -1px #f7f4ef, 0 44px 0 0 #ddd6c6, 29px 44px 0 -1px #f7f4ef, 29px 44px 0 0 #ddd6c6, 58px 44px 0 -1px #f7f4ef, 58px 44px 0 0 #ddd6c6;\n    content: '';\n    display: block;\n    height: 15px;\n    left: 9px;\n    position: absolute;\n    top: 49px;\n    width: 24px; }\n\n.project-description {\n  position: relative;\n  max-width: 500px;\n  margin: auto;\n  margin-top: 150px; }\n\n.github-link {\n  color: blue; }\n  .github-link:after {\n    content: \"\";\n    position: relative;\n    top: -6px;\n    background: url(https://github.com/favicon.ico) no-repeat 0 0;\n    background-size: 100% 100%;\n    width: 12px;\n    display: inline-block;\n    height: 12px; }\n"
+	module.exports = ".spinner {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  height: 50px;\n  width: 50px;\n  border-radius: 30%;\n  border: 5px solid;\n  -webkit-animation: spin 1.2s infinite ease;\n          animation: spin 1.2s infinite ease; }\n\n@-webkit-keyframes spin {\n  0% {\n    border-radius: 0;\n    border-color: #2196F3;\n    background-color: #3F51B5;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  10% {\n    border-color: #03A9F4;\n    background-color: #2196F3; }\n  20% {\n    border-color: #00BCD4;\n    background-color: #03A9F4; }\n  30% {\n    border-color: #009688;\n    background-color: #00BCD4; }\n  40% {\n    border-color: #2196F3;\n    background-color: #009688; }\n  50% {\n    border-color: #CDDC39;\n    border-radius: 50%;\n    background-color: #4CAF50; }\n  60% {\n    border-color: #FFEB3B;\n    background-color: #CDDC39; }\n  70% {\n    border-color: #FFC107;\n    background-color: #FFEB3B; }\n  80% {\n    border-color: #FF9800;\n    background-color: #FFC107; }\n  90% {\n    border-color: #FF5722;\n    background-color: #FF9800; }\n  100% {\n    border-color: #3F51B5;\n    border-radius: 0;\n    background-color: #FF5722;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    border-radius: 0;\n    border-color: #2196F3;\n    background-color: #3F51B5;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  10% {\n    border-color: #03A9F4;\n    background-color: #2196F3; }\n  20% {\n    border-color: #00BCD4;\n    background-color: #03A9F4; }\n  30% {\n    border-color: #009688;\n    background-color: #00BCD4; }\n  40% {\n    border-color: #2196F3;\n    background-color: #009688; }\n  50% {\n    border-color: #CDDC39;\n    border-radius: 50%;\n    background-color: #4CAF50; }\n  60% {\n    border-color: #FFEB3B;\n    background-color: #CDDC39; }\n  70% {\n    border-color: #FFC107;\n    background-color: #FFEB3B; }\n  80% {\n    border-color: #FF9800;\n    background-color: #FFC107; }\n  90% {\n    border-color: #FF5722;\n    background-color: #FF9800; }\n  100% {\n    border-color: #3F51B5;\n    border-radius: 0;\n    background-color: #FF5722;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.fade {\n  -webkit-animation-duration: .7s;\n          animation-duration: .7s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: fade-down;\n          animation-name: fade-down; }\n\n@-webkit-keyframes fade-down {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n            transform: translate3d(0, -2000px, 0); }\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n            transform: none; } }\n\n@keyframes fade-down {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n            transform: translate3d(0, -2000px, 0); }\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n            transform: none; } }\n\n.slide {\n  -webkit-animation-duration: 1s;\n          animation-duration: 1s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: slide-in;\n          animation-name: slide-in; }\n\n@-webkit-keyframes slide-in {\n  from {\n    -webkit-transform: translate3d(500%, 0, 0);\n            transform: translate3d(500%, 0, 0);\n    visibility: visible; }\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0); } }\n\n@keyframes slide-in {\n  from {\n    -webkit-transform: translate3d(500%, 0, 0);\n            transform: translate3d(500%, 0, 0);\n    visibility: visible; }\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0); } }\n\n.row.no-gutters {\n  margin-right: 0;\n  margin-left: 0; }\n  .row.no-gutters > [class^='col-'],\n  .row.no-gutters > [class*=' col-'] {\n    padding-right: 0;\n    padding-left: 0; }\n\n/*\n * Base styles\n */\nbody, p, a.p, .p, a, a:hover {\n  color: black;\n  font-size: 1.5rem;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 300;\n  line-height: 1.6;\n  letter-spacing: 1px; }\n\n/*\n * Typography\n */\n.h1, h1,\n.h2,\nh2,\n.h3,\nh3,\n.h4,\nh4,\n.h5,\na.h5,\nh5,\n.h6,\nh6 {\n  font-family: \"Arvo\", serif;\n  font-weight: 700; }\n\n.h1, h1,\n.h2,\nh2 {\n  line-height: 1.1; }\n\n.h3, h3,\n.h4,\nh4 {\n  line-height: 1.3; }\n\n.h1, h1 {\n  font-size: 500%;\n  letter-spacing: -2px; }\n\n.h2, h2 {\n  font-size: 250%;\n  letter-spacing: -1px; }\n\n.h3, h3 {\n  font-size: 200%; }\n\n.h4, h4 {\n  font-size: 180%; }\n\n.h5, a.h5, h5 {\n  font-size: 130%; }\n\n.h6, h6 {\n  font-size: 100%; }\n\na.p {\n  color: white; }\n\na {\n  text-decoration: none; }\n  a:hover {\n    text-decoration: none; }\n\n.text-left {\n  text-align: left   !important; }\n\n.text-center {\n  text-align: center !important; }\n\n.text-right {\n  text-align: right  !important; }\n\n.small-text__project {\n  font-size: 90%;\n  text-transform: uppercase;\n  letter-spacing: 2px; }\n\n.menu {\n  padding-right: 5px; }\n\n.text-inactive {\n  color: black;\n  opacity: .4; }\n\n#calculator {\n  background-color: #f0ede6;\n  border: 0.1px solid #ddd6c6;\n  border-radius: 10px;\n  height: 120px;\n  margin-left: auto;\n  margin-right: auto;\n  position: relative;\n  width: 100px; }\n  #calculator::after {\n    background-image: -webkit-linear-gradient(top, rgba(211, 211, 211, 0.5) 5%, #f6eddc 60%);\n    background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 5%, #f6eddc 60%);\n    border: 0.5px solid #ddd6c6;\n    border-radius: 3px;\n    content: '307';\n    display: block;\n    font-family: 'Share Tech Mono', monospace;\n    font-size: 15px;\n    height: 25px;\n    left: 9px;\n    line-height: 27px;\n    position: absolute;\n    text-indent: 48px;\n    top: 12px;\n    width: 80px; }\n  #calculator::before {\n    background-color: #f7f4ef;\n    border: 0.1px solid #ddd6c6;\n    border-radius: 3px;\n    box-shadow: 29px 0 0 -1px #f7f4ef, 29px 0 0 0 #ddd6c6, 58px 0 0 -1px #f7f4ef, 58px 0 0 0 #ddd6c6, 0 22px 0 -1px #f7f4ef, 0 22px 0 0 #ddd6c6, 29px 22px 0 -1px #f7f4ef, 29px 22px 0 0 #ddd6c6, 58px 22px 0 -1px #f7f4ef, 58px 22px 0 0 #ddd6c6, 0 44px 0 -1px #f7f4ef, 0 44px 0 0 #ddd6c6, 29px 44px 0 -1px #f7f4ef, 29px 44px 0 0 #ddd6c6, 58px 44px 0 -1px #f7f4ef, 58px 44px 0 0 #ddd6c6;\n    content: '';\n    display: block;\n    height: 15px;\n    left: 9px;\n    position: absolute;\n    top: 49px;\n    width: 24px; }\n\n.project-description {\n  position: relative;\n  max-width: 500px;\n  margin: auto;\n  margin-top: 150px; }\n\n.github-link {\n  color: blue; }\n  .github-link:after {\n    content: \"\";\n    position: relative;\n    top: -6px;\n    background: url(https://github.com/favicon.ico) no-repeat 0 0;\n    background-size: 100% 100%;\n    width: 12px;\n    display: inline-block;\n    height: 12px; }\n\n.small-screen {\n  padding: 50px; }\n  .small-screen a {\n    color: blue;\n    text-decoration: underline; }\n\n@media (min-width: 400px) {\n  .small-screen {\n    display: none; } }\n\n@media (max-width: 400px) {\n  .wide-screen {\n    display: none; }\n  .small-screen {\n    display: block; } }\n"
 
 /***/ },
 
@@ -325,7 +325,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
+	var router_1 = __webpack_require__(28);
 	var nav_component_1 = __webpack_require__(688);
 	var core_2 = __webpack_require__(1);
 	var AppComponent = (function () {
@@ -341,7 +341,7 @@ webpackJsonp([2],{
 	            moduleId: module.id,
 	            selector: 'my-app',
 	            styles: [__webpack_require__(466).toString()],
-	            template: "\n    <my-nav></my-nav>\n    <router-outlet></router-outlet>\n    ",
+	            template: "\n    <div class=\"wide-screen\">\n        <my-nav></my-nav>\n        <router-outlet></router-outlet>\n    </div>\n    <div class=\"small-screen\">\n        <h2>Hi, due to the use of the Web Audio API and Snap.svg This site is best viewed on a desktop.</h2>\n        <a href=\"assets/JFRESUME.pdf\" target=\"_blank\">Here you can see my resume in the mean time.</a>\n        <img my-hover-effect class=\"img-responsive resume\" src=\"assets/JFRESUME.png\" />\n    </div>\n    ",
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], AppComponent);
@@ -366,7 +366,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
+	var router_1 = __webpack_require__(28);
 	var nav_title_service_1 = __webpack_require__(338);
 	var HomeComponent = (function () {
 	    function HomeComponent(router) {
@@ -436,7 +436,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
+	var router_1 = __webpack_require__(28);
 	var nav_title_service_1 = __webpack_require__(338);
 	var NavComponent = (function () {
 	    function NavComponent(navTitleService, router) {
@@ -474,6 +474,47 @@ webpackJsonp([2],{
 /***/ 689:
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(1);
+	var router_1 = __webpack_require__(28);
+	var hover_effect_directive_1 = __webpack_require__(705);
+	var ResumeComponent = (function () {
+	    function ResumeComponent() {
+	    }
+	    ResumeComponent = __decorate([
+	        core_1.Component({
+	            directives: [
+	                router_1.ROUTER_DIRECTIVES,
+	                hover_effect_directive_1.HoverEffectDirective
+	            ],
+	            moduleId: module.id,
+	            selector: 'my-resume',
+	            styles: [
+	                "\n        .resume-wrapper {\n            min-height: 100vh;\n            background-color: #EE4236;\n        }\n        .resume {\n            margin: auto;\n        }\n        "
+	            ],
+	            template: "\n    <div class=\"resume-wrapper\">\n    <img my-hover-effect class=\"img-responsive resume\" src=\"assets/JFRESUME.png\" />\n    </div>\n    ",
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], ResumeComponent);
+	    return ResumeComponent;
+	}());
+	exports.ResumeComponent = ResumeComponent;
+	
+
+/***/ },
+
+/***/ 690:
+/***/ function(module, exports, __webpack_require__) {
+
 	/**
 	 * TODO:
 	 *   fix the way the variables look when its opened
@@ -492,7 +533,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
+	var router_1 = __webpack_require__(28);
 	var CalculatorComponent = (function () {
 	    function CalculatorComponent() {
 	        // Show how the variables are working
@@ -593,7 +634,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 690:
+/***/ 691:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -845,7 +886,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 691:
+/***/ 692:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -938,7 +979,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 692:
+/***/ 693:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -995,7 +1036,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 693:
+/***/ 694:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1107,7 +1148,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 694:
+/***/ 695:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1209,7 +1250,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 695:
+/***/ 696:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1316,7 +1357,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 696:
+/***/ 697:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1401,7 +1442,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 697:
+/***/ 698:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1415,14 +1456,14 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var drum_machine_service_1 = __webpack_require__(698);
-	var SEQUENCER_LINEUP_1 = __webpack_require__(690);
-	var knobs_directive_1 = __webpack_require__(695);
-	var beat_selector_directive_1 = __webpack_require__(691);
-	var instrument_selector_directive_1 = __webpack_require__(693);
-	var beat_watcher_directive_1 = __webpack_require__(692);
-	var startbutton_directive_1 = __webpack_require__(696);
-	var kit_selector_directive_1 = __webpack_require__(694);
+	var drum_machine_service_1 = __webpack_require__(699);
+	var SEQUENCER_LINEUP_1 = __webpack_require__(691);
+	var knobs_directive_1 = __webpack_require__(696);
+	var beat_selector_directive_1 = __webpack_require__(692);
+	var instrument_selector_directive_1 = __webpack_require__(694);
+	var beat_watcher_directive_1 = __webpack_require__(693);
+	var startbutton_directive_1 = __webpack_require__(697);
+	var kit_selector_directive_1 = __webpack_require__(695);
 	var DrumMachineComponent = (function () {
 	    function DrumMachineComponent(drumService) {
 	        this.drumService = drumService;
@@ -1483,7 +1524,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 698:
+/***/ 699:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1497,7 +1538,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var TimeWorker = __webpack_require__(707);
+	var TimeWorker = __webpack_require__(709);
 	var DrumMachineService = (function () {
 	    function DrumMachineService() {
 	        this.timeWorker = null;
@@ -1711,7 +1752,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 699:
+/***/ 700:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1725,7 +1766,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
+	var router_1 = __webpack_require__(28);
 	var tictactoe_service_1 = __webpack_require__(136);
 	var BoardComponent = (function () {
 	    function BoardComponent(ticTacToeService, router) {
@@ -1875,7 +1916,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 700:
+/***/ 701:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1889,7 +1930,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
+	var router_1 = __webpack_require__(28);
 	var tictactoe_service_1 = __webpack_require__(136);
 	var EndComponent = (function () {
 	    function EndComponent(ticTacToeService, router) {
@@ -1925,7 +1966,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 701:
+/***/ 702:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1939,7 +1980,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
+	var router_1 = __webpack_require__(28);
 	var tictactoe_service_1 = __webpack_require__(136);
 	var SetupComponent = (function () {
 	    function SetupComponent(router, ticTacToeService) {
@@ -1999,14 +2040,14 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 702:
+/***/ 703:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var tictactoe_component_1 = __webpack_require__(337);
-	var setup_component_1 = __webpack_require__(701);
-	var board_component_1 = __webpack_require__(699);
-	var end_component_1 = __webpack_require__(700);
+	var setup_component_1 = __webpack_require__(702);
+	var board_component_1 = __webpack_require__(700);
+	var end_component_1 = __webpack_require__(701);
 	exports.TicTacToeRoutes = [
 	    {
 	        component: tictactoe_component_1.TicTacToeComponent,
@@ -2035,17 +2076,17 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 703:
+/***/ 704:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var router_1 = __webpack_require__(30);
-	var tictactoe_routes_1 = __webpack_require__(702);
+	var router_1 = __webpack_require__(28);
+	var tictactoe_routes_1 = __webpack_require__(703);
 	var home_component_1 = __webpack_require__(687);
-	var calculator_component_1 = __webpack_require__(689);
+	var calculator_component_1 = __webpack_require__(690);
 	var tictactoe_component_1 = __webpack_require__(337);
-	var drum_machine_component_1 = __webpack_require__(697);
-	var resume_component_1 = __webpack_require__(710);
+	var drum_machine_component_1 = __webpack_require__(698);
+	var resume_component_1 = __webpack_require__(689);
 	exports.routes = [
 	    {
 	        component: home_component_1.HomeComponent,
@@ -2076,86 +2117,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 706:
-/***/ function(module, exports) {
-
-	// http://stackoverflow.com/questions/10343913/how-to-create-a-web-worker-from-a-string
-
-	var URL = window.URL || window.webkitURL;
-	module.exports = function(content, url) {
-		try {
-			try {
-				var blob;
-				try { // BlobBuilder = Deprecated, but widely implemented
-					var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder;
-					blob = new BlobBuilder();
-					blob.append(content);
-					blob = blob.getBlob();
-				} catch(e) { // The proposed API
-					blob = new Blob([content]);
-				}
-				return new Worker(URL.createObjectURL(blob));
-			} catch(e) {
-				return new Worker('data:application/javascript,' + encodeURIComponent(content));
-			}
-		} catch(e) {
-			return new Worker(url);
-		}
-	}
-
-/***/ },
-
-/***/ 707:
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = function() {
-		return __webpack_require__(706)("/******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n\n/******/ \t\t// Check if module is in cache\n/******/ \t\tif(installedModules[moduleId])\n/******/ \t\t\treturn installedModules[moduleId].exports;\n\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\texports: {},\n/******/ \t\t\tid: moduleId,\n/******/ \t\t\tloaded: false\n/******/ \t\t};\n\n/******/ \t\t// Execute the module function\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n\n/******/ \t\t// Flag the module as loaded\n/******/ \t\tmodule.loaded = true;\n\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n\n\n/******/ \t// expose the modules object (__webpack_modules__)\n/******/ \t__webpack_require__.m = modules;\n\n/******/ \t// expose the module cache\n/******/ \t__webpack_require__.c = installedModules;\n\n/******/ \t// __webpack_public_path__\n/******/ \t__webpack_require__.p = \"\";\n\n/******/ \t// Load entry module and return exports\n/******/ \treturn __webpack_require__(0);\n/******/ })\n/************************************************************************/\n/******/ ([\n/* 0 */\n/***/ function(module, exports) {\n\n\tvar timerID=null;\n\tvar interval=100;\n\n\tself.onmessage=function(e){\n\t\tif (e.data==\"start\") {\n\t\t\tconsole.log(\"starting\");\n\t\t\ttimerID=setInterval(function(){ postMessage(\"tick\"); },interval)\n\t\t}\n\t\telse if (e.data.interval) {\n\t\t\tinterval=e.data.interval;\n\t\t\tif (timerID) {\n\t\t\t\tclearInterval(timerID);\n\t\t\t\ttimerID=setInterval(function(){postMessage(\"tick\");},interval)\n\t\t\t}\n\t\t}\n\t\telse if (e.data==\"stop\") {\n\t\t\tconsole.log(\"stopping\");\n\t\t\tclearInterval(timerID);\n\t\t\ttimerID=null;\n\t\t}\n\t};\n\n\tpostMessage('worker called');\n\n/***/ }\n/******/ ]);\n//# sourceMappingURL=main.map", __webpack_require__.p + "f32a803771fe39de9f1d.worker.js");
-	};
-
-/***/ },
-
-/***/ 710:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
-	var hover_effect_directive_1 = __webpack_require__(711);
-	var ResumeComponent = (function () {
-	    function ResumeComponent() {
-	    }
-	    ResumeComponent = __decorate([
-	        core_1.Component({
-	            directives: [
-	                router_1.ROUTER_DIRECTIVES,
-	                hover_effect_directive_1.HoverEffectDirective
-	            ],
-	            moduleId: module.id,
-	            selector: 'my-resume',
-	            styles: [
-	                "\n        .resume-wrapper {\n            min-height: 100vh;\n            background-color: #EE4236;\n        }\n        .resume {\n            margin: auto;\n        }\n        "
-	            ],
-	            template: "\n    <div class=\"resume-wrapper\">\n    <img my-hover-effect class=\"img-responsive resume\" src=\"assets/JFRESUME.png\" />\n    </div>\n    ",
-	        }), 
-	        __metadata('design:paramtypes', [])
-	    ], ResumeComponent);
-	    return ResumeComponent;
-	}());
-	exports.ResumeComponent = ResumeComponent;
-	
-
-/***/ },
-
-/***/ 711:
+/***/ 705:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2281,6 +2243,44 @@ webpackJsonp([2],{
 	}());
 	exports.HoverEffectDirective = HoverEffectDirective;
 	
+
+/***/ },
+
+/***/ 708:
+/***/ function(module, exports) {
+
+	// http://stackoverflow.com/questions/10343913/how-to-create-a-web-worker-from-a-string
+
+	var URL = window.URL || window.webkitURL;
+	module.exports = function(content, url) {
+		try {
+			try {
+				var blob;
+				try { // BlobBuilder = Deprecated, but widely implemented
+					var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder;
+					blob = new BlobBuilder();
+					blob.append(content);
+					blob = blob.getBlob();
+				} catch(e) { // The proposed API
+					blob = new Blob([content]);
+				}
+				return new Worker(URL.createObjectURL(blob));
+			} catch(e) {
+				return new Worker('data:application/javascript,' + encodeURIComponent(content));
+			}
+		} catch(e) {
+			return new Worker(url);
+		}
+	}
+
+/***/ },
+
+/***/ 709:
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = function() {
+		return __webpack_require__(708)("/******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n\n/******/ \t\t// Check if module is in cache\n/******/ \t\tif(installedModules[moduleId])\n/******/ \t\t\treturn installedModules[moduleId].exports;\n\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\texports: {},\n/******/ \t\t\tid: moduleId,\n/******/ \t\t\tloaded: false\n/******/ \t\t};\n\n/******/ \t\t// Execute the module function\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n\n/******/ \t\t// Flag the module as loaded\n/******/ \t\tmodule.loaded = true;\n\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n\n\n/******/ \t// expose the modules object (__webpack_modules__)\n/******/ \t__webpack_require__.m = modules;\n\n/******/ \t// expose the module cache\n/******/ \t__webpack_require__.c = installedModules;\n\n/******/ \t// __webpack_public_path__\n/******/ \t__webpack_require__.p = \"\";\n\n/******/ \t// Load entry module and return exports\n/******/ \treturn __webpack_require__(0);\n/******/ })\n/************************************************************************/\n/******/ ([\n/* 0 */\n/***/ function(module, exports) {\n\n\tvar timerID=null;\n\tvar interval=100;\n\n\tself.onmessage=function(e){\n\t\tif (e.data==\"start\") {\n\t\t\tconsole.log(\"starting\");\n\t\t\ttimerID=setInterval(function(){ postMessage(\"tick\"); },interval)\n\t\t}\n\t\telse if (e.data.interval) {\n\t\t\tinterval=e.data.interval;\n\t\t\tif (timerID) {\n\t\t\t\tclearInterval(timerID);\n\t\t\t\ttimerID=setInterval(function(){postMessage(\"tick\");},interval)\n\t\t\t}\n\t\t}\n\t\telse if (e.data==\"stop\") {\n\t\t\tconsole.log(\"stopping\");\n\t\t\tclearInterval(timerID);\n\t\t\ttimerID=null;\n\t\t}\n\t};\n\n\tpostMessage('worker called');\n\n/***/ }\n/******/ ]);\n//# sourceMappingURL=main.map", __webpack_require__.p + "f32a803771fe39de9f1d.worker.js");
+	};
 
 /***/ }
 

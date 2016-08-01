@@ -1,0 +1,18 @@
+.game-start,
+.game-end {
+  padding: 25px 50px 50px 50px; }
+  .game-start .input-group,
+  .game-end .input-group {
+    margin-bottom: 10px; }
+  .game-start .info-text,
+  .game-end .info-text {
+    text-align: center; }
+  .game-start .btn-tile,
+  .game-end .btn-tile {
+    color: white;
+    background-color: #4CAAF5;
+    border: 1px solid #4CAAF5; }
+    .game-start .btn-tile:hover,
+    .game-end .btn-tile:hover {
+      color: #4CAAF5;
+      background-color: white; }
