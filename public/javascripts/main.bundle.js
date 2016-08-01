@@ -5,10 +5,10 @@ webpackJsonp([2],{
 
 	"use strict";
 	var platform_browser_dynamic_1 = __webpack_require__(295);
-	var app_component_1 = __webpack_require__(685);
+	var app_component_1 = __webpack_require__(686);
 	var http_1 = __webpack_require__(287);
 	var common_1 = __webpack_require__(29);
-	var app_routes_1 = __webpack_require__(702);
+	var app_routes_1 = __webpack_require__(703);
 	var forms_1 = __webpack_require__(280);
 	platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
 	    app_routes_1.APP_ROUTER_PROVIDERS,
@@ -146,8 +146,8 @@ webpackJsonp([2],{
 	            directives: [router_1.ROUTER_DIRECTIVES],
 	            moduleId: module.id,
 	            selector: 'my-tictactoe',
-	            styles: [__webpack_require__(471).toString()],
-	            template: __webpack_require__(717),
+	            styles: [__webpack_require__(472).toString()],
+	            template: __webpack_require__(465),
 	            providers: [tictactoe_service_1.TicTacToeService],
 	        }), 
 	        __metadata('design:paramtypes', [])
@@ -234,56 +234,84 @@ webpackJsonp([2],{
 
 /***/ },
 
+/***/ 462:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"game-board\">\n    <span class=\"h4 current-player\">{{currentPlayer.name}}'s Turn</span>\n    <div class=\"board-rows\">\n        <div class=\"board-row\" *ngFor=\"let tileRow of tileBoard; let y = index\">\n            <div *ngFor=\"let tile of tileRow; let x = index\" class=\"board-tile\" (click)=\"setTile(x,y)\">\n                <div [ngClass]=\"{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }\"></div>\n            </div>\n        </div>\n    </div>\n    <div class=\"scoreboard\">\n        <div class=\"player player-one\">\n            <div>{{userOne.name}}</div>\n            <div>Score: {{userOne.score}}</div>\n        </div>\n        <h5 class=\"scoreboard-title\">Score</h5>\n\n        <div class=\"player player-two\">\n            <div>{{userTwo.name}}</div>\n            <div>Score: {{userTwo.score}}</div>\n        </div>   \n        <span class=\"stretch\"></span>     \n    </div>\n</div>\n"
+
+/***/ },
+
+/***/ 463:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"game-end\">\n    <div class=\"info-text\" *ngIf=\"!isTie\">\n        <h2>{{winner.name}} Won!</h2>\n        <h5>Current Score: {{winner.score}}</h5>\n    </div>\n    <div class=\"info-text\" *ngIf='isTie'>\n        <h2>It was a tie!</h2>\n        <h6>Try Again!</h6>\n    </div>\n    <div class=\"btn-group btn-group-justified\" role=\"group\">\n        <div class=\"btn-group\" role=\"group\">\n            <button type=\"button\" (click)=\"playAgain()\" class=\"btn btn-tile\">Play Again!</button>\n        </div>\n        <div class=\"btn-group\" role=\"group\">\n            <button type=\"button\" (click)=\"newGame()\" class=\"btn btn-tile\">New Game</button>\n        </div>\n    </div>\n</div>"
+
+/***/ },
+
+/***/ 464:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"game-start\">\n    <h2>Let's Play Some TicTacToe</h2>\n    <h6>Enter Your Names and Select a Tile</h6>\n    <div class=\"input-group\">\n        <input name=\"userOneName\" [(ngModel)]=\"userOneName\" (change)=\"updateUserOne()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n        <span class=\"input-group-btn\">\n            <button (click)=\"toggleTile()\" class=\"btn btn-tile\">\n                <span *ngIf=\"userOneTileType == 0\">X</span>\n                <span *ngIf=\"userOneTileType == 1\">O</span>\n            </button>\n        </span>\n    </div>\n    <div class=\"input-group\">\n        <input name=\"userTwoName\" [(ngModel)]=\"userTwoName\" (change)=\"updateUserTwo()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n        <span class=\"input-group-btn\">\n            <button (click)=\"toggleTile()\" class=\"btn btn-tile\">\n                <span *ngIf=\"userTwoTileType == 0\">X</span>\n                <span *ngIf=\"userTwoTileType == 1\">O</span>\n            </button>\n        </span>\n    </div>\n    <button (click)=\"gameStart($event)\" class=\"btn btn-block btn-tile\">Start the Game!</button>\n</div>"
+
+/***/ },
+
 /***/ 465:
 /***/ function(module, exports) {
 
-	module.exports = ".spinner {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  height: 50px;\n  width: 50px;\n  border-radius: 30%;\n  border: 5px solid;\n  -webkit-animation: spin 1.2s infinite ease;\n          animation: spin 1.2s infinite ease; }\n\n@-webkit-keyframes spin {\n  0% {\n    border-radius: 0;\n    border-color: #2196F3;\n    background-color: #3F51B5;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  10% {\n    border-color: #03A9F4;\n    background-color: #2196F3; }\n  20% {\n    border-color: #00BCD4;\n    background-color: #03A9F4; }\n  30% {\n    border-color: #009688;\n    background-color: #00BCD4; }\n  40% {\n    border-color: #2196F3;\n    background-color: #009688; }\n  50% {\n    border-color: #CDDC39;\n    border-radius: 50%;\n    background-color: #4CAF50; }\n  60% {\n    border-color: #FFEB3B;\n    background-color: #CDDC39; }\n  70% {\n    border-color: #FFC107;\n    background-color: #FFEB3B; }\n  80% {\n    border-color: #FF9800;\n    background-color: #FFC107; }\n  90% {\n    border-color: #FF5722;\n    background-color: #FF9800; }\n  100% {\n    border-color: #3F51B5;\n    border-radius: 0;\n    background-color: #FF5722;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    border-radius: 0;\n    border-color: #2196F3;\n    background-color: #3F51B5;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  10% {\n    border-color: #03A9F4;\n    background-color: #2196F3; }\n  20% {\n    border-color: #00BCD4;\n    background-color: #03A9F4; }\n  30% {\n    border-color: #009688;\n    background-color: #00BCD4; }\n  40% {\n    border-color: #2196F3;\n    background-color: #009688; }\n  50% {\n    border-color: #CDDC39;\n    border-radius: 50%;\n    background-color: #4CAF50; }\n  60% {\n    border-color: #FFEB3B;\n    background-color: #CDDC39; }\n  70% {\n    border-color: #FFC107;\n    background-color: #FFEB3B; }\n  80% {\n    border-color: #FF9800;\n    background-color: #FFC107; }\n  90% {\n    border-color: #FF5722;\n    background-color: #FF9800; }\n  100% {\n    border-color: #3F51B5;\n    border-radius: 0;\n    background-color: #FF5722;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.fade {\n  -webkit-animation-duration: .7s;\n          animation-duration: .7s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: fade-down;\n          animation-name: fade-down; }\n\n@-webkit-keyframes fade-down {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n            transform: translate3d(0, -2000px, 0); }\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n            transform: none; } }\n\n@keyframes fade-down {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n            transform: translate3d(0, -2000px, 0); }\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n            transform: none; } }\n\n.slide {\n  -webkit-animation-duration: 1s;\n          animation-duration: 1s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: slide-in;\n          animation-name: slide-in; }\n\n@-webkit-keyframes slide-in {\n  from {\n    -webkit-transform: translate3d(500%, 0, 0);\n            transform: translate3d(500%, 0, 0);\n    visibility: visible; }\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0); } }\n\n@keyframes slide-in {\n  from {\n    -webkit-transform: translate3d(500%, 0, 0);\n            transform: translate3d(500%, 0, 0);\n    visibility: visible; }\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0); } }\n\n.row.no-gutters {\n  margin-right: 0;\n  margin-left: 0; }\n  .row.no-gutters > [class^='col-'],\n  .row.no-gutters > [class*=' col-'] {\n    padding-right: 0;\n    padding-left: 0; }\n\n/*\n * Base styles\n */\nbody, p, .p, a, a:hover {\n  color: black;\n  font-size: 1.5rem;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 300;\n  line-height: 1.6;\n  letter-spacing: 1px; }\n\n/*\n * Typography\n */\n.h1, h1,\n.h2,\nh2,\n.h3,\nh3,\n.h4,\nh4,\n.h5,\na.h5,\nh5,\n.h6,\nh6 {\n  font-family: \"Arvo\", serif;\n  font-weight: 700; }\n\n.h1, h1,\n.h2,\nh2 {\n  line-height: 1.1; }\n\n.h3, h3,\n.h4,\nh4 {\n  line-height: 1.3; }\n\n.h1, h1 {\n  font-size: 500%;\n  letter-spacing: -2px; }\n\n.h2, h2 {\n  font-size: 250%;\n  letter-spacing: -1px; }\n\n.h3, h3 {\n  font-size: 200%; }\n\n.h4, h4 {\n  font-size: 180%; }\n\n.h5, a.h5, h5 {\n  font-size: 130%; }\n\n.h6, h6 {\n  font-size: 100%; }\n\na {\n  text-decoration: none; }\n  a:hover {\n    text-decoration: none; }\n\n.text-left {\n  text-align: left   !important; }\n\n.text-center {\n  text-align: center !important; }\n\n.text-right {\n  text-align: right  !important; }\n\n.small-text__project {\n  font-size: 90%;\n  text-transform: uppercase;\n  letter-spacing: 2px; }\n\n.menu {\n  padding-right: 5px; }\n\n.text-inactive {\n  color: black;\n  opacity: .4; }\n\n#calculator {\n  background-color: #f0ede6;\n  border: 0.1px solid #ddd6c6;\n  border-radius: 10px;\n  height: 120px;\n  margin-left: auto;\n  margin-right: auto;\n  position: relative;\n  width: 100px; }\n  #calculator::after {\n    background-image: -webkit-linear-gradient(top, rgba(211, 211, 211, 0.5) 5%, #f6eddc 60%);\n    background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 5%, #f6eddc 60%);\n    border: 0.5px solid #ddd6c6;\n    border-radius: 3px;\n    content: '307';\n    display: block;\n    font-family: 'Share Tech Mono', monospace;\n    font-size: 15px;\n    height: 25px;\n    left: 9px;\n    line-height: 27px;\n    position: absolute;\n    text-indent: 48px;\n    top: 12px;\n    width: 80px; }\n  #calculator::before {\n    background-color: #f7f4ef;\n    border: 0.1px solid #ddd6c6;\n    border-radius: 3px;\n    box-shadow: 29px 0 0 -1px #f7f4ef, 29px 0 0 0 #ddd6c6, 58px 0 0 -1px #f7f4ef, 58px 0 0 0 #ddd6c6, 0 22px 0 -1px #f7f4ef, 0 22px 0 0 #ddd6c6, 29px 22px 0 -1px #f7f4ef, 29px 22px 0 0 #ddd6c6, 58px 22px 0 -1px #f7f4ef, 58px 22px 0 0 #ddd6c6, 0 44px 0 -1px #f7f4ef, 0 44px 0 0 #ddd6c6, 29px 44px 0 -1px #f7f4ef, 29px 44px 0 0 #ddd6c6, 58px 44px 0 -1px #f7f4ef, 58px 44px 0 0 #ddd6c6;\n    content: '';\n    display: block;\n    height: 15px;\n    left: 9px;\n    position: absolute;\n    top: 49px;\n    width: 24px; }\n\n.project-description {\n  position: relative;\n  max-width: 500px;\n  margin: auto;\n  margin-top: 150px; }\n\n.github-link {\n  color: blue; }\n  .github-link:after {\n    content: \"\";\n    position: relative;\n    top: -6px;\n    background: url(https://github.com/favicon.ico) no-repeat 0 0;\n    background-size: 100% 100%;\n    width: 12px;\n    display: inline-block;\n    height: 12px; }\n"
+	module.exports = "<div class=\"tictactoe-wrapper\">\n    <div class=\"tictactoe fade\">\n        <router-outlet></router-outlet>\n    </div>\n\n    <div class=\"project-description\">\n        <h3>A TicTacToe Game That Keeps Track Of The Score</h3>\n        <pre>\n            <code>\n        FILE TREE:\n\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/tree/master/app/projects/tictactoe\">tictactoe/</a>\n        ----- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/tictactoe.component.ts\">tictactoe.component.ts</a>\n        ----- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/tictactoe.component.html\">tictactoe.component.html</a>\n        ----- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/tictactoe.routes.ts\">tictactoe.routes.ts</a>\n        ----- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/tictactoe.service.ts\">tictactoe.service.ts</a>\n        ----- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/tictactoe.service.spec.ts\">tictactoe.service.spec.ts</a>\n\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/tree/master/app/projects/tictactoe/setup\">setup/</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/setup/setup.component.html\">setup.component.html</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/setup/setup.component.ts\">setup.component.ts</a>\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/tree/master/app/projects/tictactoe/board\">board/</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/board/board.component.ts\">board.component.ts</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/board/board.component.spec.ts\">board.component.spec.ts</a>    \n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/board/board.component.html\">board.component.html</a>              \n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/tree/master/app/projects/tictactoe/end\">end/</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/end/end.component.ts\">end.component.ts</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/end/end.component.html\">end.component.html</a>           \n\n        SCSS FILES:\n\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/scss/projects/tictactoe/tictactoe.scss\">tictactoe.scss</a>\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/scss/projects/tictactoe/tictactoe-board.scss\">tictactoe-board.scss</a>\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/scss/projects/tictactoe/tictactoe-setup-end.scss\">tictactoe-setup-end.scss</a>\n          </code>\n        </pre>\n    </div>\n    \n</div>"
 
 /***/ },
 
 /***/ 466:
 /***/ function(module, exports) {
 
-	module.exports = "body {\n  margin-top: 0; }\n\n.home-container {\n  min-height: 100vh;\n  background-color: #EE4236;\n  color: white;\n  overflow-X: hidden;\n  -webkit-transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44);\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\np {\n  color: white; }\n\n.project-container {\n  position: relative;\n  top: 150px;\n  margin-left: 75px;\n  margin-right: 50px;\n  max-width: 500px;\n  border-left: .5px solid white;\n  -webkit-transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44);\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.project-description {\n  margin-left: 25px;\n  margin-bottom: 25px; }\n\n.project-container-heading {\n  color: white;\n  padding-left: 25px; }\n\n.project-groups {\n  color: white;\n  max-height: 40vh;\n  overflow-y: scroll;\n  margin-bottom: 0;\n  -webkit-transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44);\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.project-group {\n  color: white;\n  position: relative;\n  margin-top: 15px;\n  cursor: pointer; }\n\n.project-group-heading {\n  color: white;\n  margin-bottom: 0;\n  padding-bottom: 0; }\n\n.project-group-number {\n  color: white;\n  float: left;\n  padding-right: 20px;\n  padding-top: 18px;\n  padding-bottom: 25px;\n  padding-left: 25px; }\n\n.project-group-caption {\n  color: white;\n  padding-top: 0;\n  margin-top: 0; }\n\n.single-div-container {\n  position: absolute;\n  top: 50vh;\n  right: 200px;\n  -webkit-transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44);\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.single-div__calculator {\n  position: relative;\n  bottom: 15vh;\n  height: 500px;\n  right: 150px;\n  -webkit-transform: scale(2);\n          transform: scale(2); }\n\n.sequencer-image {\n  position: relative;\n  bottom: 20vh;\n  right: 5;\n  width: 400px; }\n\n.tictactoe-image {\n  position: relative;\n  bottom: 20vh;\n  right: 125px;\n  width: 200px; }\n\n.active-image {\n  display: block; }\n\n.inactive-image {\n  display: none; }\n\n@media (max-width: 1150px) and (min-width: 950px) {\n  .project-container {\n    margin-left: 75px; }\n  .single-div-container {\n    right: 150px; }\n  .single-div__calculator {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3); }\n  .sequencer-image {\n    right: -10vh;\n    width: 300px; }\n  .tictactoe-image {\n    position: relative;\n    bottom: 20vh;\n    right: 0;\n    width: 170px; } }\n\n@media (max-width: 950px) {\n  .project-container {\n    margin-left: 50px; }\n  .single-div-container {\n    position: relative;\n    right: auto;\n    margin: 0 auto;\n    top: 100px; }\n  .single-div__calculator {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n    bottom: 45px;\n    right: auto;\n    left: auto; }\n  .sequencer-image {\n    bottom: 15px;\n    right: auto;\n    display: block;\n    margin: 0 auto;\n    width: 200px; }\n  .tictactoe-image {\n    bottom: 40px;\n    right: auto;\n    display: block;\n    margin: 0 auto;\n    width: 125px; }\n  .project-groups {\n    max-height: 200px; } }\n\n@media (max-width: 450px) {\n  .project-groups {\n    max-height: 300px;\n    margin-bottom: 100px; } }\n"
+	module.exports = ".spinner {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  height: 50px;\n  width: 50px;\n  border-radius: 30%;\n  border: 5px solid;\n  -webkit-animation: spin 1.2s infinite ease;\n          animation: spin 1.2s infinite ease; }\n\n@-webkit-keyframes spin {\n  0% {\n    border-radius: 0;\n    border-color: #2196F3;\n    background-color: #3F51B5;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  10% {\n    border-color: #03A9F4;\n    background-color: #2196F3; }\n  20% {\n    border-color: #00BCD4;\n    background-color: #03A9F4; }\n  30% {\n    border-color: #009688;\n    background-color: #00BCD4; }\n  40% {\n    border-color: #2196F3;\n    background-color: #009688; }\n  50% {\n    border-color: #CDDC39;\n    border-radius: 50%;\n    background-color: #4CAF50; }\n  60% {\n    border-color: #FFEB3B;\n    background-color: #CDDC39; }\n  70% {\n    border-color: #FFC107;\n    background-color: #FFEB3B; }\n  80% {\n    border-color: #FF9800;\n    background-color: #FFC107; }\n  90% {\n    border-color: #FF5722;\n    background-color: #FF9800; }\n  100% {\n    border-color: #3F51B5;\n    border-radius: 0;\n    background-color: #FF5722;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    border-radius: 0;\n    border-color: #2196F3;\n    background-color: #3F51B5;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  10% {\n    border-color: #03A9F4;\n    background-color: #2196F3; }\n  20% {\n    border-color: #00BCD4;\n    background-color: #03A9F4; }\n  30% {\n    border-color: #009688;\n    background-color: #00BCD4; }\n  40% {\n    border-color: #2196F3;\n    background-color: #009688; }\n  50% {\n    border-color: #CDDC39;\n    border-radius: 50%;\n    background-color: #4CAF50; }\n  60% {\n    border-color: #FFEB3B;\n    background-color: #CDDC39; }\n  70% {\n    border-color: #FFC107;\n    background-color: #FFEB3B; }\n  80% {\n    border-color: #FF9800;\n    background-color: #FFC107; }\n  90% {\n    border-color: #FF5722;\n    background-color: #FF9800; }\n  100% {\n    border-color: #3F51B5;\n    border-radius: 0;\n    background-color: #FF5722;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.fade {\n  -webkit-animation-duration: .7s;\n          animation-duration: .7s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: fade-down;\n          animation-name: fade-down; }\n\n@-webkit-keyframes fade-down {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n            transform: translate3d(0, -2000px, 0); }\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n            transform: none; } }\n\n@keyframes fade-down {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n            transform: translate3d(0, -2000px, 0); }\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n            transform: none; } }\n\n.slide {\n  -webkit-animation-duration: 1s;\n          animation-duration: 1s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: slide-in;\n          animation-name: slide-in; }\n\n@-webkit-keyframes slide-in {\n  from {\n    -webkit-transform: translate3d(500%, 0, 0);\n            transform: translate3d(500%, 0, 0);\n    visibility: visible; }\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0); } }\n\n@keyframes slide-in {\n  from {\n    -webkit-transform: translate3d(500%, 0, 0);\n            transform: translate3d(500%, 0, 0);\n    visibility: visible; }\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0); } }\n\n.row.no-gutters {\n  margin-right: 0;\n  margin-left: 0; }\n  .row.no-gutters > [class^='col-'],\n  .row.no-gutters > [class*=' col-'] {\n    padding-right: 0;\n    padding-left: 0; }\n\n/*\n * Base styles\n */\nbody, p, .p, a, a:hover {\n  color: black;\n  font-size: 1.5rem;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 300;\n  line-height: 1.6;\n  letter-spacing: 1px; }\n\n/*\n * Typography\n */\n.h1, h1,\n.h2,\nh2,\n.h3,\nh3,\n.h4,\nh4,\n.h5,\na.h5,\nh5,\n.h6,\nh6 {\n  font-family: \"Arvo\", serif;\n  font-weight: 700; }\n\n.h1, h1,\n.h2,\nh2 {\n  line-height: 1.1; }\n\n.h3, h3,\n.h4,\nh4 {\n  line-height: 1.3; }\n\n.h1, h1 {\n  font-size: 500%;\n  letter-spacing: -2px; }\n\n.h2, h2 {\n  font-size: 250%;\n  letter-spacing: -1px; }\n\n.h3, h3 {\n  font-size: 200%; }\n\n.h4, h4 {\n  font-size: 180%; }\n\n.h5, a.h5, h5 {\n  font-size: 130%; }\n\n.h6, h6 {\n  font-size: 100%; }\n\na {\n  text-decoration: none; }\n  a:hover {\n    text-decoration: none; }\n\n.text-left {\n  text-align: left   !important; }\n\n.text-center {\n  text-align: center !important; }\n\n.text-right {\n  text-align: right  !important; }\n\n.small-text__project {\n  font-size: 90%;\n  text-transform: uppercase;\n  letter-spacing: 2px; }\n\n.menu {\n  padding-right: 5px; }\n\n.text-inactive {\n  color: black;\n  opacity: .4; }\n\n#calculator {\n  background-color: #f0ede6;\n  border: 0.1px solid #ddd6c6;\n  border-radius: 10px;\n  height: 120px;\n  margin-left: auto;\n  margin-right: auto;\n  position: relative;\n  width: 100px; }\n  #calculator::after {\n    background-image: -webkit-linear-gradient(top, rgba(211, 211, 211, 0.5) 5%, #f6eddc 60%);\n    background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 5%, #f6eddc 60%);\n    border: 0.5px solid #ddd6c6;\n    border-radius: 3px;\n    content: '307';\n    display: block;\n    font-family: 'Share Tech Mono', monospace;\n    font-size: 15px;\n    height: 25px;\n    left: 9px;\n    line-height: 27px;\n    position: absolute;\n    text-indent: 48px;\n    top: 12px;\n    width: 80px; }\n  #calculator::before {\n    background-color: #f7f4ef;\n    border: 0.1px solid #ddd6c6;\n    border-radius: 3px;\n    box-shadow: 29px 0 0 -1px #f7f4ef, 29px 0 0 0 #ddd6c6, 58px 0 0 -1px #f7f4ef, 58px 0 0 0 #ddd6c6, 0 22px 0 -1px #f7f4ef, 0 22px 0 0 #ddd6c6, 29px 22px 0 -1px #f7f4ef, 29px 22px 0 0 #ddd6c6, 58px 22px 0 -1px #f7f4ef, 58px 22px 0 0 #ddd6c6, 0 44px 0 -1px #f7f4ef, 0 44px 0 0 #ddd6c6, 29px 44px 0 -1px #f7f4ef, 29px 44px 0 0 #ddd6c6, 58px 44px 0 -1px #f7f4ef, 58px 44px 0 0 #ddd6c6;\n    content: '';\n    display: block;\n    height: 15px;\n    left: 9px;\n    position: absolute;\n    top: 49px;\n    width: 24px; }\n\n.project-description {\n  position: relative;\n  max-width: 500px;\n  margin: auto;\n  margin-top: 150px; }\n\n.github-link {\n  color: blue; }\n  .github-link:after {\n    content: \"\";\n    position: relative;\n    top: -6px;\n    background: url(https://github.com/favicon.ico) no-repeat 0 0;\n    background-size: 100% 100%;\n    width: 12px;\n    display: inline-block;\n    height: 12px; }\n"
 
 /***/ },
 
 /***/ 467:
 /***/ function(module, exports) {
 
-	module.exports = ".project .navigation-logo,\n.project .navigation-menu,\n.home .navigation-logo,\n.home .navigation-menu {\n  position: fixed;\n  top: 50px;\n  -webkit-transition: all 0.6s cubic-bezier(0.87, -0.41, 0.19, 1.44);\n  transition: all 0.6s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.project .navigation-menu,\n.home .navigation-menu {\n  right: 100px;\n  top: 55px; }\n  .project .navigation-menu span,\n  .home .navigation-menu span {\n    color: white; }\n    .project .navigation-menu span a,\n    .home .navigation-menu span a {\n      color: white; }\n\n.project .navigation-logo,\n.home .navigation-logo {\n  color: white;\n  left: 75px; }\n\n@media (max-width: 850px) {\n  .project .navigation-menu,\n  .home .navigation-menu {\n    left: 75px;\n    top: 75px; } }\n\n@media (max-width: 850px) {\n  .home .navigation-logo {\n    -webkit-transform: rotate(90deg);\n            transform: rotate(90deg);\n    left: -40px;\n    top: 110px; }\n  .home .navigation-menu {\n    -webkit-transform: rotate(90deg);\n            transform: rotate(90deg);\n    left: -57px;\n    right: auto;\n    top: 125px; } }\n"
+	module.exports = "body {\n  margin-top: 0; }\n\n.home-container {\n  min-height: 100vh;\n  background-color: #EE4236;\n  color: white;\n  overflow-X: hidden;\n  -webkit-transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44);\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\np {\n  color: white; }\n\n.project-container {\n  position: relative;\n  top: 150px;\n  margin-left: 75px;\n  margin-right: 50px;\n  max-width: 500px;\n  border-left: .5px solid white;\n  -webkit-transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44);\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.project-description {\n  margin-left: 25px;\n  margin-bottom: 25px; }\n\n.project-container-heading {\n  color: white;\n  padding-left: 25px; }\n\n.project-groups {\n  color: white;\n  max-height: 40vh;\n  overflow-y: scroll;\n  margin-bottom: 0;\n  -webkit-transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44);\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.project-group {\n  color: white;\n  position: relative;\n  margin-top: 15px;\n  cursor: pointer; }\n\n.project-group-heading {\n  color: white;\n  margin-bottom: 0;\n  padding-bottom: 0; }\n\n.project-group-number {\n  color: white;\n  float: left;\n  padding-right: 20px;\n  padding-top: 18px;\n  padding-bottom: 25px;\n  padding-left: 25px; }\n\n.project-group-caption {\n  color: white;\n  padding-top: 0;\n  margin-top: 0; }\n\n.single-div-container {\n  position: absolute;\n  top: 50vh;\n  right: 200px;\n  -webkit-transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44);\n  transition: all 0.2s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.single-div__calculator {\n  position: relative;\n  bottom: 15vh;\n  height: 500px;\n  right: 150px;\n  -webkit-transform: scale(2);\n          transform: scale(2); }\n\n.sequencer-image {\n  position: relative;\n  bottom: 20vh;\n  right: 5;\n  width: 400px; }\n\n.tictactoe-image {\n  position: relative;\n  bottom: 20vh;\n  right: 125px;\n  width: 200px; }\n\n.active-image {\n  display: block; }\n\n.inactive-image {\n  display: none; }\n\n@media (max-width: 1150px) and (min-width: 950px) {\n  .project-container {\n    margin-left: 75px; }\n  .single-div-container {\n    right: 150px; }\n  .single-div__calculator {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3); }\n  .sequencer-image {\n    right: -10vh;\n    width: 300px; }\n  .tictactoe-image {\n    position: relative;\n    bottom: 20vh;\n    right: 0;\n    width: 170px; } }\n\n@media (max-width: 950px) {\n  .project-container {\n    margin-left: 50px; }\n  .single-div-container {\n    position: relative;\n    right: auto;\n    margin: 0 auto;\n    top: 100px; }\n  .single-div__calculator {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n    bottom: 45px;\n    right: auto;\n    left: auto; }\n  .sequencer-image {\n    bottom: 15px;\n    right: auto;\n    display: block;\n    margin: 0 auto;\n    width: 200px; }\n  .tictactoe-image {\n    bottom: 40px;\n    right: auto;\n    display: block;\n    margin: 0 auto;\n    width: 125px; }\n  .project-groups {\n    max-height: 200px; } }\n\n@media (max-width: 450px) {\n  .project-groups {\n    max-height: 300px;\n    margin-bottom: 100px; } }\n"
 
 /***/ },
 
 /***/ 468:
 /***/ function(module, exports) {
 
-	module.exports = "input[type='number']::-webkit-inner-spin-button,\ninput[type='number']::-webkit-outer-spin-button {\n  -webkit-appearance: none;\n  margin: 0; }\n\n.calc {\n  min-height: 100%;\n  overflow: hidden;\n  background-color: #8EDB37; }\n  .calc div,\n  .calc p {\n    font-family: 'Share Tech Mono', monospace;\n    font-size: 15px;\n    margin: 0; }\n  .calc .calculator {\n    background-color: #f0ede6;\n    border: 0.5px solid #cabfa6;\n    border-radius: 10px;\n    margin-top: 125px;\n    margin-left: auto;\n    margin-right: auto;\n    max-width: 350px;\n    min-width: 350px;\n    padding: 15px;\n    position: relative; }\n  .calc .button-group {\n    margin-top: 9px; }\n  .calc .button {\n    background-color: #f7f4ef;\n    border: 0.5px solid #cabfa6;\n    border-radius: 5px;\n    box-shadow: 0 2px 3px #ddd6c6;\n    color: #000;\n    display: table;\n    margin: 9px 8px;\n    margin-left: auto;\n    margin-right: auto;\n    min-height: 40px;\n    padding-bottom: 10%;\n    position: relative;\n    text-align: center;\n    width: 80%; }\n    .calc .button:hover {\n      background-color: #ded1bc;\n      cursor: hand; }\n    .calc .button.display {\n      background-image: -webkit-linear-gradient(top, rgba(211, 211, 211, 0.5) 10%, #fff 25%);\n      background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 10%, #fff 25%);\n      border-width: .5px;\n      color: #000;\n      cursor: text;\n      font-size: 30px;\n      height: 80px;\n      min-height: 30px;\n      padding: 15px;\n      text-align: right;\n      width: 95%; }\n      .calc .button.display::-moz-selection {\n        background: #e57c46;\n        color: #f7f4ef; }\n      .calc .button.display::selection {\n        background: #e57c46;\n        color: #f7f4ef; }\n    .calc .button.operator {\n      font-size: 20px; }\n      .calc .button.operator .button-content {\n        top: 7px; }\n    .calc .button.equals {\n      background-color: #888b98;\n      color: #f7f4ef; }\n      .calc .button.equals:hover {\n        background-color: #626571; }\n    .calc .button.clear {\n      background-color: #e57c46;\n      color: #f7f4ef; }\n      .calc .button.clear:hover {\n        background-color: #c3541b; }\n    .calc .button.double-button {\n      width: 90%; }\n    .calc .button .button-content {\n      position: relative;\n      top: 9px; }\n  .calc .calc-btn {\n    width: 100%;\n    background-color: #f7f4ef;\n    color: #000; }\n  .calc .project-description {\n    position: relative;\n    max-width: 500px;\n    margin: auto;\n    margin-top: 150px; }\n"
+	module.exports = ".project .navigation-logo,\n.project .navigation-menu,\n.home .navigation-logo,\n.home .navigation-menu {\n  position: fixed;\n  top: 50px;\n  -webkit-transition: all 0.6s cubic-bezier(0.87, -0.41, 0.19, 1.44);\n  transition: all 0.6s cubic-bezier(0.87, -0.41, 0.19, 1.44); }\n\n.project .navigation-menu,\n.home .navigation-menu {\n  right: 100px;\n  top: 55px; }\n  .project .navigation-menu span,\n  .home .navigation-menu span {\n    color: white; }\n    .project .navigation-menu span a,\n    .home .navigation-menu span a {\n      color: white; }\n\n.project .navigation-logo,\n.home .navigation-logo {\n  color: white;\n  left: 75px; }\n\n@media (max-width: 850px) {\n  .project .navigation-menu,\n  .home .navigation-menu {\n    left: 75px;\n    top: 75px; } }\n\n@media (max-width: 850px) {\n  .home .navigation-logo {\n    -webkit-transform: rotate(90deg);\n            transform: rotate(90deg);\n    left: -40px;\n    top: 110px; }\n  .home .navigation-menu {\n    -webkit-transform: rotate(90deg);\n            transform: rotate(90deg);\n    left: -57px;\n    right: auto;\n    top: 125px; } }\n"
 
 /***/ },
 
 /***/ 469:
 /***/ function(module, exports) {
 
-	module.exports = ".drum-machine-wrapper {\n  min-height: 100%;\n  overflow: hidden;\n  background-color: #36D2C7; }\n\n#drum {\n  position: relative;\n  display: block;\n  margin: auto;\n  left: 0;\n  top: 30;\n  height: 100%;\n  width: 100%; }\n\n.browser-note {\n  color: white;\n  text-align: center;\n  margin-top: 15px; }\n"
+	module.exports = "input[type='number']::-webkit-inner-spin-button,\ninput[type='number']::-webkit-outer-spin-button {\n  -webkit-appearance: none;\n  margin: 0; }\n\n.calc {\n  min-height: 100%;\n  overflow: hidden;\n  background-color: #8EDB37; }\n  .calc div,\n  .calc p {\n    font-family: 'Share Tech Mono', monospace;\n    font-size: 15px;\n    margin: 0; }\n  .calc .calculator {\n    background-color: #f0ede6;\n    border: 0.5px solid #cabfa6;\n    border-radius: 10px;\n    margin-top: 125px;\n    margin-left: auto;\n    margin-right: auto;\n    max-width: 350px;\n    min-width: 350px;\n    padding: 15px;\n    position: relative; }\n  .calc .button-group {\n    margin-top: 9px; }\n  .calc .button {\n    background-color: #f7f4ef;\n    border: 0.5px solid #cabfa6;\n    border-radius: 5px;\n    box-shadow: 0 2px 3px #ddd6c6;\n    color: #000;\n    display: table;\n    margin: 9px 8px;\n    margin-left: auto;\n    margin-right: auto;\n    min-height: 40px;\n    padding-bottom: 10%;\n    position: relative;\n    text-align: center;\n    width: 80%; }\n    .calc .button:hover {\n      background-color: #ded1bc;\n      cursor: hand; }\n    .calc .button.display {\n      background-image: -webkit-linear-gradient(top, rgba(211, 211, 211, 0.5) 10%, #fff 25%);\n      background-image: linear-gradient(to bottom, rgba(211, 211, 211, 0.5) 10%, #fff 25%);\n      border-width: .5px;\n      color: #000;\n      cursor: text;\n      font-size: 30px;\n      height: 80px;\n      min-height: 30px;\n      padding: 15px;\n      text-align: right;\n      width: 95%; }\n      .calc .button.display::-moz-selection {\n        background: #e57c46;\n        color: #f7f4ef; }\n      .calc .button.display::selection {\n        background: #e57c46;\n        color: #f7f4ef; }\n    .calc .button.operator {\n      font-size: 20px; }\n      .calc .button.operator .button-content {\n        top: 7px; }\n    .calc .button.equals {\n      background-color: #888b98;\n      color: #f7f4ef; }\n      .calc .button.equals:hover {\n        background-color: #626571; }\n    .calc .button.clear {\n      background-color: #e57c46;\n      color: #f7f4ef; }\n      .calc .button.clear:hover {\n        background-color: #c3541b; }\n    .calc .button.double-button {\n      width: 90%; }\n    .calc .button .button-content {\n      position: relative;\n      top: 9px; }\n  .calc .calc-btn {\n    width: 100%;\n    background-color: #f7f4ef;\n    color: #000; }\n  .calc .project-description {\n    position: relative;\n    max-width: 500px;\n    margin: auto;\n    margin-top: 150px; }\n"
 
 /***/ },
 
 /***/ 470:
 /***/ function(module, exports) {
 
-	module.exports = ".game-board {\n  position: relative;\n  top: 15px; }\n  .game-board .current-player {\n    padding: 25px; }\n  .game-board .board-rows {\n    position: relative;\n    top: 12px; }\n    .game-board .board-rows .board-row {\n      position: relative;\n      margin-left: auto;\n      margin-right: auto;\n      margin-bottom: 5px;\n      height: 100px;\n      width: 300px; }\n      .game-board .board-rows .board-row .board-tile {\n        position: relative;\n        height: 90px;\n        width: 90px;\n        margin-left: 5px;\n        margin-right: 5px;\n        display: inline-block;\n        background-color: #4CAAF5; }\n  .game-board .scoreboard {\n    width: 270px;\n    text-align: justify;\n    margin-top: 20px;\n    margin-left: auto;\n    margin-right: auto;\n    padding-bottom: 20px; }\n    .game-board .scoreboard .scoreboard-title {\n      display: inline-block;\n      -webkit-transform: translate(0, -50%);\n              transform: translate(0, -50%); }\n    .game-board .scoreboard .player {\n      display: inline-block; }\n    .game-board .scoreboard .player-two {\n      text-align: right; }\n    .game-board .scoreboard .stretch {\n      width: 100%;\n      display: inline-block;\n      font-size: 0;\n      line-height: 0; }\n\n.x {\n  position: relative;\n  margin: auto;\n  top: 40px;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n  width: 50px;\n  opacity: 1;\n  border-top: solid white 3px;\n  -webkit-animation: x-in .5s 1 ease-in-out;\n          animation: x-in .5s 1 ease-in-out; }\n  .x::after {\n    content: '';\n    display: block;\n    position: relative;\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n    width: 50px;\n    opacity: 1;\n    border-top: solid white 3px; }\n\n@-webkit-keyframes x-in {\n  0% {\n    opacity: 0;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); }\n  100% {\n    opacity: 1;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); } }\n\n@keyframes x-in {\n  0% {\n    opacity: 0;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); }\n  100% {\n    opacity: 1;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); } }\n\n.o {\n  position: relative;\n  margin: auto;\n  top: 20px;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  border: 3px solid white;\n  -webkit-animation: o-in .5s 1 ease-in-out;\n          animation: o-in .5s 1 ease-in-out; }\n\n@-webkit-keyframes o-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n    border-top-color: white; }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n    border-left-color: white; } }\n\n@keyframes o-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n    border-top-color: white; }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n    border-left-color: white; } }\n"
+	module.exports = ".drum-machine-wrapper {\n  min-height: 100%;\n  overflow: hidden;\n  background-color: #36D2C7; }\n\n#drum {\n  position: relative;\n  display: block;\n  margin: auto;\n  left: 0;\n  top: 30;\n  height: 100%;\n  width: 100%; }\n\n.browser-note {\n  color: white;\n  text-align: center;\n  margin-top: 15px; }\n"
 
 /***/ },
 
 /***/ 471:
 /***/ function(module, exports) {
 
+	module.exports = ".game-board {\n  position: relative;\n  top: 15px; }\n  .game-board .current-player {\n    padding: 25px; }\n  .game-board .board-rows {\n    position: relative;\n    top: 12px; }\n    .game-board .board-rows .board-row {\n      position: relative;\n      margin-left: auto;\n      margin-right: auto;\n      margin-bottom: 5px;\n      height: 100px;\n      width: 300px; }\n      .game-board .board-rows .board-row .board-tile {\n        position: relative;\n        height: 90px;\n        width: 90px;\n        margin-left: 5px;\n        margin-right: 5px;\n        display: inline-block;\n        background-color: #4CAAF5; }\n  .game-board .scoreboard {\n    width: 270px;\n    text-align: justify;\n    margin-top: 20px;\n    margin-left: auto;\n    margin-right: auto;\n    padding-bottom: 20px; }\n    .game-board .scoreboard .scoreboard-title {\n      display: inline-block;\n      -webkit-transform: translate(0, -50%);\n              transform: translate(0, -50%); }\n    .game-board .scoreboard .player {\n      display: inline-block; }\n    .game-board .scoreboard .player-two {\n      text-align: right; }\n    .game-board .scoreboard .stretch {\n      width: 100%;\n      display: inline-block;\n      font-size: 0;\n      line-height: 0; }\n\n.x {\n  position: relative;\n  margin: auto;\n  top: 40px;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n  width: 50px;\n  opacity: 1;\n  border-top: solid white 3px;\n  -webkit-animation: x-in .5s 1 ease-in-out;\n          animation: x-in .5s 1 ease-in-out; }\n  .x::after {\n    content: '';\n    display: block;\n    position: relative;\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n    width: 50px;\n    opacity: 1;\n    border-top: solid white 3px; }\n\n@-webkit-keyframes x-in {\n  0% {\n    opacity: 0;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); }\n  100% {\n    opacity: 1;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); } }\n\n@keyframes x-in {\n  0% {\n    opacity: 0;\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); }\n  100% {\n    opacity: 1;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); } }\n\n.o {\n  position: relative;\n  margin: auto;\n  top: 20px;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  border: 3px solid white;\n  -webkit-animation: o-in .5s 1 ease-in-out;\n          animation: o-in .5s 1 ease-in-out; }\n\n@-webkit-keyframes o-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n    border-top-color: white; }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n    border-left-color: white; } }\n\n@keyframes o-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n    border-top-color: white; }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n    border-left-color: white; } }\n"
+
+/***/ },
+
+/***/ 472:
+/***/ function(module, exports) {
+
 	module.exports = ".tictactoe-wrapper {\n  min-height: 100%;\n  overflow: hidden;\n  background-color: #FFAF27; }\n\n.tictactoe {\n  position: relative;\n  top: 50px;\n  max-width: 320px;\n  min-height: 250px;\n  margin-left: auto;\n  margin-right: auto;\n  border-radius: 25px;\n  background-color: white; }\n"
 
 /***/ },
 
-/***/ 685:
+/***/ 686:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -298,7 +326,7 @@ webpackJsonp([2],{
 	};
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(30);
-	var nav_component_1 = __webpack_require__(687);
+	var nav_component_1 = __webpack_require__(688);
 	var core_2 = __webpack_require__(1);
 	var AppComponent = (function () {
 	    function AppComponent() {
@@ -312,7 +340,7 @@ webpackJsonp([2],{
 	            encapsulation: core_2.ViewEncapsulation.None,
 	            moduleId: module.id,
 	            selector: 'my-app',
-	            styles: [__webpack_require__(465).toString()],
+	            styles: [__webpack_require__(466).toString()],
 	            template: "\n    <my-nav></my-nav>\n    <router-outlet></router-outlet>\n    ",
 	        }), 
 	        __metadata('design:paramtypes', [])
@@ -324,7 +352,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 686:
+/***/ 687:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -359,7 +387,7 @@ webpackJsonp([2],{
 	            moduleId: module.id,
 	            providers: [nav_title_service_1.NavTitleService],
 	            selector: 'my-home',
-	            styles: [__webpack_require__(466).toString()],
+	            styles: [__webpack_require__(467).toString()],
 	            template: __webpack_require__(459)
 	        }), 
 	        __metadata('design:paramtypes', [router_1.Router])
@@ -394,7 +422,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 687:
+/***/ 688:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -431,8 +459,8 @@ webpackJsonp([2],{
 	            moduleId: module.id,
 	            providers: [nav_title_service_1.NavTitleService],
 	            selector: 'my-nav',
-	            styles: [__webpack_require__(467).toString()],
-	            template: "\n    <nav [ngClass]=\"{\n    'home':                     routeName === 'Joey Farina', \n    'project':                  routeName !== 'Joey Farina'\n    }\">\n        <div [ngClass]=\"{ 'fade':  isNewRoute }\">\n                <a class=\"h5 navigation-logo\" routerLink='/'> {{routeName | uppercase}}</a>\n            <div class=\"navigation-menu\">\n                <span class=\"p menu-item\">RESUME</span>\n                <span class=\"p menu-item\"><a href=\"mailto:jrf61194@gmail.com\">CONTACT</a></span>\n            </div>\n        </div>\n    </nav>\n    "
+	            styles: [__webpack_require__(468).toString()],
+	            template: "\n    <nav [ngClass]=\"{\n    'home':                     routeName === 'Joey Farina', \n    'project':                  routeName !== 'Joey Farina'\n    }\">\n        <div [ngClass]=\"{ 'fade':  isNewRoute }\">\n                <a class=\"h5 navigation-logo\" routerLink='/'> {{routeName | uppercase}}</a>\n            <div class=\"navigation-menu\">\n                <a class=\"p menu-item\" routerLink='resume'>RESUME</a>\n                <span class=\"p menu-item\"><a href=\"mailto:jrf61194@gmail.com\">CONTACT</a></span>\n            </div>\n        </div>\n    </nav>\n    "
 	        }), 
 	        __metadata('design:paramtypes', [nav_title_service_1.NavTitleService, router_1.Router])
 	    ], NavComponent);
@@ -443,7 +471,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 688:
+/***/ 689:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -553,7 +581,7 @@ webpackJsonp([2],{
 	            directives: [router_1.ROUTER_DIRECTIVES],
 	            moduleId: module.id,
 	            selector: 'my-calculator',
-	            styles: [__webpack_require__(468).toString()],
+	            styles: [__webpack_require__(469).toString()],
 	            template: __webpack_require__(460)
 	        }), 
 	        __metadata('design:paramtypes', [])
@@ -565,7 +593,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 689:
+/***/ 690:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -817,7 +845,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 690:
+/***/ 691:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -910,7 +938,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 691:
+/***/ 692:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -967,7 +995,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 692:
+/***/ 693:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1079,7 +1107,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 693:
+/***/ 694:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1181,7 +1209,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 694:
+/***/ 695:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1288,7 +1316,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 695:
+/***/ 696:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1373,7 +1401,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 696:
+/***/ 697:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1387,14 +1415,14 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var drum_machine_service_1 = __webpack_require__(697);
-	var SEQUENCER_LINEUP_1 = __webpack_require__(689);
-	var knobs_directive_1 = __webpack_require__(694);
-	var beat_selector_directive_1 = __webpack_require__(690);
-	var instrument_selector_directive_1 = __webpack_require__(692);
-	var beat_watcher_directive_1 = __webpack_require__(691);
-	var startbutton_directive_1 = __webpack_require__(695);
-	var kit_selector_directive_1 = __webpack_require__(693);
+	var drum_machine_service_1 = __webpack_require__(698);
+	var SEQUENCER_LINEUP_1 = __webpack_require__(690);
+	var knobs_directive_1 = __webpack_require__(695);
+	var beat_selector_directive_1 = __webpack_require__(691);
+	var instrument_selector_directive_1 = __webpack_require__(693);
+	var beat_watcher_directive_1 = __webpack_require__(692);
+	var startbutton_directive_1 = __webpack_require__(696);
+	var kit_selector_directive_1 = __webpack_require__(694);
 	var DrumMachineComponent = (function () {
 	    function DrumMachineComponent(drumService) {
 	        this.drumService = drumService;
@@ -1443,7 +1471,7 @@ webpackJsonp([2],{
 	            moduleId: module.id,
 	            providers: [drum_machine_service_1.DrumMachineService],
 	            selector: 'my-drum-machine',
-	            styles: [__webpack_require__(469).toString()],
+	            styles: [__webpack_require__(470).toString()],
 	            template: __webpack_require__(461),
 	        }), 
 	        __metadata('design:paramtypes', [drum_machine_service_1.DrumMachineService])
@@ -1455,7 +1483,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 697:
+/***/ 698:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1469,7 +1497,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var TimeWorker = __webpack_require__(706);
+	var TimeWorker = __webpack_require__(707);
 	var DrumMachineService = (function () {
 	    function DrumMachineService() {
 	        this.timeWorker = null;
@@ -1683,262 +1711,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 701:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var tictactoe_component_1 = __webpack_require__(337);
-	var setup_component_1 = __webpack_require__(712);
-	var board_component_1 = __webpack_require__(716);
-	var end_component_1 = __webpack_require__(713);
-	exports.TicTacToeRoutes = [
-	    {
-	        component: tictactoe_component_1.TicTacToeComponent,
-	        path: 'tictactoe',
-	        children: [
-	            {
-	                component: setup_component_1.SetupComponent,
-	                path: 'setup'
-	            },
-	            {
-	                component: board_component_1.BoardComponent,
-	                path: 'board'
-	            },
-	            {
-	                component: end_component_1.EndComponent,
-	                path: 'end'
-	            },
-	            {
-	                component: setup_component_1.SetupComponent,
-	                path: '**'
-	            }
-	        ]
-	    }
-	];
-	
-
-/***/ },
-
-/***/ 702:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var router_1 = __webpack_require__(30);
-	var tictactoe_routes_1 = __webpack_require__(701);
-	var home_component_1 = __webpack_require__(686);
-	var calculator_component_1 = __webpack_require__(688);
-	var tictactoe_component_1 = __webpack_require__(337);
-	var drum_machine_component_1 = __webpack_require__(696);
-	exports.routes = [
-	    {
-	        component: home_component_1.HomeComponent,
-	        path: ''
-	    },
-	    {
-	        component: calculator_component_1.CalculatorComponent,
-	        path: 'calculator'
-	    },
-	    {
-	        component: tictactoe_component_1.TicTacToeComponent,
-	        path: 'tictactoe'
-	    }
-	].concat(tictactoe_routes_1.TicTacToeRoutes, [
-	    {
-	        component: drum_machine_component_1.DrumMachineComponent,
-	        path: 'drum'
-	    }
-	]);
-	exports.APP_ROUTER_PROVIDERS = [
-	    router_1.provideRouter(exports.routes)
-	];
-	
-
-/***/ },
-
-/***/ 705:
-/***/ function(module, exports) {
-
-	// http://stackoverflow.com/questions/10343913/how-to-create-a-web-worker-from-a-string
-
-	var URL = window.URL || window.webkitURL;
-	module.exports = function(content, url) {
-		try {
-			try {
-				var blob;
-				try { // BlobBuilder = Deprecated, but widely implemented
-					var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder;
-					blob = new BlobBuilder();
-					blob.append(content);
-					blob = blob.getBlob();
-				} catch(e) { // The proposed API
-					blob = new Blob([content]);
-				}
-				return new Worker(URL.createObjectURL(blob));
-			} catch(e) {
-				return new Worker('data:application/javascript,' + encodeURIComponent(content));
-			}
-		} catch(e) {
-			return new Worker(url);
-		}
-	}
-
-/***/ },
-
-/***/ 706:
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = function() {
-		return __webpack_require__(705)("/******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n\n/******/ \t\t// Check if module is in cache\n/******/ \t\tif(installedModules[moduleId])\n/******/ \t\t\treturn installedModules[moduleId].exports;\n\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\texports: {},\n/******/ \t\t\tid: moduleId,\n/******/ \t\t\tloaded: false\n/******/ \t\t};\n\n/******/ \t\t// Execute the module function\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n\n/******/ \t\t// Flag the module as loaded\n/******/ \t\tmodule.loaded = true;\n\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n\n\n/******/ \t// expose the modules object (__webpack_modules__)\n/******/ \t__webpack_require__.m = modules;\n\n/******/ \t// expose the module cache\n/******/ \t__webpack_require__.c = installedModules;\n\n/******/ \t// __webpack_public_path__\n/******/ \t__webpack_require__.p = \"\";\n\n/******/ \t// Load entry module and return exports\n/******/ \treturn __webpack_require__(0);\n/******/ })\n/************************************************************************/\n/******/ ([\n/* 0 */\n/***/ function(module, exports) {\n\n\tvar timerID=null;\n\tvar interval=100;\n\n\tself.onmessage=function(e){\n\t\tif (e.data==\"start\") {\n\t\t\tconsole.log(\"starting\");\n\t\t\ttimerID=setInterval(function(){ postMessage(\"tick\"); },interval)\n\t\t}\n\t\telse if (e.data.interval) {\n\t\t\tinterval=e.data.interval;\n\t\t\tif (timerID) {\n\t\t\t\tclearInterval(timerID);\n\t\t\t\ttimerID=setInterval(function(){postMessage(\"tick\");},interval)\n\t\t\t}\n\t\t}\n\t\telse if (e.data==\"stop\") {\n\t\t\tconsole.log(\"stopping\");\n\t\t\tclearInterval(timerID);\n\t\t\ttimerID=null;\n\t\t}\n\t};\n\n\tpostMessage('worker called');\n\n/***/ }\n/******/ ]);\n//# sourceMappingURL=main.map", __webpack_require__.p + "f32a803771fe39de9f1d.worker.js");
-	};
-
-/***/ },
-
-/***/ 711:
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"game-start\">\n    <h2>Let's Play Some TicTacToe</h2>\n    <h6>Enter Your Names and Select a Tile</h6>\n    <div class=\"input-group\">\n        <input name=\"userOneName\" [(ngModel)]=\"userOneName\" (change)=\"updateUserOne()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n        <span class=\"input-group-btn\">\n            <button (click)=\"toggleTile()\" class=\"btn btn-tile\">\n                <span *ngIf=\"userOneTileType == 0\">X</span>\n                <span *ngIf=\"userOneTileType == 1\">O</span>\n            </button>\n        </span>\n    </div>\n    <div class=\"input-group\">\n        <input name=\"userTwoName\" [(ngModel)]=\"userTwoName\" (change)=\"updateUserTwo()\" type=\"text\" class=\"form-control\" placeholder=\"Name\">\n        <span class=\"input-group-btn\">\n            <button (click)=\"toggleTile()\" class=\"btn btn-tile\">\n                <span *ngIf=\"userTwoTileType == 0\">X</span>\n                <span *ngIf=\"userTwoTileType == 1\">O</span>\n            </button>\n        </span>\n    </div>\n    <button (click)=\"gameStart($event)\" class=\"btn btn-block btn-tile\">Start the Game!</button>\n</div>"
-
-/***/ },
-
-/***/ 712:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
-	var tictactoe_service_1 = __webpack_require__(136);
-	var SetupComponent = (function () {
-	    function SetupComponent(router, ticTacToeService) {
-	        this.router = router;
-	        this.ticTacToeService = ticTacToeService;
-	    }
-	    SetupComponent.prototype.ngOnInit = function () {
-	        this.userOne = this.ticTacToeService.getUserOne();
-	        this.userTwo = this.ticTacToeService.getUserTwo();
-	        this.userOneName = this.userOne.name;
-	        this.userTwoName = this.userTwo.name;
-	        this.userOneTileType = this.userOne.tileType;
-	        this.userTwoTileType = this.userTwo.tileType;
-	    };
-	    SetupComponent.prototype.toggleTile = function () {
-	        this.ticTacToeService.toggleTile();
-	        this.updateUserOne(true);
-	        this.updateUserTwo(true);
-	    };
-	    SetupComponent.prototype.updateUserOne = function (withoutUserSettings) {
-	        if (withoutUserSettings == null) {
-	            this.ticTacToeService.setUserOne(this.userOneName, this.userOneTileType);
-	        }
-	        this.userOne = this.ticTacToeService.getUserOne();
-	        this.userOneName = this.userOne.name;
-	        this.userOneTileType = this.userOne.tileType;
-	    };
-	    SetupComponent.prototype.updateUserTwo = function (withoutUserSettings) {
-	        if (withoutUserSettings == null) {
-	            this.ticTacToeService.setUserTwo(this.userTwoName, this.userTwoTileType);
-	        }
-	        this.userTwo = this.ticTacToeService.getUserTwo();
-	        this.userTwoName = this.userTwo.name;
-	        this.userTwoTileType = this.userTwo.tileType;
-	    };
-	    SetupComponent.prototype.gameStart = function () {
-	        this.ticTacToeService.setUserOne(this.userOneName, this.userOneTileType);
-	        this.ticTacToeService.setUserTwo(this.userTwoName, this.userTwoTileType);
-	        this.router.navigate(['/tictactoe', '/board']);
-	        event.preventDefault();
-	        event.stopPropagation();
-	    };
-	    SetupComponent = __decorate([
-	        core_1.Component({
-	            moduleId: module.id,
-	            selector: 'my-setup',
-	            template: __webpack_require__(711),
-	            styles: [__webpack_require__(310).toString()],
-	            directives: [router_1.ROUTER_DIRECTIVES]
-	        }), 
-	        __metadata('design:paramtypes', [router_1.Router, tictactoe_service_1.TicTacToeService])
-	    ], SetupComponent);
-	    return SetupComponent;
-	}());
-	exports.SetupComponent = SetupComponent;
-	
-
-/***/ },
-
-/***/ 713:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(30);
-	var tictactoe_service_1 = __webpack_require__(136);
-	var EndComponent = (function () {
-	    function EndComponent(ticTacToeService, router) {
-	        this.ticTacToeService = ticTacToeService;
-	        this.router = router;
-	        this.isTie = false;
-	    }
-	    EndComponent.prototype.ngOnInit = function () {
-	        this.winner = this.ticTacToeService.getWinner();
-	        if (this.winner === null) {
-	            this.isTie = true;
-	        }
-	    };
-	    EndComponent.prototype.playAgain = function () { this.router.navigate(['/tictactoe', '/board']); };
-	    EndComponent.prototype.newGame = function () {
-	        this.ticTacToeService.resetGame();
-	        this.router.navigate(['/tictactoe', '/setup']);
-	    };
-	    EndComponent = __decorate([
-	        core_1.Component({
-	            moduleId: module.id,
-	            selector: 'my-end',
-	            template: __webpack_require__(714),
-	            styles: [__webpack_require__(310).toString()],
-	            directives: [router_1.ROUTER_DIRECTIVES]
-	        }), 
-	        __metadata('design:paramtypes', [tictactoe_service_1.TicTacToeService, router_1.Router])
-	    ], EndComponent);
-	    return EndComponent;
-	}());
-	exports.EndComponent = EndComponent;
-	
-
-/***/ },
-
-/***/ 714:
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"game-end\">\n    <div class=\"info-text\" *ngIf=\"!isTie\">\n        <h2>{{winner.name}} Won!</h2>\n        <h5>Current Score: {{winner.score}}</h5>\n    </div>\n    <div class=\"info-text\" *ngIf='isTie'>\n        <h2>It was a tie!</h2>\n        <h6>Try Again!</h6>\n    </div>\n    <div class=\"btn-group btn-group-justified\" role=\"group\">\n        <div class=\"btn-group\" role=\"group\">\n            <button type=\"button\" (click)=\"playAgain()\" class=\"btn btn-tile\">Play Again!</button>\n        </div>\n        <div class=\"btn-group\" role=\"group\">\n            <button type=\"button\" (click)=\"newGame()\" class=\"btn btn-tile\">New Game</button>\n        </div>\n    </div>\n</div>"
-
-/***/ },
-
-/***/ 715:
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"game-board\">\n    <span class=\"h4 current-player\">{{currentPlayer.name}}'s Turn</span>\n    <div class=\"board-rows\">\n        <div class=\"board-row\" *ngFor=\"let tileRow of tileBoard; let y = index\">\n            <div *ngFor=\"let tile of tileRow; let x = index\" class=\"board-tile\" (click)=\"setTile(x,y)\">\n                <div [ngClass]=\"{'x': tileBoard[y][x]===0,'o':tileBoard[y][x]===1, 'null':tileBoard[y][x]===2 }\"></div>\n            </div>\n        </div>\n    </div>\n    <div class=\"scoreboard\">\n        <div class=\"player player-one\">\n            <div>{{userOne.name}}</div>\n            <div>Score: {{userOne.score}}</div>\n        </div>\n        <h5 class=\"scoreboard-title\">Score</h5>\n\n        <div class=\"player player-two\">\n            <div>{{userTwo.name}}</div>\n            <div>Score: {{userTwo.score}}</div>\n        </div>   \n        <span class=\"stretch\"></span>     \n    </div>\n</div>\n"
-
-/***/ },
-
-/***/ 716:
+/***/ 699:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2087,8 +1860,8 @@ webpackJsonp([2],{
 	        core_1.Component({
 	            moduleId: module.id,
 	            selector: 'my-board',
-	            template: __webpack_require__(715),
-	            styles: [__webpack_require__(470).toString()],
+	            template: __webpack_require__(462),
+	            styles: [__webpack_require__(471).toString()],
 	            directives: [
 	                router_1.ROUTER_DIRECTIVES
 	            ]
@@ -2102,10 +1875,412 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 717:
+/***/ 700:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(1);
+	var router_1 = __webpack_require__(30);
+	var tictactoe_service_1 = __webpack_require__(136);
+	var EndComponent = (function () {
+	    function EndComponent(ticTacToeService, router) {
+	        this.ticTacToeService = ticTacToeService;
+	        this.router = router;
+	        this.isTie = false;
+	    }
+	    EndComponent.prototype.ngOnInit = function () {
+	        this.winner = this.ticTacToeService.getWinner();
+	        if (this.winner === null) {
+	            this.isTie = true;
+	        }
+	    };
+	    EndComponent.prototype.playAgain = function () { this.router.navigate(['/tictactoe', '/board']); };
+	    EndComponent.prototype.newGame = function () {
+	        this.ticTacToeService.resetGame();
+	        this.router.navigate(['/tictactoe', '/setup']);
+	    };
+	    EndComponent = __decorate([
+	        core_1.Component({
+	            moduleId: module.id,
+	            selector: 'my-end',
+	            template: __webpack_require__(463),
+	            styles: [__webpack_require__(310).toString()],
+	            directives: [router_1.ROUTER_DIRECTIVES]
+	        }), 
+	        __metadata('design:paramtypes', [tictactoe_service_1.TicTacToeService, router_1.Router])
+	    ], EndComponent);
+	    return EndComponent;
+	}());
+	exports.EndComponent = EndComponent;
+	
+
+/***/ },
+
+/***/ 701:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(1);
+	var router_1 = __webpack_require__(30);
+	var tictactoe_service_1 = __webpack_require__(136);
+	var SetupComponent = (function () {
+	    function SetupComponent(router, ticTacToeService) {
+	        this.router = router;
+	        this.ticTacToeService = ticTacToeService;
+	    }
+	    SetupComponent.prototype.ngOnInit = function () {
+	        this.userOne = this.ticTacToeService.getUserOne();
+	        this.userTwo = this.ticTacToeService.getUserTwo();
+	        this.userOneName = this.userOne.name;
+	        this.userTwoName = this.userTwo.name;
+	        this.userOneTileType = this.userOne.tileType;
+	        this.userTwoTileType = this.userTwo.tileType;
+	    };
+	    SetupComponent.prototype.toggleTile = function () {
+	        this.ticTacToeService.toggleTile();
+	        this.updateUserOne(true);
+	        this.updateUserTwo(true);
+	    };
+	    SetupComponent.prototype.updateUserOne = function (withoutUserSettings) {
+	        if (withoutUserSettings == null) {
+	            this.ticTacToeService.setUserOne(this.userOneName, this.userOneTileType);
+	        }
+	        this.userOne = this.ticTacToeService.getUserOne();
+	        this.userOneName = this.userOne.name;
+	        this.userOneTileType = this.userOne.tileType;
+	    };
+	    SetupComponent.prototype.updateUserTwo = function (withoutUserSettings) {
+	        if (withoutUserSettings == null) {
+	            this.ticTacToeService.setUserTwo(this.userTwoName, this.userTwoTileType);
+	        }
+	        this.userTwo = this.ticTacToeService.getUserTwo();
+	        this.userTwoName = this.userTwo.name;
+	        this.userTwoTileType = this.userTwo.tileType;
+	    };
+	    SetupComponent.prototype.gameStart = function () {
+	        this.ticTacToeService.setUserOne(this.userOneName, this.userOneTileType);
+	        this.ticTacToeService.setUserTwo(this.userTwoName, this.userTwoTileType);
+	        this.router.navigate(['/tictactoe', '/board']);
+	        event.preventDefault();
+	        event.stopPropagation();
+	    };
+	    SetupComponent = __decorate([
+	        core_1.Component({
+	            moduleId: module.id,
+	            selector: 'my-setup',
+	            template: __webpack_require__(464),
+	            styles: [__webpack_require__(310).toString()],
+	            directives: [router_1.ROUTER_DIRECTIVES]
+	        }), 
+	        __metadata('design:paramtypes', [router_1.Router, tictactoe_service_1.TicTacToeService])
+	    ], SetupComponent);
+	    return SetupComponent;
+	}());
+	exports.SetupComponent = SetupComponent;
+	
+
+/***/ },
+
+/***/ 702:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var tictactoe_component_1 = __webpack_require__(337);
+	var setup_component_1 = __webpack_require__(701);
+	var board_component_1 = __webpack_require__(699);
+	var end_component_1 = __webpack_require__(700);
+	exports.TicTacToeRoutes = [
+	    {
+	        component: tictactoe_component_1.TicTacToeComponent,
+	        path: 'tictactoe',
+	        children: [
+	            {
+	                component: setup_component_1.SetupComponent,
+	                path: 'setup'
+	            },
+	            {
+	                component: board_component_1.BoardComponent,
+	                path: 'board'
+	            },
+	            {
+	                component: end_component_1.EndComponent,
+	                path: 'end'
+	            },
+	            {
+	                component: setup_component_1.SetupComponent,
+	                path: '**'
+	            }
+	        ]
+	    }
+	];
+	
+
+/***/ },
+
+/***/ 703:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var router_1 = __webpack_require__(30);
+	var tictactoe_routes_1 = __webpack_require__(702);
+	var home_component_1 = __webpack_require__(687);
+	var calculator_component_1 = __webpack_require__(689);
+	var tictactoe_component_1 = __webpack_require__(337);
+	var drum_machine_component_1 = __webpack_require__(697);
+	var resume_component_1 = __webpack_require__(710);
+	exports.routes = [
+	    {
+	        component: home_component_1.HomeComponent,
+	        path: ''
+	    },
+	    {
+	        component: calculator_component_1.CalculatorComponent,
+	        path: 'calculator'
+	    },
+	    {
+	        component: tictactoe_component_1.TicTacToeComponent,
+	        path: 'tictactoe'
+	    }
+	].concat(tictactoe_routes_1.TicTacToeRoutes, [
+	    {
+	        component: drum_machine_component_1.DrumMachineComponent,
+	        path: 'drum'
+	    },
+	    {
+	        component: resume_component_1.ResumeComponent,
+	        path: 'resume'
+	    }
+	]);
+	exports.APP_ROUTER_PROVIDERS = [
+	    router_1.provideRouter(exports.routes)
+	];
+	
+
+/***/ },
+
+/***/ 706:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"tictactoe-wrapper\">\n    <div class=\"tictactoe fade\">\n        <router-outlet></router-outlet>\n    </div>\n\n    <div class=\"project-description\">\n        <h3>A TicTacToe Game That Keeps Track Of The Score</h3>\n        <pre>\n            <code>\n        FILE TREE:\n\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/tree/master/app/projects/tictactoe\">tictactoe/</a>\n        ----- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/tictactoe.component.ts\">tictactoe.component.ts</a>\n        ----- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/tictactoe.component.html\">tictactoe.component.html</a>\n        ----- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/tictactoe.routes.ts\">tictactoe.routes.ts</a>\n        ----- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/tictactoe.service.ts\">tictactoe.service.ts</a>\n        ----- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/tictactoe.service.spec.ts\">tictactoe.service.spec.ts</a>\n\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/tree/master/app/projects/tictactoe/setup\">setup/</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/setup/setup.component.html\">setup.component.html</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/setup/setup.component.ts\">setup.component.ts</a>\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/tree/master/app/projects/tictactoe/board\">board/</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/board/board.component.ts\">board.component.ts</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/board/board.component.spec.ts\">board.component.spec.ts</a>    \n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/board/board.component.html\">board.component.html</a>              \n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/tree/master/app/projects/tictactoe/end\">end/</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/end/end.component.ts\">end.component.ts</a>\n        ---------- <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/app/projects/tictactoe/end/end.component.html\">end.component.html</a>           \n\n        SCSS FILES:\n\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/scss/projects/tictactoe/tictactoe.scss\">tictactoe.scss</a>\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/scss/projects/tictactoe/tictactoe-board.scss\">tictactoe-board.scss</a>\n        <a class=\"github-link\" target=\"_blank\" href=\"https://github.com/JosephFarina/portfolio/blob/master/scss/projects/tictactoe/tictactoe-setup-end.scss\">tictactoe-setup-end.scss</a>\n          </code>\n        </pre>\n    </div>\n    \n</div>"
+	// http://stackoverflow.com/questions/10343913/how-to-create-a-web-worker-from-a-string
+
+	var URL = window.URL || window.webkitURL;
+	module.exports = function(content, url) {
+		try {
+			try {
+				var blob;
+				try { // BlobBuilder = Deprecated, but widely implemented
+					var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder;
+					blob = new BlobBuilder();
+					blob.append(content);
+					blob = blob.getBlob();
+				} catch(e) { // The proposed API
+					blob = new Blob([content]);
+				}
+				return new Worker(URL.createObjectURL(blob));
+			} catch(e) {
+				return new Worker('data:application/javascript,' + encodeURIComponent(content));
+			}
+		} catch(e) {
+			return new Worker(url);
+		}
+	}
+
+/***/ },
+
+/***/ 707:
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = function() {
+		return __webpack_require__(706)("/******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n\n/******/ \t\t// Check if module is in cache\n/******/ \t\tif(installedModules[moduleId])\n/******/ \t\t\treturn installedModules[moduleId].exports;\n\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\texports: {},\n/******/ \t\t\tid: moduleId,\n/******/ \t\t\tloaded: false\n/******/ \t\t};\n\n/******/ \t\t// Execute the module function\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n\n/******/ \t\t// Flag the module as loaded\n/******/ \t\tmodule.loaded = true;\n\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n\n\n/******/ \t// expose the modules object (__webpack_modules__)\n/******/ \t__webpack_require__.m = modules;\n\n/******/ \t// expose the module cache\n/******/ \t__webpack_require__.c = installedModules;\n\n/******/ \t// __webpack_public_path__\n/******/ \t__webpack_require__.p = \"\";\n\n/******/ \t// Load entry module and return exports\n/******/ \treturn __webpack_require__(0);\n/******/ })\n/************************************************************************/\n/******/ ([\n/* 0 */\n/***/ function(module, exports) {\n\n\tvar timerID=null;\n\tvar interval=100;\n\n\tself.onmessage=function(e){\n\t\tif (e.data==\"start\") {\n\t\t\tconsole.log(\"starting\");\n\t\t\ttimerID=setInterval(function(){ postMessage(\"tick\"); },interval)\n\t\t}\n\t\telse if (e.data.interval) {\n\t\t\tinterval=e.data.interval;\n\t\t\tif (timerID) {\n\t\t\t\tclearInterval(timerID);\n\t\t\t\ttimerID=setInterval(function(){postMessage(\"tick\");},interval)\n\t\t\t}\n\t\t}\n\t\telse if (e.data==\"stop\") {\n\t\t\tconsole.log(\"stopping\");\n\t\t\tclearInterval(timerID);\n\t\t\ttimerID=null;\n\t\t}\n\t};\n\n\tpostMessage('worker called');\n\n/***/ }\n/******/ ]);\n//# sourceMappingURL=main.map", __webpack_require__.p + "f32a803771fe39de9f1d.worker.js");
+	};
+
+/***/ },
+
+/***/ 710:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(1);
+	var router_1 = __webpack_require__(30);
+	var hover_effect_directive_1 = __webpack_require__(711);
+	var ResumeComponent = (function () {
+	    function ResumeComponent() {
+	    }
+	    ResumeComponent = __decorate([
+	        core_1.Component({
+	            directives: [
+	                router_1.ROUTER_DIRECTIVES,
+	                hover_effect_directive_1.HoverEffectDirective
+	            ],
+	            moduleId: module.id,
+	            selector: 'my-resume',
+	            styles: [
+	                "\n        .resume-wrapper {\n            min-height: 100vh;\n            background-color: #EE4236;\n        }\n        .resume {\n            margin: auto;\n        }\n        "
+	            ],
+	            template: "\n    <div class=\"resume-wrapper\">\n    <img my-hover-effect class=\"img-responsive resume\" src=\"assets/JFRESUME.png\" />\n    </div>\n    ",
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], ResumeComponent);
+	    return ResumeComponent;
+	}());
+	exports.ResumeComponent = ResumeComponent;
+	
+
+/***/ },
+
+/***/ 711:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(1);
+	var HoverEffectDirective = (function () {
+	    function HoverEffectDirective(_el) {
+	        this._el = _el;
+	        this.element = {
+	            bottom: null,
+	            height: null,
+	            left: null,
+	            right: null,
+	            top: null,
+	            width: null
+	        };
+	        this.el = _el.nativeElement;
+	    }
+	    HoverEffectDirective.prototype.onMouseMove = function (e) {
+	        this.calculateCoordPercentage(e.clientX, e.clientY);
+	        this.animate(this.xCoord, this.yCoord);
+	    };
+	    HoverEffectDirective.prototype.onMouseEnter = function () {
+	        this.el.style.transition = 'all .1s ease-in';
+	        this.setElementDimensions();
+	        this.createShineElement();
+	    };
+	    HoverEffectDirective.prototype.onMouseExit = function () {
+	        this.el.style.transition = 'all .5s ease-out .3s';
+	        this.el.style.transform = '';
+	        this.el.style.boxShadow = '';
+	        this.destroyShineElement();
+	    };
+	    HoverEffectDirective.prototype.setElementDimensions = function () {
+	        var elDim = this.el.getBoundingClientRect();
+	        this.element['top'] = elDim.top;
+	        this.element['right'] = elDim.right;
+	        this.element['bottom'] = elDim.bottom;
+	        this.element['left'] = elDim.left;
+	        this.element['width'] = elDim.width;
+	        this.element['height'] = elDim.height;
+	    };
+	    // x0 y0 == upper left corner x1 y1 == lower right corner
+	    HoverEffectDirective.prototype.calculateCoordPercentage = function (x, y) {
+	        var xRelativeCoord = x - this.element['left'], yRelativeCoord = y - this.element['top'], xHalfwayPoint = (this.element['width'] / 2), yHalfwayPoint = (this.element['height'] / 2), xDistanceFromHalf = xRelativeCoord - xHalfwayPoint, yDistanceFromHalf = yRelativeCoord - yHalfwayPoint;
+	        this.xCoord = xDistanceFromHalf / xHalfwayPoint;
+	        this.yCoord = yDistanceFromHalf / yHalfwayPoint;
+	    };
+	    HoverEffectDirective.prototype.animate = function (x, y) {
+	        this.animateShadow(x, y);
+	        this.animateDiv(x, y);
+	        this.animateShine(x, y);
+	    };
+	    HoverEffectDirective.prototype.animateDiv = function (x, y) {
+	        var rotateY = (x * this.element['width']) / 15, rotateX = (y * -this.element['height']) / 15;
+	        this.el.style.transform = 'rotateX(' + (rotateX) + 'deg)';
+	        this.el.style.transform += 'rotateY(' + (rotateY) + 'deg)';
+	    };
+	    HoverEffectDirective.prototype.animateShadow = function (x, y) {
+	        var shadowX = x * 10, shadowY = y * 10, shadowSize = 100;
+	        // 0 45px 100px rgba(0,0,0, .4)
+	        this.el.style.boxShadow = shadowX + 'px ' + shadowY + 'px ' + shadowSize + 'px rgba(0,0,0, .4)';
+	    };
+	    HoverEffectDirective.prototype.createShineElement = function () {
+	        var node = document.createElement('div');
+	        node.setAttribute('id', 'hover-effect-shine');
+	        node.style.position = 'absolute';
+	        node.style.top = '0';
+	        node.style.bottom = '0';
+	        node.style.left = '0';
+	        node.style.right = '0';
+	        this.el.appendChild(node);
+	    };
+	    HoverEffectDirective.prototype.destroyShineElement = function () {
+	        var childToRemove = document.getElementById('hover-effect-shine');
+	        this.el.removeChild(childToRemove);
+	    };
+	    HoverEffectDirective.prototype.calculateDegreeFromCenter = function (xCoord, yCoord) {
+	        var radialValue = Math.atan2(xCoord, yCoord), degreeValue = radialValue * 180 / Math.PI;
+	        // if (degreeValue < 0 ) { degreeValue += 360; }
+	        console.log(degreeValue, 'deg');
+	        return degreeValue * -1 + 'deg';
+	    };
+	    HoverEffectDirective.prototype.animateShine = function (x, y) {
+	        var deg = this.calculateDegreeFromCenter(x, y), 
+	        // giving back which ever value is closer to 1
+	        opacity = Math.max(Math.abs(y), Math.abs(x)), shine = document.getElementById('hover-effect-shine'), gradient1 = 'linear-gradient(' + deg + ', rgba(255, 255, 255, ' + opacity + ') 0%,', gradient2 = ' rgba(255,255,255,0) 80%)', gradient = gradient1 + gradient2;
+	        shine.style.backgroundImage = gradient;
+	    };
+	    __decorate([
+	        core_1.HostListener('mousemove', ['$event']), 
+	        __metadata('design:type', Function), 
+	        __metadata('design:paramtypes', [Object]), 
+	        __metadata('design:returntype', void 0)
+	    ], HoverEffectDirective.prototype, "onMouseMove", null);
+	    __decorate([
+	        core_1.HostListener('mouseenter'), 
+	        __metadata('design:type', Function), 
+	        __metadata('design:paramtypes', []), 
+	        __metadata('design:returntype', void 0)
+	    ], HoverEffectDirective.prototype, "onMouseEnter", null);
+	    __decorate([
+	        core_1.HostListener('mouseleave'), 
+	        __metadata('design:type', Function), 
+	        __metadata('design:paramtypes', []), 
+	        __metadata('design:returntype', void 0)
+	    ], HoverEffectDirective.prototype, "onMouseExit", null);
+	    HoverEffectDirective = __decorate([
+	        core_1.Directive({
+	            selector: '[my-hover-effect]'
+	        }), 
+	        __metadata('design:paramtypes', [core_1.ElementRef])
+	    ], HoverEffectDirective);
+	    return HoverEffectDirective;
+	}());
+	exports.HoverEffectDirective = HoverEffectDirective;
+	
 
 /***/ }
 

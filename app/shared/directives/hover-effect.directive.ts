@@ -113,7 +113,6 @@ export class HoverEffectDirective {
             gradient1: string = 'linear-gradient(' + deg + ', rgba(255, 255, 255, ' + opacity + ') 0%,',
             gradient2 = ' rgba(255,255,255,0) 80%)',
             gradient = gradient1  + gradient2;
-        shine.style.backgroundImage = gradient;
-
+            shine.style.backgroundImage = gradient;
     }
 }

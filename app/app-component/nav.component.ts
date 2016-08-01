@@ -17,7 +17,7 @@ import {ViewEncapsulation} from '@angular/core';
         <div [ngClass]="{ 'fade':  isNewRoute }">
                 <a class="h5 navigation-logo" routerLink='/'> {{routeName | uppercase}}</a>
             <div class="navigation-menu">
-                <span class="p menu-item">RESUME</span>
+                <a class="p menu-item" routerLink='resume'>RESUME</a>
                 <span class="p menu-item"><a href="mailto:jrf61194@gmail.com">CONTACT</a></span>
             </div>
         </div>
