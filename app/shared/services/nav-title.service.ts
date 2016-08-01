@@ -27,6 +27,9 @@ export class NavTitleService {
             case 'drum':
                 title = 'Sequencer';
                 break;
+            case 'resume':
+                title = 'Resume';
+                break;
         }
         return title;
     }

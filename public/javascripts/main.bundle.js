@@ -199,6 +199,9 @@ webpackJsonp([2],{
 	            case 'drum':
 	                title = 'Sequencer';
 	                break;
+	            case 'resume':
+	                title = 'Resume';
+	                break;
 	        }
 	        return title;
 	    };
@@ -460,54 +463,13 @@ webpackJsonp([2],{
 	            providers: [nav_title_service_1.NavTitleService],
 	            selector: 'my-nav',
 	            styles: [__webpack_require__(468).toString()],
-	            template: "\n    <nav [ngClass]=\"{\n    'home':                     routeName === 'Joey Farina', \n    'project':                  routeName !== 'Joey Farina'\n    }\">\n        <div [ngClass]=\"{ 'fade':  isNewRoute }\">\n                <a class=\"h5 navigation-logo\" routerLink='/'> {{routeName | uppercase}}</a>\n            <div class=\"navigation-menu\">\n                <a class=\"p menu-item\" routerLink='resume'>RESUME</a>\n                <span class=\"p menu-item\"><a href=\"mailto:jrf61194@gmail.com\">CONTACT</a></span>\n            </div>\n        </div>\n    </nav>\n    "
+	            template: "\n    <nav [ngClass]=\"{\n    'home':                     routeName === 'Joey Farina', \n    'project':                  routeName !== 'Joey Farina'\n    }\">\n        <div [ngClass]=\"{ 'fade':  isNewRoute }\">\n                <a class=\"h5 navigation-logo\" routerLink='/'> {{routeName | uppercase}}</a>\n            <div class=\"navigation-menu\">\n                <a class=\"p menu-item\" href=\"assets/JFRESUME.pdf\" target=\"_blank\">RESUME</a>\n                <span class=\"p menu-item\"><a href=\"mailto:jrf61194@gmail.com\">CONTACT</a></span>\n            </div>\n        </div>\n    </nav>\n    "
 	        }), 
 	        __metadata('design:paramtypes', [nav_title_service_1.NavTitleService, router_1.Router])
 	    ], NavComponent);
 	    return NavComponent;
 	}());
 	exports.NavComponent = NavComponent;
-	
-
-/***/ },
-
-/***/ 689:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(1);
-	var router_1 = __webpack_require__(28);
-	var hover_effect_directive_1 = __webpack_require__(705);
-	var ResumeComponent = (function () {
-	    function ResumeComponent() {
-	    }
-	    ResumeComponent = __decorate([
-	        core_1.Component({
-	            directives: [
-	                router_1.ROUTER_DIRECTIVES,
-	                hover_effect_directive_1.HoverEffectDirective
-	            ],
-	            moduleId: module.id,
-	            selector: 'my-resume',
-	            styles: [
-	                "\n        .resume-wrapper {\n            min-height: 100vh;\n            background-color: #EE4236;\n        }\n        .resume {\n            margin: auto;\n        }\n        "
-	            ],
-	            template: "\n    <div class=\"resume-wrapper\">\n    <img my-hover-effect class=\"img-responsive resume\" src=\"assets/JFRESUME.png\" />\n    </div>\n    ",
-	        }), 
-	        __metadata('design:paramtypes', [])
-	    ], ResumeComponent);
-	    return ResumeComponent;
-	}());
-	exports.ResumeComponent = ResumeComponent;
 	
 
 /***/ },
@@ -2086,7 +2048,6 @@ webpackJsonp([2],{
 	var calculator_component_1 = __webpack_require__(690);
 	var tictactoe_component_1 = __webpack_require__(337);
 	var drum_machine_component_1 = __webpack_require__(698);
-	var resume_component_1 = __webpack_require__(689);
 	exports.routes = [
 	    {
 	        component: home_component_1.HomeComponent,
@@ -2104,144 +2065,11 @@ webpackJsonp([2],{
 	    {
 	        component: drum_machine_component_1.DrumMachineComponent,
 	        path: 'drum'
-	    },
-	    {
-	        component: resume_component_1.ResumeComponent,
-	        path: 'resume'
 	    }
 	]);
 	exports.APP_ROUTER_PROVIDERS = [
 	    router_1.provideRouter(exports.routes)
 	];
-	
-
-/***/ },
-
-/***/ 705:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(1);
-	var HoverEffectDirective = (function () {
-	    function HoverEffectDirective(_el) {
-	        this._el = _el;
-	        this.element = {
-	            bottom: null,
-	            height: null,
-	            left: null,
-	            right: null,
-	            top: null,
-	            width: null
-	        };
-	        this.el = _el.nativeElement;
-	    }
-	    HoverEffectDirective.prototype.onMouseMove = function (e) {
-	        this.calculateCoordPercentage(e.clientX, e.clientY);
-	        this.animate(this.xCoord, this.yCoord);
-	    };
-	    HoverEffectDirective.prototype.onMouseEnter = function () {
-	        this.el.style.transition = 'all .1s ease-in';
-	        this.setElementDimensions();
-	        this.createShineElement();
-	    };
-	    HoverEffectDirective.prototype.onMouseExit = function () {
-	        this.el.style.transition = 'all .5s ease-out .3s';
-	        this.el.style.transform = '';
-	        this.el.style.boxShadow = '';
-	        this.destroyShineElement();
-	    };
-	    HoverEffectDirective.prototype.setElementDimensions = function () {
-	        var elDim = this.el.getBoundingClientRect();
-	        this.element['top'] = elDim.top;
-	        this.element['right'] = elDim.right;
-	        this.element['bottom'] = elDim.bottom;
-	        this.element['left'] = elDim.left;
-	        this.element['width'] = elDim.width;
-	        this.element['height'] = elDim.height;
-	    };
-	    // x0 y0 == upper left corner x1 y1 == lower right corner
-	    HoverEffectDirective.prototype.calculateCoordPercentage = function (x, y) {
-	        var xRelativeCoord = x - this.element['left'], yRelativeCoord = y - this.element['top'], xHalfwayPoint = (this.element['width'] / 2), yHalfwayPoint = (this.element['height'] / 2), xDistanceFromHalf = xRelativeCoord - xHalfwayPoint, yDistanceFromHalf = yRelativeCoord - yHalfwayPoint;
-	        this.xCoord = xDistanceFromHalf / xHalfwayPoint;
-	        this.yCoord = yDistanceFromHalf / yHalfwayPoint;
-	    };
-	    HoverEffectDirective.prototype.animate = function (x, y) {
-	        this.animateShadow(x, y);
-	        this.animateDiv(x, y);
-	        this.animateShine(x, y);
-	    };
-	    HoverEffectDirective.prototype.animateDiv = function (x, y) {
-	        var rotateY = (x * this.element['width']) / 15, rotateX = (y * -this.element['height']) / 15;
-	        this.el.style.transform = 'rotateX(' + (rotateX) + 'deg)';
-	        this.el.style.transform += 'rotateY(' + (rotateY) + 'deg)';
-	    };
-	    HoverEffectDirective.prototype.animateShadow = function (x, y) {
-	        var shadowX = x * 10, shadowY = y * 10, shadowSize = 100;
-	        // 0 45px 100px rgba(0,0,0, .4)
-	        this.el.style.boxShadow = shadowX + 'px ' + shadowY + 'px ' + shadowSize + 'px rgba(0,0,0, .4)';
-	    };
-	    HoverEffectDirective.prototype.createShineElement = function () {
-	        var node = document.createElement('div');
-	        node.setAttribute('id', 'hover-effect-shine');
-	        node.style.position = 'absolute';
-	        node.style.top = '0';
-	        node.style.bottom = '0';
-	        node.style.left = '0';
-	        node.style.right = '0';
-	        this.el.appendChild(node);
-	    };
-	    HoverEffectDirective.prototype.destroyShineElement = function () {
-	        var childToRemove = document.getElementById('hover-effect-shine');
-	        this.el.removeChild(childToRemove);
-	    };
-	    HoverEffectDirective.prototype.calculateDegreeFromCenter = function (xCoord, yCoord) {
-	        var radialValue = Math.atan2(xCoord, yCoord), degreeValue = radialValue * 180 / Math.PI;
-	        // if (degreeValue < 0 ) { degreeValue += 360; }
-	        console.log(degreeValue, 'deg');
-	        return degreeValue * -1 + 'deg';
-	    };
-	    HoverEffectDirective.prototype.animateShine = function (x, y) {
-	        var deg = this.calculateDegreeFromCenter(x, y), 
-	        // giving back which ever value is closer to 1
-	        opacity = Math.max(Math.abs(y), Math.abs(x)), shine = document.getElementById('hover-effect-shine'), gradient1 = 'linear-gradient(' + deg + ', rgba(255, 255, 255, ' + opacity + ') 0%,', gradient2 = ' rgba(255,255,255,0) 80%)', gradient = gradient1 + gradient2;
-	        shine.style.backgroundImage = gradient;
-	    };
-	    __decorate([
-	        core_1.HostListener('mousemove', ['$event']), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', [Object]), 
-	        __metadata('design:returntype', void 0)
-	    ], HoverEffectDirective.prototype, "onMouseMove", null);
-	    __decorate([
-	        core_1.HostListener('mouseenter'), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', []), 
-	        __metadata('design:returntype', void 0)
-	    ], HoverEffectDirective.prototype, "onMouseEnter", null);
-	    __decorate([
-	        core_1.HostListener('mouseleave'), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', []), 
-	        __metadata('design:returntype', void 0)
-	    ], HoverEffectDirective.prototype, "onMouseExit", null);
-	    HoverEffectDirective = __decorate([
-	        core_1.Directive({
-	            selector: '[my-hover-effect]'
-	        }), 
-	        __metadata('design:paramtypes', [core_1.ElementRef])
-	    ], HoverEffectDirective);
-	    return HoverEffectDirective;
-	}());
-	exports.HoverEffectDirective = HoverEffectDirective;
 	
 
 /***/ },
