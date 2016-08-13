@@ -2219,6 +2219,11 @@ webpackJsonp([2],{
 	    StocksDirective.prototype.generateLine = function (x, y) {
 	        return d3.svg.line().x(x).y(y);
 	    };
+	    StocksDirective.prototype.parseDate = function (date) {
+	        console.log('PARSING DATE');
+	        var parse = d3.time.format("%d-%b-%y").parse;
+	        return parse(date);
+	    };
 	    StocksDirective.prototype.createGraph = function () {
 	        this.graph
 	            .append('svg')
@@ -2226,6 +2231,28 @@ webpackJsonp([2],{
 	            .attr('height', this.height)
 	            .append('g')
 	            .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+	        this.getData('https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?api_key=Wrequ5yJz-7tNyvu6iS1');
+	    };
+	    StocksDirective.prototype.getData = function (file) {
+	        var _this = this;
+	        d3.json(file, function (error, data) {
+	            if (error) {
+	                throw error;
+	            }
+	            ;
+	            console.log('data received');
+	            _this.handleData(data);
+	        });
+	    };
+	    StocksDirective.prototype.handleData = function (data) {
+	        console.log('handle date');
+	        // console.log(data);
+	        var x = this.parseDate('2015-12-12');
+	        console.log(x);
+	        // data.dataset.data.forEach( (d) => {
+	        //     d[DataValue.date] = this.parseDate(d[DataValue.date])
+	        //     console.log(d)
+	        // })
 	    };
 	    __decorate([
 	        core_1.Input('ticker'), 
@@ -2246,6 +2273,22 @@ webpackJsonp([2],{
 	    return StocksDirective;
 	}());
 	exports.StocksDirective = StocksDirective;
+	(function (DataValue) {
+	    DataValue[DataValue["date"] = 0] = "date";
+	    DataValue[DataValue["open"] = 1] = "open";
+	    DataValue[DataValue["high"] = 2] = "high";
+	    DataValue[DataValue["low"] = 3] = "low";
+	    DataValue[DataValue["close"] = 4] = "close";
+	    DataValue[DataValue["volume"] = 5] = "volume";
+	    DataValue[DataValue["ex-Dividend"] = 6] = "ex-Dividend";
+	    DataValue[DataValue["split Ratio"] = 7] = "split Ratio";
+	    DataValue[DataValue["adj. Open"] = 8] = "adj. Open";
+	    DataValue[DataValue["adj. High"] = 9] = "adj. High";
+	    DataValue[DataValue["adj. Low"] = 10] = "adj. Low";
+	    DataValue[DataValue["adj. Close"] = 11] = "adj. Close";
+	    DataValue[DataValue["adj. Volume"] = 12] = "adj. Volume";
+	})(exports.DataValue || (exports.DataValue = {}));
+	var DataValue = exports.DataValue;
 	
 
 /***/ },
