@@ -9870,7 +9870,7 @@ webpackJsonp([2],{
 /***/ 473:
 /***/ function(module, exports) {
 
-	module.exports = ".stocks {\n  padding: 200px; }\n"
+	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n"
 
 /***/ },
 
@@ -11314,6 +11314,7 @@ webpackJsonp([2],{
 	            selector: 'my-stocks',
 	            styles: [__webpack_require__(473).toString()],
 	            template: __webpack_require__(463),
+	            encapsulation: core_1.ViewEncapsulation.None
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], StocksComponent);
@@ -11372,12 +11373,15 @@ webpackJsonp([2],{
 	            .attr('height', this.height)
 	            .append('g')
 	            .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
-	        this.getData('https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?api_key=Wrequ5yJz-7tNyvu6iS1');
+	        this.getData('FB');
 	    };
-	    StocksDirective.prototype.getData = function (file) {
+	    StocksDirective.prototype.updateGraph = function (ticker) {
+	        this.getData(ticker);
+	    };
+	    StocksDirective.prototype.getData = function (ticker) {
 	        var _this = this;
 	        console.log('getData');
-	        d3.json(file, function (error, data) {
+	        d3.json('https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?api_key=Wrequ5yJz-7tNyvu6iS1', function (error, data) {
 	            if (error) {
 	                throw error;
 	            }
@@ -11386,8 +11390,9 @@ webpackJsonp([2],{
 	            _this.handleData(data);
 	        });
 	    };
-	    StocksDirective.prototype.handleData = function (data) {
+	    StocksDirective.prototype.handleData = function (data, updateLine) {
 	        var _this = this;
+	        if (updateLine === void 0) { updateLine = false; }
 	        console.log('handle date');
 	        data.dataset.data.map(function (d) {
 	            d[DataValue.date] = _this.parseDate(d[DataValue.date]);
@@ -11396,7 +11401,12 @@ webpackJsonp([2],{
 	            }
 	        });
 	        this.scaleDomains(data.dataset.data, DataValue.date, DataValue.close);
-	        this.createLine(data.dataset.data);
+	        if (updateLine) {
+	            this.updateLine(data.dataset.data);
+	        }
+	        else {
+	            this.createLine(data.dataset.data);
+	        }
 	        console.log('data handled');
 	    };
 	    StocksDirective.prototype.scaleDomains = function (data, xValue, yValue) {
@@ -11404,9 +11414,14 @@ webpackJsonp([2],{
 	        this.y.domain([0, d3.max(data, function (d) { return d[yValue]; })]);
 	    };
 	    StocksDirective.prototype.createLine = function (data) {
-	        this.graph.append('g')
+	        this.line = this.graph.append('g')
 	            .append("path")
 	            .attr("class", "line")
+	            .attr("d", this.generateLine(data, DataValue.date, DataValue.close));
+	    };
+	    StocksDirective.prototype.updateLine = function (data) {
+	        this.line
+	            .transition()
 	            .attr("d", this.generateLine(data, DataValue.date, DataValue.close));
 	    };
 	    StocksDirective.prototype.generateLine = function (data, xValue, yValue) {
@@ -11415,7 +11430,6 @@ webpackJsonp([2],{
 	        var line = d3.svg.line()
 	            .x(function (d) { return _this.x(d[xValue]); })
 	            .y((function (d) { return _this.y(d[yValue]); }));
-	        console.log(line(data));
 	        return line(data);
 	    };
 	    __decorate([

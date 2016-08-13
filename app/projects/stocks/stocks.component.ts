@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { StocksDirective } from './stocks.directive';
 
@@ -8,6 +8,7 @@ import { StocksDirective } from './stocks.directive';
     selector: 'my-stocks',
     styles: [require('./../../../scss/projects/stocks.scss').toString()],
     templateUrl: './stocks.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 
 export class StocksComponent {}

@@ -1,2 +1,7 @@
 .stocks {
   padding: 200px; }
+
+.line {
+  fill: none;
+  stroke-width: 0.5px;
+  stroke: lightsteelblue; }

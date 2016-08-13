@@ -43,26 +43,32 @@ export class StocksDirective implements OnInit {
                     .append('g')
                 .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
 
-        this.getData('https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?api_key=Wrequ5yJz-7tNyvu6iS1')
+        this.getData('FB');
     }
 
-    getData(file: string) {
+    updateGraph(ticker: string) {
+        this.getData(ticker);
+    }
+
+    getData(ticker: string) {
         console.log('getData')
-        d3.json(file, (error: any, data: StockAPi) => {
+        d3.json('https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?api_key=Wrequ5yJz-7tNyvu6iS1', (error: any, data: StockAPi) => {
             if (error) { throw error; };
             console.log('data received')
             this.handleData(data);
         });
     }
 
-    handleData(data: StockAPi) {
+    handleData(data: StockAPi, updateLine: boolean = false) {
         console.log('handle date')
         data.dataset.data.map((d) => {
             d[DataValue.date] = this.parseDate(d[DataValue.date])
             for (let i = 1; i < d.length; i++) { d[i] = +d[i]; }
         })
         this.scaleDomains(data.dataset.data, DataValue.date, DataValue.close);
-        this.createLine( data.dataset.data);
+        if (updateLine) { this.updateLine(data.dataset.data) }
+        else { this.createLine( data.dataset.data); }
+        
         console.log('data handled');
     }
 
@@ -72,18 +78,24 @@ export class StocksDirective implements OnInit {
     }
 
     createLine(data: any) {
-        this.graph.append('g')
+        this.line = this.graph.append('g')
             .append("path")
             .attr("class", "line")
             .attr("d", this.generateLine(data, DataValue.date, DataValue.close));
     }
 
+    updateLine(data: any) {
+        this.line
+            .transition()
+            .attr("d", this.generateLine(data, DataValue.date, DataValue.close));        
+    }
+
     generateLine(data: any, xValue: DataValue, yValue: DataValue) {
         console.log('generate')
         let line = d3.svg.line()
-        .x( (d) => { return this.x(d[xValue]); })
-        .y( (d => { return this.y(d[yValue]); });
-        console.log(line(data))
+            .x( (d) => { return this.x(d[xValue]); })
+            .y( (d => { return this.y(d[yValue]); }));
+        
         return line(data);
     }
 
