@@ -9800,7 +9800,7 @@ webpackJsonp([2],{
 /***/ 463:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"stocks\">\n    <h1>stocks</h1>\n    <div class=\"chart\" my-stock-chart ></div>\n</div>"
+	module.exports = "<div class=\"stocks\">\n    <h1>stocks</h1>\n    <div class=\"chart\" my-stock-chart [date-visible]=\"dateVisible\" [ticker]='ticker' >\n    <input [(ngModel)]='ticker' type=\"text\" >\n    <button (click)=updateDate(0) >All</button>\n    <button (click)=updateDate(1) >5</button>\n    <button (click)=updateDate(2) >3</button>\n    <button (click)=updateDate(3) >2</button>\n    <button (click)=updateDate(4) >1</button>\n    <button (click)=updateDate(5) >6 Month</button>\n    <button (click)=updateDate(6) >1 Month</button>\n    <button (click)=updateDate(7) >2 Weeks</button>\n    <button (click)=updateDate(8) >1 Week</button>\n    <button (click)=updateDate(9) >Day</button>\n    </div>\n</div>\n"
 
 /***/ },
 
@@ -9870,7 +9870,7 @@ webpackJsonp([2],{
 /***/ 473:
 /***/ function(module, exports) {
 
-	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n"
+	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n\n.axis path,\n.axis line {\n  fill: none;\n  stroke: grey;\n  stroke-width: 1;\n  shape-rendering: crispEdges; }\n"
 
 /***/ },
 
@@ -11306,7 +11306,12 @@ webpackJsonp([2],{
 	var stocks_directive_1 = __webpack_require__(703);
 	var StocksComponent = (function () {
 	    function StocksComponent() {
+	        this.dateVisible = DateVisible.All;
+	        this.ticker = 'FB';
 	    }
+	    StocksComponent.prototype.updateDate = function (date) {
+	        this.dateVisible = date;
+	    };
 	    StocksComponent = __decorate([
 	        core_1.Component({
 	            directives: [router_1.ROUTER_DIRECTIVES, stocks_directive_1.StocksDirective],
@@ -11321,6 +11326,19 @@ webpackJsonp([2],{
 	    return StocksComponent;
 	}());
 	exports.StocksComponent = StocksComponent;
+	(function (DateVisible) {
+	    DateVisible[DateVisible["All"] = 1] = "All";
+	    DateVisible[DateVisible["fiveYears"] = 2] = "fiveYears";
+	    DateVisible[DateVisible["threeYears"] = 3] = "threeYears";
+	    DateVisible[DateVisible["twoYears"] = 4] = "twoYears";
+	    DateVisible[DateVisible["oneYear"] = 5] = "oneYear";
+	    DateVisible[DateVisible["sixMonths"] = 6] = "sixMonths";
+	    DateVisible[DateVisible["oneMonth"] = 7] = "oneMonth";
+	    DateVisible[DateVisible["twoWeeks"] = 8] = "twoWeeks";
+	    DateVisible[DateVisible["oneWeek"] = 9] = "oneWeek";
+	    DateVisible[DateVisible["OneDay"] = 10] = "OneDay";
+	})(exports.DateVisible || (exports.DateVisible = {}));
+	var DateVisible = exports.DateVisible;
 	
 
 /***/ },
@@ -11339,6 +11357,7 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
+	var stocks_component_1 = __webpack_require__(702);
 	var d3 = __webpack_require__(452);
 	var StocksDirective = (function () {
 	    function StocksDirective(elementRef) {
@@ -11350,7 +11369,7 @@ webpackJsonp([2],{
 	        this.margin = {
 	            top: 30,
 	            right: 50,
-	            bottom: 30,
+	            bottom: 130,
 	            left: 50
 	        };
 	        this.height = this._height - this.margin.bottom - this.margin.top;
@@ -11361,12 +11380,8 @@ webpackJsonp([2],{
 	        this.graph = d3.select(this.el);
 	    }
 	    StocksDirective.prototype.onClick = function () {
-	        var ticks = ['GOOG', 'FB', 'DELL', 'AAPL'];
-	        this.updateGraph(ticks[this.click]);
-	        if (this.click === ticks.length) {
-	            this.click = 0;
-	        }
-	        this.click++;
+	        this.updateGraph(this.ticker);
+	        console.log(this.dateVisible);
 	    };
 	    StocksDirective.prototype.ngOnInit = function () {
 	        this.createGraph();
@@ -11375,6 +11390,10 @@ webpackJsonp([2],{
 	        if (format === void 0) { format = '%Y-%m-%d'; }
 	        return d3.time.format(format).parse(date);
 	    };
+	    StocksDirective.prototype.convertDateToString = function (date, format) {
+	        if (format === void 0) { format = '%Y-%m-%d'; }
+	        return d3.time.format(format)(date);
+	    };
 	    StocksDirective.prototype.createGraph = function () {
 	        this.graph = this.graph
 	            .append('svg')
@@ -11382,7 +11401,7 @@ webpackJsonp([2],{
 	            .attr('height', this.height)
 	            .append('g')
 	            .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
-	        this.getData('FB');
+	        this.getData(this.ticker);
 	    };
 	    StocksDirective.prototype.updateGraph = function (ticker) {
 	        this.getData(ticker, true);
@@ -11391,7 +11410,41 @@ webpackJsonp([2],{
 	        var _this = this;
 	        if (updateLine === void 0) { updateLine = false; }
 	        console.log('getData');
-	        d3.json('https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?api_key=Wrequ5yJz-7tNyvu6iS1', function (error, data) {
+	        var currentDate = new Date();
+	        var outputDate;
+	        switch (this.dateVisible) {
+	            case stocks_component_1.DateVisible.fiveYears:
+	                currentDate = currentDate.setDate(currentDate.getDate() - (365 * 5));
+	                break;
+	            case stocks_component_1.DateVisible.threeYears:
+	                currentDate = currentDate.setDate(currentDate.getDate() - (365 * 3));
+	                break;
+	            case stocks_component_1.DateVisible.oneYear:
+	                currentDate = currentDate.setDate(currentDate.getDate() - (365));
+	                break;
+	            case stocks_component_1.DateVisible.sixMonths:
+	                currentDate = currentDate.setDate(currentDate.getDate() - (182));
+	                break;
+	            case stocks_component_1.DateVisible.oneMonth:
+	                currentDate = currentDate.setDate(currentDate.getDate() - (30));
+	                break;
+	            case stocks_component_1.DateVisible.twoWeeks:
+	                currentDate = currentDate.setDate(currentDate.getDate() - (14));
+	                break;
+	            case stocks_component_1.DateVisible.oneWeek:
+	                currentDate = currentDate.setDate(currentDate.getDate() - (7));
+	                break;
+	            case stocks_component_1.DateVisible.OneDay:
+	                currentDate = currentDate.setDate(currentDate.getDate() - (1));
+	                break;
+	        }
+	        if (this.dateVisible === stocks_component_1.DateVisible.All) {
+	            outputDate = '';
+	        }
+	        else {
+	            outputthis.convertDateToString(currentDate);
+	        }
+	        d3.json('https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?&start_date=2014-01-01&api_key=Wrequ5yJz-7tNyvu6iS1', function (error, data) {
 	            if (error) {
 	                console.error('error');
 	                throw error;
@@ -11401,9 +11454,9 @@ webpackJsonp([2],{
 	            _this.handleData(data, updateLine);
 	        });
 	    };
-	    StocksDirective.prototype.handleData = function (data, updateLine) {
+	    StocksDirective.prototype.handleData = function (data, update) {
 	        var _this = this;
-	        if (updateLine === void 0) { updateLine = false; }
+	        if (update === void 0) { update = false; }
 	        console.log('handle date');
 	        data.dataset.data.map(function (d) {
 	            d[DataValue.date] = _this.parseDate(d[DataValue.date]);
@@ -11412,16 +11465,24 @@ webpackJsonp([2],{
 	            }
 	        });
 	        this.scaleDomains(data.dataset.data, DataValue.date, DataValue.close);
-	        if (updateLine) {
+	        if (update) {
+	            this.updateAxis();
 	            this.updateLine(data.dataset.data);
 	        }
 	        else {
+	            this.createAxis();
 	            this.createLine(data.dataset.data);
 	        }
 	        console.log('data handled');
 	    };
-	    StocksDirective.prototype.scaleDomains = function (data, xValue, yValue) {
-	        this.x.domain(d3.extent(data, function (d) { return d[xValue]; }));
+	    StocksDirective.prototype.scaleDomains = function (data, xValue, yValue, minDate) {
+	        if (minDate === void 0) { minDate = '2014-01-01'; }
+	        if (minDate === 'all') {
+	            this.x.domain(d3.extent(data, function (d) { return d[xValue]; }));
+	        }
+	        else {
+	            this.x.domain([this.parseDate(minDate), d3.max(data, function (d) { return d[xValue]; })]);
+	        }
 	        this.y.domain([0, d3.max(data, function (d) { return d[yValue]; })]);
 	    };
 	    StocksDirective.prototype.createLine = function (data) {
@@ -11444,10 +11505,33 @@ webpackJsonp([2],{
 	            .y((function (d) { return _this.y(d[yValue]); }));
 	        return line(data);
 	    };
+	    StocksDirective.prototype.createAxis = function () {
+	        this.xAxis = d3.svg.axis().scale(this.x).orient("top").ticks(5);
+	        this.graph.append('g')
+	            .attr("class", "x axis")
+	            .call(this.xAxis);
+	        this.yAxis = d3.svg.axis().scale(this.y).orient("left").ticks(5);
+	        this.graph.append('g')
+	            .attr("class", "y axis")
+	            .call(this.yAxis);
+	    };
+	    StocksDirective.prototype.updateAxis = function () {
+	        this.graph.select('.x.axis')
+	            .transition()
+	            .call(this.xAxis);
+	        this.graph.select('.y.axis')
+	            .transition()
+	            .duration(1000)
+	            .call(this.yAxis);
+	    };
 	    __decorate([
 	        core_1.Input('ticker'), 
 	        __metadata('design:type', Object)
 	    ], StocksDirective.prototype, "ticker", void 0);
+	    __decorate([
+	        core_1.Input('date-visible'), 
+	        __metadata('design:type', Number)
+	    ], StocksDirective.prototype, "dateVisible", void 0);
 	    __decorate([
 	        core_1.Input('height'), 
 	        __metadata('design:type', Object)

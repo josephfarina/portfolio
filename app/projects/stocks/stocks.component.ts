@@ -11,4 +11,25 @@ import { StocksDirective } from './stocks.directive';
     encapsulation: ViewEncapsulation.None
 })
 
-export class StocksComponent {}
+export class StocksComponent {
+    private dateVisible: DateVisible = DateVisible.All;
+    private ticker: string = 'FB';
+
+    updateDate(date: DateVisible) {
+        this.dateVisible = date;
+    }
+
+}
+
+export enum DateVisible {
+    All = 1,
+    fiveYears,
+    threeYears,
+    twoYears,
+    oneYear,
+    sixMonths,
+    oneMonth,
+    twoWeeks,
+    oneWeek,
+    OneDay,
+}

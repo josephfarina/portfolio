@@ -1,4 +1,16 @@
 <div class="stocks">
     <h1>stocks</h1>
-    <div class="chart" my-stock-chart ></div>
+    <div class="chart" my-stock-chart [date-visible]="dateVisible" [ticker]='ticker' >
+    <input [(ngModel)]='ticker' type="text" >
+    <button (click)=updateDate(0) >All</button>
+    <button (click)=updateDate(1) >5</button>
+    <button (click)=updateDate(2) >3</button>
+    <button (click)=updateDate(3) >2</button>
+    <button (click)=updateDate(4) >1</button>
+    <button (click)=updateDate(5) >6 Month</button>
+    <button (click)=updateDate(6) >1 Month</button>
+    <button (click)=updateDate(7) >2 Weeks</button>
+    <button (click)=updateDate(8) >1 Week</button>
+    <button (click)=updateDate(9) >Day</button>
+    </div>
 </div>

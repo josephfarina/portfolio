@@ -1,29 +1,29 @@
 import { Directive, ElementRef, Input, OnInit, HostListener } from '@angular/core';
+import { DateVisible } from './stocks.component';
 import * as d3 from 'd3';
 
 @Directive({ selector: '[my-stock-chart]' })
 export class StocksDirective implements OnInit {
     @Input('ticker') ticker = 'FB';
+    @Input('date-visible') dateVisible: DateVisible;
     @Input('height') _height = 500;
     @Input('width') _width = 500;
     @HostListener('click')
     onClick() {
-        var ticks = ['GOOG', 'FB', 'DELL', 'AAPL']
-        this.updateGraph(ticks[this.click])
-        if(this.click === ticks.length) {
-            this.click = 0;
-        }
-        this.click++;
+        this.updateGraph(this.ticker)
+        console.log(this.dateVisible)
     }
 
     private click = 0;
     private el: any;
     private graph: any;
     private line: any;
+    private xAxis: any;
+    private yAxis: any;
     private margin: Margin = {
         top: 30,
         right: 50,
-        bottom: 30,
+        bottom: 130,
         left: 50
     };
     private height: number = this._height - this.margin.bottom - this.margin.top;
@@ -45,6 +45,10 @@ export class StocksDirective implements OnInit {
         return d3.time.format(format).parse(date);
     }
 
+    convertDateToString(date: Date, format: string = '%Y-%m-%d') {
+        return d3.time.format(format)(date);
+    }
+
     createGraph() {
         this.graph = this.graph
                     .append('svg')
@@ -53,7 +57,7 @@ export class StocksDirective implements OnInit {
                     .append('g')
                 .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
 
-        this.getData('FB');
+        this.getData(this.ticker);
     }
 
     updateGraph(ticker: string) {
@@ -62,27 +66,70 @@ export class StocksDirective implements OnInit {
 
     getData(ticker: string, updateLine: boolean = false) {
         console.log('getData')
-        d3.json('https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?api_key=Wrequ5yJz-7tNyvu6iS1', (error: any, data: StockAPi) => {
+        let currentDate: any = new Date();
+        let outputDate: string;
+        switch (this.dateVisible) {
+            case DateVisible.fiveYears:
+                currentDate = currentDate.setDate(currentDate.getDate() - (365 * 5) );
+                break;
+            case DateVisible.threeYears:
+                currentDate = currentDate.setDate(currentDate.getDate() - (365 * 3) );
+                break;
+            case DateVisible.oneYear:
+                currentDate = currentDate.setDate(currentDate.getDate() - (365) );
+                break;
+            case DateVisible.sixMonths:
+                currentDate = currentDate.setDate(currentDate.getDate() - (182) );
+                break;
+            case DateVisible.oneMonth:
+                currentDate = currentDate.setDate(currentDate.getDate() - (30) );
+                break;
+            case DateVisible.twoWeeks:
+                currentDate = currentDate.setDate(currentDate.getDate() - (14) );
+                break;
+            case DateVisible.oneWeek:
+                currentDate = currentDate.setDate(currentDate.getDate() - (7) );
+                break;
+            case DateVisible.OneDay:
+                currentDate = currentDate.setDate(currentDate.getDate() - (1) );
+                break;
+        }
+
+        if (this.dateVisible === DateVisible.All) { outputDate = ''} 
+        else {
+            outputDate = this.convertDateToString(currentDate)
+        }
+
+        d3.json('https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?&start_date=2014-01-01&api_key=Wrequ5yJz-7tNyvu6iS1', (error: any, data: StockAPi) => {
             if (error) { console.error('error'); throw error; };
             console.log('data received')
             this.handleData(data, updateLine);
         });
     }
 
-    handleData(data: StockAPi, updateLine: boolean = false) {
+    handleData(data: StockAPi, update: boolean = false) {
         console.log('handle date')
         data.dataset.data.map((d) => {
             d[DataValue.date] = this.parseDate(d[DataValue.date])
             for (let i = 1; i < d.length; i++) { d[i] = +d[i]; }
         })
         this.scaleDomains(data.dataset.data, DataValue.date, DataValue.close);
-        if (updateLine) { this.updateLine(data.dataset.data) }
-        else { this.createLine( data.dataset.data); }
+
+        if (update) { 
+            this.updateAxis()
+            this.updateLine(data.dataset.data) 
+        }
+        else { 
+            this.createAxis();
+            this.createLine(data.dataset.data); 
+        }
         console.log('data handled');
     }
 
-    scaleDomains(data: any[][], xValue: DataValue, yValue: DataValue) {
-        this.x.domain(d3.extent(data, (d) => { return d[xValue]; }));
+    scaleDomains(data: any[][], xValue: DataValue, yValue: DataValue, minDate: string = '2014-01-01') {
+        
+        if ( minDate === 'all') { this.x.domain(d3.extent(data, (d) => { return d[xValue]; }));
+        } else {  this.x.domain([this.parseDate(minDate), d3.max(data, (d) => { return d[xValue]; })]); }
         this.y.domain([0, d3.max(data, (d) => { return d[yValue]; })]);
     }
 
@@ -107,6 +154,30 @@ export class StocksDirective implements OnInit {
             .y( (d => { return this.y(d[yValue]); }));
         
         return line(data);
+    }
+
+    createAxis() {
+        this.xAxis = d3.svg.axis().scale(this.x).orient("top").ticks(5);
+        this.graph.append('g')
+            .attr("class", "x axis")
+            // .attr("transform", "translate(0," + this.height + ")")
+            .call(this.xAxis);
+        
+        this.yAxis = d3.svg.axis().scale(this.y).orient("left").ticks(5);
+        this.graph.append('g')
+            .attr("class", "y axis")
+            // .attr("transform", "translate(0," + this.height + ")")
+            .call(this.yAxis);        
+    }
+
+    updateAxis() {
+        this.graph.select('.x.axis')
+            .transition()
+            .call(this.xAxis)
+        this.graph.select('.y.axis')
+            .transition()
+            .duration(1000)
+            .call(this.yAxis)            
     }
 
 }
