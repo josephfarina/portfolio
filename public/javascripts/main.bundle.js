@@ -11366,7 +11366,7 @@ webpackJsonp([2],{
 	        return d3.time.format(format).parse(date);
 	    };
 	    StocksDirective.prototype.createGraph = function () {
-	        this.graph
+	        this.graph = this.graph
 	            .append('svg')
 	            .attr('width', this.width)
 	            .attr('height', this.height)
@@ -11389,36 +11389,34 @@ webpackJsonp([2],{
 	    StocksDirective.prototype.handleData = function (data) {
 	        var _this = this;
 	        console.log('handle date');
-	        data.dataset.data.forEach(function (d) {
+	        data.dataset.data.map(function (d) {
 	            d[DataValue.date] = _this.parseDate(d[DataValue.date]);
 	            for (var i = 1; i < d.length; i++) {
 	                d[i] = +d[i];
 	            }
 	        });
+	        this.scaleDomains(data.dataset.data, DataValue.date, DataValue.close);
+	        this.createLine(data.dataset.data);
 	        console.log('data handled');
 	    };
-	    StocksDirective.prototype.generateLine = function (data, xValue, yValue) {
-	        return d3.svg.line()
-	            .x(function (data) {
-	            return data[xValue];
-	        })
-	            .y(function (data) {
-	            return data[yValue];
-	        });
-	    };
 	    StocksDirective.prototype.scaleDomains = function (data, xValue, yValue) {
-	        this.x.domain(d3.extent(data, function (d) {
-	            return d[xValue];
-	        }));
-	        this.y.domain([0, d3.max(data, function (d) {
-	                return d[yValue];
-	            })]);
+	        this.x.domain(d3.extent(data, function (d) { return d[xValue]; }));
+	        this.y.domain([0, d3.max(data, function (d) { return d[yValue]; })]);
 	    };
 	    StocksDirective.prototype.createLine = function (data) {
 	        this.graph.append('g')
 	            .append("path")
 	            .attr("class", "line")
 	            .attr("d", this.generateLine(data, DataValue.date, DataValue.close));
+	    };
+	    StocksDirective.prototype.generateLine = function (data, xValue, yValue) {
+	        var _this = this;
+	        console.log('generate');
+	        var line = d3.svg.line()
+	            .x(function (d) { return _this.x(d[xValue]); })
+	            .y((function (d) { return _this.y(d[yValue]); }));
+	        console.log(line(data));
+	        return line(data);
 	    };
 	    __decorate([
 	        core_1.Input('ticker'), 

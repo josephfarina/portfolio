@@ -36,12 +36,12 @@ export class StocksDirective implements OnInit {
     }
 
     createGraph() {
-        this.graph
-            .append('svg')
-            .attr('width', this.width)
-            .attr('height', this.height)
-            .append('g')
-            .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+        this.graph = this.graph
+                    .append('svg')
+                .attr('width', this.width)
+                .attr('height', this.height)
+                    .append('g')
+                .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
 
         this.getData('https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?api_key=Wrequ5yJz-7tNyvu6iS1')
     }
@@ -57,30 +57,18 @@ export class StocksDirective implements OnInit {
 
     handleData(data: StockAPi) {
         console.log('handle date')
-        data.dataset.data.forEach((d) => {
+        data.dataset.data.map((d) => {
             d[DataValue.date] = this.parseDate(d[DataValue.date])
             for (let i = 1; i < d.length; i++) { d[i] = +d[i]; }
         })
+        this.scaleDomains(data.dataset.data, DataValue.date, DataValue.close);
+        this.createLine( data.dataset.data);
         console.log('data handled');
     }
 
-    generateLine(data: any[][], xValue: DataValue, yValue: DataValue) {
-        return d3.svg.line()
-            .x((data) => {
-                return data[xValue];
-            })
-            .y((data) => {
-                return data[yValue];
-            })
-    }
-
     scaleDomains(data: any[][], xValue: DataValue, yValue: DataValue) {
-        this.x.domain(d3.extent(data, (d) => {
-            return d[xValue];
-        }));
-        this.y.domain([0, d3.max(data, (d) => {
-            return d[yValue];
-        })]);
+        this.x.domain(d3.extent(data, (d) => { return d[xValue]; }));
+        this.y.domain([0, d3.max(data, (d) => { return d[yValue]; })]);
     }
 
     createLine(data: any) {
@@ -88,6 +76,15 @@ export class StocksDirective implements OnInit {
             .append("path")
             .attr("class", "line")
             .attr("d", this.generateLine(data, DataValue.date, DataValue.close));
+    }
+
+    generateLine(data: any, xValue: DataValue, yValue: DataValue) {
+        console.log('generate')
+        let line = d3.svg.line()
+        .x( (d) => { return this.x(d[xValue]); })
+        .y( (d => { return this.y(d[yValue]); });
+        console.log(line(data))
+        return line(data);
     }
 
 }
