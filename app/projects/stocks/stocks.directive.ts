@@ -9,6 +9,7 @@ export class StocksDirective implements OnInit {
 
     private el: any;
     private graph: any;
+    private line: any;
     private margin: Margin = {
         top: 30,
         right: 50,
@@ -17,6 +18,9 @@ export class StocksDirective implements OnInit {
     };
     private height: number = this._height - this.margin.bottom - this.margin.top;
     private width: number = this._width - this.margin.left - this.margin.right;
+
+    private x = d3.time.scale().range([0, this.width]);
+    private y = d3.scale.linear().range([this.height, 0]);
 
     constructor(private elementRef: ElementRef) {
         this.el = this.elementRef.nativeElement;
@@ -27,45 +31,23 @@ export class StocksDirective implements OnInit {
         this.createGraph();
     }
 
-    xRange(_x: Date) {
-        let x = d3.time.scale().range([0, this.width]);
-        return x(_x);
-    }
-
-    yRange(_y: number) {
-        let y = d3.scale.linear().range([this.height, 0]);
-        return y(_y);
-    }
-
-    xAxis() {
-        return d3.svg.axis().scale(this.xRange).orient('bottom').ticks(5);
-    }
-
-    yAxis() {
-        return d3.svg.axis().scale(this.yRange).orient('left').ticks(5);
-    }
-
-    generateLine(x: number, y: number) {
-        return d3.svg.line().x(x).y(y)
-    }
-
-    parseDate(date: string) {
-        console.log('PARSING DATE')
-        let parse = d3.time.format("%d-%b-%y").parse;
-        return parse(date);
+    parseDate(date: string, format: string = '%Y-%m-%d') {
+        return d3.time.format(format).parse(date);
     }
 
     createGraph() {
         this.graph
             .append('svg')
-                .attr('width', this.width)
-                .attr('height', this.height)
+            .attr('width', this.width)
+            .attr('height', this.height)
             .append('g')
-                .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+            .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+
         this.getData('https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?api_key=Wrequ5yJz-7tNyvu6iS1')
     }
 
     getData(file: string) {
+        console.log('getData')
         d3.json(file, (error: any, data: StockAPi) => {
             if (error) { throw error; };
             console.log('data received')
@@ -75,13 +57,37 @@ export class StocksDirective implements OnInit {
 
     handleData(data: StockAPi) {
         console.log('handle date')
-        // console.log(data);
-        let x = this.parseDate('2015-12-12')
-        console.log(x)
-        // data.dataset.data.forEach( (d) => {
-        //     d[DataValue.date] = this.parseDate(d[DataValue.date])
-        //     console.log(d)
-        // })
+        data.dataset.data.forEach((d) => {
+            d[DataValue.date] = this.parseDate(d[DataValue.date])
+            for (let i = 1; i < d.length; i++) { d[i] = +d[i]; }
+        })
+        console.log('data handled');
+    }
+
+    generateLine(data: any[][], xValue: DataValue, yValue: DataValue) {
+        return d3.svg.line()
+            .x((data) => {
+                return data[xValue];
+            })
+            .y((data) => {
+                return data[yValue];
+            })
+    }
+
+    scaleDomains(data: any[][], xValue: DataValue, yValue: DataValue) {
+        this.x.domain(d3.extent(data, (d) => {
+            return d[xValue];
+        }));
+        this.y.domain([0, d3.max(data, (d) => {
+            return d[yValue];
+        })]);
+    }
+
+    createLine(data: any) {
+        this.graph.append('g')
+            .append("path")
+            .attr("class", "line")
+            .attr("d", this.generateLine(data, DataValue.date, DataValue.close));
     }
 
 }
@@ -94,29 +100,29 @@ export interface Margin {
 }
 
 export interface StockAPi {
-  "dataset": {
-    "id": number;
-    "dataset_code": string;
-    "database_code": string;
-    "name": string;
-    "description": string;
-    "refreshed_at": string;
-    "newest_available_date": string;
-    "oldest_available_date": string;
-    "column_names": string[];
-    "frequency": string,
-    "type": string;
-    "premium": boolean;
-    "limit": any;
-    "transform": any;
-    "column_index": any;
-    "start_date": string;
-    "end_date": string;
-    "data": Object[];
-    "collapse": any;
-    "order": any;
-    "database_id": number;
-  }
+    "dataset": {
+        "id": number;
+        "dataset_code": string;
+        "database_code": string;
+        "name": string;
+        "description": string;
+        "refreshed_at": string;
+        "newest_available_date": string;
+        "oldest_available_date": string;
+        "column_names": string[];
+        "frequency": string,
+        "type": string;
+        "premium": boolean;
+        "limit": any;
+        "transform": any;
+        "column_index": any;
+        "start_date": string;
+        "end_date": string;
+        "data": any[][];
+        "collapse": any;
+        "order": any;
+        "database_id": number;
+    }
 }
 
 export enum DataValue {
@@ -126,13 +132,13 @@ export enum DataValue {
     "low" = 3,
     "close" = 4,
     "volume" = 5,
-    "ex-Dividend" = 6,
-    "split Ratio" = 7,
-    "adj. Open" = 8,
-    "adj. High" = 9,
-    "adj. Low" = 10,
-    "adj. Close" = 11,
-    "adj. Volume" = 12      
+    "exDividend" = 6,
+    "splitRatio" = 7,
+    "adjOpen" = 8,
+    "adjHigh" = 9,
+    "adjLow" = 10,
+    "adjClose" = 11,
+    "adjVolume" = 12
 }
 
 
