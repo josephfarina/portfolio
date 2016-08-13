@@ -11346,6 +11346,7 @@ webpackJsonp([2],{
 	        this.ticker = 'FB';
 	        this._height = 500;
 	        this._width = 500;
+	        this.click = 0;
 	        this.margin = {
 	            top: 30,
 	            right: 50,
@@ -11359,6 +11360,14 @@ webpackJsonp([2],{
 	        this.el = this.elementRef.nativeElement;
 	        this.graph = d3.select(this.el);
 	    }
+	    StocksDirective.prototype.onClick = function () {
+	        var ticks = ['GOOG', 'FB', 'DELL', 'AAPL'];
+	        this.updateGraph(ticks[this.click]);
+	        if (this.click === ticks.length) {
+	            this.click = 0;
+	        }
+	        this.click++;
+	    };
 	    StocksDirective.prototype.ngOnInit = function () {
 	        this.createGraph();
 	    };
@@ -11376,18 +11385,20 @@ webpackJsonp([2],{
 	        this.getData('FB');
 	    };
 	    StocksDirective.prototype.updateGraph = function (ticker) {
-	        this.getData(ticker);
+	        this.getData(ticker, true);
 	    };
-	    StocksDirective.prototype.getData = function (ticker) {
+	    StocksDirective.prototype.getData = function (ticker, updateLine) {
 	        var _this = this;
+	        if (updateLine === void 0) { updateLine = false; }
 	        console.log('getData');
 	        d3.json('https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?api_key=Wrequ5yJz-7tNyvu6iS1', function (error, data) {
 	            if (error) {
+	                console.error('error');
 	                throw error;
 	            }
 	            ;
 	            console.log('data received');
-	            _this.handleData(data);
+	            _this.handleData(data, updateLine);
 	        });
 	    };
 	    StocksDirective.prototype.handleData = function (data, updateLine) {
@@ -11422,6 +11433,7 @@ webpackJsonp([2],{
 	    StocksDirective.prototype.updateLine = function (data) {
 	        this.line
 	            .transition()
+	            .duration(1000)
 	            .attr("d", this.generateLine(data, DataValue.date, DataValue.close));
 	    };
 	    StocksDirective.prototype.generateLine = function (data, xValue, yValue) {
@@ -11444,6 +11456,12 @@ webpackJsonp([2],{
 	        core_1.Input('width'), 
 	        __metadata('design:type', Object)
 	    ], StocksDirective.prototype, "_width", void 0);
+	    __decorate([
+	        core_1.HostListener('click'), 
+	        __metadata('design:type', Function), 
+	        __metadata('design:paramtypes', []), 
+	        __metadata('design:returntype', void 0)
+	    ], StocksDirective.prototype, "onClick", null);
 	    StocksDirective = __decorate([
 	        core_1.Directive({ selector: '[my-stock-chart]' }), 
 	        __metadata('design:paramtypes', [core_1.ElementRef])

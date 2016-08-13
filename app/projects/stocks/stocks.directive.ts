@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, HostListener } from '@angular/core';
 import * as d3 from 'd3';
 
 @Directive({ selector: '[my-stock-chart]' })
@@ -6,7 +6,17 @@ export class StocksDirective implements OnInit {
     @Input('ticker') ticker = 'FB';
     @Input('height') _height = 500;
     @Input('width') _width = 500;
+    @HostListener('click')
+    onClick() {
+        var ticks = ['GOOG', 'FB', 'DELL', 'AAPL']
+        this.updateGraph(ticks[this.click])
+        if(this.click === ticks.length) {
+            this.click = 0;
+        }
+        this.click++;
+    }
 
+    private click = 0;
     private el: any;
     private graph: any;
     private line: any;
@@ -47,15 +57,15 @@ export class StocksDirective implements OnInit {
     }
 
     updateGraph(ticker: string) {
-        this.getData(ticker);
+        this.getData(ticker, true);
     }
 
-    getData(ticker: string) {
+    getData(ticker: string, updateLine: boolean = false) {
         console.log('getData')
         d3.json('https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?api_key=Wrequ5yJz-7tNyvu6iS1', (error: any, data: StockAPi) => {
-            if (error) { throw error; };
+            if (error) { console.error('error'); throw error; };
             console.log('data received')
-            this.handleData(data);
+            this.handleData(data, updateLine);
         });
     }
 
@@ -68,7 +78,6 @@ export class StocksDirective implements OnInit {
         this.scaleDomains(data.dataset.data, DataValue.date, DataValue.close);
         if (updateLine) { this.updateLine(data.dataset.data) }
         else { this.createLine( data.dataset.data); }
-        
         console.log('data handled');
     }
 
@@ -87,6 +96,7 @@ export class StocksDirective implements OnInit {
     updateLine(data: any) {
         this.line
             .transition()
+            .duration(1000)
             .attr("d", this.generateLine(data, DataValue.date, DataValue.close));        
     }
 
