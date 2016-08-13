@@ -9,6 +9,7 @@ import '@angular/router';
 import '@angular/forms';
 import 'rxjs/Rx';
 let Snap = require('imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js');
+// let d3 = require('d3');
 
 // Stylesheets
 require('bootstrap/dist/css/bootstrap.min.css');

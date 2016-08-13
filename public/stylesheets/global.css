@@ -224,9 +224,18 @@ a {
     display: inline-block;
     height: 12px; }
 
-@media only screen and (min-width: 375px) and (max-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
-  * {
-    color: red; } }
+.small-screen {
+  padding: 50px; }
+  .small-screen a {
+    color: blue;
+    text-decoration: underline; }
 
-* {
-  color: red; }
+@media (min-width: 400px) {
+  .small-screen {
+    display: none; } }
+
+@media (max-width: 400px) {
+  .wide-screen {
+    display: none; }
+  .small-screen {
+    display: block; } }
