@@ -11434,7 +11434,7 @@ webpackJsonp([2],{
 	        else {
 	            this.createAxis();
 	            this.createLine(data.dataset.data);
-	            this.createTooltip();
+	            this.createTooltip(data.dataset.data);
 	        }
 	        console.log('data handled');
 	    };
@@ -11480,7 +11480,7 @@ webpackJsonp([2],{
 	            .transition()
 	            .call(this.xAxis);
 	    };
-	    StocksDirective.prototype.createTooltip = function () {
+	    StocksDirective.prototype.createTooltip = function (arrayData) {
 	        var _this = this;
 	        this.dataHighlight = this.graph.append('g')
 	            .append('line')
@@ -11496,14 +11496,8 @@ webpackJsonp([2],{
 	            .style("pointer-events", "all")
 	            .on("mouseover", function () { _this.toolTipMouseOver(); })
 	            .on("mouseout", function () { _this.toolTipMouseOut(); })
-	            .on("mousemove", function () { return _this.toolTipMouseMove(); });
-	        this.graph.append('text')
-	            .attr('class', 'stock-subtitle')
-	            .style("position", "absolute")
-	            .attr('dy', -50)
-	            .style("z-index", "10")
-	            .text("a simple tooltip");
-	        this.graph.append('text')
+	            .on("mousemove", function () { return _this.toolTipMouseMove(arrayData); });
+	        this.dataHighlightValue = this.graph.append('text')
 	            .attr('class', 'stock-title')
 	            .style("position", "absolute")
 	            .attr('dy', -70)
@@ -11511,8 +11505,12 @@ webpackJsonp([2],{
 	            .attr('dx', this.width / 2)
 	            .style("z-index", "10")
 	            .text("$14.54");
-	        this.dataHighlightValue = this.dataHighlightContainer.append('text');
-	        this.dataHighlightDetails = this.dataHighlightContainer.append('text');
+	        this.dataHighlightDetails = this.graph.append('text')
+	            .attr('class', 'stock-subtitle')
+	            .style("position", "absolute")
+	            .attr('dy', -50)
+	            .style("z-index", "10")
+	            .text("a simple tooltip");
 	    };
 	    StocksDirective.prototype.updateToolTip = function () {
 	    };
@@ -11522,12 +11520,12 @@ webpackJsonp([2],{
 	    StocksDirective.prototype.toolTipMouseOut = function () {
 	        console.log('mouse out');
 	    };
-	    StocksDirective.prototype.toolTipMouseMove = function () {
+	    StocksDirective.prototype.toolTipMouseMove = function (data) {
 	        this.dataHighlight
 	            .attr("x1", d3.mouse(d3.event.currentTarget)[0])
 	            .attr("x2", d3.mouse(d3.event.currentTarget)[0]);
-	        console.log('mouse move', d3.mouse(d3.event.currentTarget)[0]);
-	        console.log(this.x.invert(d3.mouse(d3.event.currentTarget)[0]));
+	        this.dataHighlightDetails.text(this.x.invert(d3.mouse(d3.event.currentTarget)[0]));
+	        // console.log(this.x.invert(d3.mouse(d3.event.currentTarget)[0]));
 	    };
 	    __decorate([
 	        core_1.Input('ticker'), 

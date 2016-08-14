@@ -91,7 +91,7 @@ export class StocksDirective implements OnInit {
         else {
             this.createAxis();
             this.createLine(data.dataset.data);
-            this.createTooltip();
+            this.createTooltip(data.dataset.data);
         }
         console.log('data handled');
 
@@ -141,7 +141,7 @@ export class StocksDirective implements OnInit {
             .call(this.xAxis)
     }
 
-    createTooltip() {
+    createTooltip(arrayData: any) {
         this.dataHighlight = this.graph.append('g')
             .append('line')
             .attr('class', 'tooltip-line')
@@ -158,16 +158,9 @@ export class StocksDirective implements OnInit {
             .style("pointer-events", "all")
             .on("mouseover", () => { this.toolTipMouseOver() })
             .on("mouseout", () => { this.toolTipMouseOut() })
-            .on("mousemove", () => this.toolTipMouseMove())
+            .on("mousemove", () => this.toolTipMouseMove(arrayData))
 
-        this.graph.append('text')
-            .attr('class', 'stock-subtitle')
-            .style("position", "absolute")
-            .attr('dy', -50)
-            .style("z-index", "10")
-            .text("a simple tooltip")
-
-        this.graph.append('text')
+        this.dataHighlightValue = this.graph.append('text')
             .attr('class', 'stock-title')
             .style("position", "absolute")
             .attr('dy', -70)
@@ -176,10 +169,12 @@ export class StocksDirective implements OnInit {
             .style("z-index", "10")
             .text("$14.54")
 
-        this.dataHighlightValue = this.dataHighlightContainer.append('text')
-
-        this.dataHighlightDetails = this.dataHighlightContainer.append('text')
-
+        this.dataHighlightDetails = this.graph.append('text')
+            .attr('class', 'stock-subtitle')
+            .style("position", "absolute")
+            .attr('dy', -50)
+            .style("z-index", "10")
+            .text("a simple tooltip")
     }
 
     updateToolTip() {
@@ -194,13 +189,14 @@ export class StocksDirective implements OnInit {
         console.log('mouse out')
     }
 
-    toolTipMouseMove() {
+    toolTipMouseMove(data: any) {
         this.dataHighlight
             .attr("x1", d3.mouse(d3.event.currentTarget)[0])
             .attr("x2", d3.mouse(d3.event.currentTarget)[0])
+        
+        this.dataHighlightDetails.text(this.x.invert(d3.mouse(d3.event.currentTarget)[0]))
 
-        console.log('mouse move', d3.mouse(d3.event.currentTarget)[0])
-        console.log(this.x.invert(d3.mouse(d3.event.currentTarget)[0]));
+        // console.log(this.x.invert(d3.mouse(d3.event.currentTarget)[0]));
     }
 
 }
