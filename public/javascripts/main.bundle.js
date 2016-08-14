@@ -9870,7 +9870,7 @@ webpackJsonp([2],{
 /***/ 473:
 /***/ function(module, exports) {
 
-	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n\n.axis path,\n.axis line {\n  fill: none;\n  stroke: grey;\n  stroke-width: 1;\n  shape-rendering: crispEdges; }\n\n.tooltip-line {\n  stroke-width: 2;\n  stroke: grey; }\n\n.stock-title {\n  font-size: 12px;\n  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n  line-height: 1;\n  font-weight: bold;\n  padding: 12px;\n  background: rgba(0, 0, 0, 0.8);\n  color: #fff;\n  border-radius: 2px; }\n\n.date-range-container {\n  position: relative;\n  top: 650px;\n  padding: 0;\n  margin: 0;\n  list-style: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .date-range-container .date-range {\n    background: tomato;\n    padding: 5px;\n    width: 40px;\n    height: 40px;\n    margin: 1px;\n    line-height: 30px;\n    color: white;\n    font-weight: bold;\n    font-size: 1em;\n    text-align: center; }\n\nsvg {\n  border: 1px solid black; }\n"
+	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n\n.axis path,\n.axis line {\n  fill: none;\n  stroke: grey;\n  stroke-width: 1;\n  shape-rendering: crispEdges; }\n\n.tooltip-line {\n  stroke-width: 2;\n  stroke: grey; }\n\n.stock-title,\n.stock-subtitle {\n  font-family: 'Roboto Condensed', sans-serif; }\n\n.stock-title {\n  font-weight: 700;\n  font-size: 36px; }\n\n.stock-subtitle {\n  font-weight: 300;\n  font-size: 14px; }\n\n.date-range-container {\n  position: relative;\n  top: 650px;\n  padding: 0;\n  margin: 0;\n  list-style: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .date-range-container .date-range {\n    background: tomato;\n    padding: 5px;\n    width: 40px;\n    height: 40px;\n    margin: 1px;\n    line-height: 30px;\n    color: white;\n    font-weight: bold;\n    font-size: 1em;\n    text-align: center; }\n\nsvg {\n  border: 1px solid black; }\n"
 
 /***/ },
 
@@ -11362,11 +11362,11 @@ webpackJsonp([2],{
 	    function StocksDirective(elementRef) {
 	        this.elementRef = elementRef;
 	        this.ticker = 'FB';
-	        this._height = 600;
+	        this._height = 500;
 	        this._width = 500;
 	        this.click = 0;
 	        this.margin = {
-	            top: 100,
+	            top: 150,
 	            bottom: 50,
 	            right: 50,
 	            left: 50
@@ -11469,19 +11469,12 @@ webpackJsonp([2],{
 	        return line(data);
 	    };
 	    StocksDirective.prototype.createAxis = function () {
-	        this.xAxis = d3.svg.axis().scale(this.x).orient("top").ticks(5);
-	        this.yAxis = d3.svg.axis().scale(this.y).orient("left").ticks(5);
-	        this.graph.append('g')
-	            .attr("class", "x axis")
-	            .call(this.xAxis);
+	        this.yAxis = d3.svg.axis().scale(this.y).orient("left").ticks(3);
 	        this.graph.append('g')
 	            .attr("class", "y axis")
 	            .call(this.yAxis);
 	    };
 	    StocksDirective.prototype.updateAxis = function () {
-	        this.graph.select('.x.axis')
-	            .transition()
-	            .call(this.xAxis);
 	        this.graph.select('.y.axis')
 	            .transition()
 	            .call(this.yAxis);
@@ -11514,7 +11507,8 @@ webpackJsonp([2],{
 	        this.dataHighlightDetails = this.graph.append('text')
 	            .attr('class', 'stock-subtitle')
 	            .style("position", "absolute")
-	            .attr('dy', -50)
+	            .style("text-anchor", "middle")
+	            .attr('dy', -30)
 	            .style("z-index", "10")
 	            .text("a simple tooltip");
 	    };
@@ -11535,7 +11529,20 @@ webpackJsonp([2],{
 	        this.dataHighlight
 	            .attr("x1", d3.mouse(d3.event.currentTarget)[0])
 	            .attr("x2", d3.mouse(d3.event.currentTarget)[0]);
-	        this.dataHighlightDetails.text(this.convertDateToString(xPos, '%b %d, %y'));
+	        this.dataHighlightDetails
+	            .attr("x", function () {
+	            console.log(d3.mouse(d3.event.currentTarget)[0]);
+	            if (d3.mouse(d3.event.currentTarget)[0] <= _this.margin.left) {
+	                return _this.margin.left;
+	            }
+	            else if (d3.mouse(d3.event.currentTarget)[0] >= (_this.width - _this.margin.right)) {
+	                return _this.width - _this.margin.right;
+	            }
+	            else {
+	                return d3.mouse(d3.event.currentTarget)[0];
+	            }
+	        })
+	            .text(this.convertDateToString(xPos, '%b %d, %y'));
 	        this.dataHighlightValue.text(this.data[index][1]);
 	    };
 	    __decorate([

@@ -5,7 +5,7 @@ import * as d3 from 'd3';
 @Directive({ selector: '[my-stock-chart]' })
 export class StocksDirective implements OnInit {
     @Input('ticker') ticker = 'FB';
-    @Input('height') _height = 600;
+    @Input('height') _height = 500;
     @Input('width') _width = 500;
     @HostListener('click')
     onClick() { this.updateGraph(this.ticker) }
@@ -23,7 +23,7 @@ export class StocksDirective implements OnInit {
     private data: any[];
 
     private margin: Margin = {
-        top: 100,
+        top: 150,
         bottom: 50,
         right: 50,
         left: 50
@@ -127,21 +127,13 @@ export class StocksDirective implements OnInit {
     }
 
     createAxis() {
-        this.xAxis = d3.svg.axis().scale(this.x).orient("top").ticks(5);
-        this.yAxis = d3.svg.axis().scale(this.y).orient("left").ticks(5);
-
-        this.graph.append('g')
-            .attr("class", "x axis")
-            .call(this.xAxis);
+        this.yAxis = d3.svg.axis().scale(this.y).orient("left").ticks(3);
         this.graph.append('g')
             .attr("class", "y axis")
             .call(this.yAxis);
     }
 
     updateAxis() {
-        this.graph.select('.x.axis')
-            .transition()
-            .call(this.xAxis)
         this.graph.select('.y.axis')
             .transition()
             .call(this.yAxis)
@@ -177,7 +169,8 @@ export class StocksDirective implements OnInit {
         this.dataHighlightDetails = this.graph.append('text')
             .attr('class', 'stock-subtitle')
             .style("position", "absolute")
-            .attr('dy', -50)
+            .style("text-anchor", "middle")            
+            .attr('dy', -30)
             .style("z-index", "10")
             .text("a simple tooltip")
     }
@@ -205,7 +198,15 @@ export class StocksDirective implements OnInit {
             .attr("x1", d3.mouse(d3.event.currentTarget)[0])
             .attr("x2", d3.mouse(d3.event.currentTarget)[0])
 
-        this.dataHighlightDetails.text(this.convertDateToString(xPos, '%b %d, %y'))
+        this.dataHighlightDetails
+            .attr("x", () => {
+                console.log(d3.mouse(d3.event.currentTarget)[0])
+                if (d3.mouse(d3.event.currentTarget)[0] <= this.margin.left) { return this.margin.left; } 
+                else if (d3.mouse(d3.event.currentTarget)[0] >= (this.width - this.margin.right)) {  return this.width - this.margin.right; } 
+                else { return d3.mouse(d3.event.currentTarget)[0]; }
+            })
+            .text(this.convertDateToString(xPos, '%b %d, %y'))
+
         this.dataHighlightValue.text(this.data[index][1])
     }
 }

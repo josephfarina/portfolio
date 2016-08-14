@@ -24,16 +24,19 @@
   stroke: grey;
 }
 
+.stock-title,
+.stock-subtitle {
+  font-family: 'Roboto Condensed', sans-serif;
+}
 
 .stock-title {
-  font-size: 12px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  line-height: 1;
-  font-weight: bold;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 2px;
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.stock-subtitle {
+  font-weight: 300;
+  font-size: 14px;
 }
 
 .date-range-container {
