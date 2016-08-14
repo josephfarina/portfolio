@@ -251,3 +251,13 @@ export enum DataValue {
 }
 
 
+/**
+ * 
+ * TODO:
+ *  - have title update to the highlighted value and when mouse is out have it default to the newest value
+ *  - have the subtitle follow the line
+ *  - have the highlight line disappear when not hovering
+ *  - set up functionality to scale the display to years based on the button click
+ *  - create math in the subtilte to show percentage change since the begining value of the scale
+ * 
+ */
