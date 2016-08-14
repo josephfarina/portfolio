@@ -11420,13 +11420,13 @@ webpackJsonp([2],{
 	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 365)));
 	                break;
 	            case '6M':
-	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 180)));
+	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 182)));
 	                break;
 	            case '1M':
-	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 30)));
+	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 33)));
 	                break;
 	            case '1W':
-	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 7)));
+	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 9)));
 	                break;
 	        }
 	        return url + ticker + '.json?&start_date=' + dateOutput + '&api_key=Wrequ5yJz-7tNyvu6iS1';
@@ -11468,7 +11468,7 @@ webpackJsonp([2],{
 	    StocksDirective.prototype.updateLine = function (data) {
 	        this.line
 	            .transition()
-	            .duration(1000)
+	            .style('stroke', this.checkIfPositive())
 	            .attr("d", this.generateLine(data, DataValue.date, DataValue.close));
 	    };
 	    StocksDirective.prototype.generateLine = function (data, xValue, yValue) {

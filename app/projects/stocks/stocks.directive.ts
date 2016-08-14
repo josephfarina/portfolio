@@ -92,13 +92,13 @@ export class StocksDirective implements OnInit {
                 dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 365)))
                 break;
             case '6M':
-                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 180)))
+                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 182)))
                 break;
             case '1M':
-                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 30)))
+                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 33)))
                 break;
             case '1W':
-                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 7)))
+                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 9)))
                 break;
         }
 
@@ -143,7 +143,7 @@ export class StocksDirective implements OnInit {
     updateLine(data: any) {
         this.line
             .transition()
-            .duration(1000)
+            .style('stroke', this.checkIfPositive())
             .attr("d", this.generateLine(data, DataValue.date, DataValue.close));
     }
 
@@ -260,7 +260,7 @@ export class StocksDirective implements OnInit {
             });
     }
 
-    checkIfPositive(): string {
+    checkIfPositive(): string {  
         if (this.data[0][DataValue.close] > this.data[this.data.length - 1][DataValue.close]) {
             return 'green';
         } else {
