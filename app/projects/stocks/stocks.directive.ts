@@ -107,6 +107,7 @@ export class StocksDirective implements OnInit {
         this.line = this.graph.append('g')
             .append("path")
             .attr("class", "line")
+            .style('stroke', this.checkIfPositive())
             .attr("d", this.generateLine(data, DataValue.date, DataValue.close));
     }
 
@@ -162,9 +163,10 @@ export class StocksDirective implements OnInit {
             .style("position", "absolute")
             .attr('dy', -70)
             .style("text-anchor", "middle")
+            .style('fill', this.checkIfPositive())
             .attr('dx', this.width / 2)
             .style("z-index", "10")
-            .text("$14.54")
+            .text('$' + this.data[0][DataValue.close])
 
         this.dataHighlightDetails = this.graph.append('text')
             .attr('class', 'stock-subtitle')
@@ -172,7 +174,6 @@ export class StocksDirective implements OnInit {
             .style("text-anchor", "middle")            
             .attr('dy', -30)
             .style("z-index", "10")
-            .text("a simple tooltip")
     }
 
     updateToolTip(arrayData: any) {
@@ -180,12 +181,14 @@ export class StocksDirective implements OnInit {
     }
 
     toolTipMouseOver() {
+        this.dataHighlightValue.style('fill', this.checkIfPositive());
         this.dataHighlight.style('display', null);
     }
 
     toolTipMouseOut() {
         this.dataHighlight.style('display', 'none');
         this.dataHighlightDetails.text('');
+        this.dataHighlightValue.text(this.data[0][DataValue.close])
     }
 
     toolTipMouseMove() {
@@ -208,7 +211,17 @@ export class StocksDirective implements OnInit {
             })
             .text(this.convertDateToString(xPos, '%b %d, %y'))
 
-        this.dataHighlightValue.text(this.data[index][1])
+        this.dataHighlightValue
+            .style('fill', this.checkIfPositive())
+            .text(this.data[index][1])
+    }
+
+    checkIfPositive(): string {
+        if (this.data[0][DataValue.close] > this.data[this.data.length - 1][DataValue.close]) {
+            return 'green';
+        } else {
+            return 'red';
+        }
     }
 }
 

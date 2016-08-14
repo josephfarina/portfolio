@@ -9870,7 +9870,7 @@ webpackJsonp([2],{
 /***/ 473:
 /***/ function(module, exports) {
 
-	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n\n.axis path,\n.axis line {\n  fill: none;\n  stroke: grey;\n  stroke-width: 1;\n  shape-rendering: crispEdges; }\n\n.tooltip-line {\n  stroke-width: 2;\n  stroke: grey; }\n\n.stock-title,\n.stock-subtitle {\n  font-family: 'Roboto Condensed', sans-serif; }\n\n.stock-title {\n  font-weight: 700;\n  font-size: 36px; }\n\n.stock-subtitle {\n  font-weight: 300;\n  font-size: 14px; }\n\n.date-range-container {\n  position: relative;\n  top: 650px;\n  padding: 0;\n  margin: 0;\n  list-style: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .date-range-container .date-range {\n    background: tomato;\n    padding: 5px;\n    width: 40px;\n    height: 40px;\n    margin: 1px;\n    line-height: 30px;\n    color: white;\n    font-weight: bold;\n    font-size: 1em;\n    text-align: center; }\n\nsvg {\n  border: 1px solid black; }\n"
+	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n\n.axis path,\n.axis line {\n  fill: none;\n  stroke-width: 1;\n  shape-rendering: crispEdges; }\n\n.tooltip-line {\n  stroke-width: 2;\n  stroke: grey; }\n\n.stock-title,\n.stock-subtitle {\n  font-family: 'Roboto Condensed', sans-serif; }\n\n.stock-title {\n  font-weight: 700;\n  font-size: 36px; }\n\n.stock-subtitle {\n  font-weight: 300;\n  font-size: 14px; }\n\n.date-range-container {\n  position: relative;\n  top: 650px;\n  padding: 0;\n  margin: 0;\n  list-style: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .date-range-container .date-range {\n    background: tomato;\n    padding: 5px;\n    width: 40px;\n    height: 40px;\n    margin: 1px;\n    line-height: 30px;\n    color: white;\n    font-weight: bold;\n    font-size: 1em;\n    text-align: center; }\n\nsvg {\n  border: 1px solid black; }\n"
 
 /***/ },
 
@@ -11452,6 +11452,7 @@ webpackJsonp([2],{
 	        this.line = this.graph.append('g')
 	            .append("path")
 	            .attr("class", "line")
+	            .style('stroke', this.checkIfPositive())
 	            .attr("d", this.generateLine(data, DataValue.date, DataValue.close));
 	    };
 	    StocksDirective.prototype.updateLine = function (data) {
@@ -11501,25 +11502,27 @@ webpackJsonp([2],{
 	            .style("position", "absolute")
 	            .attr('dy', -70)
 	            .style("text-anchor", "middle")
+	            .style('fill', this.checkIfPositive())
 	            .attr('dx', this.width / 2)
 	            .style("z-index", "10")
-	            .text("$14.54");
+	            .text('$' + this.data[0][DataValue.close]);
 	        this.dataHighlightDetails = this.graph.append('text')
 	            .attr('class', 'stock-subtitle')
 	            .style("position", "absolute")
 	            .style("text-anchor", "middle")
 	            .attr('dy', -30)
-	            .style("z-index", "10")
-	            .text("a simple tooltip");
+	            .style("z-index", "10");
 	    };
 	    StocksDirective.prototype.updateToolTip = function (arrayData) {
 	    };
 	    StocksDirective.prototype.toolTipMouseOver = function () {
+	        this.dataHighlightValue.style('fill', this.checkIfPositive());
 	        this.dataHighlight.style('display', null);
 	    };
 	    StocksDirective.prototype.toolTipMouseOut = function () {
 	        this.dataHighlight.style('display', 'none');
 	        this.dataHighlightDetails.text('');
+	        this.dataHighlightValue.text(this.data[0][DataValue.close]);
 	    };
 	    StocksDirective.prototype.toolTipMouseMove = function () {
 	        var _this = this;
@@ -11544,7 +11547,17 @@ webpackJsonp([2],{
 	            }
 	        })
 	            .text(this.convertDateToString(xPos, '%b %d, %y'));
-	        this.dataHighlightValue.text(this.data[index][1]);
+	        this.dataHighlightValue
+	            .style('fill', this.checkIfPositive())
+	            .text(this.data[index][1]);
+	    };
+	    StocksDirective.prototype.checkIfPositive = function () {
+	        if (this.data[0][DataValue.close] > this.data[this.data.length - 1][DataValue.close]) {
+	            return 'green';
+	        }
+	        else {
+	            return 'red';
+	        }
 	    };
 	    __decorate([
 	        core_1.Input('ticker'), 
