@@ -22,7 +22,6 @@ export class StocksDirective implements OnInit {
     private dataHighlightInfo: any;
     private dataHighlightDateDetails: any;
     private data: any[];
-
     private margin: Margin = {
         top: 150,
         bottom: 50,
@@ -60,19 +59,50 @@ export class StocksDirective implements OnInit {
             .append('g')        
             .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
         this.getData(this.ticker);
-
     }
 
     updateGraph(ticker: string) {
-        this.getData(ticker, true);
+        this.getData(ticker, '',true);
     }
 
-    getData(ticker: string, updateLine: boolean = false) {
-        d3.json('https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?&start_date=2014-01-01&api_key=Wrequ5yJz-7tNyvu6iS1', (error: any, data: StockAPi) => {
+    getData(ticker: string, date: string = '5Y', updateLine: boolean = false) {        
+        console.log(this.makeUrl(ticker, date));
+        let url = this.makeUrl(ticker, date)
+        
+        d3.json(url, (error: any, data: StockAPi) => {
             if (error) { console.error('error'); throw error; };
             console.log('data received')
             this.handleData(data, updateLine);
         });
+    }
+
+    makeUrl(ticker: string, date: string) {
+        let url = 'https://www.quandl.com/api/v3/datasets/WIKI/';
+        let d = new Date();
+        let dateOutput: string;
+
+        switch (date) {
+            case '5Y':
+                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - (365 * 5))))
+                break;
+            case '1Y':
+                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 365)))
+                break;
+            case '6M':
+                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 180)))
+                break;
+            case '1M':
+                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 30)))
+                break;
+            case '1W':
+                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 7)))
+                break;
+            case '1D':
+                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 1)))
+                break;
+        }
+
+        return url + ticker +'.json?&start_date=' + dateOutput + '&api_key=Wrequ5yJz-7tNyvu6iS1'
     }
 
     handleData(data: StockAPi, update: boolean = false) {
@@ -95,12 +125,10 @@ export class StocksDirective implements OnInit {
             this.createTooltip(data.dataset.data);
         }
         console.log('data handled');
-
     }
 
-    scaleDomains(data: any[][], xValue: DataValue, yValue: DataValue, minDate: string = '2014-01-01') {
-        if (minDate === 'all') { this.x.domain(d3.extent(data, (d) => { return d[xValue]; }));   }
-        else {  this.x.domain([this.parseDate(minDate), d3.max(data, (d) => { return d[xValue]; })]);  }
+    scaleDomains(data: any[][], xValue: DataValue, yValue: DataValue) {
+        this.x.domain(d3.extent(data, (d) => { return d[xValue]; }));  
         this.y.domain([0, d3.max(data, (d) => { return d[yValue]; })]);
     }
 
@@ -184,10 +212,6 @@ export class StocksDirective implements OnInit {
             .style("text-anchor", "middle")            
             .attr('dy', -30)
             .style("z-index", "10")
-    }
-
-    updateToolTip(arrayData: any) {
-
     }
 
     toolTipMouseOver() {

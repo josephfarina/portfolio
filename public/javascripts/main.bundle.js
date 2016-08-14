@@ -11400,12 +11400,15 @@ webpackJsonp([2],{
 	        this.getData(this.ticker);
 	    };
 	    StocksDirective.prototype.updateGraph = function (ticker) {
-	        this.getData(ticker, true);
+	        this.getData(ticker, '', true);
 	    };
-	    StocksDirective.prototype.getData = function (ticker, updateLine) {
+	    StocksDirective.prototype.getData = function (ticker, date, updateLine) {
 	        var _this = this;
+	        if (date === void 0) { date = '5Y'; }
 	        if (updateLine === void 0) { updateLine = false; }
-	        d3.json('https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?&start_date=2014-01-01&api_key=Wrequ5yJz-7tNyvu6iS1', function (error, data) {
+	        console.log(this.makeUrl(ticker, date));
+	        var url = this.makeUrl(ticker, date);
+	        d3.json(url, function (error, data) {
 	            if (error) {
 	                console.error('error');
 	                throw error;
@@ -11414,6 +11417,32 @@ webpackJsonp([2],{
 	            console.log('data received');
 	            _this.handleData(data, updateLine);
 	        });
+	    };
+	    StocksDirective.prototype.makeUrl = function (ticker, date) {
+	        var url = 'https://www.quandl.com/api/v3/datasets/WIKI/';
+	        var d = new Date();
+	        var dateOutput;
+	        switch (date) {
+	            case '5Y':
+	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - (365 * 5))));
+	                break;
+	            case '1Y':
+	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 365)));
+	                break;
+	            case '6M':
+	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 180)));
+	                break;
+	            case '1M':
+	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 30)));
+	                break;
+	            case '1W':
+	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 7)));
+	                break;
+	            case '1D':
+	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 1)));
+	                break;
+	        }
+	        return url + ticker + '.json?&start_date=' + dateOutput + '&api_key=Wrequ5yJz-7tNyvu6iS1';
 	    };
 	    StocksDirective.prototype.handleData = function (data, update) {
 	        var _this = this;
@@ -11438,14 +11467,8 @@ webpackJsonp([2],{
 	        }
 	        console.log('data handled');
 	    };
-	    StocksDirective.prototype.scaleDomains = function (data, xValue, yValue, minDate) {
-	        if (minDate === void 0) { minDate = '2014-01-01'; }
-	        if (minDate === 'all') {
-	            this.x.domain(d3.extent(data, function (d) { return d[xValue]; }));
-	        }
-	        else {
-	            this.x.domain([this.parseDate(minDate), d3.max(data, function (d) { return d[xValue]; })]);
-	        }
+	    StocksDirective.prototype.scaleDomains = function (data, xValue, yValue) {
+	        this.x.domain(d3.extent(data, function (d) { return d[xValue]; }));
 	        this.y.domain([0, d3.max(data, function (d) { return d[yValue]; })]);
 	    };
 	    StocksDirective.prototype.createLine = function (data) {
@@ -11520,8 +11543,6 @@ webpackJsonp([2],{
 	            .style("text-anchor", "middle")
 	            .attr('dy', -30)
 	            .style("z-index", "10");
-	    };
-	    StocksDirective.prototype.updateToolTip = function (arrayData) {
 	    };
 	    StocksDirective.prototype.toolTipMouseOver = function () {
 	        this.dataHighlightInfo.style('fill', this.checkIfPositive());
