@@ -8,8 +8,6 @@
   stroke: lightsteelblue;
 }
 
-
-
 .axis path,
 .axis line {
   fill: none;
@@ -24,7 +22,8 @@
 }
 
 .stock-title,
-.stock-subtitle {
+.stock-subtitle,
+.stock-dateinfo {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -33,7 +32,8 @@
   font-size: 36px;
 }
 
-.stock-subtitle {
+.stock-subtitle,
+.stock-dateinfo {
   font-weight: 300;
   font-size: 14px;
 }

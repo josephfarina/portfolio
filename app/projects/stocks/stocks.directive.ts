@@ -19,7 +19,8 @@ export class StocksDirective implements OnInit {
     private dataHighlight: any;
     private dataHighlightContainer: any;
     private dataHighlightValue: any;
-    private dataHighlightDetails: any;
+    private dataHighlightInfo: any;
+    private dataHighlightDateDetails: any;
     private data: any[];
 
     private margin: Margin = {
@@ -163,13 +164,22 @@ export class StocksDirective implements OnInit {
             .style("position", "absolute")
             .attr('dy', -70)
             .style("text-anchor", "middle")
-            .style('fill', this.checkIfPositive())
             .attr('dx', this.width / 2)
             .style("z-index", "10")
             .text('$' + this.data[0][DataValue.close])
 
-        this.dataHighlightDetails = this.graph.append('text')
+        this.dataHighlightInfo = this.graph.append('text')
             .attr('class', 'stock-subtitle')
+            .style("position", "absolute")
+            .style("text-anchor", "middle")            
+            .style('fill', this.checkIfPositive())
+            .attr('dy', -47)
+            .attr('dx', this.width / 2)            
+            .style("z-index", "10")
+            .text('HI')
+
+        this.dataHighlightDateDetails = this.graph.append('text')
+            .attr('class', 'stock-dateinfo')
             .style("position", "absolute")
             .style("text-anchor", "middle")            
             .attr('dy', -30)
@@ -181,13 +191,13 @@ export class StocksDirective implements OnInit {
     }
 
     toolTipMouseOver() {
-        this.dataHighlightValue.style('fill', this.checkIfPositive());
+        this.dataHighlightInfo.style('fill', this.checkIfPositive());
         this.dataHighlight.style('display', null);
     }
 
     toolTipMouseOut() {
         this.dataHighlight.style('display', 'none');
-        this.dataHighlightDetails.text('');
+        this.dataHighlightDateDetails.text('');
         this.dataHighlightValue.text(this.data[0][DataValue.close])
     }
 
@@ -202,7 +212,7 @@ export class StocksDirective implements OnInit {
             .attr("x1", d3.mouse(d3.event.currentTarget)[0])
             .attr("x2", d3.mouse(d3.event.currentTarget)[0])
 
-        this.dataHighlightDetails
+        this.dataHighlightDateDetails
             .attr("x", () => {
                 console.log(d3.mouse(d3.event.currentTarget)[0])
                 if (d3.mouse(d3.event.currentTarget)[0] <= this.margin.left) { return this.margin.left; } 
@@ -212,8 +222,13 @@ export class StocksDirective implements OnInit {
             .text(this.convertDateToString(xPos, '%b %d, %y'))
 
         this.dataHighlightValue
-            .style('fill', this.checkIfPositive())
             .text(this.data[index][1])
+
+        this.dataHighlightInfo
+            .style('fill', this.checkIfPositive())
+            .text( () => {
+                return this.calculateValueDiff(this.data[index][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[index][DataValue.close]);
+            });
     }
 
     checkIfPositive(): string {
@@ -223,6 +238,15 @@ export class StocksDirective implements OnInit {
             return 'red';
         }
     }
+
+    calculatePercentageDiff(currValue: number){
+        return '(' + (currValue / this.data[this.data.length - 1][DataValue.close] * 100).toFixed(2) + '%' + ')';
+    }
+
+    calculateValueDiff(currValue: number ){
+        return (currValue - this.data[this.data.length - 1][DataValue.close]).toFixed(2)
+    }
+    
 }
 
 export interface Margin {
