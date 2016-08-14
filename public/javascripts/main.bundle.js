@@ -9870,7 +9870,7 @@ webpackJsonp([2],{
 /***/ 473:
 /***/ function(module, exports) {
 
-	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n\n.axis path,\n.axis line {\n  fill: none;\n  stroke: grey;\n  stroke-width: 1;\n  shape-rendering: crispEdges; }\n\n.tooltip-line {\n  stroke-width: 2;\n  stroke: grey; }\n\n.stock-title {\n  font-size: 12px;\n  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n  line-height: 1;\n  font-weight: bold;\n  padding: 12px;\n  background: rgba(0, 0, 0, 0.8);\n  color: #fff;\n  border-radius: 2px; }\n\n.date-range-container {\n  position: relative;\n  top: 400px;\n  padding: 0;\n  margin: 0;\n  list-style: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .date-range-container .date-range {\n    background: tomato;\n    padding: 5px;\n    width: 40px;\n    height: 40px;\n    margin: 1px;\n    line-height: 30px;\n    color: white;\n    font-weight: bold;\n    font-size: 1em;\n    text-align: center; }\n"
+	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n\n.axis path,\n.axis line {\n  fill: none;\n  stroke: grey;\n  stroke-width: 1;\n  shape-rendering: crispEdges; }\n\n.tooltip-line {\n  stroke-width: 2;\n  stroke: grey; }\n\n.stock-title {\n  font-size: 12px;\n  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n  line-height: 1;\n  font-weight: bold;\n  padding: 12px;\n  background: rgba(0, 0, 0, 0.8);\n  color: #fff;\n  border-radius: 2px; }\n\n.date-range-container {\n  position: relative;\n  top: 650px;\n  padding: 0;\n  margin: 0;\n  list-style: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .date-range-container .date-range {\n    background: tomato;\n    padding: 5px;\n    width: 40px;\n    height: 40px;\n    margin: 1px;\n    line-height: 30px;\n    color: white;\n    font-weight: bold;\n    font-size: 1em;\n    text-align: center; }\n\nsvg {\n  border: 1px solid black; }\n"
 
 /***/ },
 
@@ -11362,16 +11362,16 @@ webpackJsonp([2],{
 	    function StocksDirective(elementRef) {
 	        this.elementRef = elementRef;
 	        this.ticker = 'FB';
-	        this._height = 500;
+	        this._height = 600;
 	        this._width = 500;
 	        this.click = 0;
 	        this.margin = {
 	            top: 100,
-	            bottom: 100,
+	            bottom: 50,
 	            right: 50,
 	            left: 50
 	        };
-	        this.height = this._height - this.margin.bottom - this.margin.top;
+	        this.height = this._height - this.margin.top - this.margin.bottom;
 	        this.width = this._width - this.margin.left - this.margin.right;
 	        this.x = d3.time.scale().range([0, this.width]);
 	        this.y = d3.scale.linear().range([this.height, 0]);
@@ -11393,8 +11393,8 @@ webpackJsonp([2],{
 	    StocksDirective.prototype.createGraph = function () {
 	        this.graph = this.graph
 	            .append('svg')
-	            .attr('width', this.width)
-	            .attr('height', this.height)
+	            .attr('width', this.width + this.margin.left + this.margin.right)
+	            .attr('height', this.height + this.margin.bottom + this.margin.top)
 	            .append('g')
 	            .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
 	        this.getData(this.ticker);
@@ -11426,10 +11426,10 @@ webpackJsonp([2],{
 	            }
 	        });
 	        this.scaleDomains(data.dataset.data, DataValue.date, DataValue.close);
+	        this.data = data.dataset.data;
 	        if (update) {
 	            this.updateAxis();
 	            this.updateLine(data.dataset.data);
-	            this.updateToolTip();
 	        }
 	        else {
 	            this.createAxis();
@@ -11447,7 +11447,6 @@ webpackJsonp([2],{
 	            this.x.domain([this.parseDate(minDate), d3.max(data, function (d) { return d[xValue]; })]);
 	        }
 	        this.y.domain([0, d3.max(data, function (d) { return d[yValue]; })]);
-	        // this.createTooltip();
 	    };
 	    StocksDirective.prototype.createLine = function (data) {
 	        this.line = this.graph.append('g')
@@ -11471,14 +11470,21 @@ webpackJsonp([2],{
 	    };
 	    StocksDirective.prototype.createAxis = function () {
 	        this.xAxis = d3.svg.axis().scale(this.x).orient("top").ticks(5);
+	        this.yAxis = d3.svg.axis().scale(this.y).orient("left").ticks(5);
 	        this.graph.append('g')
 	            .attr("class", "x axis")
 	            .call(this.xAxis);
+	        this.graph.append('g')
+	            .attr("class", "y axis")
+	            .call(this.yAxis);
 	    };
 	    StocksDirective.prototype.updateAxis = function () {
 	        this.graph.select('.x.axis')
 	            .transition()
 	            .call(this.xAxis);
+	        this.graph.select('.y.axis')
+	            .transition()
+	            .call(this.yAxis);
 	    };
 	    StocksDirective.prototype.createTooltip = function (arrayData) {
 	        var _this = this;
@@ -11496,7 +11502,7 @@ webpackJsonp([2],{
 	            .style("pointer-events", "all")
 	            .on("mouseover", function () { _this.toolTipMouseOver(); })
 	            .on("mouseout", function () { _this.toolTipMouseOut(); })
-	            .on("mousemove", function () { return _this.toolTipMouseMove(arrayData); });
+	            .on("mousemove", function () { return _this.toolTipMouseMove(); });
 	        this.dataHighlightValue = this.graph.append('text')
 	            .attr('class', 'stock-title')
 	            .style("position", "absolute")
@@ -11512,7 +11518,7 @@ webpackJsonp([2],{
 	            .style("z-index", "10")
 	            .text("a simple tooltip");
 	    };
-	    StocksDirective.prototype.updateToolTip = function () {
+	    StocksDirective.prototype.updateToolTip = function (arrayData) {
 	    };
 	    StocksDirective.prototype.toolTipMouseOver = function () {
 	        console.log('mouse over');
@@ -11520,12 +11526,17 @@ webpackJsonp([2],{
 	    StocksDirective.prototype.toolTipMouseOut = function () {
 	        console.log('mouse out');
 	    };
-	    StocksDirective.prototype.toolTipMouseMove = function (data) {
+	    StocksDirective.prototype.toolTipMouseMove = function () {
+	        var _this = this;
+	        var xPos = this.x.invert(d3.mouse(d3.event.currentTarget)[0]);
+	        var index = this.data.map(function (d) {
+	            return _this.convertDateToString(d[0]);
+	        }).indexOf(this.convertDateToString(xPos));
 	        this.dataHighlight
 	            .attr("x1", d3.mouse(d3.event.currentTarget)[0])
 	            .attr("x2", d3.mouse(d3.event.currentTarget)[0]);
-	        this.dataHighlightDetails.text(this.x.invert(d3.mouse(d3.event.currentTarget)[0]));
-	        // console.log(this.x.invert(d3.mouse(d3.event.currentTarget)[0]));
+	        this.dataHighlightDetails.text(this.convertDateToString(xPos, '%b %d, %y'));
+	        this.dataHighlightValue.text(this.data[index][1]);
 	    };
 	    __decorate([
 	        core_1.Input('ticker'), 
@@ -11568,6 +11579,16 @@ webpackJsonp([2],{
 	    DataValue[DataValue["adjVolume"] = 12] = "adjVolume";
 	})(exports.DataValue || (exports.DataValue = {}));
 	var DataValue = exports.DataValue;
+	/**
+	 *
+	 * TODO:
+	 *  - have title update to the highlighted value and when mouse is out have it default to the newest value
+	 *  - have the subtitle follow the line
+	 *  - have the highlight line disappear when not hovering
+	 *  - set up functionality to scale the display to years based on the button click
+	 *  - create math in the subtilte to show percentage change since the begining value of the scale
+	 *
+	 */ 
 	
 
 /***/ },

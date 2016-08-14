@@ -5,7 +5,7 @@ import * as d3 from 'd3';
 @Directive({ selector: '[my-stock-chart]' })
 export class StocksDirective implements OnInit {
     @Input('ticker') ticker = 'FB';
-    @Input('height') _height = 500;
+    @Input('height') _height = 600;
     @Input('width') _width = 500;
     @HostListener('click')
     onClick() { this.updateGraph(this.ticker) }
@@ -20,14 +20,15 @@ export class StocksDirective implements OnInit {
     private dataHighlightContainer: any;
     private dataHighlightValue: any;
     private dataHighlightDetails: any;
+    private data: any[];
 
     private margin: Margin = {
         top: 100,
-        bottom: 100,
+        bottom: 50,
         right: 50,
         left: 50
     };
-    private height: number = this._height - this.margin.bottom - this.margin.top;
+    private height: number = this._height - this.margin.top - this.margin.bottom;
     private width: number = this._width - this.margin.left - this.margin.right;
 
     private x = d3.time.scale().range([0, this.width]);
@@ -53,9 +54,9 @@ export class StocksDirective implements OnInit {
     createGraph() {
         this.graph = this.graph
             .append('svg')
-            .attr('width', this.width)
-            .attr('height', this.height)
-            .append('g')
+            .attr('width', this.width + this.margin.left + this.margin.right)
+            .attr('height', this.height + this.margin.bottom + this.margin.top)
+            .append('g')        
             .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
         this.getData(this.ticker);
 
@@ -78,15 +79,14 @@ export class StocksDirective implements OnInit {
         data.dataset.data.map((d) => {
             d[DataValue.date] = this.parseDate(d[DataValue.date])
             for (let i = 1; i < d.length; i++) { d[i] = +d[i]; }
-        })
-
+        });
 
         this.scaleDomains(data.dataset.data, DataValue.date, DataValue.close);
+        this.data = data.dataset.data;
 
         if (update) {
             this.updateAxis()
             this.updateLine(data.dataset.data)
-            this.updateToolTip();
         }
         else {
             this.createAxis();
@@ -98,10 +98,9 @@ export class StocksDirective implements OnInit {
     }
 
     scaleDomains(data: any[][], xValue: DataValue, yValue: DataValue, minDate: string = '2014-01-01') {
-        if (minDate === 'all') { this.x.domain(d3.extent(data, (d) => { return d[xValue]; })); }
-        else { this.x.domain([this.parseDate(minDate), d3.max(data, (d) => { return d[xValue]; })]); }
+        if (minDate === 'all') { this.x.domain(d3.extent(data, (d) => { return d[xValue]; }));   }
+        else {  this.x.domain([this.parseDate(minDate), d3.max(data, (d) => { return d[xValue]; })]);  }
         this.y.domain([0, d3.max(data, (d) => { return d[yValue]; })]);
-        // this.createTooltip();
     }
 
     createLine(data: any) {
@@ -129,16 +128,23 @@ export class StocksDirective implements OnInit {
 
     createAxis() {
         this.xAxis = d3.svg.axis().scale(this.x).orient("top").ticks(5);
+        this.yAxis = d3.svg.axis().scale(this.y).orient("left").ticks(5);
+
         this.graph.append('g')
             .attr("class", "x axis")
             .call(this.xAxis);
-
+        this.graph.append('g')
+            .attr("class", "y axis")
+            .call(this.yAxis);
     }
 
     updateAxis() {
         this.graph.select('.x.axis')
             .transition()
             .call(this.xAxis)
+        this.graph.select('.y.axis')
+            .transition()
+            .call(this.yAxis)
     }
 
     createTooltip(arrayData: any) {
@@ -150,7 +156,6 @@ export class StocksDirective implements OnInit {
             .attr("x1", 10)
             .attr("x2", 10)
 
-
         this.dataHighlightContainer = this.graph.append("rect")
             .attr("width", this.width)
             .attr("height", this.height)
@@ -158,7 +163,7 @@ export class StocksDirective implements OnInit {
             .style("pointer-events", "all")
             .on("mouseover", () => { this.toolTipMouseOver() })
             .on("mouseout", () => { this.toolTipMouseOut() })
-            .on("mousemove", () => this.toolTipMouseMove(arrayData))
+            .on("mousemove", () => this.toolTipMouseMove())
 
         this.dataHighlightValue = this.graph.append('text')
             .attr('class', 'stock-title')
@@ -177,7 +182,7 @@ export class StocksDirective implements OnInit {
             .text("a simple tooltip")
     }
 
-    updateToolTip() {
+    updateToolTip(arrayData: any) {
 
     }
 
@@ -189,16 +194,20 @@ export class StocksDirective implements OnInit {
         console.log('mouse out')
     }
 
-    toolTipMouseMove(data: any) {
+    toolTipMouseMove() {
+        let xPos = this.x.invert(d3.mouse(d3.event.currentTarget)[0]);
+        
+        let index = this.data.map((d: any) => {
+            return this.convertDateToString(d[0])
+        }).indexOf(this.convertDateToString(xPos))
+
         this.dataHighlight
             .attr("x1", d3.mouse(d3.event.currentTarget)[0])
             .attr("x2", d3.mouse(d3.event.currentTarget)[0])
-        
-        this.dataHighlightDetails.text(this.x.invert(d3.mouse(d3.event.currentTarget)[0]))
 
-        // console.log(this.x.invert(d3.mouse(d3.event.currentTarget)[0]));
+        this.dataHighlightDetails.text(this.convertDateToString(xPos, '%b %d, %y'))
+        this.dataHighlightValue.text(this.data[index][1])
     }
-
 }
 
 export interface Margin {
