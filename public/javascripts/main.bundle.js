@@ -9800,7 +9800,7 @@ webpackJsonp([2],{
 /***/ 463:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"stocks\">\n    <h1>stocks</h1>\n    <div class=\"chart\" my-stock-chart [date-visible]=\"dateVisible\" [ticker]='ticker' >\n    <input [(ngModel)]='ticker' type=\"text\" >\n    <button (click)=updateDate(0) >All</button>\n    <button (click)=updateDate(1) >5</button>\n    <button (click)=updateDate(2) >3</button>\n    <button (click)=updateDate(3) >2</button>\n    <button (click)=updateDate(4) >1</button>\n    <button (click)=updateDate(5) >6 Month</button>\n    <button (click)=updateDate(6) >1 Month</button>\n    <button (click)=updateDate(7) >2 Weeks</button>\n    <button (click)=updateDate(8) >1 Week</button>\n    <button (click)=updateDate(9) >Day</button>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"stocks\">\n    <h1>stocks</h1>\n    <div class=\"chart\" my-stock-chart [ticker]='ticker' >\n    <input [(ngModel)]='ticker' type=\"text\" >\n        <div class=\"date-range-container\">\n            <div class='date-range' (click)=updateDate(1) >5Y</div>\n            <div class='date-range' (click)=updateDate(2) >1Y</div>\n            <div class='date-range' (click)=updateDate(5) >6M</div>\n            <div class='date-range' (click)=updateDate(7) >1M</div>\n            <div class='date-range' (click)=updateDate(8) >1W</div>\n            <div class='date-range' (click)=updateDate(9) >1D</div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
 
@@ -9870,7 +9870,7 @@ webpackJsonp([2],{
 /***/ 473:
 /***/ function(module, exports) {
 
-	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n\n.axis path,\n.axis line {\n  fill: none;\n  stroke: grey;\n  stroke-width: 1;\n  shape-rendering: crispEdges; }\n"
+	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n\n.axis path,\n.axis line {\n  fill: none;\n  stroke: grey;\n  stroke-width: 1;\n  shape-rendering: crispEdges; }\n\n.tooltip-line {\n  stroke-width: 2;\n  stroke: grey; }\n\n.stock-title {\n  font-size: 12px;\n  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n  line-height: 1;\n  font-weight: bold;\n  padding: 12px;\n  background: rgba(0, 0, 0, 0.8);\n  color: #fff;\n  border-radius: 2px; }\n\n.date-range-container {\n  position: relative;\n  top: 400px;\n  padding: 0;\n  margin: 0;\n  list-style: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .date-range-container .date-range {\n    background: tomato;\n    padding: 5px;\n    width: 40px;\n    height: 40px;\n    margin: 1px;\n    line-height: 30px;\n    color: white;\n    font-weight: bold;\n    font-size: 1em;\n    text-align: center; }\n"
 
 /***/ },
 
@@ -11357,7 +11357,6 @@ webpackJsonp([2],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var stocks_component_1 = __webpack_require__(702);
 	var d3 = __webpack_require__(452);
 	var StocksDirective = (function () {
 	    function StocksDirective(elementRef) {
@@ -11367,9 +11366,9 @@ webpackJsonp([2],{
 	        this._width = 500;
 	        this.click = 0;
 	        this.margin = {
-	            top: 30,
+	            top: 100,
+	            bottom: 100,
 	            right: 50,
-	            bottom: 130,
 	            left: 50
 	        };
 	        this.height = this._height - this.margin.bottom - this.margin.top;
@@ -11379,10 +11378,7 @@ webpackJsonp([2],{
 	        this.el = this.elementRef.nativeElement;
 	        this.graph = d3.select(this.el);
 	    }
-	    StocksDirective.prototype.onClick = function () {
-	        this.updateGraph(this.ticker);
-	        console.log(this.dateVisible);
-	    };
+	    StocksDirective.prototype.onClick = function () { this.updateGraph(this.ticker); };
 	    StocksDirective.prototype.ngOnInit = function () {
 	        this.createGraph();
 	    };
@@ -11409,41 +11405,6 @@ webpackJsonp([2],{
 	    StocksDirective.prototype.getData = function (ticker, updateLine) {
 	        var _this = this;
 	        if (updateLine === void 0) { updateLine = false; }
-	        console.log('getData');
-	        var currentDate = new Date();
-	        var outputDate;
-	        switch (this.dateVisible) {
-	            case stocks_component_1.DateVisible.fiveYears:
-	                currentDate = currentDate.setDate(currentDate.getDate() - (365 * 5));
-	                break;
-	            case stocks_component_1.DateVisible.threeYears:
-	                currentDate = currentDate.setDate(currentDate.getDate() - (365 * 3));
-	                break;
-	            case stocks_component_1.DateVisible.oneYear:
-	                currentDate = currentDate.setDate(currentDate.getDate() - (365));
-	                break;
-	            case stocks_component_1.DateVisible.sixMonths:
-	                currentDate = currentDate.setDate(currentDate.getDate() - (182));
-	                break;
-	            case stocks_component_1.DateVisible.oneMonth:
-	                currentDate = currentDate.setDate(currentDate.getDate() - (30));
-	                break;
-	            case stocks_component_1.DateVisible.twoWeeks:
-	                currentDate = currentDate.setDate(currentDate.getDate() - (14));
-	                break;
-	            case stocks_component_1.DateVisible.oneWeek:
-	                currentDate = currentDate.setDate(currentDate.getDate() - (7));
-	                break;
-	            case stocks_component_1.DateVisible.OneDay:
-	                currentDate = currentDate.setDate(currentDate.getDate() - (1));
-	                break;
-	        }
-	        if (this.dateVisible === stocks_component_1.DateVisible.All) {
-	            outputDate = '';
-	        }
-	        else {
-	            outputthis.convertDateToString(currentDate);
-	        }
 	        d3.json('https://www.quandl.com/api/v3/datasets/WIKI/' + ticker + '.json?&start_date=2014-01-01&api_key=Wrequ5yJz-7tNyvu6iS1', function (error, data) {
 	            if (error) {
 	                console.error('error');
@@ -11468,10 +11429,12 @@ webpackJsonp([2],{
 	        if (update) {
 	            this.updateAxis();
 	            this.updateLine(data.dataset.data);
+	            this.updateToolTip();
 	        }
 	        else {
 	            this.createAxis();
 	            this.createLine(data.dataset.data);
+	            this.createTooltip();
 	        }
 	        console.log('data handled');
 	    };
@@ -11484,6 +11447,7 @@ webpackJsonp([2],{
 	            this.x.domain([this.parseDate(minDate), d3.max(data, function (d) { return d[xValue]; })]);
 	        }
 	        this.y.domain([0, d3.max(data, function (d) { return d[yValue]; })]);
+	        // this.createTooltip();
 	    };
 	    StocksDirective.prototype.createLine = function (data) {
 	        this.line = this.graph.append('g')
@@ -11510,28 +11474,65 @@ webpackJsonp([2],{
 	        this.graph.append('g')
 	            .attr("class", "x axis")
 	            .call(this.xAxis);
-	        this.yAxis = d3.svg.axis().scale(this.y).orient("left").ticks(5);
-	        this.graph.append('g')
-	            .attr("class", "y axis")
-	            .call(this.yAxis);
 	    };
 	    StocksDirective.prototype.updateAxis = function () {
 	        this.graph.select('.x.axis')
 	            .transition()
 	            .call(this.xAxis);
-	        this.graph.select('.y.axis')
-	            .transition()
-	            .duration(1000)
-	            .call(this.yAxis);
+	    };
+	    StocksDirective.prototype.createTooltip = function () {
+	        var _this = this;
+	        this.dataHighlight = this.graph.append('g')
+	            .append('line')
+	            .attr('class', 'tooltip-line')
+	            .attr("y1", 0)
+	            .attr('y2', this.height)
+	            .attr("x1", 10)
+	            .attr("x2", 10);
+	        this.dataHighlightContainer = this.graph.append("rect")
+	            .attr("width", this.width)
+	            .attr("height", this.height)
+	            .style("fill", "none")
+	            .style("pointer-events", "all")
+	            .on("mouseover", function () { _this.toolTipMouseOver(); })
+	            .on("mouseout", function () { _this.toolTipMouseOut(); })
+	            .on("mousemove", function () { return _this.toolTipMouseMove(); });
+	        this.graph.append('text')
+	            .attr('class', 'stock-subtitle')
+	            .style("position", "absolute")
+	            .attr('dy', -50)
+	            .style("z-index", "10")
+	            .text("a simple tooltip");
+	        this.graph.append('text')
+	            .attr('class', 'stock-title')
+	            .style("position", "absolute")
+	            .attr('dy', -70)
+	            .style("text-anchor", "middle")
+	            .attr('dx', this.width / 2)
+	            .style("z-index", "10")
+	            .text("$14.54");
+	        this.dataHighlightValue = this.dataHighlightContainer.append('text');
+	        this.dataHighlightDetails = this.dataHighlightContainer.append('text');
+	    };
+	    StocksDirective.prototype.updateToolTip = function () {
+	    };
+	    StocksDirective.prototype.toolTipMouseOver = function () {
+	        console.log('mouse over');
+	    };
+	    StocksDirective.prototype.toolTipMouseOut = function () {
+	        console.log('mouse out');
+	    };
+	    StocksDirective.prototype.toolTipMouseMove = function () {
+	        this.dataHighlight
+	            .attr("x1", d3.mouse(d3.event.currentTarget)[0])
+	            .attr("x2", d3.mouse(d3.event.currentTarget)[0]);
+	        console.log('mouse move', d3.mouse(d3.event.currentTarget)[0]);
+	        console.log(this.x.invert(d3.mouse(d3.event.currentTarget)[0]));
 	    };
 	    __decorate([
 	        core_1.Input('ticker'), 
 	        __metadata('design:type', Object)
 	    ], StocksDirective.prototype, "ticker", void 0);
-	    __decorate([
-	        core_1.Input('date-visible'), 
-	        __metadata('design:type', Number)
-	    ], StocksDirective.prototype, "dateVisible", void 0);
 	    __decorate([
 	        core_1.Input('height'), 
 	        __metadata('design:type', Object)

@@ -17,3 +17,44 @@
   stroke-width: 1;
   shape-rendering: crispEdges;
 }
+
+
+.tooltip-line {
+  stroke-width: 2;
+  stroke: grey;
+}
+
+
+.stock-title {
+  font-size: 12px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.date-range-container {
+  position: relative;
+  top: 400px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+
+  .date-range {
+    background: tomato;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    margin: 1px;
+    line-height: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
+  }
+}
