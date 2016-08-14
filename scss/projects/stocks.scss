@@ -1,6 +1,6 @@
 .stocks-wrapper {
     min-height: 100%;
-    overflow: hidden;
+    overflow: scroll;
     background-color: #F23568;
 }
 
@@ -9,10 +9,10 @@
     display: block;
     margin: auto;
     left:  0;
-    top: 30;
+    top: 50;
     fill: white;
-  background-color: white;
-  z-index: 1;    
+    background-color: white;
+    z-index: 1;    
 }
 
 .line {
@@ -48,13 +48,13 @@
 .stock-dateinfo {
   font-weight: 300;
   font-size: 14px;
-  fill: lightgray;
+  fill: lighten(black, 15%);
 }
 
 .date-range-container {
   position: relative;
   top: 600px;
-  width: 400px;
+  width: 500px;
   padding: 0;
   margin: auto;
   list-style: none;
@@ -62,16 +62,22 @@
   justify-content: space-between;
 
   .date-range {
-    background: tomato;
+    background: white;
+    border-radius: 2px;
     padding: 5px;
-    width: 40px;
+
+    width: 100px;
     height: 40px;
     margin: 1px;
     line-height: 30px;
-    color: white;
+    color: lighten(black, 15%);
     font-weight: bold;
     font-size: 1em;
     text-align: center;
+  }
+
+  .active {
+    background: darken(white, 20%);
   }
 }
 

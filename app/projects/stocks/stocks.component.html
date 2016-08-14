@@ -3,11 +3,11 @@
     <!--<input [(ngModel)]='ticker'  type="text" >-->
     <div my-stock-chart [ticker]='ticker' [time]='time' >
         <div class="date-range-container">
-            <div class='date-range' (click)='updateDate("5Y")' >5Y</div>
-            <div class='date-range' (click)='updateDate("1Y")' >1Y</div>
-            <div class='date-range' (click)='updateDate("6M")' >6M</div>
-            <div class='date-range' (click)='updateDate("1M")' >1M</div>
-            <div class='date-range' (click)='updateDate("1W")' >1W</div>
+            <div class='date-range' [ngClass]="{active : time == '5Y'}" (click)='updateDate("5Y")' >5Y</div>
+            <div class='date-range' [ngClass]="{active : time == '1Y'}" (click)='updateDate("1Y")' >1Y</div>
+            <div class='date-range' [ngClass]="{active : time == '6M'}" (click)='updateDate("6M")' >6M</div>
+            <div class='date-range' [ngClass]="{active : time == '1M'}" (click)='updateDate("1M")' >1M</div>
+            <div class='date-range' [ngClass]="{active : time == '1W'}" (click)='updateDate("1W")' >1W</div>
         </div>
     </div>
 </div>
