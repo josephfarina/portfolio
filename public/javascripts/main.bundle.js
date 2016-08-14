@@ -9800,7 +9800,7 @@ webpackJsonp([2],{
 /***/ 463:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"stocks\">\n    <h1>stocks</h1>\n    <div class=\"chart\" my-stock-chart [ticker]='ticker' >\n    <input [(ngModel)]='ticker' type=\"text\" >\n        <div class=\"date-range-container\">\n            <div class='date-range' (click)=updateDate(1) >5Y</div>\n            <div class='date-range' (click)=updateDate(2) >1Y</div>\n            <div class='date-range' (click)=updateDate(5) >6M</div>\n            <div class='date-range' (click)=updateDate(7) >1M</div>\n            <div class='date-range' (click)=updateDate(8) >1W</div>\n            <div class='date-range' (click)=updateDate(9) >1D</div>\n        </div>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"stocks\">\n    <h1>stocks</h1>\n    <div class=\"chart\" my-stock-chart [ticker]='ticker' [time]='time' >\n    <input [(ngModel)]='ticker'  type=\"text\" >\n        <div class=\"date-range-container\">\n            <div class='date-range' (click)='updateDate(\"5Y\")' >5Y</div>\n            <div class='date-range' (click)='updateDate(\"1Y\")' >1Y</div>\n            <div class='date-range' (click)='updateDate(\"6M\")' >6M</div>\n            <div class='date-range' (click)='updateDate(\"1M\")' >1M</div>\n            <div class='date-range' (click)='updateDate(\"1W\")' >1W</div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
 
@@ -11306,11 +11306,11 @@ webpackJsonp([2],{
 	var stocks_directive_1 = __webpack_require__(703);
 	var StocksComponent = (function () {
 	    function StocksComponent() {
-	        this.dateVisible = DateVisible.All;
+	        this.time = '5Y';
 	        this.ticker = 'FB';
 	    }
-	    StocksComponent.prototype.updateDate = function (date) {
-	        this.dateVisible = date;
+	    StocksComponent.prototype.updateDate = function (_time) {
+	        this.time = _time;
 	    };
 	    StocksComponent = __decorate([
 	        core_1.Component({
@@ -11326,19 +11326,6 @@ webpackJsonp([2],{
 	    return StocksComponent;
 	}());
 	exports.StocksComponent = StocksComponent;
-	(function (DateVisible) {
-	    DateVisible[DateVisible["All"] = 1] = "All";
-	    DateVisible[DateVisible["fiveYears"] = 2] = "fiveYears";
-	    DateVisible[DateVisible["threeYears"] = 3] = "threeYears";
-	    DateVisible[DateVisible["twoYears"] = 4] = "twoYears";
-	    DateVisible[DateVisible["oneYear"] = 5] = "oneYear";
-	    DateVisible[DateVisible["sixMonths"] = 6] = "sixMonths";
-	    DateVisible[DateVisible["oneMonth"] = 7] = "oneMonth";
-	    DateVisible[DateVisible["twoWeeks"] = 8] = "twoWeeks";
-	    DateVisible[DateVisible["oneWeek"] = 9] = "oneWeek";
-	    DateVisible[DateVisible["OneDay"] = 10] = "OneDay";
-	})(exports.DateVisible || (exports.DateVisible = {}));
-	var DateVisible = exports.DateVisible;
 	
 
 /***/ },
@@ -11362,6 +11349,7 @@ webpackJsonp([2],{
 	    function StocksDirective(elementRef) {
 	        this.elementRef = elementRef;
 	        this.ticker = 'FB';
+	        this.time = '5Y';
 	        this._height = 500;
 	        this._width = 500;
 	        this.click = 0;
@@ -11378,7 +11366,9 @@ webpackJsonp([2],{
 	        this.el = this.elementRef.nativeElement;
 	        this.graph = d3.select(this.el);
 	    }
-	    StocksDirective.prototype.onClick = function () { this.updateGraph(this.ticker); };
+	    StocksDirective.prototype.onClick = function () {
+	        this.updateGraph(this.ticker, this.time);
+	    };
 	    StocksDirective.prototype.ngOnInit = function () {
 	        this.createGraph();
 	    };
@@ -11399,8 +11389,8 @@ webpackJsonp([2],{
 	            .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
 	        this.getData(this.ticker);
 	    };
-	    StocksDirective.prototype.updateGraph = function (ticker) {
-	        this.getData(ticker, '', true);
+	    StocksDirective.prototype.updateGraph = function (ticker, time) {
+	        this.getData(ticker, time, true);
 	    };
 	    StocksDirective.prototype.getData = function (ticker, date, updateLine) {
 	        var _this = this;
@@ -11438,9 +11428,6 @@ webpackJsonp([2],{
 	            case '1W':
 	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 7)));
 	                break;
-	            case '1D':
-	                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 1)));
-	                break;
 	        }
 	        return url + ticker + '.json?&start_date=' + dateOutput + '&api_key=Wrequ5yJz-7tNyvu6iS1';
 	    };
@@ -11469,7 +11456,7 @@ webpackJsonp([2],{
 	    };
 	    StocksDirective.prototype.scaleDomains = function (data, xValue, yValue) {
 	        this.x.domain(d3.extent(data, function (d) { return d[xValue]; }));
-	        this.y.domain([0, d3.max(data, function (d) { return d[yValue]; })]);
+	        this.y.domain(d3.extent(data, function (d) { return d[yValue]; }));
 	    };
 	    StocksDirective.prototype.createLine = function (data) {
 	        this.line = this.graph.append('g')
@@ -11600,15 +11587,19 @@ webpackJsonp([2],{
 	    };
 	    __decorate([
 	        core_1.Input('ticker'), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', String)
 	    ], StocksDirective.prototype, "ticker", void 0);
 	    __decorate([
+	        core_1.Input('time'), 
+	        __metadata('design:type', String)
+	    ], StocksDirective.prototype, "time", void 0);
+	    __decorate([
 	        core_1.Input('height'), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Number)
 	    ], StocksDirective.prototype, "_height", void 0);
 	    __decorate([
 	        core_1.Input('width'), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Number)
 	    ], StocksDirective.prototype, "_width", void 0);
 	    __decorate([
 	        core_1.HostListener('click'), 

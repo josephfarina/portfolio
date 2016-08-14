@@ -4,11 +4,14 @@ import * as d3 from 'd3';
 
 @Directive({ selector: '[my-stock-chart]' })
 export class StocksDirective implements OnInit {
-    @Input('ticker') ticker = 'FB';
-    @Input('height') _height = 500;
-    @Input('width') _width = 500;
+    @Input('ticker') ticker: string = 'FB';
+    @Input('time') time: string = '5Y';
+    @Input('height') _height: number = 500;
+    @Input('width') _width: number = 500;
     @HostListener('click')
-    onClick() { this.updateGraph(this.ticker) }
+    onClick() { 
+        this.updateGraph(this.ticker, this.time) 
+    }
 
     private click = 0;
     private el: any;
@@ -61,8 +64,8 @@ export class StocksDirective implements OnInit {
         this.getData(this.ticker);
     }
 
-    updateGraph(ticker: string) {
-        this.getData(ticker, '',true);
+    updateGraph(ticker: string, time: string) {
+        this.getData(ticker, time, true);
     }
 
     getData(ticker: string, date: string = '5Y', updateLine: boolean = false) {        
@@ -97,9 +100,6 @@ export class StocksDirective implements OnInit {
             case '1W':
                 dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 7)))
                 break;
-            case '1D':
-                dateOutput = this.convertDateToString(new Date(d.setDate(d.getDate() - 1)))
-                break;
         }
 
         return url + ticker +'.json?&start_date=' + dateOutput + '&api_key=Wrequ5yJz-7tNyvu6iS1'
@@ -129,7 +129,7 @@ export class StocksDirective implements OnInit {
 
     scaleDomains(data: any[][], xValue: DataValue, yValue: DataValue) {
         this.x.domain(d3.extent(data, (d) => { return d[xValue]; }));  
-        this.y.domain([0, d3.max(data, (d) => { return d[yValue]; })]);
+        this.y.domain(d3.extent(data, (d) => { return d[yValue]; }));
     }
 
     createLine(data: any) {
