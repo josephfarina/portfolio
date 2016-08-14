@@ -1,7 +1,7 @@
-<div class="stocks">
-    <h1>stocks</h1>
-    <div class="chart" my-stock-chart [ticker]='ticker' [time]='time' >
-    <input [(ngModel)]='ticker'  type="text" >
+<div class="stocks-wrapper">
+
+    <!--<input [(ngModel)]='ticker'  type="text" >-->
+    <div my-stock-chart [ticker]='ticker' [time]='time' >
         <div class="date-range-container">
             <div class='date-range' (click)='updateDate("5Y")' >5Y</div>
             <div class='date-range' (click)='updateDate("1Y")' >1Y</div>

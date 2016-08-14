@@ -1,5 +1,18 @@
-.stocks {
-  padding: 200px;
+.stocks-wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    background-color: #F23568;
+}
+
+.chart {
+    position: relative;
+    display: block;
+    margin: auto;
+    left:  0;
+    top: 30;
+    fill: white;
+  background-color: white;
+  z-index: 1;    
 }
 
 .line {
@@ -15,10 +28,9 @@
   shape-rendering: crispEdges;
 }
 
-
 .tooltip-line {
-  stroke-width: 2;
-  stroke: grey;
+  stroke-width: 1;
+  stroke: lightgray;
 }
 
 .stock-title,
@@ -41,9 +53,10 @@
 
 .date-range-container {
   position: relative;
-  top: 650px;
+  top: 600px;
+  width: 400px;
   padding: 0;
-  margin: 0;
+  margin: auto;
   list-style: none;
   display: flex;
   justify-content: space-between;
@@ -62,6 +75,4 @@
   }
 }
 
-svg {
-  border: 1px solid black;
-}
+

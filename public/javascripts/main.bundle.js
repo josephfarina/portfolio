@@ -9800,7 +9800,7 @@ webpackJsonp([2],{
 /***/ 463:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"stocks\">\n    <h1>stocks</h1>\n    <div class=\"chart\" my-stock-chart [ticker]='ticker' [time]='time' >\n    <input [(ngModel)]='ticker'  type=\"text\" >\n        <div class=\"date-range-container\">\n            <div class='date-range' (click)='updateDate(\"5Y\")' >5Y</div>\n            <div class='date-range' (click)='updateDate(\"1Y\")' >1Y</div>\n            <div class='date-range' (click)='updateDate(\"6M\")' >6M</div>\n            <div class='date-range' (click)='updateDate(\"1M\")' >1M</div>\n            <div class='date-range' (click)='updateDate(\"1W\")' >1W</div>\n        </div>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"stocks-wrapper\">\n\n    <!--<input [(ngModel)]='ticker'  type=\"text\" >-->\n    <div my-stock-chart [ticker]='ticker' [time]='time' >\n        <div class=\"date-range-container\">\n            <div class='date-range' (click)='updateDate(\"5Y\")' >5Y</div>\n            <div class='date-range' (click)='updateDate(\"1Y\")' >1Y</div>\n            <div class='date-range' (click)='updateDate(\"6M\")' >6M</div>\n            <div class='date-range' (click)='updateDate(\"1M\")' >1M</div>\n            <div class='date-range' (click)='updateDate(\"1W\")' >1W</div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
 
@@ -9870,7 +9870,7 @@ webpackJsonp([2],{
 /***/ 473:
 /***/ function(module, exports) {
 
-	module.exports = ".stocks {\n  padding: 200px; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n\n.axis path,\n.axis line {\n  fill: none;\n  stroke-width: 1;\n  shape-rendering: crispEdges; }\n\n.tooltip-line {\n  stroke-width: 2;\n  stroke: grey; }\n\n.stock-title,\n.stock-subtitle,\n.stock-dateinfo {\n  font-family: 'Roboto Condensed', sans-serif; }\n\n.stock-title {\n  font-weight: 700;\n  font-size: 36px; }\n\n.stock-subtitle,\n.stock-dateinfo {\n  font-weight: 300;\n  font-size: 14px;\n  fill: lightgray; }\n\n.date-range-container {\n  position: relative;\n  top: 650px;\n  padding: 0;\n  margin: 0;\n  list-style: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .date-range-container .date-range {\n    background: tomato;\n    padding: 5px;\n    width: 40px;\n    height: 40px;\n    margin: 1px;\n    line-height: 30px;\n    color: white;\n    font-weight: bold;\n    font-size: 1em;\n    text-align: center; }\n\nsvg {\n  border: 1px solid black; }\n"
+	module.exports = ".stocks-wrapper {\n  min-height: 100%;\n  overflow: hidden;\n  background-color: #F23568; }\n\n.chart {\n  position: relative;\n  display: block;\n  margin: auto;\n  left: 0;\n  top: 30;\n  fill: white;\n  background-color: white;\n  z-index: 1; }\n\n.line {\n  fill: none;\n  stroke-width: 1px;\n  stroke: lightsteelblue; }\n\n.axis path,\n.axis line {\n  fill: none;\n  stroke-width: 1;\n  shape-rendering: crispEdges; }\n\n.tooltip-line {\n  stroke-width: 1;\n  stroke: lightgray; }\n\n.stock-title,\n.stock-subtitle,\n.stock-dateinfo {\n  font-family: 'Roboto Condensed', sans-serif; }\n\n.stock-title {\n  font-weight: 700;\n  font-size: 36px; }\n\n.stock-subtitle,\n.stock-dateinfo {\n  font-weight: 300;\n  font-size: 14px;\n  fill: lightgray; }\n\n.date-range-container {\n  position: relative;\n  top: 600px;\n  width: 400px;\n  padding: 0;\n  margin: auto;\n  list-style: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .date-range-container .date-range {\n    background: tomato;\n    padding: 5px;\n    width: 40px;\n    height: 40px;\n    margin: 1px;\n    line-height: 30px;\n    color: white;\n    font-weight: bold;\n    font-size: 1em;\n    text-align: center; }\n"
 
 /***/ },
 
@@ -11383,6 +11383,7 @@ webpackJsonp([2],{
 	    StocksDirective.prototype.createGraph = function () {
 	        this.graph = this.graph
 	            .append('svg')
+	            .attr('class', 'chart')
 	            .attr('width', this.width + this.margin.left + this.margin.right)
 	            .attr('height', this.height + this.margin.bottom + this.margin.top)
 	            .append('g')
@@ -11499,7 +11500,8 @@ webpackJsonp([2],{
 	            .attr("y1", 0)
 	            .attr('y2', this.height)
 	            .attr("x1", 10)
-	            .attr("x2", 10);
+	            .attr("x2", 10)
+	            .style('stroke', this.checkIfPositive());
 	        this.dataHighlightContainer = this.graph.append("rect")
 	            .attr("width", this.width)
 	            .attr("height", this.height)
@@ -11586,13 +11588,15 @@ webpackJsonp([2],{
 	        this.dataHighlightInfo.text(function () {
 	            return _this.calculateValueDiff(_this.data[0][DataValue.close]) + ' ' + _this.calculatePercentageDiff(_this.data[0][DataValue.close]) + ' ' + _this.time;
 	        });
+	        this.dataHighlight
+	            .style('stroke', this.checkIfPositive());
 	    };
 	    StocksDirective.prototype.checkIfPositive = function () {
 	        if (this.data[0][DataValue.close] > this.data[this.data.length - 1][DataValue.close]) {
 	            return 'green';
 	        }
 	        else {
-	            return 'red';
+	            return '#F23568';
 	        }
 	    };
 	    StocksDirective.prototype.calculatePercentageDiff = function (currValue) {

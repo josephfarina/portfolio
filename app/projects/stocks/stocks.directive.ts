@@ -56,10 +56,11 @@ export class StocksDirective implements OnInit {
     createGraph() {
         this.graph = this.graph
             .append('svg')
-            .attr('width', this.width + this.margin.left + this.margin.right)
-            .attr('height', this.height + this.margin.bottom + this.margin.top)
+                .attr('class', 'chart')
+                .attr('width', this.width + this.margin.left + this.margin.right)
+                .attr('height', this.height + this.margin.bottom + this.margin.top)
             .append('g')
-            .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+                .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
         this.getData(this.ticker);
     }
 
@@ -178,6 +179,7 @@ export class StocksDirective implements OnInit {
             .attr('y2', this.height)
             .attr("x1", 10)
             .attr("x2", 10)
+            .style('stroke', this.checkIfPositive())
 
         this.dataHighlightContainer = this.graph.append("rect")
             .attr("width", this.width)
@@ -269,13 +271,15 @@ export class StocksDirective implements OnInit {
         this.dataHighlightInfo.text(() => {
             return this.calculateValueDiff(this.data[0][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[0][DataValue.close]) + ' ' + this.time;
         });
+        this.dataHighlight
+            .style('stroke', this.checkIfPositive())
     }
 
     checkIfPositive(): string {
         if (this.data[0][DataValue.close] > this.data[this.data.length - 1][DataValue.close]) {
             return 'green';
         } else {
-            return 'red';
+            return '#F23568';
         }
     }
 
