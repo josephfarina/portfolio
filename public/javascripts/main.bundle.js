@@ -11523,7 +11523,9 @@ webpackJsonp([2],{
 	            .attr('dy', -47)
 	            .attr('dx', this.width / 2)
 	            .style("z-index", "10")
-	            .text('HI');
+	            .text(function () {
+	            return _this.calculateValueDiff(_this.data[0][DataValue.close]) + ' ' + _this.calculatePercentageDiff(_this.data[0][DataValue.close]);
+	        });
 	        this.dataHighlightDateDetails = this.graph.append('text')
 	            .attr('class', 'stock-dateinfo')
 	            .style("position", "absolute")
@@ -11536,8 +11538,12 @@ webpackJsonp([2],{
 	        this.dataHighlight.style('display', null);
 	    };
 	    StocksDirective.prototype.toolTipMouseOut = function () {
+	        var _this = this;
 	        this.dataHighlight.style('display', 'none');
 	        this.dataHighlightDateDetails.text('');
+	        this.dataHighlightInfo.text(function () {
+	            return _this.calculateValueDiff(_this.data[0][DataValue.close]) + ' ' + _this.calculatePercentageDiff(_this.data[0][DataValue.close]);
+	        });
 	        this.dataHighlightValue.text(this.data[0][DataValue.close]);
 	    };
 	    StocksDirective.prototype.toolTipMouseMove = function () {
@@ -11633,11 +11639,8 @@ webpackJsonp([2],{
 	/**
 	 *
 	 * TODO:
-	 *  - have title update to the highlighted value and when mouse is out have it default to the newest value
 	 *  - have the subtitle follow the line
 	 *  - have the highlight line disappear when not hovering
-	 *  - set up functionality to scale the display to years based on the button click
-	 *  - create math in the subtilte to show percentage change since the begining value of the scale
 	 *
 	 */ 
 	

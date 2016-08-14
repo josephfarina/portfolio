@@ -204,7 +204,9 @@ export class StocksDirective implements OnInit {
             .attr('dy', -47)
             .attr('dx', this.width / 2)            
             .style("z-index", "10")
-            .text('HI')
+            .text( () => {
+                    return this.calculateValueDiff(this.data[0][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[0][DataValue.close]);
+            });
 
         this.dataHighlightDateDetails = this.graph.append('text')
             .attr('class', 'stock-dateinfo')
@@ -222,6 +224,9 @@ export class StocksDirective implements OnInit {
     toolTipMouseOut() {
         this.dataHighlight.style('display', 'none');
         this.dataHighlightDateDetails.text('');
+        this.dataHighlightInfo.text( () => {
+                return this.calculateValueDiff(this.data[0][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[0][DataValue.close]);
+        });
         this.dataHighlightValue.text(this.data[0][DataValue.close])
     }
 
@@ -326,10 +331,7 @@ export enum DataValue {
 /**
  * 
  * TODO:
- *  - have title update to the highlighted value and when mouse is out have it default to the newest value
  *  - have the subtitle follow the line
  *  - have the highlight line disappear when not hovering
- *  - set up functionality to scale the display to years based on the button click
- *  - create math in the subtilte to show percentage change since the begining value of the scale
  * 
  */
