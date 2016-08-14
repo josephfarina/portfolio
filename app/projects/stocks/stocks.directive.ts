@@ -23,6 +23,7 @@ export class StocksDirective implements OnInit {
     private dataHighlightValue: any;
     private dataHighlightInfo: any;
     private dataHighlightDateDetails: any;
+    private dataCompanyName: any;
     private data: any[];
     private margin: Margin = {
         top: 150,
@@ -61,7 +62,7 @@ export class StocksDirective implements OnInit {
                 .attr('height', this.height + this.margin.bottom + this.margin.top)
             .append('g')
                 .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
-        this.getData(this.ticker);
+        this.getData(this.ticker);        
     }
 
     updateGraph(ticker: string, time: string) {
@@ -73,10 +74,16 @@ export class StocksDirective implements OnInit {
         let url = this.makeUrl(ticker, date)
 
         d3.json(url, (error: any, data: StockAPi) => {
-            if (error) { console.error('error'); throw error; };
+            if (error) { this.handleError(error) };
             console.log('data received')
             this.handleData(data, updateLine);
         });
+    }
+
+    handleError(error: any) {
+        console.error('error'); 
+        alert('Sorry! This API doesn\'t have that ticker. Some tickers I know it has: FB, GOOG, MSFT, AAPL');
+        throw error;
     }
 
     makeUrl(ticker: string, date: string) {
@@ -119,14 +126,34 @@ export class StocksDirective implements OnInit {
             this.updateAxis()
             this.updateLine(data.dataset.data)
             this.updateToolTip();
+            this.updateCompanyName(data.dataset.name);
         }
 
         else {
             this.createAxis();
             this.createLine(data.dataset.data);
             this.createTooltip(data.dataset.data);
+            this.getCompanyName(data.dataset.name)
         }
         console.log('data handled');
+    }
+
+    getCompanyName(name:string) {
+        name = name.split('(')[0]
+        this.dataCompanyName = this.graph.append('text')
+            .attr('class', 'stock-company')
+            .style("position", "absolute")
+            .attr('dy', -120)
+            .style("text-anchor", "middle")
+            .style('fill', 'black')
+            .attr('dx', this.width / 2)
+            .style("z-index", "10")
+            .text(name)
+    }
+
+    updateCompanyName(name:string) {
+        name = name.split('(')[0]
+        this.dataCompanyName.text(name);
     }
 
     scaleDomains(data: any[][], xValue: DataValue, yValue: DataValue) {
@@ -199,6 +226,8 @@ export class StocksDirective implements OnInit {
             .attr('dx', this.width / 2)
             .style("z-index", "10")
             .text('$' + this.data[0][DataValue.close])
+
+
 
         this.dataHighlightInfo = this.graph.append('text')
             .attr('class', 'stock-subtitle')

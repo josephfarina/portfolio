@@ -9779,7 +9779,7 @@ webpackJsonp([2],{
 /***/ 460:
 /***/ function(module, exports) {
 
-	module.exports = "<div [style.backgroundColor]=\"activeProject.color\" class=\"home-container\">\n\n    <!--IMAGES-->\n    <div [ngClass]=\"{\n    'active-image slide':       '02' === activeProject.number, \n    'inactive-image':           '02' !== activeProject.number\n    }\" class=\"single-div-container\">\n        <div id=\"calculator\" class=\"single-div__calculator\"></div>\n    </div>\n\n    <div [ngClass]=\"{\n    'active-image slide':       '01' === activeProject.number, \n    'inactive-image':                           '01' !== activeProject.number\n    }\" class=\"single-div-container\">\n        <img class=\"sequencer-image\" src=\"assets/sequencer.svg\" alt=\"sequencer\">\n    </div>\n\n    <div [ngClass]=\"{\n    'active-image slide':    '03' === activeProject.number, \n    'inactive-image':           '03' !== activeProject.number\n    }\" class=\"single-div-container\">\n        <img class=\"tictactoe-image\" src=\"assets/tictactoe.svg\" alt=\"sequencer\">\n    </div>\n\n\n    <!--TEXT-->\n    <div class=\"project-container fade\">\n        <p class=\"project-description\">\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae aut assumenda laborum fugit est quibusdam quo minus! Lorem\n            ipsum dolor sit amet, consectetur adipisicing elit.\n        </p>\n        <p class=\"project-container-heading p\">SHOWCASE</p>\n        <div class=\"project-groups\">\n            <div class=\"project-group\" *ngFor=\"let project of projects\" (mouseenter)=\"setActiveProject(project)\" [class.text-inactive]=\"project !== activeProject\">\n                <a [routerLink]=\"'/' + project.link\">\n                    <span class=\"p project-group-number\">{{project.number}}</span>\n                    <h3 class=\"project-group-heading\">{{project.heading}}</h3>\n                    <p class=\" project-group-caption\" [class.text-inactive]=\"project !== activeProject\">{{project.caption}}</p>\n                </a>\n            </div>\n        </div>\n    </div>\n</div>"
+	module.exports = "<div [style.backgroundColor]=\"activeProject.color\" class=\"home-container\">\n\n    <!--IMAGES-->\n    <div [ngClass]=\"{\n    'active-image slide':       '02' === activeProject.number, \n    'inactive-image':           '02' !== activeProject.number\n    }\" class=\"single-div-container\">\n        <div id=\"calculator\" class=\"single-div__calculator\"></div>\n    </div>\n\n    <div [ngClass]=\"{\n    'active-image slide':       '01' === activeProject.number, \n    'inactive-image':                           '01' !== activeProject.number\n    }\" class=\"single-div-container\">\n        <img class=\"sequencer-image\" src=\"assets/sequencer.svg\" alt=\"sequencer\">\n    </div>\n\n    <div [ngClass]=\"{\n    'active-image slide':    '03' === activeProject.number, \n    'inactive-image':           '03' !== activeProject.number\n    }\" class=\"single-div-container\">\n        <img class=\"tictactoe-image\" src=\"assets/tictactoe.svg\" alt=\"sequencer\">\n    </div>\n\n    <div [ngClass]=\"{\n    'active-image slide':    '04' === activeProject.number, \n    'inactive-image':           '04' !== activeProject.number\n    }\" class=\"single-div-container\">\n        <img class=\"tictactoe-image\" src=\"assets/stocks.png\" alt=\"stocks\">\n    </div>\n\n    <!--TEXT-->\n    <div class=\"project-container fade\">\n        <p class=\"project-description\">\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae aut assumenda laborum fugit est quibusdam quo minus! Lorem\n            ipsum dolor sit amet, consectetur adipisicing elit.\n        </p>\n        <p class=\"project-container-heading p\">SHOWCASE</p>\n        <div class=\"project-groups\">\n            <div class=\"project-group\" *ngFor=\"let project of projects\" (mouseenter)=\"setActiveProject(project)\" [class.text-inactive]=\"project !== activeProject\">\n                <a [routerLink]=\"'/' + project.link\">\n                    <span class=\"p project-group-number\">{{project.number}}</span>\n                    <h3 class=\"project-group-heading\">{{project.heading}}</h3>\n                    <p class=\" project-group-caption\" [class.text-inactive]=\"project !== activeProject\">{{project.caption}}</p>\n                </a>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
@@ -9979,6 +9979,13 @@ webpackJsonp([2],{
 	        heading: 'Sequencer',
 	        link: '/drum',
 	        number: '01',
+	    },
+	    {
+	        caption: 'Stock charts built with D3 that communicate with an API',
+	        color: '#F23568',
+	        heading: 'Stocks',
+	        link: '/stocks',
+	        number: '04',
 	    },
 	    {
 	        caption: 'An 808 inspired sequencer built with angular2',
@@ -11401,13 +11408,17 @@ webpackJsonp([2],{
 	        var url = this.makeUrl(ticker, date);
 	        d3.json(url, function (error, data) {
 	            if (error) {
-	                console.error('error');
-	                throw error;
+	                _this.handleError(error);
 	            }
 	            ;
 	            console.log('data received');
 	            _this.handleData(data, updateLine);
 	        });
+	    };
+	    StocksDirective.prototype.handleError = function (error) {
+	        console.error('error');
+	        alert('Sorry! This API doesn\'t have that ticker. Some tickers I know it has: FB, GOOG, MSFT, AAPL');
+	        throw error;
 	    };
 	    StocksDirective.prototype.makeUrl = function (ticker, date) {
 	        var url = 'https://www.quandl.com/api/v3/datasets/WIKI/';
@@ -11448,13 +11459,31 @@ webpackJsonp([2],{
 	            this.updateAxis();
 	            this.updateLine(data.dataset.data);
 	            this.updateToolTip();
+	            this.updateCompanyName(data.dataset.name);
 	        }
 	        else {
 	            this.createAxis();
 	            this.createLine(data.dataset.data);
 	            this.createTooltip(data.dataset.data);
+	            this.getCompanyName(data.dataset.name);
 	        }
 	        console.log('data handled');
+	    };
+	    StocksDirective.prototype.getCompanyName = function (name) {
+	        name = name.split('(')[0];
+	        this.dataCompanyName = this.graph.append('text')
+	            .attr('class', 'stock-company')
+	            .style("position", "absolute")
+	            .attr('dy', -120)
+	            .style("text-anchor", "middle")
+	            .style('fill', 'black')
+	            .attr('dx', this.width / 2)
+	            .style("z-index", "10")
+	            .text(name);
+	    };
+	    StocksDirective.prototype.updateCompanyName = function (name) {
+	        name = name.split('(')[0];
+	        this.dataCompanyName.text(name);
 	    };
 	    StocksDirective.prototype.scaleDomains = function (data, xValue, yValue) {
 	        this.x.domain(d3.extent(data, function (d) { return d[xValue]; }));
