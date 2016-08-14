@@ -1,7 +1,14 @@
 <div class="stocks-wrapper">
 
-    <!--<input [(ngModel)]='ticker'  type="text" >-->
     <div my-stock-chart [ticker]='ticker' [time]='time' >
+
+   <div class="input-group ticker-wrapper">
+      <input type="text" [(ngModel)]='ticker' class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div>
+
         <div class="date-range-container">
             <div class='date-range' [ngClass]="{active : time == '5Y'}" (click)='updateDate("5Y")' >5Y</div>
             <div class='date-range' [ngClass]="{active : time == '1Y'}" (click)='updateDate("1Y")' >1Y</div>
