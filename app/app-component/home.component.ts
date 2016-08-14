@@ -42,6 +42,13 @@ export const MY_PROJECTS: Project[] = [
             number: '01',
         },
         {
+            caption: 'Stock charts built with D3 that communicate with an API',
+            color: '#F23568',
+            heading: 'Stocks',
+            link: '/stocks',
+            number: '04',
+        },
+        {
             caption: 'An 808 inspired sequencer built with angular2',
             color: '#8EDB37',
             heading: 'Calculator',

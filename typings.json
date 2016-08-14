@@ -5,6 +5,9 @@
     "jasmine": "registry:dt/jasmine#2.2.0+20160505161446",
     "node": "registry:dt/node#4.0.0+20160509154515",
     "selenium-webdriver": "registry:dt/selenium-webdriver#2.44.0+20160317120654",
-    "snapsvg": "github:DefinitelyTyped/DefinitelyTyped/snapsvg/snapsvg.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd"    
+    "snapsvg": "github:DefinitelyTyped/DefinitelyTyped/snapsvg/snapsvg.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd"
+  },
+  "dependencies": {
+    "d3": "registry:npm/d3#3.0.0+20160723033700"
   }
 }

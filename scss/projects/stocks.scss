@@ -1,0 +1,89 @@
+.stocks-wrapper {
+    min-height: 100%;
+    overflow: scroll;
+    background-color: #F23568;
+}
+
+.chart {
+    position: relative;
+    display: block;
+    margin: auto;
+    left:  0;
+    top: 50;
+    fill: white;
+    background-color: white;
+    z-index: 1;    
+}
+
+.line {
+  fill: none;
+  stroke-width: 1px;
+  stroke: lightsteelblue;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.tooltip-line {
+  stroke-width: 1;
+  stroke: lightgray;
+}
+
+.stock-title,
+.stock-subtitle,
+.stock-dateinfo {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.stock-title {
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.stock-subtitle,
+.stock-dateinfo {
+  font-weight: 300;
+  font-size: 14px;
+  fill: lighten(black, 15%);
+}
+
+.date-range-container {
+  position: relative;
+  top: 600px;
+  width: 500px;
+  padding: 0;
+  margin: auto;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+
+  .date-range {
+    background: white;
+    border-radius: 2px;
+    padding: 5px;
+
+    width: 100px;
+    height: 40px;
+    margin: 1px;
+    line-height: 30px;
+    color: lighten(black, 15%);
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
+  }
+
+  .active {
+    background: darken(white, 20%);
+  }
+}
+
+.ticker-wrapper {
+  position: relative;
+  width: 500px;
+  top: 80px;
+  margin: auto;  
+}
