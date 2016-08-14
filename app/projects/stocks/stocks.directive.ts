@@ -1,5 +1,4 @@
 import { Directive, ElementRef, Input, OnInit, HostListener } from '@angular/core';
-import { DateVisible } from './stocks.component';
 import * as d3 from 'd3';
 
 @Directive({ selector: '[my-stock-chart]' })
@@ -9,8 +8,8 @@ export class StocksDirective implements OnInit {
     @Input('height') _height: number = 500;
     @Input('width') _width: number = 500;
     @HostListener('click')
-    onClick() { 
-        this.updateGraph(this.ticker, this.time) 
+    onClick() {
+        this.updateGraph(this.ticker, this.time)
     }
 
     private click = 0;
@@ -59,7 +58,7 @@ export class StocksDirective implements OnInit {
             .append('svg')
             .attr('width', this.width + this.margin.left + this.margin.right)
             .attr('height', this.height + this.margin.bottom + this.margin.top)
-            .append('g')        
+            .append('g')
             .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
         this.getData(this.ticker);
     }
@@ -68,10 +67,10 @@ export class StocksDirective implements OnInit {
         this.getData(ticker, time, true);
     }
 
-    getData(ticker: string, date: string = '5Y', updateLine: boolean = false) {        
+    getData(ticker: string, date: string = '5Y', updateLine: boolean = false) {
         console.log(this.makeUrl(ticker, date));
         let url = this.makeUrl(ticker, date)
-        
+
         d3.json(url, (error: any, data: StockAPi) => {
             if (error) { console.error('error'); throw error; };
             console.log('data received')
@@ -102,7 +101,7 @@ export class StocksDirective implements OnInit {
                 break;
         }
 
-        return url + ticker +'.json?&start_date=' + dateOutput + '&api_key=Wrequ5yJz-7tNyvu6iS1'
+        return url + ticker + '.json?&start_date=' + dateOutput + '&api_key=Wrequ5yJz-7tNyvu6iS1'
     }
 
     handleData(data: StockAPi, update: boolean = false) {
@@ -118,7 +117,9 @@ export class StocksDirective implements OnInit {
         if (update) {
             this.updateAxis()
             this.updateLine(data.dataset.data)
+            this.updateToolTip();
         }
+
         else {
             this.createAxis();
             this.createLine(data.dataset.data);
@@ -128,7 +129,7 @@ export class StocksDirective implements OnInit {
     }
 
     scaleDomains(data: any[][], xValue: DataValue, yValue: DataValue) {
-        this.x.domain(d3.extent(data, (d) => { return d[xValue]; }));  
+        this.x.domain(d3.extent(data, (d) => { return d[xValue]; }));
         this.y.domain(d3.extent(data, (d) => { return d[yValue]; }));
     }
 
@@ -192,6 +193,7 @@ export class StocksDirective implements OnInit {
             .style("position", "absolute")
             .attr('dy', -70)
             .style("text-anchor", "middle")
+            .style('fill', this.checkIfPositive())
             .attr('dx', this.width / 2)
             .style("z-index", "10")
             .text('$' + this.data[0][DataValue.close])
@@ -199,40 +201,43 @@ export class StocksDirective implements OnInit {
         this.dataHighlightInfo = this.graph.append('text')
             .attr('class', 'stock-subtitle')
             .style("position", "absolute")
-            .style("text-anchor", "middle")            
-            .style('fill', this.checkIfPositive())
+            .style("text-anchor", "middle")
             .attr('dy', -47)
-            .attr('dx', this.width / 2)            
+            .attr('dx', this.width / 2)
             .style("z-index", "10")
-            .text( () => {
-                    return this.calculateValueDiff(this.data[0][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[0][DataValue.close]);
+            .text(() => {
+                return this.calculateValueDiff(this.data[0][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[0][DataValue.close]) + ' ' + this.time;
             });
 
         this.dataHighlightDateDetails = this.graph.append('text')
             .attr('class', 'stock-dateinfo')
             .style("position", "absolute")
-            .style("text-anchor", "middle")            
+            .style("text-anchor", "middle")
             .attr('dy', -30)
             .style("z-index", "10")
     }
 
+    dataHighlightInfoText() {
+        return this.calculateValueDiff(this.data[0][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[0][DataValue.close])
+    }
+
     toolTipMouseOver() {
-        this.dataHighlightInfo.style('fill', this.checkIfPositive());
+        this.dataHighlightValue.style('fill', this.checkIfPositive());
         this.dataHighlight.style('display', null);
     }
 
     toolTipMouseOut() {
         this.dataHighlight.style('display', 'none');
         this.dataHighlightDateDetails.text('');
-        this.dataHighlightInfo.text( () => {
-                return this.calculateValueDiff(this.data[0][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[0][DataValue.close]);
+        this.dataHighlightInfo.text(() => {
+            return this.calculateValueDiff(this.data[0][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[0][DataValue.close]) + ' ' + this.time;
         });
         this.dataHighlightValue.text(this.data[0][DataValue.close])
     }
 
     toolTipMouseMove() {
         let xPos = this.x.invert(d3.mouse(d3.event.currentTarget)[0]);
-        
+
         let index = this.data.map((d: any) => {
             return this.convertDateToString(d[0])
         }).indexOf(this.convertDateToString(xPos))
@@ -244,8 +249,8 @@ export class StocksDirective implements OnInit {
         this.dataHighlightDateDetails
             .attr("x", () => {
                 console.log(d3.mouse(d3.event.currentTarget)[0])
-                if (d3.mouse(d3.event.currentTarget)[0] <= this.margin.left) { return this.margin.left; } 
-                else if (d3.mouse(d3.event.currentTarget)[0] >= (this.width - this.margin.right)) {  return this.width - this.margin.right; } 
+                if (d3.mouse(d3.event.currentTarget)[0] <= this.margin.left) { return this.margin.left; }
+                else if (d3.mouse(d3.event.currentTarget)[0] >= (this.width - this.margin.right)) { return this.width - this.margin.right; }
                 else { return d3.mouse(d3.event.currentTarget)[0]; }
             })
             .text(this.convertDateToString(xPos, '%b %d, %y'))
@@ -254,13 +259,19 @@ export class StocksDirective implements OnInit {
             .text(this.data[index][1])
 
         this.dataHighlightInfo
-            .style('fill', this.checkIfPositive())
-            .text( () => {
-                return this.calculateValueDiff(this.data[index][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[index][DataValue.close]);
+            .text(() => {
+                return this.calculateValueDiff(this.data[index][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[index][DataValue.close]) + ' ' + this.time;
             });
     }
 
-    checkIfPositive(): string {  
+    updateToolTip() {
+        this.dataHighlightValue.style('fill', this.checkIfPositive());
+        this.dataHighlightInfo.text(() => {
+            return this.calculateValueDiff(this.data[0][DataValue.close]) + ' ' + this.calculatePercentageDiff(this.data[0][DataValue.close]) + ' ' + this.time;
+        });
+    }
+
+    checkIfPositive(): string {
         if (this.data[0][DataValue.close] > this.data[this.data.length - 1][DataValue.close]) {
             return 'green';
         } else {
@@ -268,14 +279,14 @@ export class StocksDirective implements OnInit {
         }
     }
 
-    calculatePercentageDiff(currValue: number){
+    calculatePercentageDiff(currValue: number) {
         return '(' + (currValue / this.data[this.data.length - 1][DataValue.close] * 100).toFixed(2) + '%' + ')';
     }
 
-    calculateValueDiff(currValue: number ){
+    calculateValueDiff(currValue: number) {
         return (currValue - this.data[this.data.length - 1][DataValue.close]).toFixed(2)
     }
-    
+
 }
 
 export interface Margin {
