@@ -180,11 +180,12 @@ export class StocksDirective implements OnInit {
     }
 
     toolTipMouseOver() {
-        console.log('mouse over')
+        this.dataHighlight.style('display', null);
     }
 
     toolTipMouseOut() {
-        console.log('mouse out')
+        this.dataHighlight.style('display', 'none');
+        this.dataHighlightDetails.text('');
     }
 
     toolTipMouseMove() {

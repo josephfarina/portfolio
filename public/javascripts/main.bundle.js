@@ -11515,10 +11515,11 @@ webpackJsonp([2],{
 	    StocksDirective.prototype.updateToolTip = function (arrayData) {
 	    };
 	    StocksDirective.prototype.toolTipMouseOver = function () {
-	        console.log('mouse over');
+	        this.dataHighlight.style('display', null);
 	    };
 	    StocksDirective.prototype.toolTipMouseOut = function () {
-	        console.log('mouse out');
+	        this.dataHighlight.style('display', 'none');
+	        this.dataHighlightDetails.text('');
 	    };
 	    StocksDirective.prototype.toolTipMouseMove = function () {
 	        var _this = this;
