@@ -9981,13 +9981,6 @@ webpackJsonp([2],{
 	        number: '01',
 	    },
 	    {
-	        caption: 'Stock charts built with D3 that communicate with an API',
-	        color: '#F23568',
-	        heading: 'Stocks',
-	        link: '/stocks',
-	        number: '04',
-	    },
-	    {
 	        caption: 'An 808 inspired sequencer built with angular2',
 	        color: '#8EDB37',
 	        heading: 'Calculator',
@@ -10000,7 +9993,14 @@ webpackJsonp([2],{
 	        heading: 'TicTacToe',
 	        link: '/tictactoe/play',
 	        number: '03',
-	    }
+	    },
+	    {
+	        caption: 'Stock charts built with D3 that communicate with an API',
+	        color: '#F23568',
+	        heading: 'Stocks',
+	        link: '/stocks',
+	        number: '04',
+	    },
 	];
 	
 
